@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ірина Стецуріна — Консалтинг</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="Лого" />
+    </div>
+    <div class="burger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="menu">
+      <a href="#about" onclick="closeMenu()">Про мене</a>
+      <a href="#products" onclick="closeMenu()">Продукти</a>
+      <a onclick="openContactsModal(); closeMenu()">Контакти</a>
+    </nav>
+  </div>
+
+  <header class="fade-up">
+    <h1>Консалтинг нового рівня</h1>
+    <p>Для підприємців, які хочуть ясності, системності та масштабування бізнесу.</p>
+  </header>
+
+  <section class="section" id="about">
+    <div class="about-wrapper fade-left">
+      <img class="about-photo" src="assets/images/about-photo.jpg" alt="Ірина Стецуріна" />
+      <div class="about-text">
+        Я - Ірина Стецуріна, системний консультант, бізнес-тренер, коуч, ментор, магістр бізнес адміністрування Executive MBA (Open European Academy of Economics & Politics. Prague)<br>
+        Допомагаю підприємцям:<br>
+        - виходити зі своїх фінансових «стель»,<br>
+        - знімати внутрішні блоки, <br>
+        - повертатись «обличчям до себе», <br>
+        - будувати системний прибутковий бізнес, не втрачаючи при цьому сенс і радість життя, щоб бізнес працював на них, а не вони на нього<br>
+        Я поєдную логіку та інтуїцію, системність і глибину, цифри й сенси - щоб трансформації були не тимчасовими, а фундаментальними.<br> 
+        Працюю не «з проблемою», а з людиною<br>
+        Я не обіцяю швидких рішень - я допомагаю знайти свої.<br>
+        <div class="about-highlights">
+          <div class="about-card">
+            <img src="assets/icons/approach.png" alt="Мій підхід">
+            <div class="text-content">
+              <h4>Мій підхід</h4>
+              <p>поєднання глибини, структури і дії, використовуючи при цьому інструменти коучингу, менторінгу, глибинної діагностики</p>
+            </div>
+          </div>
+          <div class="about-card">
+            <img src="assets/icons/mission.png" alt="Моя міссія">
+            <div class="text-content">
+              <h4>Моя місія</h4>
+              <p>повернути людину до себе справжньої, щоб з цього місця вона могла створити життя та бізнес, які тримають і надихають</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <h2 class="products-header">Мої продукти</h2>
+    <div class="cards">
+
+      <div class="card" onclick="openModal(this)">
+        <img src="assets/images/express-consult.jpg" alt="Експрес-консультація" />
+        <div class="card-content">
+          <div class="card-text-content">
+            <h3>ЕКСПРЕС-КОНСУЛЬТАЦІЯ</h3>
+            <p>Швидке рішення. Точний фокус. Чіткий план дій.<br>45 хвилин, які повернуть тебе в рух.</p>
+            <p><strong>ЩО МИ РОБИМО:</strong></p>
+            <p>✓ визначаємо твою точку А — де ти зараз і що справді відбувається<br>
+               ✓ формулюємо точку Б — чітку, чесну і твою ціль<br>
+               ✓ прокладаємо маршрут до неї — з позиції, ніби ти вже там, і з цього майбутнього дивимося назад</p>
+            <p>Це формат, який працює швидко й глибоко.<br>Ти виходиш не з «легким натхненням», а з реальним розумінням: ЩО робити завтра, про ЩО чесно говорити з собою і КУДИ рухатись далі.</p>
+            <div class="readmore">Читати далі →</div>
+
+            <div class="full-text" style="display:none;">
+              <p><strong>ДЛЯ КОГО:</strong><br>• ти застряг(ла) і не знаєш, куди рухатись далі<br>• в голові багато варіантів, але важко обрати<br>• всередині сумніви, страх або прокрастинація<br>• ти хочеш змін, але не бачиш першого кроку<br>• відчуваєш, що можеш більше, але не уявляєш, яким саме є це «більше»</p>
+              <p><strong>РЕЗУЛЬТАТ:</strong><br>• Ясність • Фокус • План (3–5 кроків) • Опора • Новий ракурс</p>
+              <p><strong>ЯК ПРОХОДИТЬ</strong><br>Тривалість: 45 хвилин | Онлайн, Zoom | Вартість: 250 грн</p>
+              <p>Це як запросити мене на каву й поговорити про найважливіше: твоє життя.</p>
+            </div>
+          </div>
+
+          <div class="buttons-row">
+            <a class="btn btn-main" onclick="openCalendly(event, 'https://calendly.com/4ernish8/30min')">Записатися</a>
+            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Експрес-консультація', '250 грн')">250 грн</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(this)">
+        <img src="assets/images/strategy-session.jpg" alt="Стратегічна сесія" />
+        <div class="card-content">
+          <div class="card-text-content">
+            <h3>СТРАТЕГІЧНА СЕСІЯ</h3>
+            <p>Стратегічна сесія для власників бізнесу<br>Глибинна робота, що перетворює хаос на чітку систему рішень, дій та відповідальностей.</p>
+            <p>Стратегічна сесія — це комплексна робота з власником, де ми розбираємо не лише бізнес як систему, а й вас як лідера. Ви отримуєте не просто стратегію, а чітку карту руху та внутрішню ясність, необхідну для масштабування, стабільності й впевненого управління.</p>
+            <p><strong>Для кого ця сесія</strong><br>
+               Для власників бізнесу, які:<br>
+               • відчувають, що «виросли» зі свого поточного формату управління<br>
+               • втратили ясність, куди рухається компанія<br>
+               • хочуть систематизувати операційку, фінанси, ролі, команди<br>
+               • готові переходити від ручного керування до стратегічного управління<br>
+               • розуміють, що масштаб потребує іншого мислення та інструментів</p>
+            <div class="readmore">Читати далі →</div>
+
+            <div class="full-text" style="display:none;">
+              <p><strong>Що ми опрацьовуємо на сесії</strong><br>
+                 Ми працюємо одразу на трьох рівнях:</p>
+              <p><strong>1. Стратегічний рівень</strong><br>
+                 • Перевірка актуальності бізнес-моделі<br>
+                 • Аналіз точки А та потенціалу компанії<br>
+                 • Формування точки Б: бачення, стратегічні цілі, критерії успіху<br>
+                 • Визначення фокусів розвитку на найближчі 6–12 місяців</p>
+              <p><strong>2. Операційний рівень</strong><br>
+                 • Аналіз структури управління<br>
+                 • Виявлення слабких місць і «вузьких горлечок»<br>
+                 • Перепроєктування ролей та зон відповідальності<br>
+                 • Систематизація процесів (в тому числі фінансових)</p>
+              <p><strong>3. Лідерський рівень</strong><br>
+                 • Ваша роль як власника<br>
+                 • Які компетенції й установки зараз обмежують розвиток<br>
+                 • Які рішення і зміни дадуть прорив<br>
+                 • Який стиль управління потрібен компанії на новому етапі</p>
+
+              <p><strong>Результати, які ви отримуєте після сесії</strong><br>
+                 • Чітке бачення і стратегія на найближчі 6–12 місяців<br>
+                 • Розуміння, де ви втрачаєте гроші, час, енергію<br>
+                 • Оптимізована структура управління<br>
+                 • Розподіл ролей і відповідальностей, який знімає хаос<br>
+                 • Пріоритети, які приведуть до зростання<br>
+                 • Персональні управлінські рекомендації<br>
+                 • Перші конкретні кроки, що запускають рух до результату</p>
+
+              <p><strong>Формат роботи</strong><br>
+                 • Тривалість: 2–3 години<br>
+                 • Формат: онлайн або офлайн<br>
+                 • Ви отримуєте: документацію за результатами, карту фокусів, план першочергових дій</p>
+            </div>
+          </div>
+
+          <div class="buttons-row">
+            <a class="btn btn-main" onclick="openCalendly(event, 'https://calendly.com/4ernish8/30min')">Записатися</a>
+            <button class="price-btn" onclick="event.stopPropagation(); openWayForPay()">800 грн</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <button class="scroll-top" onclick="scrollToTop()" aria-label="Наверх">
+    <img src="assets/icons/up-arrow.png" alt="up">
+  </button>
+
+  <footer class="fade-in-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div>ФОП Стецуріна Ірина Олександрівна</div>
+        <div>м. Київ, Україна</div>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/stetsurina.irina_coach/" target="_blank">
+          <img src="assets/icons/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/IrenStetsurina" target="_blank">
+          <img src="assets/icons/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://t.me/Stec0407" target="_blank">
+          <img src="assets/icons/telegram.png" alt="Telegram">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
+  <div id="contactsModal">
+    <div class="contacts-modal-content">
+      <h3>
+        <img src="assets/icons/phone.png" alt="Телефон">
+        Контакти
+      </h3>
+      <p>ФОП Стецуріна Ірина Олександрівна</p>
+      <p>Україна, м. Київ</p>
+      <div class="contacts-socials">
+        <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
+          <img src="assets/icons/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/IrenStetsurina" target="_blank">
+          <img src="assets/icons/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://t.me/Stec0407" target="_blank">
+          <img src="assets/icons/telegram.png" alt="Telegram">
+        </a>
+      </div>
+      <div style="margin-top: 30px; color: #888; cursor: pointer;" onclick="closeContactsModal()">Закрити</div>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО КАРТОЧКИ -->
+  <div id="cardModal">
+    <div class="modal-card">
+      <span class="close-modal" onclick="event.stopPropagation(); closeModal()">×</span>
+      <img id="modalImg" src="" alt="">
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- POPUP ОПЛАТЫ -->
+  <div id="pricePopup">
+    <div class="popup-content">
+      <h3 id="priceTitle">Запис на консультацію</h3>
+      <p id="priceLabel">Вартість: 250 грн</p>
+      <input type="text" placeholder="Ваше ім'я" />
+      <input type="email" placeholder="Email" />
+      <input type="tel" placeholder="Телефон" />
+      <button class="btn btn-main popup-buy" onclick="alert('Дякую! Я зв’яжуся з вами найближчим часом')">Оплатити та записатися</button>
+      <div class="popup-close" onclick="closePricePopup()">Закрити</div>
+    </div>
+  </div>
+
+  <!-- CALENDLY МОДАЛКА -->
+  <div id="calendlyModal" class="calendly-modal">
+    <div class="calendly-modal-content">
+      <iframe id="calendlyIframe" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+      <div class="calendly-close-btn" onclick="closeCalendlyModal()">Закрити</div>
+    </div>
+  </div>
+
+  <!-- WAYFORPAY МОДАЛКА -->
+<div id="wayforpayModal" class="calendly-modal">
+  <div class="calendly-modal-content">
+    <div class="calendly-close-btn" onclick="closeWayForPay()">Закрити</div>
+    <iframe
+      id="wayforpayIframe"
+      src=""
+      width="100%"
+      height="100%"
+      frameborder="0"
+      allowfullscreen
+      style="border:none;">
+    </iframe>
+  </div>
+</div>
+
+  <!-- Підключення скрипта -->
+  <script src="script.js"></script>
+</body>
+</html>
