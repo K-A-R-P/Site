@@ -124,24 +124,14 @@
       }
     });
 
-   function openWayForPay() {
-  const url = "https://secure.wayforpay.com/button/b93e5be4236e3";  // Твоя новая ссылка!
-  document.getElementById('wayforpayIframe').src = url;
+  function openWayForPay() {
+  // Твоя рабочая ссылка с поддержкой Apple Pay / Google Pay
+  const paymentUrl = "https://secure.wayforpay.com/button/b93e5be4236e3";
 
-  // Детект мобильного для iOS
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if (isMobile) {
-    document.body.classList.add('mobile-wayforpay');  // Добавь класс для extra-фиксов
-  }
+  // Добавляем параметр возврата на наш сайт после оплаты (или отмены)
+  const currentUrl = encodeURIComponent(window.location.href);
+  const finalUrl = `${paymentUrl}?returnUrl=${currentUrl}`;
 
-  document.getElementById('wayforpayModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-// В closeWayForPay() добавь:
-function closeWayForPay() {
-  document.getElementById('wayforpayModal').classList.remove('active');
-  document.getElementById('wayforpayIframe').src = '';
-  document.body.style.overflow = '';
-  document.body.classList.remove('mobile-wayforpay');  // Убираем класс
+  // Переходим на оплату
+  window.location.href = finalUrl;
 }
