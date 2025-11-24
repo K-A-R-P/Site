@@ -1,56 +1,3 @@
-    /* === ФИНАЛЬНЫЙ ФИКС ГОРИЗОНТАЛЬНОГО ВЫЛЕЗАНИЯ И ЗАЛИПАНИЯ ПРОКРУТКИ === */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden;           /* главное */
-}
-
-body {
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
-/* Все основные контейнеры прижмём к краям */
-header,
-.section,
-.topbar,
-footer,
-.about-wrapper,
-.cards,
-.card,
-.modal-card,
-.popup-content {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-/* Специально для твоего блока "Про мене" — больше никогда ничего не вылезет */
-#about .about-wrapper {
-  margin: 0 -8px;               /* компенсируем паддинги секции */
-  padding: 0 8px;
-  width: calc(100% + 16px);
-  max-width: calc(100vw + 16px);
-}
-
-/* Если не хочешь отрицательный margin — можно так (ещё проще) */
-#about .about-wrapper {
-  padding-left: max(8px, env(safe-area-inset-left));
-  padding-right: max(8px, env(safe-area-inset-right));
-}
-    html, body {
-  overflow-x: hidden;           /* убивает горизонтальный скролл навсегда */
-  width: 100%;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
     :root {
       --yellow: #f7c843;
       --black: #1a1a1a;
@@ -58,7 +5,7 @@ img {
       --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
       background: var(--bg);
@@ -171,17 +118,17 @@ img {
 
     @media (max-width: 768px) {
       .burger { display: flex; }
-      nav { 
-        display: none; 
-        position: absolute; 
-        top: 70px; 
-        right: 16px; 
-        background: #fff; 
-        padding: 20px; 
-        border-radius: 16px; 
-        flex-direction: column; 
-        gap: 18px; 
-        box-shadow: 0 12px 35px rgba(0,0,0,0.18); 
+      nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 16px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 16px;
+        flex-direction: column;
+        gap: 18px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.18);
       }
       nav.open { display: flex; }
     }
@@ -195,9 +142,9 @@ img {
     h1 { font-size: 48px; margin-bottom: 12px; }
     header p { font-size: 20px; color: #444; }
 
-    .section { 
-      max-width: 1300px; 
-      margin: 0 auto; 
+    .section {
+      max-width: 1300px;
+      margin: 0 auto;
       padding: 50px 20px;
     }
 
@@ -275,24 +222,17 @@ img {
 }
 
     /* PRODUCTS */
-    #products h2 { 
-      font-size: 36px; 
-      text-align: center; 
-      margin-bottom: 50px; 
+    #products h2 {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 50px;
     }
 
     .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
-  gap: 32px;
-  padding: 0 8px;          /* небольшая страховка по бокам */
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 32px;
+    }
 
     .card {
       background: #fff;
