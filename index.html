@@ -233,10 +233,16 @@
     </div>
   </div>
 
-  <!-- WAYFORPAY МОДАЛКА -->
-<div id="wayforpayModal" class="calendly-modal">
-  <div class="calendly-modal-content">
-    <div class="calendly-close-btn" onclick="closeWayForPay()">Закрити</div>
+<!-- WAYFORPAY МОДАЛКА (адаптивная) -->
+<div id="wayforpayModal" class="wayforpay-modal">
+  <div class="wayforpay-modal-content">
+    <div class="wayforpay-close-btn" onclick="closeWayForPay()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6L6 18"></path>
+        <path d="M6 6l12 12"></path>
+      </svg>
+      Закрити
+    </div>
     <iframe
       id="wayforpayIframe"
       src=""
@@ -244,11 +250,11 @@
       height="100%"
       frameborder="0"
       allowfullscreen
-      style="border:none;">
+      sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-payments"
+      style="border:none; transform-origin: top left;">
     </iframe>
   </div>
 </div>
-
   <!-- Підключення скрипта -->
   <script src="script.js"></script>
 </body>

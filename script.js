@@ -124,28 +124,24 @@
       }
     });
 
-    function openWayForPay() {
-  const url = "https://secure.wayforpay.com/button/b93e5be4236e3";
+   function openWayForPay() {
+  const url = "https://secure.wayforpay.com/button/b93e5be4236e3";  // Твоя новая ссылка!
   document.getElementById('wayforpayIframe').src = url;
+
+  // Детект мобильного для iOS
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    document.body.classList.add('mobile-wayforpay');  // Добавь класс для extra-фиксов
+  }
+
   document.getElementById('wayforpayModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
+// В closeWayForPay() добавь:
 function closeWayForPay() {
   document.getElementById('wayforpayModal').classList.remove('active');
   document.getElementById('wayforpayIframe').src = '';
   document.body.style.overflow = '';
+  document.body.classList.remove('mobile-wayforpay');  // Убираем класс
 }
-
-// Закрытие по клику вне модалки и по Esc
-document.getElementById('wayforpayModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('wayforpayModal')) {
-    closeWayForPay();
-  }
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('wayforpayModal').classList.contains('active')) {
-    closeWayForPay();
-  }
-});
