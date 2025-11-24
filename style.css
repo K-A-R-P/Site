@@ -150,17 +150,22 @@
 
     /* ABOUT */
     #about .about-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 50px;
-      flex-wrap: wrap;
-    }
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 5vw, 50px);   /* вместо фиксированных 50px */
+  flex-wrap: wrap;
+  justify-content: center;       /* на мобильке центрируем */
+}
     #about img.about-photo {
-      width: 380px;
-      border-radius: 32px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      flex-shrink: 0;
-    }
+  width: 100%;
+  max-width: 420px;           /* можно чуть больше, чем раньше */
+  min-width: 280px;           /* чтобы не стала слишком маленькой */
+  height: auto;
+  border-radius: 32px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+  align-self: flex-start;     /* если текст короче — фото не растягивается */
+}
     #about .about-text { flex: 1; min-width: 320px; }
     #about h2 { font-size: 38px; margin-bottom: 16px; }
 
