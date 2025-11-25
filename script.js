@@ -179,3 +179,22 @@ const offerObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(el));
+
+function openPaymentModal() {
+  document.getElementById('paymentModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePaymentModal() {
+  document.getElementById('paymentModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Закрытие по клику на фон и Escape
+document.getElementById('paymentModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('paymentModal')) closePaymentModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('paymentModal')?.classList.contains('active')) {
+    closePaymentModal();
+  }
+});

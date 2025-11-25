@@ -20,6 +20,7 @@
     <nav id="menu">
       <a href="#about" onclick="closeMenu()">Про мене</a>
       <a href="#products" onclick="closeMenu()">Продукти</a>
+        <a onclick="openPaymentModal(); closeMenu()">Оплата</a>
       <a onclick="openContactsModal(); closeMenu()">Контакти</a>
     </nav>
   </div>
@@ -332,6 +333,44 @@
   <div class="offer-modal-content">
     <span class="close-modal" onclick="closeOfferModal()">×</span>
     <div id="offerContent"></div>
+  </div>
+</div>
+
+  <!-- МОДАЛКА ОПЛАТА ТА ПОВЕРНЕННЯ — НОВАЯ ВЕРСИЯ -->
+<div id="paymentModal">
+  <div class="payment-modal-content">
+    <h3>
+      <img src="assets/icons/wallet.png" alt="Гаманець">
+      Оплата та повернення
+    </h3>
+
+    <div class="payment-grid">
+      <div class="payment-icons">
+        <div class="icon-row">
+          <img src="assets/icons/visa.png" alt="Visa">
+          <img src="assets/icons/mc.png" alt="Mastercard">
+        </div>
+        <div class="icon-row">
+          <img src="assets/icons/apple-pay.png" alt="Apple Pay">
+        </div>
+        <div class="icon-row">
+          <img src="assets/icons/google-pay.png" alt="Google Pay">
+        </div>
+      </div>
+
+      <div class="payment-labels">
+        <div>Оплата карткою</div>
+        <div>Apple Pay</div>
+        <div>Google Pay</div>
+      </div>
+    </div>
+
+    <p class="payment-note">
+      Всі умови оплати зазначені на сторінці продукту<br><br>
+      Повернення- згідно із Законом «Про захист прав споживачів»
+    </p>
+
+    <div class="modal-close" onclick="closePaymentModal()">Закрити</div>
   </div>
 </div>
 
