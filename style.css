@@ -657,3 +657,20 @@
   }
   .offer-modal-content h1 { font-size: 30px; }
 }
+/* ФІНАЛЬНІ СТИЛІ ДЛЯ МОДАЛКИ ОФЕРТИ — БІЛЬШЕ, ЩОБ НЕ БУЛО "КУЦОГО" */
+#offerModal .offer-modal-content {
+  max-width: 950px !important;
+  width: 90% !important;
+  max-height: 95vh !important;
+  padding: 80px 60px 60px !important;
+  overflow-y: auto !important;
+  line-height: 1.8 !important;
+}
+
+#offerModal h1 { font-size: 36px !important; text-align: center !important; margin-bottom: 32px !important; }
+#offerModal h2 { font-size: 24px !important; margin: 32px 0 16px !important; }
+#offerModal p { margin-bottom: 16px !important; font-size: 17px !important; }
+
+@media (max-width: 768px) {
+  #offerModal .offer-modal-content { padding: 40px 20px !important; width: 95% !important; }
+}

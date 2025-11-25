@@ -131,38 +131,59 @@ function openWayForPay() {
   window.location.href = finalUrl;
 }
 
-// ——— ОФЕРТА — РАБОЧАЯ ВЕРСИЯ ДЛЯ GITHUB PAGES (iframe-обход) ———
 function openOfferModal() {
+  console.log('Кнопка оферти клікнута!'); // Для дебагу — дивись в F12 > Console
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
 
-  // Если уже загружено — просто открываем
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     return;
   }
 
-  // Грузим чистый текст из offer.txt — это работает везде!
   fetch('offer.txt')
     .then(r => {
+      console.log('Fetch успішний, статус:', r.status); // Дебаг
       if (!r.ok) throw new Error('offer.txt не найден');
       return r.text();
     })
     .then(text => {
+      console.log('Текст завантажено:', text.substring(0, 100) + '...'); // Дебаг перших 100 символів
       content.innerHTML = text;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     })
-    .catch(() => {
-      // Если по какой-то причине не загрузилось — fallback
+    .catch(err => {
+      console.error('Помилка fetch:', err); // Дебаг помилки
+      // Fallback: вставляємо ТЕКСТ ПРЯМО ЗУПИНИТИСЯ ТУТ, бо .txt може не працювати — вшиваємо базовий текст
       content.innerHTML = `
-        <div style="text-align:center;padding:60px 20px;color:#e74c3c;">
-          <h3>Не вдалося завантажити оферту</h3>
-          <p><a href="offer.txt" target="_blank" style="color:#f7c843;text-decoration:underline;">
-            Відкрити оферту в новій вкладці →
-          </a></p>
-        </div>
+        <h1>Публічна оферта</h1>
+        <p>Цей документ є офіційною пропозицією (публічною офертою) ФОП Стецуріна Ірина Олександрівна (надалі — Виконавець) укласти договір на надання консультаційних послуг на зазначених нижче умовах.</p>
+
+        <h2>1. Загальні положення</h2>
+        <p>1.1. Ця оферта адресована будь-яким фізичним та юридичним особам.<br>
+           1.2. Акцепт оферти = оплата послуг або запис на консультацію через сайт чи Calendly.</p>
+
+        <h2>2. Предмет договору</h2>
+        <p>2.1. Виконавець надає консультаційні, коучингові та менторські послуги.<br>
+           2.2. Формат: онлайн (Zoom) або офлайн (м. Київ).</p>
+
+        <h2>3. Вартість та порядок оплати</h2>
+        <p>3.1. Актуальна вартість вказана на сайті.<br>
+           3.2. Оплата 100% передоплатою через WayForPay.<br>
+           3.3. Перенесення можливо не пізніше ніж за 24 години до зустрічі.</p>
+
+        <h2>4. Конфіденційність та відповідальність</h2>
+        <p>Виконавець гарантує повну конфіденційність. Послуги мають рекомендаційний характер і не є медичною допомогою.</p>
+
+        <h2>5. Реквізити</h2>
+        <p><strong>ФОП Стецуріна Ірина Олександрівна</strong><br>
+           ІПН: 3194610477<br>
+           м. Київ, Україна<br>
+           тел.: +380 (67) 404-07-07<br>
+           e-mail: stetsurina.irina@gmail.com</p>
+        <!-- Додай сюди свої 4 листа тексту — скільки завгодно, модалка прокрутиться -->
       `;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
