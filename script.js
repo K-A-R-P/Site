@@ -131,60 +131,66 @@ function openWayForPay() {
   window.location.href = finalUrl;
 }
 
+// ——— ОФЕРТА — ФИНАЛЬНАЯ ВЕРСИЯ (работает везде) ———
 function openOfferModal() {
-  console.log('Кнопка оферти клікнута!'); // Для дебагу — дивись в F12 > Console
+  console.log('Кнопка оферти клікнута!');
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
 
+  // Если уже есть контент — просто открываем
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     return;
   }
 
-  fetch('offer.txt')
-    .then(r => {
-      console.log('Fetch успішний, статус:', r.status); // Дебаг
-      if (!r.ok) throw new Error('offer.txt не найден');
-      return r.text();
-    })
+  // Попытка загрузить offer.txt
+  fetch('offer.txt?t=' + Date.now()) // кэш-бустер
+    .then(r => r.ok ? r.text() : Promise.reject())
     .then(text => {
-      console.log('Текст завантажено:', text.substring(0, 100) + '...'); // Дебаг перших 100 символів
       content.innerHTML = text;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      console.log('Оферта загружена из offer.txt');
     })
-    .catch(err => {
-      console.error('Помилка fetch:', err); // Дебаг помилки
-      // Fallback: вставляємо ТЕКСТ ПРЯМО ЗУПИНИТИСЯ ТУТ, бо .txt може не працювати — вшиваємо базовий текст
+    .catch(() => {
+      // ЕСЛИ НЕ ПОЛУЧИЛОСЬ — ВШИТЫЙ ТЕКСТ (редактируй тут свои 4 листа A4)
       content.innerHTML = `
         <h1>Публічна оферта</h1>
         <p>Цей документ є офіційною пропозицією (публічною офертою) ФОП Стецуріна Ірина Олександрівна (надалі — Виконавець) укласти договір на надання консультаційних послуг на зазначених нижче умовах.</p>
 
         <h2>1. Загальні положення</h2>
         <p>1.1. Ця оферта адресована будь-яким фізичним та юридичним особам.<br>
-           1.2. Акцепт оферти = оплата послуг або запис на консультацію через сайт чи Calendly.</p>
+        1.2. Акцепт оферти = оплата послуг або запис на консультацію через сайт чи Calendly.</p>
 
         <h2>2. Предмет договору</h2>
         <p>2.1. Виконавець надає консультаційні, коучингові та менторські послуги.<br>
-           2.2. Формат: онлайн (Zoom) або офлайн (м. Київ).</p>
+        2.2. Формат: онлайн (Zoom) або офлайн (м. Київ).</p>
 
         <h2>3. Вартість та порядок оплати</h2>
         <p>3.1. Актуальна вартість вказана на сайті.<br>
-           3.2. Оплата 100% передоплатою через WayForPay.<br>
-           3.3. Перенесення можливо не пізніше ніж за 24 години до зустрічі.</p>
+        3.2. Оплата 100% передоплатою через WayForPay.<br>
+        3.3. Перенесення можливо не пізніше ніж за 24 години до зустрічі.</p>
 
         <h2>4. Конфіденційність та відповідальність</h2>
         <p>Виконавець гарантує повну конфіденційність. Послуги мають рекомендаційний характер і не є медичною допомогою.</p>
 
         <h2>5. Реквізити</h2>
         <p><strong>ФОП Стецуріна Ірина Олександрівна</strong><br>
-           ІПН: 3194610477<br>
-           м. Київ, Україна<br>
-           тел.: +380 (67) 404-07-07<br>
-           e-mail: stetsurina.irina@gmail.com</p>
-        <!-- Додай сюди свої 4 листа тексту — скільки завгодно, модалка прокрутиться -->
+        ІПН: 3194610477<br>
+        м. Київ, Україна<br>
+        тел.: +380 (67) 404-07-07<br>
+        e-mail: stetsurina.irina@gmail.com</p>
+
+        <hr style="margin:40px 0; border:none; border-top:1px solid #eee;">
+
+        <p style="color:#888; font-size:15px; text-align:center;">
+          <strong>Це вшитий резервний текст.</strong><br>
+          Якщо бачиш його — значить offer.txt не завантажився.<br>
+          Але ти все одно можеш читати оферту тут.
+        </p>
       `;
+      console.log('Оферта завантажена з резервної копії в JS');
+    })
+    .finally(() => {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -195,17 +201,17 @@ function closeOfferModal() {
   document.body.style.overflow = '';
 }
 
+// Закрытие по клику вне и по Esc
 document.getElementById('offerModal')?.addEventListener('click', e => {
   if (e.target === document.getElementById('offerModal')) closeOfferModal();
 });
-
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && document.getElementById('offerModal')?.classList.contains('active')) {
     closeOfferModal();
   }
 });
 
-// Анимация кнопки оферты
+// Анимация кнопки
 const offerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -214,5 +220,4 @@ const offerObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.2 });
-
 document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(el));

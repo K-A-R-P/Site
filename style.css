@@ -250,7 +250,7 @@
     }
     .card img { width: 100%; height: 250px; object-fit: cover; }
 
-    .card-content { 
+    .card-content {
       padding: 24px 26px 30px;
       display: flex;
       flex-direction: column;
@@ -262,14 +262,14 @@
       padding-bottom: 16px;
     }
 
-    .card h3 { 
-      font-size: 26px; 
-      margin-bottom: 12px; 
+    .card h3 {
+      font-size: 26px;
+      margin-bottom: 12px;
     }
-    .card > p, .card-text-content p { 
-      font-size: 17px; 
-      margin-bottom: 10px; 
-      color: #333; 
+    .card > p, .card-text-content p {
+      font-size: 17px;
+      margin-bottom: 10px;
+      color: #333;
     }
     .readmore {
       color: var(--yellow);
@@ -541,32 +541,32 @@
       color: #333;
     }
 
-/* КНОПКА ОФЕРТИ ПЕРЕД ФУТЕРОМ (ДОДАНО: центрування, анімація) */
+/* КНОПКА ОФЕРТЫ ПЕРЕД ФУТЕРОМ */
 .offer-button-container {
-  max-width: 1300px; /* Як у .section */
+  max-width: 1300px;
   margin: 0 auto;
   padding: 50px 20px;
   text-align: center;
+}
+.offer-scroll {
   opacity: 0;
   transform: translateY(60px);
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
-.offer-button-container.visible {
+.offer-scroll.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.offer-scroll {
-  transition-delay: 0.5s; /* Затримка, як у продуктах */
-}
-
 .offer-btn {
-  padding: 18px 48px !important; /* Більше padding для ширини */
+  padding: 18px 48px !important;
   font-size: 18px;
   min-width: 280px;
   background: var(--yellow) !important;
   color: var(--black) !important;
   border: 2px solid rgba(0,0,0,0.15) !important;
+  border-radius: 50px;
   box-shadow: 0 10px 30px rgba(247, 200, 67, 0.3);
+  cursor: pointer;
   transition: var(--transition);
 }
 .offer-btn:hover {
@@ -575,102 +575,63 @@
   box-shadow: 0 16px 40px rgba(247, 200, 67, 0.45);
 }
 
-/* МОДАЛКА ОФЕРТИ (ДОДАНО: копія cardModal, але без img, з текстовими стилями з offer.html) */
-.offer-modal {
+/* МОДАЛКА ОФЕРТЫ — ФИНАЛЬНАЯ, БОЛЬШАЯ, С ПРОКРУТКОЙ */
+#offerModal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(12px);
-  z-index: 1000;
+  z-index: 9999;
   align-items: center;
   justify-content: center;
   padding: 20px;
   overflow-y: auto;
 }
-.offer-modal.active {
-  display: flex;
-}
+#offerModal.active { display: flex; }
 
-.offer-modal-content {
+#offerModal .offer-modal-content {
   background: #fff;
   border-radius: 32px;
-  max-width: 900px;
-  width: 100%;
-  max-height: 95vh;
-  overflow-y: auto;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  animation: modalShow 0.5s ease;
+  max-width: 980px !important;
+  width: 94% !important;
+  max-height: 96vh !important;
+  overflow-y: auto !important;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
   position: relative;
-  padding: 60px; /* Більше padding для тексту */
-  line-height: 1.8;
+  padding: 90px 80px 70px !important;
+  line-height: 1.9 !important;
+  font-size: 18px !important;
+  animation: modalShow 0.5s ease;
 }
 
-.offer-modal-content h1 {
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 32px;
-  color: #1a1a1a;
-}
+#offerModal h1 { font-size: 42px !important; text-align: center !important; margin-bottom: 40px !important; }
+#offerModal h2 { font-size: 28px !important; margin: 40px 0 20px !important; color: #1a1a1a; }
+#offerModal p  { margin-bottom: 22px !important; font-size: 18px !important; }
 
-.offer-modal-content h2 {
-  font-size: 24px;
-  margin: 32px 0 16px;
-  color: #1a1a1a;
-}
-
-.offer-modal-content p {
-  margin-bottom: 16px;
-  font-size: 17px;
-}
-
-.offer-modal-content strong {
-  color: #1a1a1a;
-}
-
-.close-modal { /* Вже є в CSS, але переконуємося */
+.close-modal {
   position: absolute;
-  top: 20px;
-  right: 28px;
-  font-size: 42px;
-  color: #ccc;
+  top: 24px;
+  right: 32px;
+  font-size: 52px;
+  color: #bbb;
   cursor: pointer;
   z-index: 10;
+  font-weight: 300;
   transition: color 0.3s;
 }
-.close-modal:hover {
-  color: var(--black);
-}
+.close-modal:hover { color: #333; }
 
-@keyframes modalShow { /* Вже є, але на всяк */
-  from { opacity: 0; transform: scale(0.9) translateY(60px); }
+@keyframes modalShow {
+  from { opacity: 0; transform: scale(0.9) translateY(50px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 @media (max-width: 768px) {
-  .offer-button-container {
-    padding: 40px 20px;
+  #offerModal .offer-modal-content {
+    padding: 70px 30px 60px !important;
+    width: 96% !important;
   }
-  .offer-modal-content {
-    padding: 40px 30px;
-    margin: 20px;
-  }
-  .offer-modal-content h1 { font-size: 30px; }
-}
-/* ФІНАЛЬНІ СТИЛІ ДЛЯ МОДАЛКИ ОФЕРТИ — БІЛЬШЕ, ЩОБ НЕ БУЛО "КУЦОГО" */
-#offerModal .offer-modal-content {
-  max-width: 950px !important;
-  width: 90% !important;
-  max-height: 95vh !important;
-  padding: 80px 60px 60px !important;
-  overflow-y: auto !important;
-  line-height: 1.8 !important;
-}
-
-#offerModal h1 { font-size: 36px !important; text-align: center !important; margin-bottom: 32px !important; }
-#offerModal h2 { font-size: 24px !important; margin: 32px 0 16px !important; }
-#offerModal p { margin-bottom: 16px !important; font-size: 17px !important; }
-
-@media (max-width: 768px) {
-  #offerModal .offer-modal-content { padding: 40px 20px !important; width: 95% !important; }
+  #offerModal h1 { font-size: 34px !important; }
+  #offerModal h2 { font-size: 24px !important; }
 }
