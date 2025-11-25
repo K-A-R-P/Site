@@ -933,52 +933,67 @@ footer {
 }
 
 
-/* === КРАСИВЫЙ СКРОЛЛБАР, КОТОРЫЙ НЕ ЛОМАЕТ ЗАКРУГЛЕНИЯ === */
+/* === КАСТОМНЫЙ СКРОЛЛБАР ДЛЯ ВСЕХ МОДАЛОК (ПК + МОБИЛА) === */
 .modal-card,
 .offer-modal-content,
+.payment-modal-content,
 .calendly-modal-content {
-  /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.25) transparent;
+  scrollbar-color: rgba(0,0,0,0.22) transparent;
 }
 
-/* Chrome, Edge, Safari */
 .modal-card::-webkit-scrollbar,
 .offer-modal-content::-webkit-scrollbar,
+.payment-modal-content::-webkit-scrollbar,
 .calendly-modal-content::-webkit-scrollbar {
-  width: 10px;
+  width: 10px;                    /* ПК */
 }
 
 .modal-card::-webkit-scrollbar-track,
 .offer-modal-content::-webkit-scrollbar-track,
+.payment-modal-content::-webkit-scrollbar-track,
 .calendly-modal-content::-webkit-scrollbar-track {
   background: transparent;
   border-radius: 32px;
-  margin: 16px 0;                     /* ← отступы сверху и снизу — полоса не лезет в углы! */
+  margin: 20px 4px;              /* ← ВОТ ЭТО ГЛАВНОЕ */
+  /* 20px сверху и снизу — отступ от края модалки
+     4px слева и справа — чтобы не прилипала к правому краю */
 }
 
 .modal-card::-webkit-scrollbar-thumb,
 .offer-modal-content::-webkit-scrollbar-thumb,
+.payment-modal-content::-webkit-scrollbar-thumb,
 .calendly-modal-content::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.22);
+  background: rgba(0,0,0,0.22);   /* ← ТУТ МЕНЯЕШЬ ЦВЕТ */
   border-radius: 10px;
-  border: 3px solid transparent;      /* ← главное: отодвигаем от края */
-  background-clip: content-box;       /* ← полоса не касается краёв */
-  transition: background 0.3s;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
 
 .modal-card::-webkit-scrollbar-thumb:hover,
-.offer-modal-content::-webkit-scrollbar-thumb:hover {
+.offer-modal-content::-webkit-scrollbar-thumb:hover,
+.payment-modal-content::-webkit-scrollbar-thumb:hover,
+.calendly-modal-content::-webkit-scrollbar-thumb:hover {
   background: rgba(0,0,0,0.35);
   background-clip: content-box;
 }
 
-/* На мобилках вообще прячем — там и так скроллится пальцем */
+/* === НА МОБИЛЕ — тонкая полоса остаётся, но почти незаметная === */
 @media (max-width: 768px) {
-  .modal-card::-webkit-scrollbar,
-  .offer-modal-content::-webkit-scrollbar {
-    width: 0;
-    display: none;
+  .modal-card::-webkit-scrollbar-track,
+  .offer-modal-content::-webkit-scrollbar-track,
+  .payment-modal-content::-webkit-scrollbar-track,
+  .calendly-modal-content::-webkit-scrollbar-track {
+    margin: 16px 4px;     /* чуть меньше, но всё равно внутри радиуса */
+  }
+}
+
+  .modal-card::-webkit-scrollbar-thumb,
+  .offer-modal-content::-webkit-scrollbar-thumb,
+  .payment-modal-content::-webkit-scrollbar-thumb,
+  .calendly-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.18) !important;   /* чуть светлее, чтобы не сливалась */
+    border: 2px solid transparent;
   }
 }
 
