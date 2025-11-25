@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="футер">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="футер 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
@@ -156,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764029270302</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="футер 2">
+      <option name="closed" value="true" />
+      <created>1764029499873</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1764029499873</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -171,6 +179,7 @@
     <MESSAGE value="поправлена мобилка карточки 3" />
     <MESSAGE value="поправлена мобилка проба" />
     <MESSAGE value="футер" />
-    <option name="LAST_COMMIT_MESSAGE" value="футер" />
+    <MESSAGE value="футер 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="футер 2" />
   </component>
 </project>
