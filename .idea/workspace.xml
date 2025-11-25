@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="кастомная полоска">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="кастомная полоска мобильная">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
@@ -67,14 +67,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00004" summary="стабильная версия">
-      <option name="closed" value="true" />
-      <created>1764018801578</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1764018801578</updated>
     </task>
     <task id="LOCAL-00005" summary="чистая версия">
       <option name="closed" value="true" />
@@ -460,11 +452,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764110001545</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="кастомная полоска мобильная">
+      <option name="closed" value="true" />
+      <created>1764110703419</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1764110703419</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="тест оферты 4" />
     <MESSAGE value="тест оферты 5" />
     <MESSAGE value="тест оферты 6" />
     <MESSAGE value="тест оферты 7" />
@@ -489,6 +488,7 @@
     <MESSAGE value="Рабочая версия с офертой" />
     <MESSAGE value="Рабочая версия убираем ебучий крестик" />
     <MESSAGE value="кастомная полоска" />
-    <option name="LAST_COMMIT_MESSAGE" value="кастомная полоска" />
+    <MESSAGE value="кастомная полоска мобильная" />
+    <option name="LAST_COMMIT_MESSAGE" value="кастомная полоска мобильная" />
   </component>
 </project>
