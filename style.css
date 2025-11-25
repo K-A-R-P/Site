@@ -610,3 +610,76 @@
     font-size: 30px;
   }
 }
+/* Кнопка "Публічна оферта" в футері — над соцсетями */
+.footer-offer {
+  margin: 20px 0 10px;
+  text-align: center;
+}
+
+.offer-btn-footer {
+  background: var(--yellow) !important;
+  color: var(--black) !important;
+  padding: 14px 36px !important;
+  font-size: 16px !important;
+  font-weight: 600;
+  border: 2px solid rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(247, 200, 67, 0.4);
+  transition: all 0.3s ease;
+}
+
+.offer-btn-footer:hover {
+  background: #ffd761 !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(247, 200, 67, 0.5);
+}
+
+/* ИСПРАВЛЯЕМ ПОЗИЦИЮ МОДАЛКИ — ПО ЦЕНТРУ ЭКРАНА */
+.offer-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  align-items: center;     /* ← ЭТО ГЛАВНОЕ */
+  justify-content: center; /* ← И ЭТО */
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.offer-modal.active {
+  display: flex !important; /* перебиваем display:none */
+}
+
+.offer-modal-content {
+  background: #fff;
+  border-radius: 32px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+  position: relative;
+  animation: modalShow 0.5s ease;
+}
+
+.offer-text {
+  padding: 50px 60px;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.offer-text h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .offer-text { padding: 40px 30px; }
+  .offer-text h1 { font-size: 30px; }
+  .footer-offer { margin: 16px 0 8px; }
+}

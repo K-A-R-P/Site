@@ -160,39 +160,40 @@
   </button>
 
   <footer class="fade-in-footer">
-    <div class="footer-container">
-      <div class="footer-left">
-        <div>ФОП Стецуріна Ірина Олександрівна</div>
-        <div>м. Київ, Україна</div>
-      </div>
-      <div class="footer-socials">
-        <a href="https://www.instagram.com/stetsurina.irina_coach/" target="_blank">
-          <img src="assets/icons/instagram.png" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com/IrenStetsurina" target="_blank">
-          <img src="assets/icons/facebook.png" alt="Facebook">
-        </a>
-        <a href="https://t.me/Stec0407" target="_blank">
-          <img src="assets/icons/telegram.png" alt="Telegram">
-        </a>
-      </div>
+  <div class="footer-container">
+    <div class="footer-left">
+      <div>ФОП Стецуріна Ірина Олександрівна</div>
+      <div>м. Київ, Україна</div>
     </div>
 
-      <!-- КНОПКА ПУБЛІЧНА ОФЕРТА -->
-  <div class="offer-button-container">
-    <button class="price-btn offer-btn" onclick="openOfferModal()">
-      Публічна оферта
-    </button>
-  </div>
+    <!-- КНОПКА ОФЕРТЫ В ФУТЕРЕ — НАД СОЦСЕТЯМИ -->
+    <div class="footer-offer">
+      <button class="price-btn offer-btn-footer" onclick="openOfferModal()">
+        Публічна оферта
+      </button>
+    </div>
 
-  <!-- МОДАЛКА ОФЕРТЫ -->
-  <div id="offerModal" class="offer-modal">
-    <div class="offer-modal-content">
-      <span class="close-modal" onclick="closeOfferModal()">×</span>
-      <div id="offerText" class="offer-text">Завантаження...</div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/stetsurina.irina_coach/" target="_blank">
+        <img src="assets/icons/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/IrenStetsurina" target="_blank">
+        <img src="assets/icons/facebook.png" alt="Facebook">
+      </a>
+      <a href="https://t.me/Stec0407" target="_blank">
+        <img src="assets/icons/telegram.png" alt="Telegram">
+      </a>
     </div>
   </div>
+</footer>
 
+<!-- МОДАЛКА ОФЕРТЫ (оставь где была — после футера или перед </body>) -->
+<div id="offerModal" class="offer-modal">
+  <div class="offer-modal-content">
+    <span class="close-modal" onclick="closeOfferModal()">×</span>
+    <div id="offerText" class="offer-text">Завантаження...</div>
+  </div>
+</div>
   </footer>
 
   <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
