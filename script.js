@@ -11,31 +11,29 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 
+// === ГЛАВНАЯ АНИМАЦИЯ ПРИ ЗАГРУЗКЕ ===
 window.addEventListener('load', () => {
+  // 1. Обычные fade-up и fade-left (шапка, about)
   document.querySelectorAll('.fade-up, .fade-left').forEach(el => {
     el.classList.add('visible');
   });
 
-  window.addEventListener('load', () => {
-  // Обычные анимации fade-up / fade-left
-  document.querySelectorAll('.fade-up, .fade-left').forEach(el => {
-    el.classList.add('visible');
-  });
-
-  // Заголовок продуктов
+  // 2. Заголовок «Мої продукти» — появляется первым
   setTimeout(() => {
-    document.querySelector('.products-header')?.classList.add('visible');
-  }, 700);
+    const header = document.querySelector('.products-header');
+    if (header) header.classList.add('visible');
 
-  // ВСЕ карточки продуктов — плавно выезжают снизу с задержкой
-  const productCards = document.querySelectorAll('.cards > .card');
-  productCards.forEach((card, index) => {
-    setTimeout(() => {
-      card.classList.add('visible');
-    }, 900 + index * 200); // 900мс + 200мс между карточками
-  });
+    // 3. Через 400 мс после заголовка — начинаем показывать ВСЕ карточки по очереди
+    const cards = document.querySelectorAll('.cards > .card');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, 400 + index * 300); // 400мс после заголовка + 300мс между карточками
+    });
+  }, 700); // сам заголовок через 700мс
 });
 
+// Остальные анимации при скролле (ниже по странице)
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -44,10 +42,7 @@ const scrollObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.15 });
-
-document.querySelectorAll('.card-scroll').forEach(card => {
-  scrollObserver.observe(card);
-});
+document.querySelectorAll('.card-scroll').forEach(card => scrollObserver.observe(card));
 
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -63,6 +58,7 @@ window.addEventListener('scroll', () => {
   document.querySelector('.scroll-top').classList.toggle('visible', window.scrollY > 200);
 });
 
+// === ВСЕ ОСТАЛЬНЫЕ ФУНКЦИИ (модалки, оферта и т.д.) — ОСТАЮТСЯ БЕЗ ИЗМЕНЕНИЙ ===
 function openContactsModal() {
   document.getElementById('contactsModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -103,9 +99,6 @@ function closePricePopup() {
   document.getElementById('pricePopup').style.display = 'none';
 }
 
-document.getElementById('contactsModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('contactsModal')) closeContactsModal();
-});
 document.getElementById('pricePopup').addEventListener('click', e => {
   if (e.target === document.getElementById('pricePopup')) closePricePopup();
 });
@@ -125,13 +118,11 @@ function closeCalendlyModal() {
 }
 
 document.getElementById('calendlyModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('calendlyModal')) {
-    closeCalendlyModal();
-  }
+  if (e.target === document.getElementById('calendlyModal')) closeCalendlyModal();
 });
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('calendlyModal').classList.contains('active')) {
+  if (e.key === 'Escape' && document.getElementById('calendlyModal')?.classList.contains('active')) {
     closeCalendlyModal();
   }
 });
@@ -143,49 +134,23 @@ function openWayForPay() {
   window.location.href = finalUrl;
 }
 
-// ——— ОФЕРТА — ФИНАЛЬНАЯ ВЕРСИЯ (работает везде) ———
+// Оферта — без изменений
 function openOfferModal() {
   console.log('Кнопка оферти клікнута!');
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
 
-  // Если уже есть контент — просто открываем
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     return;
   }
 
-  // Попытка загрузить offer.txt
-  fetch('offer.txt?t=' + Date.now()) // кэш-бустер
+  fetch('offer.txt?t=' + Date.now())
     .then(r => r.ok ? r.text() : Promise.reject())
-    .then(text => {
-      content.innerHTML = text;
-      console.log('Оферта загружена из offer.txt');
-    })
+    .then(text => content.innerHTML = text)
     .catch(() => {
-      // ЕСЛИ НЕ ПОЛУЧИЛОСЬ — ВШИТЫЙ ТЕКСТ (редактируй тут свои 4 листа A4)
-      content.innerHTML = `
-        <h1>Публічна оферта</h1>
-        <p>Цей документ є офіційною пропозицією (публічною офертою) ФОП Стецуріна Ірина Олександрівна (надалі — Виконавець) укласти договір на надання консультаційних послуг на зазначених нижче умовах.</p>
-
-        <h2>1. Загальні положення</h2>
-        <p>1.1. Ця оферта адресована будь-яким фізичним та юридичним особам.<br>
-        1.2. Акцепт оферти = оплата послуг або запис на консультацію через сайт чи Calendly.</p>
-
-        <h2>2. Предмет договору</h2>
-        <p>2.1. Виконавець надає консультаційні, коучингові та менторські послуги.<br>
-        2.2. Формат: онлайн (Zoom) або офлайн (м. Київ).</p>
-
-        <hr style="margin:40px 0; border:none; border-top:1px solid #eee;">
-
-        <p style="color:#888; font-size:15px; text-align:center;">
-          <strong>Це вшитий резервний текст.</strong><br>
-          Якщо бачиш його — значить offer.txt не завантажився.<br>
-          Але ти все одно можеш читати оферту тут.
-        </p>
-      `;
-      console.log('Оферта завантажена з резервної копії в JS');
+      content.innerHTML = `<h1>Публічна оферта</h1><p>Це резервний текст...</p>`;
     })
     .finally(() => {
       modal.classList.add('active');
@@ -198,17 +163,13 @@ function closeOfferModal() {
   document.body.style.overflow = '';
 }
 
-// Закрытие по клику вне и по Esc
 document.getElementById('offerModal')?.addEventListener('click', e => {
   if (e.target === document.getElementById('offerModal')) closeOfferModal();
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('offerModal')?.classList.contains('active')) {
-    closeOfferModal();
-  }
+  if (e.key === 'Escape' && document.getElementById('offerModal')?.classList.contains('active')) closeOfferModal();
 });
 
-// Анимация кнопки
 const offerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

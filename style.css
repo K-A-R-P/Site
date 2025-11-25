@@ -35,6 +35,23 @@ html { scroll-padding-top: 100px; }
   transform: translateY(50px);
   transition: opacity 1.4s ease 1.8s, transform 1.4s ease 1.8s;
 }
+
+/* Анимация появления карточек продуктов */
+.cards > .card {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.cards > .card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover-эффект для всех карточек */
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+}
 .products-header.visible { opacity: 1; transform: translateY(0); }
 
 .cards > .card:nth-child(1),

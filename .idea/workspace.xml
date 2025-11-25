@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="новая карточка">
-      <change afterPath="$PROJECT_DIR$/assets/images/information-consult.jpg" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="новая карточка и стили">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
@@ -325,11 +324,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764052615291</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="новая карточка и стили">
+      <option name="closed" value="true" />
+      <created>1764053345722</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1764053345722</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="стабильная версия" />
     <MESSAGE value="чистая версия" />
     <MESSAGE value="поправлена мобилка" />
     <MESSAGE value="поправлена мобилка карточки" />
@@ -354,6 +360,7 @@
     <MESSAGE value="стили и мобилка" />
     <MESSAGE value="стили и мобилка 1" />
     <MESSAGE value="новая карточка" />
-    <option name="LAST_COMMIT_MESSAGE" value="новая карточка" />
+    <MESSAGE value="новая карточка и стили" />
+    <option name="LAST_COMMIT_MESSAGE" value="новая карточка и стили" />
   </component>
 </project>
