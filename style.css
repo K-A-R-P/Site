@@ -826,3 +826,79 @@ footer {
   #offerModal h1 { font-size: 34px !important; }
   #offerModal h2 { font-size: 24px !important; }
 }
+/* === КАРТОЧКИ — делаем компактнее и элегантнее === */
+.card img {
+  height: 230px;                  /* было 250px */
+}
+
+.card-content {
+  padding: 20px 24px 28px;        /* было 24px 26px 30px */
+}
+
+.card h3 {
+  font-size: 23px;                /* было 26px */
+  margin-bottom: 10px;            /* было 12px */
+}
+
+.card > p,
+.card-text-content p,
+.modal-content p {
+  font-size: 15.8px;              /* было 17px */
+  margin-bottom: 8px;             /* было 10px */
+  line-height: 1.55;              /* добавь глобально или здесь */
+}
+
+.card-text-content {
+  padding-bottom: 8px;            /* было 16px — убираем лишний воздух перед кнопками */
+}
+
+/* Убираем лишний отступ у последнего параграфа перед кнопками */
+.card-text-content p:last-of-type {
+  margin-bottom: 12px;
+}
+
+.readmore {
+  font-size: 15.5px;              /* было 16px */
+  margin: 6px 0 12px;             /* было 8px 0 16px */
+}
+
+/* Кнопки чуть ближе к тексту */
+.buttons-row {
+  margin-top: 16px;               /* было auto + лишний отступ сверху */
+  gap: 14px;                      /* было 18px */
+}
+
+.btn, .price-btn, .offer-btn {
+  padding: 13px 24px;             /* чуть компактнее */
+  font-size: 15.5px;
+  min-width: 160px;               /* было 180px */
+}
+
+/* Сетка карточек — чуть плотнее */
+.cards {
+  gap: 28px;                      /* было 32px */
+}
+
+/* Модалка тоже должна стать компактнее */
+.modal-content {
+  padding: 32px 36px;             /* было 36px 40px */
+  line-height: 1.6;
+}
+
+.modal-content h3 {
+  font-size: 28px;                /* было 32px */
+  margin-bottom: 16px;
+}
+
+.modal-content p {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
