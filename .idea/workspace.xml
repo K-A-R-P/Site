@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="уменьшен шрифт и отступы в карточках">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="уменьшен шрифт">
+      <change beforePath="$PROJECT_DIR$/offer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/offer.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -363,11 +362,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764056176777</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="уменьшен шрифт">
+      <option name="closed" value="true" />
+      <created>1764060024361</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1764060024361</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="поправлена мобилка карточки 2" />
     <MESSAGE value="поправлена мобилка карточки 3" />
     <MESSAGE value="поправлена мобилка проба" />
     <MESSAGE value="футер" />
@@ -392,6 +398,7 @@
     <MESSAGE value="новая карточка и стили проба 2" />
     <MESSAGE value="новая карточка" />
     <MESSAGE value="уменьшен шрифт и отступы в карточках" />
-    <option name="LAST_COMMIT_MESSAGE" value="уменьшен шрифт и отступы в карточках" />
+    <MESSAGE value="уменьшен шрифт" />
+    <option name="LAST_COMMIT_MESSAGE" value="уменьшен шрифт" />
   </component>
 </project>
