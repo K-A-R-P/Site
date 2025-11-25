@@ -78,10 +78,19 @@ function openModal(card) {
   document.getElementById('modalContent').innerHTML = content;
   document.getElementById('cardModal').classList.add('active');
   document.body.style.overflow = 'hidden';
+
+  // ← ВАЖНО: теперь любой клик по модалке (кроме кнопок) — закрывает её
+  document.getElementById('cardModal').onclick = function(e) {
+    if (!e.target.closest('button') && !e.target.closest('a')) {
+      closeModal();
+    }
+  };
 }
+
 function closeModal() {
   document.getElementById('cardModal').classList.remove('active');
   document.body.style.overflow = '';
+  document.getElementById('cardModal').onclick = null; // сбрасываем обработчик
 }
 
 document.getElementById('cardModal').addEventListener('click', e => {
