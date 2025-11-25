@@ -384,8 +384,8 @@ header p {
 }
 
 .btn,
-.price-btn,
-.offer-btn {
+.price-btn
+ {
   padding: 14px 28px;
   border-radius: 14px;
   font-weight: 600;
@@ -409,31 +409,19 @@ header p {
   color: var(--black);
 }
 
-.price-btn,
-.offer-btn {
+.price-btn
+ {
   background: var(--yellow);
   color: var(--black);
   border: 2px solid rgba(0,0,0,0.15);
 }
 
-.price-btn:hover,
-.offer-btn:hover {
+.price-btn:hover
+{
   background: #ffd765;
   transform: translateY(-4px);
 }
 
-.offer-btn {
-  padding: 18px 48px !important;
-  font-size: 18px !important;
-  min-width: 280px;
-  box-shadow: 0 10px 30px rgba(247, 200, 67, 0.3);
-}
-
-.offer-btn:hover {
-  background: #ffd765 !important;
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(247, 200, 67, 0.45);
-}
 
 .offer-button-container {
   max-width: 1300px;
@@ -901,7 +889,7 @@ footer {
   gap: 14px;                      /* было 18px */
 }
 
-.btn, .price-btn, .offer-btn {
+.btn, .price-btn {
   padding: 13px 24px;             /* чуть компактнее */
   font-size: 15.5px;
   min-width: 160px;               /* было 180px */

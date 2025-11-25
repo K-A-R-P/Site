@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="шрифт и отступы в оферте">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Рабочая версия с охуенной полоской">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -395,11 +396,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764066449340</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Рабочая версия с охуенной полоской">
+      <option name="closed" value="true" />
+      <created>1764067147663</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1764067147663</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="поправлена мобилка проба" />
     <MESSAGE value="футер" />
     <MESSAGE value="футер 2" />
     <MESSAGE value="футер 3" />
@@ -424,6 +432,7 @@
     <MESSAGE value="уменьшен шрифт и отступы в карточках" />
     <MESSAGE value="уменьшен шрифт" />
     <MESSAGE value="шрифт и отступы в оферте" />
-    <option name="LAST_COMMIT_MESSAGE" value="шрифт и отступы в оферте" />
+    <MESSAGE value="Рабочая версия с охуенной полоской" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рабочая версия с охуенной полоской" />
   </component>
 </project>
