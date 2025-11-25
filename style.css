@@ -545,8 +545,12 @@
 .offer-button-container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 50px 20px;
+  padding: 30px 20px 20px;
   text-align: center;
+}
+
+footer {
+  margin-top: 20px;   /* ось тут була вся проблема — 120px → 20px */
 }
 .offer-scroll {
   opacity: 0;
