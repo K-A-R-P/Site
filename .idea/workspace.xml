@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="оферта">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="стили и мобилка">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
@@ -299,11 +299,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764049258486</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="стили и мобилка">
+      <option name="closed" value="true" />
+      <created>1764050722001</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1764050722001</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="стартовая рабочая" />
     <MESSAGE value="модалка варфорпей правка кнопки аппле пай" />
     <MESSAGE value="модалка варфорпей редирект" />
     <MESSAGE value="стабильная версия" />
@@ -328,6 +335,7 @@
     <MESSAGE value="тест оферты 8" />
     <MESSAGE value="тест оферты 9" />
     <MESSAGE value="оферта" />
-    <option name="LAST_COMMIT_MESSAGE" value="оферта" />
+    <MESSAGE value="стили и мобилка" />
+    <option name="LAST_COMMIT_MESSAGE" value="стили и мобилка" />
   </component>
 </project>
