@@ -136,25 +136,34 @@ function openOfferModal() {
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
 
+  // Если уже загружено — просто открываем
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     return;
   }
 
+  // Грузим чистый текст из offer.txt — это работает везде!
   fetch('offer.txt')
-    .then(response => {
-      if (!response.ok) throw new Error('Не знайдено offer.txt');
-      return response.text();
+    .then(r => {
+      if (!r.ok) throw new Error('offer.txt не найден');
+      return r.text();
     })
     .then(text => {
       content.innerHTML = text;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     })
-    .catch(err => {
-      console.error(err);
-      content.innerHTML = '<p style="color:#e74c3c;text-align:center;">Не вдалося завантажити оферту.<br><a href="offer.txt" target="_blank">Відкрити в новій вкладці →</a></p>';
+    .catch(() => {
+      // Если по какой-то причине не загрузилось — fallback
+      content.innerHTML = `
+        <div style="text-align:center;padding:60px 20px;color:#e74c3c;">
+          <h3>Не вдалося завантажити оферту</h3>
+          <p><a href="offer.txt" target="_blank" style="color:#f7c843;text-decoration:underline;">
+            Відкрити оферту в новій вкладці →
+          </a></p>
+        </div>
+      `;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
