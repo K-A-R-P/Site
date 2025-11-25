@@ -137,33 +137,34 @@
 }
 
 
-// Завантаження оферти + модалка
+// ФУНКЦІЇ ДЛЯ ОФЕРТИ (ДОДАНО: завантаження, модалка, анімація)
 function openOfferModal() {
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
 
-  // Якщо вже завантажено — просто відкриваємо
-  if (content.innerHTML.trim()) {
+  // Якщо контент вже завантажено — просто відкриваємо
+  if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     return;
   }
 
-  // Інакше — завантажуємо offer.html
+  // Завантажуємо offer.html
   fetch('offer.html')
     .then(response => response.text())
     .then(html => {
-      // Витягуємо тільки <body> контент
+      // Парсимо тільки body (щоб не тягти <head> і стилі)
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
-      const bodyContent = doc.querySelector('body').innerHTML;
+      const bodyContent = doc.body.innerHTML; // Тільки текст з body
 
       content.innerHTML = bodyContent;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     })
     .catch(err => {
-      content.innerHTML = '<p style="color:red; text-align:center;">Помилка завантаження оферти</p>';
+      console.error('Помилка завантаження оферти:', err);
+      content.innerHTML = '<p style="color: red; text-align: center; padding: 20px;">Помилка завантаження. <a href="offer.html" target="_blank">Відкрити в новій вкладці</a></p>';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -174,29 +175,30 @@ function closeOfferModal() {
   document.body.style.overflow = '';
 }
 
-// Закриття по кліку поза модалкою
-document.getElementById('offerModal').addEventListener('click', e => {
+// Закриття модалки по кліку поза нею
+document.getElementById('offerModal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('offerModal')) {
     closeOfferModal();
   }
 });
 
-// Закриття по Esc
-document.addEventListener('keydown', e => {
+// Закриття по Esc (додаємо до існуючого keydown)
+document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && document.getElementById('offerModal').classList.contains('active')) {
     closeOfferModal();
   }
 });
 
-// Анімація появи кнопки оферти при скролі
-const offerBtnObserver = new IntersectionObserver((entries) => {
+// АНІМАЦІЯ ПОЯВИ КНОПКИ ПРИ СКРОЛІ (ДОДАНО: використовуємо scrollObserver)
+const scrollObserverOffer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      scrollObserverOffer.unobserve(entry.target); // Одноразово
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.15 });
 
-document.querySelectorAll('.offer-button-container').forEach(el => {
-  offerBtnObserver.observe(el);
+document.querySelectorAll('.offer-scroll').forEach(el => {
+  scrollObserverOffer.observe(el);
 });

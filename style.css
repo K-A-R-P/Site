@@ -541,35 +541,41 @@
       color: #333;
     }
 
-/* КНОПКА ОФЕРТИ ПЕРЕД ФУТЕРОМ */
+/* КНОПКА ОФЕРТИ ПЕРЕД ФУТЕРОМ (ДОДАНО: центрування, анімація) */
 .offer-button-container {
-  padding: 50px 20px 80px;
+  max-width: 1300px; /* Як у .section */
+  margin: 0 auto;
+  padding: 50px 20px;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
-  transition: opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s;
+  transition: opacity 1.2s ease, transform 1.2s ease;
 }
 .offer-button-container.visible {
   opacity: 1;
   transform: translateY(0);
 }
+.offer-scroll {
+  transition-delay: 0.5s; /* Затримка, як у продуктах */
+}
 
 .offer-btn {
+  padding: 18px 48px !important; /* Більше padding для ширини */
   font-size: 18px;
-  padding: 18px 48px;
   min-width: 280px;
-  background: var(--yellow);
-  color: var(--black);
-  border: 2px solid rgba(0,0,0,0.15);
+  background: var(--yellow) !important;
+  color: var(--black) !important;
+  border: 2px solid rgba(0,0,0,0.15) !important;
   box-shadow: 0 10px 30px rgba(247, 200, 67, 0.3);
+  transition: var(--transition);
 }
 .offer-btn:hover {
-  background: #ffd765;
+  background: #ffd765 !important;
   transform: translateY(-6px);
   box-shadow: 0 16px 40px rgba(247, 200, 67, 0.45);
 }
 
-/* МОДАЛКА ОФЕРТИ */
+/* МОДАЛКА ОФЕРТИ (ДОДАНО: копія cardModal, але без img, з текстовими стилями з offer.html) */
 .offer-modal {
   display: none;
   position: fixed;
@@ -596,9 +602,8 @@
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   animation: modalShow 0.5s ease;
   position: relative;
-  padding: 50px 60px;
+  padding: 60px; /* Більше padding для тексту */
   line-height: 1.8;
-  font-size: 17px;
 }
 
 .offer-modal-content h1 {
@@ -616,15 +621,39 @@
 
 .offer-modal-content p {
   margin-bottom: 16px;
+  font-size: 17px;
 }
 
 .offer-modal-content strong {
   color: #1a1a1a;
 }
 
+.close-modal { /* Вже є в CSS, але переконуємося */
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  font-size: 42px;
+  color: #ccc;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.3s;
+}
+.close-modal:hover {
+  color: var(--black);
+}
+
+@keyframes modalShow { /* Вже є, але на всяк */
+  from { opacity: 0; transform: scale(0.9) translateY(60px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 @media (max-width: 768px) {
+  .offer-button-container {
+    padding: 40px 20px;
+  }
   .offer-modal-content {
     padding: 40px 30px;
+    margin: 20px;
   }
   .offer-modal-content h1 { font-size: 30px; }
 }

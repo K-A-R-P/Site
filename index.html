@@ -159,12 +159,12 @@
     <img src="assets/icons/up-arrow.png" alt="up">
   </button>
 
-<!-- КНОПКА ПУБЛІЧНА ОФЕРТА -->
-<div class="offer-button-container">
-  <button class="price-btn offer-btn" onclick="openOfferModal()">
-    Публічна оферта
-  </button>
-</div>
+  <!-- КНОПКА ПУБЛІЧНА ОФЕРТА (ДОДАНО: перед футером, з анімацією) -->
+  <div class="offer-button-container offer-scroll">
+    <button class="price-btn offer-btn" onclick="openOfferModal()">
+      Публічна оферта
+    </button>
+  </div>
 
   <footer class="fade-in-footer">
     <div class="footer-container">
@@ -240,15 +240,15 @@
     </div>
   </div>
 
-  <!-- МОДАЛЬНЕ ВІКНО ОФЕРТИ -->
-<div id="offerModal" class="offer-modal">
-  <div class="offer-modal-content">
-    <span class="close-modal" onclick="closeOfferModal()">×</span>
-    <div id="offerContent">
-      <!-- Контент буде завантажено через JS -->
+  <!-- МОДАЛЬНЕ ВІКНО ОФЕРТИ (ДОДАНО: стиль як cardModal, без картинки) -->
+  <div id="offerModal" class="offer-modal">
+    <div class="offer-modal-content">
+      <span class="close-modal" onclick="closeOfferModal()">×</span>
+      <div id="offerContent">
+        <!-- Контент з offer.html завантажиться сюди через JS -->
+      </div>
     </div>
   </div>
-</div>
 
   <!-- Підключення скрипта -->
   <script src="script.js"></script>
