@@ -261,8 +261,8 @@ header p { font-size: 20px; color: #444; }
   margin: 0 auto; /* ← Гарантирует центрирование даже при одной карточке */
 }
 .card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+  transform: translateY(-12px) !important;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.18) !important;
 }
 
 .card img {

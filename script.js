@@ -16,12 +16,24 @@ window.addEventListener('load', () => {
     el.classList.add('visible');
   });
 
+  window.addEventListener('load', () => {
+  // Обычные анимации fade-up / fade-left
+  document.querySelectorAll('.fade-up, .fade-left').forEach(el => {
+    el.classList.add('visible');
+  });
+
+  // Заголовок продуктов
   setTimeout(() => {
-    document.querySelector('.products-header').classList.add('visible');
-    document.querySelectorAll('.cards > .card:nth-child(-n+2)').forEach(card => {
-      card.classList.add('visible');
-    });
+    document.querySelector('.products-header')?.classList.add('visible');
   }, 700);
+
+  // ВСЕ карточки продуктов — плавно выезжают снизу с задержкой
+  const productCards = document.querySelectorAll('.cards > .card');
+  productCards.forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add('visible');
+    }, 900 + index * 200); // 900мс + 200мс между карточками
+  });
 });
 
 const scrollObserver = new IntersectionObserver((entries) => {
