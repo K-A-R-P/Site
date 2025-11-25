@@ -142,40 +142,22 @@ function openOfferModal() {
     return;
   }
 
-  // Создаём скрытый iframe — это 100% работает на GitHub Pages
-  const iframe = document.createElement('iframe');
-  iframe.src = 'offer.html';
-  iframe.style.position = 'absolute';
-  iframe.style.left = '-9999px';
-  iframe.style.opacity = '0';
-  document.body.appendChild(iframe);
-
-  iframe.onload = function() {
-    try {
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      let html = doc.body.innerHTML;
-
-      // Убираем возможные <style> из offer.html
-      html = html.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
-
-      content.innerHTML = html;
+  fetch('offer.txt')
+    .then(response => {
+      if (!response.ok) throw new Error('Не знайдено offer.txt');
+      return response.text();
+    })
+    .then(text => {
+      content.innerHTML = text;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-    } catch (e) {
-      content.innerHTML = '<p style="color:#e74c3c;text-align:center;">Не вдалося завантажити оферту.<br><a href="offer.html" target="_blank">Відкрити в новій вкладці →</a></p>';
+    })
+    .catch(err => {
+      console.error(err);
+      content.innerHTML = '<p style="color:#e74c3c;text-align:center;">Не вдалося завантажити оферту.<br><a href="offer.txt" target="_blank">Відкрити в новій вкладці →</a></p>';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-    } finally {
-      document.body.removeChild(iframe);
-    }
-  };
-
-  iframe.onerror = function() {
-    content.innerHTML = '<p style="color:#e74c3c;text-align:center;">Не вдалося завантажити оферту.<br><a href="offer.html" target="_blank">Відкрити в новій вкладці →</a></p>';
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    document.body.removeChild(iframe);
-  };
+    });
 }
 
 function closeOfferModal() {
