@@ -838,6 +838,25 @@ footer {
   #offerModal h1 { font-size: 28px; }
   #offerModal h2 { font-size: 22px; }
 }
+#offerModal .offer-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 32px;
+  color: var(--black);
+}
+
+#offerModal .offer-subtitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 36px 0 16px;
+  color: var(--black);
+}
+
+@media (max-width: 768px) {
+  #offerModal .offer-title { font-size: 28px; margin-bottom: 24px; }
+  #offerModal .offer-subtitle { font-size: 20px; }
+}
 
 
 /* === КАРТОЧКИ — делаем компактнее и элегантнее === */

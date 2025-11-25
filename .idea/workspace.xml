@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="уменьшен шрифт">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="шрифт и отступы в оферте">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/offer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/offer.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -379,11 +380,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764060183517</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="шрифт и отступы в оферте">
+      <option name="closed" value="true" />
+      <created>1764066300415</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1764066300415</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="поправлена мобилка карточки 3" />
     <MESSAGE value="поправлена мобилка проба" />
     <MESSAGE value="футер" />
     <MESSAGE value="футер 2" />
@@ -408,6 +416,7 @@
     <MESSAGE value="новая карточка" />
     <MESSAGE value="уменьшен шрифт и отступы в карточках" />
     <MESSAGE value="уменьшен шрифт" />
-    <option name="LAST_COMMIT_MESSAGE" value="уменьшен шрифт" />
+    <MESSAGE value="шрифт и отступы в оферте" />
+    <option name="LAST_COMMIT_MESSAGE" value="шрифт и отступы в оферте" />
   </component>
 </project>
