@@ -935,3 +935,53 @@ footer {
   text-align: center;
   width: 100%;
 }
+
+
+/* === КРАСИВЫЙ СКРОЛЛБАР, КОТОРЫЙ НЕ ЛОМАЕТ ЗАКРУГЛЕНИЯ === */
+.modal-card,
+.offer-modal-content,
+.calendly-modal-content {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.25) transparent;
+}
+
+/* Chrome, Edge, Safari */
+.modal-card::-webkit-scrollbar,
+.offer-modal-content::-webkit-scrollbar,
+.calendly-modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-card::-webkit-scrollbar-track,
+.offer-modal-content::-webkit-scrollbar-track,
+.calendly-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 32px;
+  margin: 16px 0;                     /* ← отступы сверху и снизу — полоса не лезет в углы! */
+}
+
+.modal-card::-webkit-scrollbar-thumb,
+.offer-modal-content::-webkit-scrollbar-thumb,
+.calendly-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.22);
+  border-radius: 10px;
+  border: 3px solid transparent;      /* ← главное: отодвигаем от края */
+  background-clip: content-box;       /* ← полоса не касается краёв */
+  transition: background 0.3s;
+}
+
+.modal-card::-webkit-scrollbar-thumb:hover,
+.offer-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.35);
+  background-clip: content-box;
+}
+
+/* На мобилках вообще прячем — там и так скроллится пальцем */
+@media (max-width: 768px) {
+  .modal-card::-webkit-scrollbar,
+  .offer-modal-content::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+}
