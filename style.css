@@ -204,6 +204,24 @@ header p {
   padding: 50px 0;
 }
 
+/* Плавное поднятие иконок соцсетей — и в футере, и в модалке контактов */
+.contacts-socials a,
+.footer-socials a {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.contacts-socials a:hover,
+.footer-socials a:hover {
+  transform: translateY(-7px);
+}
+
+/* Постоянное лёгкое покачивание иконки телефона в модалке контактов */
+.contacts-modal-content h3 img {
+  animation: wiggle 2.8s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
 /* ABOUT */
 #about .about-wrapper {
   display: flex;
@@ -233,6 +251,8 @@ header p {
   font-size: 38px;
   margin-bottom: 16px;
 }
+
+
 
 .about-highlights {
   display: grid;
@@ -710,9 +730,7 @@ footer {
   justify-content: center;
   gap: 36px;
 }
-.contacts-socials a:hover {
-  transform: translateY(-6px);
-}
+
 .contacts-socials img {
   width: 48px;
   height: 48px;
@@ -972,4 +990,47 @@ footer {
     width: 0;
     display: none;
   }
+}
+
+/* Прижимаем фото и карточки к низу секции About — как было изначально */
+#about .about-wrapper {
+  align-items: flex-end !important;   /* ← ВСЁ, что нужно */
+}
+
+/* На мобильных устройствах (чтобы не было пустоты снизу) возвращаем вверх */
+@media (max-width: 992px) {
+  #about .about-wrapper {
+    align-items: flex-start !important;
+  }
+}
+
+/* === Большой и просторный основной текст в About === */
+#about .about-text {
+  font-size: 17.7px !important;
+  line-height: 2 !important;
+}
+
+/* Отступ снизу теперь не на .about-text, а на весь контейнер — карточки больше не прыгают */
+#about .about-wrapper {
+  align-items: flex-end !important;
+  margin-bottom: 36px;          /* ← вот сюда переносим отступ снизу */
+}
+
+/* На мобиле убираем прижатие к низу и отступ */
+@media (max-width: 992px) {
+  #about .about-wrapper {
+    align-items: flex-start !important;
+    margin-bottom: 0;
+  }
+}
+
+/* Карточки остаются компактными */
+#about .about-highlights {
+  font-size: 16px;
+  line-height: 1.7;
+}
+#about .about-card p,
+#about .about-card h4 {
+  font-size: inherit;
+  line-height: inherit;
 }
