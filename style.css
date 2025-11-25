@@ -23,18 +23,19 @@ html {
   scroll-padding-top: 100px;
 }
 
-/* АНІМАЦІЇ */
+/* ЖЁСТКО СКРЫВАЕМ КАРТОЧКИ ДО АНИМАЦИИ — ЭТО САМОЕ ГЛАВНОЕ */
 .cards > .card {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
+  opacity: 0 !important;
+  transform: translateY(60px) !important;
+  transition: opacity 0.9s ease, transform 0.9s ease !important;
 }
 
 .cards > .card.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
+/* Остальные анимации */
 .fade-up {
   opacity: 0;
   transform: translateY(60px);
@@ -57,17 +58,24 @@ html {
   transform: translateX(0);
 }
 
-.products-header,
-.card-scroll,
-.offer-scroll {
+.products-header {
   opacity: 0;
-  transform: translateY(60px);
+  transform: translateY(50px);
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-.products-header.visible,
-.card-scroll.visible,
-.offer-scroll.visible {
+.products-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.card-scroll.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -101,7 +109,7 @@ html {
   height: 48px;
 }
 
-/* БУРГЕР */
+/* ГАМБУРГЕР */
 .burger {
   display: none;
   flex-direction: column;
@@ -173,7 +181,6 @@ nav a:hover {
   }
 }
 
-/* HEADER */
 header {
   padding: 50px 20px 30px;
   max-width: 900px;
@@ -263,9 +270,10 @@ header p {
   height: 56px !important;
   flex-shrink: 0;
   object-fit: contain;
-  transition: transform 0.2s;
+  transition: transform 0.2s; /* плавный поворот */
 }
 
+/* ← ЭТО САМОЕ ГЛАВНОЕ — БЕЗ ЭТОГО НИЧЕГО НЕ ТРЯСЁТСЯ! */
 .about-card:hover img,
 .about-card:hover svg {
   animation: wiggle 1.5s ease-in-out;
@@ -291,18 +299,20 @@ header p {
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 28px;
+  gap: 32px;
   justify-content: center;
   width: 100%;
   max-width: 1400px;
   padding: 0 20px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 @media (max-width: 480px) {
   .cards {
     grid-template-columns: 1fr;
     padding: 0 16px;
+    gap: 28px;
   }
 }
 
@@ -327,7 +337,7 @@ header p {
 
 .card img {
   width: 100%;
-  height: 230px;
+  height: 250px;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -335,7 +345,7 @@ header p {
 }
 
 .card-content {
-  padding: 20px 24px 28px;
+  padding: 24px 26px 30px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -343,58 +353,49 @@ header p {
 
 .card-text-content {
   flex-grow: 1;
-  padding-bottom: 8px;
+  padding-bottom: 16px;
 }
 
-.card-title,
 .card h3 {
-  font-size: 23px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  text-align: center;
-  width: 100%;
+  font-size: 26px;
+  margin-bottom: 12px;
 }
 
 .card > p,
 .card-text-content p {
-  font-size: 15.8px;
-  margin-bottom: 8px;
+  font-size: 17px;
+  margin-bottom: 10px;
   color: #333;
-  line-height: 1.55;
-}
-
-.card-text-content p:last-of-type {
-  margin-bottom: 12px;
 }
 
 .readmore {
   color: var(--yellow);
   font-weight: 700;
-  font-size: 15.5px;
+  font-size: 16px;
   display: block;
-  margin: 6px 0 12px;
+  margin: 8px 0 16px;
 }
 
 .buttons-row {
-  margin-top: 16px;
+  margin-top: auto;
   display: flex;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
 .btn,
 .price-btn,
 .offer-btn {
-  padding: 13px 24px;
+  padding: 14px 28px;
   border-radius: 14px;
   font-weight: 600;
   text-decoration: none;
   text-align: center;
   flex: 1;
-  min-width: 160px;
+  min-width: 180px;
   transition: var(--transition);
   cursor: pointer;
-  font-size: 15.5px;
+  font-size: 16px;
   border: none;
 }
 
@@ -441,6 +442,17 @@ header p {
   text-align: center;
 }
 
+.offer-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.offer-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* КНОПКА НАВЕРХ */
 .scroll-top {
   position: fixed;
@@ -480,7 +492,7 @@ header p {
   height: 28px;
 }
 
-/* FOOTER */
+/* ФУТЕР */
 footer {
   background: var(--black);
   color: #aaa;
@@ -555,7 +567,7 @@ footer {
   }
 }
 
-/* МОДАЛКА КАРТКИ */
+/* MODAL КАРТОЧКИ */
 #cardModal {
   display: none;
   position: fixed;
@@ -568,11 +580,7 @@ footer {
   padding: 20px;
   overflow-y: auto;
 }
-
-#cardModal.active {
-  display: flex;
-}
-
+#cardModal.active { display: flex; }
 .modal-card {
   background: #fff;
   border-radius: 32px;
@@ -584,12 +592,10 @@ footer {
   animation: modalShow 0.5s ease;
   position: relative;
 }
-
 @keyframes modalShow {
   from { opacity: 0; transform: scale(0.9) translateY(60px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
-
 .modal-card img {
   width: 100%;
   height: 320px;
@@ -597,39 +603,31 @@ footer {
   object-position: center;
   border-radius: 32px 32px 0 0;
 }
-
 .modal-content {
-  padding: 32px 36px;
+  padding: 36px 40px;
   line-height: 1.6;
 }
-
 .modal-content h3 {
-  font-size: 28px;
-  margin-bottom: 16px;
+  font-size: 32px;
+  margin-bottom: 18px;
 }
-
 .modal-content p {
-  font-size: 16px;
-  margin-bottom: 12px;
+  font-size: 16.5px;
+  margin-bottom: 14px;
 }
-
 .close-modal {
   position: absolute;
-  top: 24px;
-  right: 32px;
-  font-size: 52px;
-  color: #bbb;
+  top: 20px;
+  right: 28px;
+  font-size: 42px;
+  color: #ccc;
   cursor: pointer;
   z-index: 10;
-  font-weight: 300;
   transition: color 0.3s;
 }
+.close-modal:hover { color: var(--black); }
 
-.close-modal:hover {
-  color: #333;
-}
-
-/* POPUP ОПЛАТИ */
+/* POPUP ОПЛАТЫ */
 #pricePopup {
   display: none;
   position: fixed;
@@ -641,7 +639,6 @@ footer {
   z-index: 1100;
   padding: 20px;
 }
-
 .popup-content {
   background: #fff;
   padding: 36px 32px;
@@ -651,12 +648,10 @@ footer {
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   animation: popup 0.4s ease;
 }
-
 @keyframes popup {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
 }
-
 .popup-content input {
   width: 100%;
   padding: 14px 16px;
@@ -665,14 +660,12 @@ footer {
   border: 1px solid #ddd;
   font-size: 16px;
 }
-
 .popup-buy {
   width: 100% !important;
   margin-top: 20px;
   padding: 18px !important;
   font-size: 17px !important;
 }
-
 .popup-close {
   text-align: center;
   margin-top: 20px;
@@ -680,12 +673,10 @@ footer {
   cursor: pointer;
   font-size: 15px;
 }
+.popup-close:hover { color: var(--black); }
 
-.popup-close:hover {
-  color: var(--black);
-}
 
-/* МОДАЛКА КОНТАКТІВ */
+/* МОДАЛЬНОЕ ОКНО КОНТАКТОВ */
 #contactsModal {
   display: none;
   position: fixed;
@@ -697,11 +688,7 @@ footer {
   justify-content: center;
   padding: 20px;
 }
-
-#contactsModal.active {
-  display: flex;
-}
-
+#contactsModal.active { display: flex; }
 .contacts-modal-content {
   background: #fff;
   padding: 40px 36px;
@@ -712,7 +699,6 @@ footer {
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   animation: modalShow 0.5s ease;
 }
-
 .contacts-modal-content h3 {
   font-size: 28px;
   margin-bottom: 20px;
@@ -721,29 +707,24 @@ footer {
   justify-content: center;
   gap: 12px;
 }
-
 .contacts-modal-content h3 img {
   width: 36px;
   height: 36px;
 }
-
 .contacts-modal-content p {
   margin: 12px 0;
   color: #444;
   font-size: 17px;
 }
-
 .contacts-socials {
   margin-top: 32px;
   display: flex;
   justify-content: center;
   gap: 36px;
 }
-
 .contacts-socials a:hover {
   transform: translateY(-6px);
 }
-
 .contacts-socials img {
   width: 48px;
   height: 48px;
@@ -761,11 +742,7 @@ footer {
   justify-content: center;
   padding: 20px;
 }
-
-.calendly-modal.active {
-  display: flex;
-}
-
+.calendly-modal.active { display: flex; }
 .calendly-modal-content {
   position: relative;
   background: #fff;
@@ -779,12 +756,10 @@ footer {
   display: flex;
   flex-direction: column;
 }
-
 #calendlyIframe {
   flex: 1;
   border: none;
 }
-
 .calendly-close-btn {
   padding: 16px;
   background: none;
@@ -795,12 +770,10 @@ footer {
   cursor: pointer;
   transition: color 0.3s;
 }
+.calendly-close-btn:hover { color: #333; }
 
-.calendly-close-btn:hover {
-  color: #333;
-}
 
-/* МОДАЛКА ОФЕРТИ */
+/* МОДАЛКА ОФЕРТЫ — теперь выглядит как карточки продуктов */
 #offerModal {
   display: none;
   position: fixed;
@@ -821,44 +794,125 @@ footer {
 #offerModal .offer-modal-content {
   background: #fff;
   border-radius: 32px;
-  max-width: 980px !important;
-  width: 94% !important;
-  max-height: 96vh !important;
-  overflow-y: auto !important;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  max-width: 900px;
+  width: 100%;
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   position: relative;
-  padding: 90px 80px 70px !important;
-  line-height: 1.9 !important;
-  font-size: 18px !important;
+  padding: 36px 40px; /* ← как в обычной модалке карточки */
+  line-height: 1.6;
+  font-size: 16px; /* ← основной шрифт как в карточках */
   animation: modalShow 0.5s ease;
 }
 
 #offerModal h1 {
-  font-size: 42px !important;
-  text-align: center !important;
-  margin-bottom: 40px !important;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--black);
 }
 
 #offerModal h2 {
-  font-size: 28px !important;
-  margin: 40px 0 20px !important;
-  color: #1a1a1a;
+  font-size: 24px;
+  margin: 32px 0 16px;
+  color: var(--black);
 }
 
 #offerModal p {
-  margin-bottom: 22px !important;
-  font-size: 18px !important;
+  margin-bottom: 14px;
+  font-size: 16px;
+  color: #333;
 }
 
+#offerModal strong {
+  color: var(--black);
+}
+
+/* Мобильная адаптация — как у обычной модалки */
 @media (max-width: 768px) {
   #offerModal .offer-modal-content {
-    padding: 70px 30px 60px !important;
-    width: 96% !important;
+    padding: 32px 24px;
+    border-radius: 24px;
   }
-  #offerModal h1 {
-    font-size: 34px !important;
-  }
-  #offerModal h2 {
-    font-size: 24px !important;
-  }
+  #offerModal h1 { font-size: 28px; }
+  #offerModal h2 { font-size: 22px; }
+}
+
+
+/* === КАРТОЧКИ — делаем компактнее и элегантнее === */
+.card img {
+  height: 230px;                  /* было 250px */
+}
+
+.card-content {
+  padding: 20px 24px 28px;        /* было 24px 26px 30px */
+}
+
+.card h3 {
+  font-size: 23px;                /* было 26px */
+  margin-bottom: 10px;            /* было 12px */
+}
+
+.card > p,
+.card-text-content p,
+.modal-content p {
+  font-size: 15.8px;              /* было 17px */
+  margin-bottom: 8px;             /* было 10px */
+  line-height: 1.55;              /* добавь глобально или здесь */
+}
+
+.card-text-content {
+  padding-bottom: 8px;            /* было 16px — убираем лишний воздух перед кнопками */
+}
+
+/* Убираем лишний отступ у последнего параграфа перед кнопками */
+.card-text-content p:last-of-type {
+  margin-bottom: 12px;
+}
+
+.readmore {
+  font-size: 15.5px;              /* было 16px */
+  margin: 6px 0 12px;             /* было 8px 0 16px */
+}
+
+/* Кнопки чуть ближе к тексту */
+.buttons-row {
+  margin-top: 16px;               /* было auto + лишний отступ сверху */
+  gap: 14px;                      /* было 18px */
+}
+
+.btn, .price-btn, .offer-btn {
+  padding: 13px 24px;             /* чуть компактнее */
+  font-size: 15.5px;
+  min-width: 160px;               /* было 180px */
+}
+
+/* Сетка карточек — чуть плотнее */
+.cards {
+  gap: 28px;                      /* было 32px */
+}
+
+/* Модалка тоже должна стать компактнее */
+.modal-content {
+  padding: 32px 36px;             /* было 36px 40px */
+  line-height: 1.6;
+}
+
+.modal-content h3 {
+  font-size: 28px;                /* было 32px */
+  margin-bottom: 16px;
+}
+
+.modal-content p {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
 }
