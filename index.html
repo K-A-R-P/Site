@@ -159,6 +159,24 @@
     <img src="assets/icons/up-arrow.png" alt="up">
   </button>
 
+  <!-- КНОПКА ПУБЛІЧНА ОФЕРТА НАД ФУТЕРОМ -->
+<div style="text-align: center; margin: 80px 20px 60px;">
+  <button class="price-btn offer-btn" onclick="openOfferModal()">
+    Публічна оферта
+  </button>
+</div>
+
+<!-- МОДАЛЬНЕ ВІКНО З ОФЕРТОЮ -->
+<div id="offerModal" class="modal-card-overlay">
+  <div class="modal-card offer-modal-card">
+    <span class="close-modal" onclick="closeOfferModal()">×</span>
+    <div class="modal-content" id="offerContent">
+      <!-- Сюди завантажиться offer.html -->
+      <div style="text-align:center; padding: 40px; color:#999;">Завантаження...</div>
+    </div>
+  </div>
+</div>
+
   <footer class="fade-in-footer">
     <div class="footer-container">
       <div class="footer-left">
@@ -177,7 +195,6 @@
         </a>
       </div>
     </div>
-
   </footer>
 
   <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
@@ -233,8 +250,6 @@
       <div class="calendly-close-btn" onclick="closeCalendlyModal()">Закрити</div>
     </div>
   </div>
-
-
 
   <!-- Підключення скрипта -->
   <script src="script.js"></script>

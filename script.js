@@ -135,3 +135,47 @@
   // Переходим на оплату
   window.location.href = finalUrl;
 }
+
+
+// ——— ОФЕРТА ———
+function openOfferModal() {
+  const modal = document.getElementById('offerModal');
+  const content = document.getElementById('offerContent');
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Завантажуємо offer.html
+  fetch('offer.html')
+    .then(response => response.text())
+    .then(html => {
+      // Вставляємо тільки <body> контент, без <html><head> тощо
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const bodyContent = doc.querySelector('body').innerHTML;
+      content.innerHTML = bodyContent;
+    })
+    .catch(err => {
+      content.innerHTML = '<p style="text-align:center;color:#900;">Помилка завантаження оферти. Спробуйте оновити сторінку.</p>';
+      console.error('Не вдалося завантажити offer.html:', err);
+    });
+}
+
+function closeOfferModal() {
+  document.getElementById('offerModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Закриття по кліку поза модалкою
+document.getElementById('offerModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('offerModal')) {
+    closeOfferModal();
+  }
+});
+
+// Закриття по Esc
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('offerModal').classList.contains('active')) {
+    closeOfferModal();
+  }
+});
