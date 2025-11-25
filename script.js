@@ -137,34 +137,49 @@
 }
 
 
-// ФУНКЦІЇ ДЛЯ ОФЕРТИ (ДОДАНО: завантаження, модалка, анімація)
+// === ОФЕРТА — РАБОЧАЯ ВЕРСИЯ (2025) ===
 function openOfferModal() {
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
 
-  // Якщо контент вже завантажено — просто відкриваємо
+  // Если уже загружено — просто показываем
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     return;
   }
 
-  // Завантажуємо offer.html
+  // Загружаем offer.html
   fetch('offer.html')
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) throw new Error('Не найден offer.html');
+      return response.text();
+    })
     .then(html => {
-      // Парсимо тільки body (щоб не тягти <head> і стилі)
+      // Парсим как HTML
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
-      const bodyContent = doc.body.innerHTML; // Тільки текст з body
 
-      content.innerHTML = bodyContent;
+      // Берём ТОЛЬКО содержимое <body>, но ВЫЧИЩАЕМ <style> и <head>
+      let bodyHTML = doc.body.innerHTML;
+
+      // Убираем встроенные стили из offer.html (они нам не нужны — у нас уже есть свои)
+      bodyHTML = bodyHTML.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+
+      content.innerHTML = bodyHTML;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     })
     .catch(err => {
-      console.error('Помилка завантаження оферти:', err);
-      content.innerHTML = '<p style="color: red; text-align: center; padding: 20px;">Помилка завантаження. <a href="offer.html" target="_blank">Відкрити в новій вкладці</a></p>';
+      console.error('Ошибка загрузки оферты:', err);
+      content.innerHTML = `
+        <div style="text-align:center; padding:40px; color:#e74c3c;">
+          <h3>Не вдалося завантажити оферту</h3>
+          <p><a href="offer.html" target="_blank" style="color:var(--yellow); text-decoration:underline;">
+            Відкрити оферту в новій вкладці →
+          </a></p>
+        </div>
+      `;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -175,30 +190,26 @@ function closeOfferModal() {
   document.body.style.overflow = '';
 }
 
-// Закриття модалки по кліку поза нею
-document.getElementById('offerModal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('offerModal')) {
+// Закрытие по клику вне модалки
+document.getElementById('offerModal')?.addEventListener('click', e => {
+  if (e.target === document.getElementById('offerModal')) closeOfferModal();
+});
+
+// Закрытие по Esc
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('offerModal')?.classList.contains('active')) {
     closeOfferModal();
   }
 });
 
-// Закриття по Esc (додаємо до існуючого keydown)
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && document.getElementById('offerModal').classList.contains('active')) {
-    closeOfferModal();
-  }
-});
-
-// АНІМАЦІЯ ПОЯВИ КНОПКИ ПРИ СКРОЛІ (ДОДАНО: використовуємо scrollObserver)
-const scrollObserverOffer = new IntersectionObserver((entries) => {
+// Анимация появления кнопки при скролле
+const offerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      scrollObserverOffer.unobserve(entry.target); // Одноразово
+      offerObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15 });
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.offer-scroll').forEach(el => {
-  scrollObserverOffer.observe(el);
-});
+document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(el));
