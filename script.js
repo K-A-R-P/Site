@@ -143,7 +143,7 @@ function openWayForPay() {
   window.location.href = finalUrl;
 }
 
-// Оферта — без изменений
+// === ОТКРЫТИЕ ОФЕРТЫ — теперь повторный клик по тексту закрывает ===
 function openOfferModal() {
   console.log('Кнопка оферти клікнута!');
   const modal = document.getElementById('offerModal');
@@ -152,32 +152,41 @@ function openOfferModal() {
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    activateOfferClickToClose();        // ← включаем магию
     return;
   }
 
   fetch('offer.txt?t=' + Date.now())
     .then(r => r.ok ? r.text() : Promise.reject())
-    .then(text => content.innerHTML = text)
-    .catch(() => {
-      content.innerHTML = `<h1>Публічна оферта</h1><p>Це резервний текст...</p>`;
-    })
-    .finally(() => {
+    .then(text => {
+      content.innerHTML = text;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
+      activateOfferClickToClose();      // ← включаем магию после загрузки
+    })
+    .catch(() => {
+      content.innerHTML = `<h1>Публічна оферта</h1><p>Це резервний текст...</p>`;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      activateOfferClickToClose();
     });
 }
 
+// Вспомогательная функция — включаем закрытие по клику в любое место (кроме кнопок/ссылок)
+function activateOfferClickToClose() {
+  document.getElementById('offerModal').onclick = function(e) {
+    if (!e.target.closest('a') && !e.target.closest('button')) {
+      closeOfferModal();
+    }
+  };
+}
+
+// === ЗАКРЫТИЕ ОФЕРТЫ ===
 function closeOfferModal() {
   document.getElementById('offerModal').classList.remove('active');
   document.body.style.overflow = '';
+  document.getElementById('offerModal').onclick = null;   // ← сбрасываем обработчик
 }
-
-document.getElementById('offerModal')?.addEventListener('click', e => {
-  if (e.target === document.getElementById('offerModal')) closeOfferModal();
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('offerModal')?.classList.contains('active')) closeOfferModal();
-});
 
 const offerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
