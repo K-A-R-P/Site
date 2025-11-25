@@ -933,69 +933,7 @@ footer {
 }
 
 
-/* === КАСТОМНЫЙ СКРОЛЛБАР ДЛЯ ВСЕХ МОДАЛОК (ПК + МОБИЛА) === */
-.modal-card,
-.offer-modal-content,
-.payment-modal-content,
-.calendly-modal-content {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.22) transparent;
-}
 
-.modal-card::-webkit-scrollbar,
-.offer-modal-content::-webkit-scrollbar,
-.payment-modal-content::-webkit-scrollbar,
-.calendly-modal-content::-webkit-scrollbar {
-  width: 10px;                    /* ПК */
-}
-
-.modal-card::-webkit-scrollbar-track,
-.offer-modal-content::-webkit-scrollbar-track,
-.payment-modal-content::-webkit-scrollbar-track,
-.calendly-modal-content::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 32px;
-  margin: 20px 4px;              /* ← ВОТ ЭТО ГЛАВНОЕ */
-  /* 20px сверху и снизу — отступ от края модалки
-     4px слева и справа — чтобы не прилипала к правому краю */
-}
-
-.modal-card::-webkit-scrollbar-thumb,
-.offer-modal-content::-webkit-scrollbar-thumb,
-.payment-modal-content::-webkit-scrollbar-thumb,
-.calendly-modal-content::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.22);   /* ← ТУТ МЕНЯЕШЬ ЦВЕТ */
-  border-radius: 10px;
-  border: 3px solid transparent;
-  background-clip: content-box;
-}
-
-.modal-card::-webkit-scrollbar-thumb:hover,
-.offer-modal-content::-webkit-scrollbar-thumb:hover,
-.payment-modal-content::-webkit-scrollbar-thumb:hover,
-.calendly-modal-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,0,0,0.35);
-  background-clip: content-box;
-}
-
-/* === НА МОБИЛЕ — тонкая полоса остаётся, но почти незаметная === */
-@media (max-width: 768px) {
-  .modal-card::-webkit-scrollbar-track,
-  .offer-modal-content::-webkit-scrollbar-track,
-  .payment-modal-content::-webkit-scrollbar-track,
-  .calendly-modal-content::-webkit-scrollbar-track {
-    margin: 16px 4px;     /* чуть меньше, но всё равно внутри радиуса */
-  }
-}
-
-  .modal-card::-webkit-scrollbar-thumb,
-  .offer-modal-content::-webkit-scrollbar-thumb,
-  .payment-modal-content::-webkit-scrollbar-thumb,
-  .calendly-modal-content::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.18) !important;   /* чуть светлее, чтобы не сливалась */
-    border: 2px solid transparent;
-  }
-}
 
 /* Прижимаем фото и карточки к низу секции About — как было изначально */
 #about .about-wrapper {
@@ -1177,4 +1115,82 @@ footer {
   .payment-note {
     font-size: 14.5px;
   }
+}
+
+/* === СКРОЛЛБАР 2025: ПК — при ховере, МОБИЛА — всегда виден === */
+.modal-card,
+.offer-modal-content,
+.payment-modal-content {
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Убираем нативную полосу полностью */
+#modalContent,
+#offerContent {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 88vh;
+}
+#modalContent::-webkit-scrollbar,
+#offerContent::-webkit-scrollbar {
+  display: none;
+}
+
+/* Отступ под нашу полосу + фикс белой херни у картинки */
+#modalContent {
+  padding-right: 20px;
+  margin-right: -20px;
+}
+.modal-card img {
+  width: calc(100% + 20px);
+  margin-left: -10px;
+  margin-right: -10px;
+  max-width: none;
+  display: block;
+}
+
+/* КАСТОМНАЯ ПОЛОСА */
+.modal-card::after,
+.offer-modal-content::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 24px;
+  bottom: 24px;
+  width: 4px;
+  background: rgba(0,0,0,0.14);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+/* ПК — полоса только при ховере */
+@media (min-width: 769px) {
+  .modal-card::after,
+  .offer-modal-content::after {
+    opacity: 0;
+  }
+  .modal-card:hover::after,
+  .offer-modal-content:hover::after {
+    opacity: 1;
+    background: rgba(0,0,0,0.22);
+  }
+}
+
+/* МОБИЛА — полоса ВСЕГДА видна (но лёгкая) */
+@media (max-width: 768px) {
+  .modal-card::after,
+  .offer-modal-content::after {
+    opacity: 1;
+    background: rgba(0,0,0,0.12);
+    right: 10px;
+    width: 3px;
+  }
+  #modalContent { padding-right: 16px; margin-right: -16px; }
+  .modal-card img { width: 100%; margin-left: 0; }
 }
