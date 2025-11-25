@@ -137,3 +137,66 @@
 }
 
 
+// Завантаження оферти + модалка
+function openOfferModal() {
+  const modal = document.getElementById('offerModal');
+  const content = document.getElementById('offerContent');
+
+  // Якщо вже завантажено — просто відкриваємо
+  if (content.innerHTML.trim()) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+
+  // Інакше — завантажуємо offer.html
+  fetch('offer.html')
+    .then(response => response.text())
+    .then(html => {
+      // Витягуємо тільки <body> контент
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const bodyContent = doc.querySelector('body').innerHTML;
+
+      content.innerHTML = bodyContent;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    })
+    .catch(err => {
+      content.innerHTML = '<p style="color:red; text-align:center;">Помилка завантаження оферти</p>';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+}
+
+function closeOfferModal() {
+  document.getElementById('offerModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Закриття по кліку поза модалкою
+document.getElementById('offerModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('offerModal')) {
+    closeOfferModal();
+  }
+});
+
+// Закриття по Esc
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('offerModal').classList.contains('active')) {
+    closeOfferModal();
+  }
+});
+
+// Анімація появи кнопки оферти при скролі
+const offerBtnObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.offer-button-container').forEach(el => {
+  offerBtnObserver.observe(el);
+});
