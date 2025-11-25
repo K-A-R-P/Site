@@ -540,3 +540,73 @@
     .calendly-close-btn:hover {
       color: #333;
     }
+
+    /* КНОПКА ПУБЛИЧНОЙ ОФЕРТЫ */
+.offer-button-container {
+  text-align: center;
+  margin: 50px 0 20px;
+}
+
+.offer-btn {
+  font-size: 17px !important;
+  padding: 16px 36px !important;
+  background: var(--yellow);
+  color: var(--black);
+  border: 2px solid rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(247, 200, 67, 0.35);
+}
+
+.offer-btn:hover {
+  background: #ffd761;
+  transform: translateY(-5px);
+  box-shadow: 0 14px 35px rgba(247, 200, 67, 0.45);
+}
+
+/* МОДАЛКА ОФЕРТЫ */
+.offer-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(12px);
+  z-index: 1300;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.offer-modal.active {
+  display: flex;
+}
+
+.offer-modal-content {
+  background: #fff;
+  border-radius: 32px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  position: relative;
+  animation: modalShow 0.5s ease;
+}
+
+#offerText {
+  padding: 50px 60px;
+}
+
+#offerText h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  #offerText {
+    padding: 40px 30px;
+  }
+  #offerText h1 {
+    font-size: 30px;
+  }
+}

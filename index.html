@@ -177,6 +177,22 @@
         </a>
       </div>
     </div>
+
+      <!-- КНОПКА ПУБЛІЧНА ОФЕРТА -->
+  <div class="offer-button-container">
+    <button class="price-btn offer-btn" onclick="openOfferModal()">
+      Публічна оферта
+    </button>
+  </div>
+
+  <!-- МОДАЛКА ОФЕРТЫ -->
+  <div id="offerModal" class="offer-modal">
+    <div class="offer-modal-content">
+      <span class="close-modal" onclick="closeOfferModal()">×</span>
+      <div id="offerText" class="offer-text">Завантаження...</div>
+    </div>
+  </div>
+
   </footer>
 
   <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
@@ -232,6 +248,8 @@
       <div class="calendly-close-btn" onclick="closeCalendlyModal()">Закрити</div>
     </div>
   </div>
+
+
 
   <!-- Підключення скрипта -->
   <script src="script.js"></script>
