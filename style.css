@@ -256,6 +256,7 @@ header p {
   display: flex;
   align-items: flex-start;
   gap: 16px;
+  cursor: default;
 }
 
 .about-card:hover {
@@ -269,15 +270,22 @@ header p {
   height: 56px !important;
   flex-shrink: 0;
   object-fit: contain;
+  transition: transform 0.2s; /* плавный поворот */
+}
+
+/* ← ЭТО САМОЕ ГЛАВНОЕ — БЕЗ ЭТОГО НИЧЕГО НЕ ТРЯСЁТСЯ! */
+.about-card:hover img,
+.about-card:hover svg {
+  animation: wiggle 1.5s ease-in-out;
 }
 
 @keyframes wiggle {
-  0% { transform: rotate(0deg); }
-  15% { transform: rotate(-10deg); }
-  30% { transform: rotate(8deg); }
-  45% { transform: rotate(-6deg); }
-  60% { transform: rotate(4deg); }
-  75% { transform: rotate(-2deg); }
+  0%   { transform: rotate(0deg); }
+  15%  { transform: rotate(-10deg); }
+  30%  { transform: rotate(8deg); }
+  45%  { transform: rotate(-6deg); }
+  60%  { transform: rotate(4deg); }
+  75%  { transform: rotate(-2deg); }
   100% { transform: rotate(0deg); }
 }
 
