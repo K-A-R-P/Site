@@ -1186,3 +1186,26 @@ footer {
   margin-bottom: 24px;
   line-height: 1.7;
 }
+
+/* === ЮРИДИЧЕСКИЙ СТИЛЬ ОФЕРТЫ — НОМЕРА СЛЕВА, ТЕКСТ УТОПЛЕН === */
+.offer-section {
+  margin: 32px 0;
+}
+
+.offer-item {
+  display: flex;
+  margin-bottom: 18px;
+  text-align: justify;
+  line-height: 1.75;
+}
+
+.offer-number {
+  flex: 0 0 50px;           /* ширина колонки с номером */
+  font-weight: 600;
+  color: var(--black);
+}
+
+.offer-paragraph {
+  flex: 1;
+  padding-left: 12px;       /* отступ текста от номера */
+}
