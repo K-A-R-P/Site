@@ -1,6 +1,6 @@
 <div class="offer-title">ДОГОВІР ПУБЛІЧНОЇ ОФЕРТИ</div>
 <div class="offer-subtitle-center">про надання послуг</div>
-
+<div class="offer-subtitle">1. ЗАГАЛЬНІ ПОЛОЖЕННЯ</div>
 <div class="offer-section">
   <div class="offer-item">
     <span class="offer-number">1.1.</span>
