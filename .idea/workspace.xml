@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="оферта текст и универсальные ссылки оплаты">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="чистка css +эффект карточек при наведении" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,14 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00013" summary="футер 3">
-      <option name="closed" value="true" />
-      <created>1764029784061</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1764029784061</updated>
     </task>
     <task id="LOCAL-00014" summary="футер 4">
       <option name="closed" value="true" />
@@ -460,11 +449,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764119407659</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="чистка css +эффект карточек при наведении">
+      <option name="closed" value="true" />
+      <created>1764167439686</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1764167439686</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="тест оферты 9" />
     <MESSAGE value="оферта" />
     <MESSAGE value="стили и мобилка" />
     <MESSAGE value="стили и мобилка 1" />
@@ -489,6 +485,7 @@
     <MESSAGE value="оферта тест" />
     <MESSAGE value="оферта текст" />
     <MESSAGE value="оферта текст и универсальные ссылки оплаты" />
-    <option name="LAST_COMMIT_MESSAGE" value="оферта текст и универсальные ссылки оплаты" />
+    <MESSAGE value="чистка css +эффект карточек при наведении" />
+    <option name="LAST_COMMIT_MESSAGE" value="чистка css +эффект карточек при наведении" />
   </component>
 </project>
