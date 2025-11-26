@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="параллакс">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="параллакс+блик">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
@@ -68,14 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00017" summary="возврат к рабочей">
-      <option name="closed" value="true" />
-      <created>1764044766083</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1764044766083</updated>
     </task>
     <task id="LOCAL-00018" summary="тест оферты">
       <option name="closed" value="true" />
@@ -461,11 +453,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764182400080</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="параллакс+блик">
+      <option name="closed" value="true" />
+      <created>1764183221266</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1764183221266</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="стили и мобилка 1" />
     <MESSAGE value="новая карточка и стили" />
     <MESSAGE value="новая карточка и стили проба нахуй" />
     <MESSAGE value="новая карточка и стили проба 2" />
@@ -490,6 +489,7 @@
     <MESSAGE value="чистка css +эффект карточек при наведении" />
     <MESSAGE value="Стабильная версия чистка css +эффект карточек при наведении" />
     <MESSAGE value="параллакс" />
-    <option name="LAST_COMMIT_MESSAGE" value="параллакс" />
+    <MESSAGE value="параллакс+блик" />
+    <option name="LAST_COMMIT_MESSAGE" value="параллакс+блик" />
   </component>
 </project>

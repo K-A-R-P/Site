@@ -105,7 +105,39 @@ header p { font-size: 20px; color: #444; }
 #about img.about-photo { width: 100%; max-width: 420px; min-width: 280px; height: auto; border-radius: 32px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); flex-shrink: 0; }
 #about .about-text {  flex: 1;  min-width: 320px;  font-size: 17.7px;  line-height: 2;}
 
-#about .about-highlights {  display: grid;  grid-template-columns: 1fr 1fr;  gap: 32px;  margin-top: 28px;  font-size: 16px;  line-height: 1.7;}
+/* ФИКС ДЛЯ МОБИЛЬНЫХ — about-highlights */
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;     /* оставляем как было */
+  gap: 32px;
+  margin-top: 28px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ← ЭТО ВСЁ, ЧТО НУЖНО ДОБАВИТЬ */
+@media (max-width: 992px) {
+  .about-highlights {
+    grid-template-columns: 1fr;       /* одна колонка на планшетах и ниже */
+    gap: 24px;                        /* чуть меньше отступ, чтобы не было пусто */
+  }
+}
+
+/* Дополнительно — если хочешь идеально на SE2 и старых Android */
+@media (max-width: 480px) {
+  .about-highlights {
+    gap: 20px;
+  }
+
+  .about-card {
+    padding: 20px 16px;               /* чуть ужать паддинги внутри карточки */
+  }
+
+  .about-card img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+}
 
 @media (max-width: 992px) {
   .about-highlights { grid-template-columns: 1fr; }
