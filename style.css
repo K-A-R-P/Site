@@ -746,3 +746,66 @@ footer {
   text-shadow: 0 0 8px rgba(247,200,67,0.3);
 }
 
+/* ====== ПАРАЛЛАКС ДЛЯ ФОТО В "ПРО МЕНЕ" ====== */
+.about-photo-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  width: 100%;
+  max-width: 420px;
+  min-width: 280px;
+  flex-shrink: 0;
+  margin: 0 auto;                 /* центрирует на мобильных */
+}
+
+.about-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateZ(0);       /* включаем аппаратное ускорение */
+  will-change: transform;
+}
+
+/* Эффект при скролле — фото движется медленнее фона */
+#about.scrolled .about-photo {
+  transform: translateY(15%) scale(1.06);
+}
+
+/* Дополнительный микро-ховер — как у карточек продуктов */
+.about-photo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+    transparent 30%,
+    rgba(247,200,67,0.18) 48%,
+    rgba(255,255,255,0.7) 52%,
+    rgba(247,200,67,0.18) 56%,
+    transparent 70%
+  );
+  transform: translateX(-120%) skewX(-20deg);
+  opacity: 0;
+  transition: transform 1.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.about-photo-wrapper:hover::before {
+  opacity: 1;
+  transform: translateX(120%) skewX(-20deg);
+}
+
+/* Лёгкое увеличение + тень при наведении */
+.about-photo-wrapper:hover .about-photo {
+  transform: scale(1.04) translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.28);
+}
+
+/* Мобильные — отключаем параллакс, оставляем только ховер */
+@media (max-width: 992px) {
+  #about.scrolled .about-photo {
+    transform: none;
+  }
+}
+

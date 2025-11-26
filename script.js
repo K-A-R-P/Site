@@ -223,3 +223,24 @@ document.addEventListener('keydown', e => {
   }
 });
 
+// ВЕРСИЯ PRO — супер-плавный параллакс с requestAnimationFrame
+let aboutParallax = 0;
+let currentY = 0;
+
+function updateParallax() {
+  const about = document.getElementById('about');
+  if (!about) return;
+
+  const rect = about.getBoundingClientRect();
+  const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
+  aboutParallax = offset * -0.12; // коэффицент скорости (меньше = медленнее)
+
+  currentY += (aboutParallax - currentY) * 0.08; // сглаживание
+  about.querySelector('.about-photo').style.transform = `translateY(${currentY}px) scale(1.06)`;
+
+  if (Math.abs(aboutParallax - currentY) > 0.5) requestAnimationFrame(updateParallax);
+}
+
+window.addEventListener('scroll', () => requestAnimationFrame(updateParallax));
+window.addEventListener('load', updateParallax);
+
