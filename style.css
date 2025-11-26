@@ -5,11 +5,7 @@
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
@@ -19,79 +15,40 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  scroll-padding-top: 100px;
-}
+html { scroll-padding-top: 100px; }
 
-/* ЖЁСТКО СКРЫВАЕМ КАРТОЧКИ ДО АНИМАЦИИ — ЭТО САМОЕ ГЛАВНОЕ */
-.cards > .card {
-  opacity: 0 !important;
-  transform: translateY(60px) !important;
-  transition: opacity 0.9s ease, transform 0.9s ease !important;
-}
+/* ===================== АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ ЗАГРУЗКЕ ===================== */
+.fade-up { opacity: 0; transform: translateY(60px); transition: opacity 1.3s ease, transform 1.3s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-.cards > .card.visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* Остальные анимации */
-.fade-up {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 1.3s ease, transform 1.3s ease;
-}
-
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-left {
-  opacity: 0;
-  transform: translateX(-80px);
-  transition: opacity 1.4s ease 0.7s, transform 1.4s ease 0.7s;
-}
-
-.fade-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+.fade-left { opacity: 0; transform: translateX(-80px); transition: opacity 1.4s ease 0.7s, transform 1.4s ease 0.7s; }
+.fade-left.visible { opacity: 1; transform: translateX(0); }
 
 .products-header {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
+.products-header.visible { opacity: 1; transform: translateY(0); }
 
-.products-header.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Карточки появляются снизу — как у тебя и было (это остаётся!) */
+.cards > .card {
+  opacity: 0 !important;
+  transform: translateY(60px) !important;
+  transition: opacity 0.9s ease, transform 0.9s ease !important;
+}
+.cards > .card.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-.card-scroll {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
+.fade-in-footer { opacity: 0; transform: translateY(80px); transition: opacity 1.2s ease, transform 1.2s ease; }
+.fade-in-footer.visible { opacity: 1; transform: translateY(0); }
 
-.card-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.offer-scroll { opacity: 0; transform: translateY(60px); transition: opacity 1.2s ease, transform 1.2s ease; }
+.offer-scroll.visible { opacity: 1; transform: translateY(0); }
 
-.fade-in-footer {
-  opacity: 0;
-  transform: translateY(80px);
-  transition: opacity 1.2s ease, transform 1.2s ease;
-}
-
-.fade-in-footer.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* TOPBAR */
+/* ===================== TOPBAR ===================== */
 .topbar {
   background: #fff;
   position: sticky;
@@ -104,236 +61,76 @@ html {
   border-bottom: 3px solid var(--yellow);
   box-shadow: 0 2px 15px rgba(0,0,0,0.06);
 }
+.logo img { height: 48px; }
 
-.logo img {
-  height: 48px;
-}
+.burger { display: none; flex-direction: column; gap: 5px; width: 30px; height: 30px; cursor: pointer; z-index: 101; }
+.burger span { display: block; width: 28px; height: 3px; background: var(--black); border-radius: 2px; transition: all 0.3s ease; }
+.burger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.burger.active span:nth-child(2) { opacity: 0; }
+.burger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* ГАМБУРГЕР */
-.burger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 101;
-}
-
-.burger span {
-  display: block;
-  width: 28px;
-  height: 3px;
-  background: var(--black);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.burger.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.burger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.burger.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-nav {
-  display: flex;
-  gap: 32px;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--black);
-  font-weight: 600;
-  font-size: 16px;
-  transition: color 0.3s;
-  cursor: pointer;
-}
-
-nav a:hover {
-  color: var(--yellow);
-}
+nav { display: flex; gap: 32px; }
+nav a { text-decoration: none; color: var(--black); font-weight: 600; font-size: 16px; transition: color 0.3s; cursor: pointer; }
+nav a:hover { color: var(--yellow); }
 
 @media (max-width: 768px) {
-  .burger {
-    display: flex;
-  }
-  nav {
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 16px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 16px;
-    flex-direction: column;
-    gap: 18px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
-  }
-  nav.open {
-    display: flex;
-  }
+  .burger { display: flex; }
+  nav { display: none; position: absolute; top: 70px; right: 16px; background: #fff; padding: 20px; border-radius: 16px; flex-direction: column; gap: 18px; box-shadow: 0 12px 35px rgba(0,0,0,0.18); }
+  nav.open { display: flex; }
 }
 
-header {
-  padding: 50px 20px 30px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
+/* ===================== HEADER ===================== */
+header { padding: 50px 20px 30px; max-width: 900px; margin: 0 auto; text-align: center; }
+h1 { font-size: 48px; margin-bottom: 12px; }
+header p { font-size: 20px; color: #444; }
 
-h1 {
-  font-size: 48px;
-  margin-bottom: 12px;
-}
+/* ===================== SECTIONS ===================== */
+.section { max-width: 1300px; margin: 0 auto; padding: 50px 0; }
 
-header p {
-  font-size: 20px;
-  color: #444;
-}
-
-.section {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 50px 0;
-}
-
-/* Плавное поднятие иконок соцсетей — и в футере, и в модалке контактов */
-.contacts-socials a,
-.footer-socials a {
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  display: block;
-}
-
-.contacts-socials a:hover,
-.footer-socials a:hover {
-  transform: translateY(-7px);
-}
-
-/* Постоянное лёгкое покачивание иконки телефона в модалке контактов */
-.contacts-modal-content h3 img {
-  animation: wiggle 2.8s ease-in-out infinite;
-  transform-origin: center bottom;
-}
-
-/* ABOUT */
+/* ===================== ABOUT ===================== */
 #about .about-wrapper {
-  display: flex;
-  align-items: center;
-  gap: clamp(20px, 5vw, 50px);
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0 16px;
+  display: flex; align-items: center; gap: clamp(20px, 5vw, 50px); flex-wrap: wrap; justify-content: center; padding: 0 16px;
 }
+#about img.about-photo { width: 100%; max-width: 420px; min-width: 280px; height: auto; border-radius: 32px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); flex-shrink: 0; }
+#about .about-text { flex: 1; min-width: 320px; font-size: 17.7px; line-height: 2; }
 
-#about img.about-photo {
-  width: 100%;
-  max-width: 420px;
-  min-width: 280px;
-  height: auto;
-  border-radius: 32px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-  flex-shrink: 0;
-}
-
-#about .about-text {
-  flex: 1;
-  min-width: 320px;
-}
-
-#about h2 {
-  font-size: 38px;
-  margin-bottom: 16px;
-}
-
-
-
-.about-highlights {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 28px;
-}
-
-@media (max-width: 992px) {
-  .about-highlights {
-    grid-template-columns: 1fr;
-  }
-}
+.about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
+@media (max-width: 992px) { .about-highlights { grid-template-columns: 1fr; } }
 
 .about-card {
-  background: #fff;
-  border: 2px solid var(--yellow);
-  border-radius: 20px;
-  padding: 24px 20px;
-  transition: var(--transition);
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  cursor: default;
+  background: #fff; border: 2px solid var(--yellow); border-radius: 20px; padding: 24px 20px;
+  display: flex; align-items: flex-start; gap: 16px; transition: var(--transition);
 }
-
-.about-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.14);
-}
-
-.about-card img,
-.about-card svg {
-  width: 56px !important;
-  height: 56px !important;
-  flex-shrink: 0;
-  object-fit: contain;
-  transition: transform 0.2s; /* плавный поворот */
-}
-
-/* ← ЭТО САМОЕ ГЛАВНОЕ — БЕЗ ЭТОГО НИЧЕГО НЕ ТРЯСЁТСЯ! */
-.about-card:hover img,
-.about-card:hover svg {
-  animation: wiggle 1.5s ease-in-out;
-}
+.about-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.14); }
+.about-card img { width: 56px !important; height: 56px !important; flex-shrink: 0; }
+.about-card:hover img { animation: wiggle 1.5s ease-in-out; }
 
 @keyframes wiggle {
-  0%   { transform: rotate(0deg); }
-  15%  { transform: rotate(-10deg); }
-  30%  { transform: rotate(8deg); }
-  45%  { transform: rotate(-6deg); }
-  60%  { transform: rotate(4deg); }
-  75%  { transform: rotate(-2deg); }
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(-10deg); }
+  30% { transform: rotate(8deg); }
+  45% { transform: rotate(-6deg); }
+  60% { transform: rotate(4deg); }
+  75% { transform: rotate(-2deg); }
   100% { transform: rotate(0deg); }
 }
 
-/* PRODUCTS */
-#products h2 {
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 50px;
-}
+/* ===================== PRODUCTS — КАРТОЧКИ С 3D И БЛИКОМ ===================== */
+#products h2 { font-size: 36px; text-align: center; margin-bottom: 50px; }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 32px;
+  gap: 28px;
   justify-content: center;
   width: 100%;
   max-width: 1400px;
   padding: 0 20px;
   margin: 0 auto;
-  box-sizing: border-box;
 }
 
 @media (max-width: 480px) {
-  .cards {
-    grid-template-columns: 1fr;
-    padding: 0 16px;
-    gap: 28px;
-  }
+  .cards { grid-template-columns: 1fr; padding: 0 16px; }
 }
 
 .card {
@@ -341,127 +138,100 @@ header p {
   border-radius: 32px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  transition: var(--transition);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
+  position: relative;
+  transform: perspective(1400px) rotateX(0) rotateY(0) translateZ(0);
+  transform-style: preserve-3d;
+  transition: all 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
 }
 
 .card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+  transform: perspective(1400px) rotateX(9deg) rotateY(11deg) translateY(-18px) translateZ(70px);
+  box-shadow: 0 35px 80px rgba(0,0,0,0.24);
 }
 
+/* Фото тоже в 3D */
 .card img {
   width: 100%;
-  height: 250px;
+  height: 230px;
   object-fit: cover;
   object-position: center;
-  display: block;
   border-radius: 32px 32px 0 0;
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+.card:hover img {
+  transform: translateZ(50px) scale(1.04);
+}
+
+/* Блик — премиум-эффект */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+    transparent 30%,
+    rgba(247,200,67,0.22) 44%,
+    rgba(255,255,255,0.9) 50%,
+    rgba(247,200,67,0.22) 56%,
+    transparent 70%
+  );
+  transform: translateX(-120%) skewX(-20deg);
+  pointer-events: none;
+  ;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 1.4s cubic-bezier(0.22,1,0.36,1);
+  z-index: 2;
+}
+.card:hover::before {
+  opacity: 1;
+  transform: translateX(120%) skewX(-20deg);
 }
 
 .card-content {
-  padding: 24px 26px 30px;
+  padding: 20px 24px 28px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  position: relative;
+  z-index: 3;
+  background: #fff;
 }
 
-.card-text-content {
-  flex-grow: 1;
-  padding-bottom: 16px;
-}
-
-.card h3 {
-  font-size: 26px;
-  margin-bottom: 12px;
-}
-
-.card > p,
-.card-text-content p {
-  font-size: 17px;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.readmore {
-  color: var(--yellow);
-  font-weight: 700;
-  font-size: 16px;
-  display: block;
-  margin: 8px 0 16px;
-}
+.card h3 { font-size: 23px; margin-bottom: 10px; }
+.card-text-content p { font-size: 15.8px; margin-bottom: 8px; line-height: 1.55; }
+.readmore { color: var(--yellow); font-weight: 700; font-size: 15.5px; margin: 6px 0 12px; display: block; }
 
 .buttons-row {
-  margin-top: auto;
+  margin-top: 16px;
   display: flex;
-  gap: 18px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-.btn,
-.price-btn
- {
-  padding: 14px 28px;
+.btn, .price-btn {
+  padding: 13px 24px;
   border-radius: 14px;
   font-weight: 600;
   text-decoration: none;
   text-align: center;
   flex: 1;
-  min-width: 180px;
-  transition: var(--transition);
-  cursor: pointer;
-  font-size: 16px;
+  min-width: 160px;
+  font-size: 15.5px;
   border: none;
+  cursor: var(--transition);
+  cursor: pointer;
 }
+.btn-main { background: var(--black); color: #fff; }
+.btn-main:hover { background: var(--yellow); color: var(--black); }
+.price-btn { background: var(--yellow); color: var(--black); border: 2px solid rgba(0,0,0,0.15); }
+.price-btn:hover { background: #ffd765; transform: translateY(-4px); }
 
-.btn-main {
-  background: var(--black);
-  color: #fff;
-}
-
-.btn-main:hover {
-  background: var(--yellow);
-  color: var(--black);
-}
-
-.price-btn
- {
-  background: var(--yellow);
-  color: var(--black);
-  border: 2px solid rgba(0,0,0,0.15);
-}
-
-.price-btn:hover
-{
-  background: #ffd765;
-  transform: translateY(-4px);
-}
-
-
-.offer-button-container {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 30px 20px 20px;
-  text-align: center;
-}
-
-.offer-scroll {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 1.2s ease, transform 1.2s ease;
-}
-
-.offer-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* КНОПКА НАВЕРХ */
+/* ===================== КНОПКА НАВЕРХ ===================== */
 .scroll-top {
   position: fixed;
   right: 20px;
@@ -473,7 +243,7 @@ header p {
   border-radius: 50%;
   cursor: pointer;
   z-index: 90;
-  box-shadow: 0 8px 25px rgba(247, 200, 67, 0.4);
+  box-shadow: 0 8px 25px rgba(247,200,67,0.4);
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
@@ -482,25 +252,14 @@ header p {
   align-items: center;
   justify-content: center;
 }
+.scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.scroll-top:hover { background: #ffd761; transform: translateY(-6px); box-shadow: 0 12px 30px rgba(247,200,67,0.5); }
+.scroll-top img { width: 28px; height: 28px; }
 
-.scroll-top.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+/* ===================== ПУБЛИЧНА ОФЕРТА КНОПКА ===================== */
+.offer-button-container { max-width: 1300px; margin: 0 auto; padding: 30px 20px 20px; text-align: center; }
 
-.scroll-top:hover {
-  background: #ffd761;
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(247, 200, 67, 0.5);
-}
-
-.scroll-top img {
-  width: 28px;
-  height: 28px;
-}
-
-/* ФУТЕР */
+/* ===================== ФУТЕР — ВЕРНУЛ ТВОЙ ОРИГИНАЛЬНЫЙ КРАСИВЫЙ ===================== */
 footer {
   background: var(--black);
   color: #aaa;
@@ -509,7 +268,6 @@ footer {
   font-size: 15px;
   position: relative;
 }
-
 .footer-container {
   max-width: 1300px;
   margin: 0 auto;
@@ -519,76 +277,101 @@ footer {
   flex-wrap: nowrap;
   height: 60px;
 }
-
 .footer-left {
   line-height: 1.45;
   opacity: 0.9;
 }
-
 .footer-left div:last-child {
   margin-top: 3px;
   font-size: 14.5px;
   opacity: 0.75;
 }
-
 .footer-socials {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 40px;
-  align-items: center;
+  gap: 28px;
 }
-
 .footer-socials a {
-  transition: all 0.3s ease;
-  opacity: 0.85;
-}
-
-.footer-socials a:hover {
-  opacity: 1;
-  transform: translateY(-5px);
-}
-
-.footer-socials img {
-  width: 42px;
-  height: 42px;
   display: block;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.footer-socials a:hover {
+  transform: translateY(-7px);
 }
 
+/* На мобильных — соцсети под текст */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
     height: auto;
     text-align: center;
-    gap: 22px;
-    padding: 10px 0;
+    padding: 20px 0;
   }
   .footer-socials {
-    order: -1;
-    gap: 30px;
     position: static;
     transform: none;
-  }
-  footer {
-    padding: 44px 20px;
+    margin-top: 20px;
   }
 }
 
-/* MODAL КАРТОЧКИ */
+#cardModal, #pricePopup, #calendlyModal, #offerModal, #paymentModal, #contactsModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#cardModal.active, #pricePopup[style*="flex"], #calendlyModal.active, #offerModal.active, #paymentModal.active, #contactsModal.active { display: flex; }
+
+
+/* Красивый скроллбар для модалок */
+.modal-card, .offer-modal-content, .calendly-modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.25) transparent;
+}
+.modal-card::-webkit-scrollbar, .offer-modal-content::-webkit-scrollbar, .calendly-modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+.modal-card::-webkit-scrollbar-track, .offer-modal-content::-webkit-scrollbar-track, .calendly-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 32px;
+  margin: 16px 0;
+}
+.modal-card::-webkit-scrollbar-thumb, .offer-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.22);
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.modal-card::-webkit-scrollbar-thumb:hover, .offer-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.35);
+  background-clip: content-box;
+}
+
+@media (max-width: 768px) {
+  .modal-card::-webkit-scrollbar, .offer-modal-content::-webkit-scrollbar { width: 0; display: none; }
+}
+
+/* ===================== МОДАЛКА КАРТОЧКИ ===================== */
 #cardModal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(12px);
-  z-index: 1000;
+  z-index: 9999;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  overflow-y: auto;
 }
 #cardModal.active { display: flex; }
+
 .modal-card {
   background: #fff;
   border-radius: 32px;
@@ -597,133 +380,64 @@ footer {
   max-height: 95vh;
   overflow-y: auto;
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
   animation: modalShow 0.5s ease;
-  position: relative;
 }
-@keyframes modalShow {
-  from { opacity: 0; transform: scale(0.9) translateY(60px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-.modal-card img {
+#modalImg {
   width: 100%;
-  height: 320px;
+  height: 300px;
   object-fit: cover;
-  object-position: center;
   border-radius: 32px 32px 0 0;
 }
 .modal-content {
-  padding: 36px 40px;
+  padding: 32px 36px;
   line-height: 1.6;
 }
 .modal-content h3 {
-  font-size: 32px;
-  margin-bottom: 18px;
+  font-size: 28px;
+  margin-bottom: 16px;
+  text-align: center;
 }
-.modal-content p {
-  font-size: 16.5px;
-  margin-bottom: 14px;
-}
+.modal-content p { font-size: 16px; margin-bottom: 12px; }
 
-
-/* POPUP ОПЛАТЫ */
+/* ===================== POP-UP ОПЛАТЫ (Экспресс, Инфо-консультация) ===================== */
 #pricePopup {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
   align-items: center;
   justify-content: center;
-  z-index: 1100;
   padding: 20px;
 }
+#pricePopup[style*="flex"] { display: flex; }
+
 .popup-content {
   background: #fff;
-  padding: 36px 32px;
-  border-radius: 24px;
-  max-width: 420px;
+  border-radius: 32px;
+  padding: 40px;
+  max-width: 460px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  animation: popup 0.4s ease;
-}
-@keyframes popup {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.3);
 }
 .popup-content input {
   width: 100%;
-  padding: 14px 16px;
+  padding: 14px 18px;
   margin: 12px 0;
-  border-radius: 12px;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
+  border-radius: 14px;
   font-size: 16px;
 }
-.popup-buy {
-  width: 100% !important;
-  margin-top: 20px;
-  padding: 18px !important;
-  font-size: 17px !important;
-}
+.popup-buy { margin: 20px 0 10px; }
 .popup-close {
-  text-align: center;
-  margin-top: 20px;
   color: #888;
   cursor: pointer;
   font-size: 15px;
-}
-.popup-close:hover { color: var(--black); }
-
-
-/* МОДАЛЬНОЕ ОКНО КОНТАКТОВ */
-#contactsModal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(12px);
-  z-index: 1200;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-#contactsModal.active { display: flex; }
-.contacts-modal-content {
-  background: #fff;
-  padding: 40px 36px;
-  border-radius: 28px;
-  max-width: 420px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  animation: modalShow 0.5s ease;
-}
-.contacts-modal-content h3 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.contacts-modal-content h3 img {
-  width: 36px;
-  height: 36px;
-}
-.contacts-modal-content p {
-  margin: 12px 0;
-  color: #444;
-  font-size: 17px;
-}
-.contacts-socials {
-  margin-top: 32px;
-  display: flex;
-  justify-content: center;
-  gap: 36px;
-}
-
-.contacts-socials img {
-  width: 48px;
-  height: 48px;
+  margin-top: 10px;
 }
 
 /* CALENDLY МОДАЛКА */
@@ -768,8 +482,57 @@ footer {
 }
 .calendly-close-btn:hover { color: #333; }
 
+/* ===================== МОДАЛКА КОНТАКТОВ — ВЕРНУЛ ТВОЮ КРАСИВУЮ ВЕРСИЮ ===================== */
+#contactsModal.active { display: flex; }
 
-/* МОДАЛКА ОФЕРТЫ — теперь выглядит как карточки продуктов */
+.contacts-modal-content {
+  background: #fff;
+  border-radius: 32px;
+  padding: 50px 60px;
+  text-align: center;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  position: relative;
+}
+.contacts-modal-content h3 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.contacts-modal-content h3 img {
+  height: 42px;
+  animation: wiggle 2.8s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+.contacts-modal-content p {
+  margin: 12px 0;
+  color: #444;
+}
+.contacts-socials {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 40px 0 10px;
+}
+.contacts-socials a {
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.contacts-socials a:hover {
+  transform: translateY(-10px);
+}
+.contacts-modal-content > div[onclick="closeContactsModal()"] {
+  margin-top: 30px;
+  color: #888;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* ===================== МОДАЛКА ОФЕРТЫ ===================== */
 #offerModal {
   display: none;
   position: fixed;
@@ -780,252 +543,29 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  overflow-y: auto;
 }
+#offerModal.active { display: flex; }
 
-#offerModal.active {
-  display: flex;
-}
-
-#offerModal .offer-modal-content {
+.offer-modal-content {
   background: #fff;
   border-radius: 32px;
   max-width: 900px;
   width: 100%;
   max-height: 95vh;
   overflow-y: auto;
+  padding: 36px 40px;
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  position: relative;
-  padding: 36px 40px; /* ← как в обычной модалке карточки */
-  line-height: 1.6;
-  font-size: 16px; /* ← основной шрифт как в карточках */
-  animation: modalShow 0.5s ease;
-}
-
-#offerModal h1 {
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 24px;
-  color: var(--black);
-}
-
-#offerModal h2 {
-  font-size: 24px;
-  margin: 32px 0 16px;
-  color: var(--black);
-}
-
-#offerModal p {
-  margin-bottom: 14px;
+  line-height: 1.75;
   font-size: 16px;
-  color: #333;
 }
+.offer-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 12px; color: var(--black); }
+.offer-subtitle-center { font-size: 20px; text-align: center; margin-bottom: 40px; color: #333; }
+.offer-subtitle { font-size: 24px; font-weight: 700; margin: 36px 0 16px; }
+.offer-item { display: flex; margin-bottom: 18px; }
+.offer-number { flex: 0 0 50px; font-weight: 600; }
+.offer-paragraph { flex: 1; padding-left: 12px; text-align: justify; }
 
-#offerModal strong {
-  color: var(--black);
-}
-
-/* Мобильная адаптация — как у обычной модалки */
-@media (max-width: 768px) {
-  #offerModal .offer-modal-content {
-    padding: 32px 24px;
-    border-radius: 24px;
-  }
-  #offerModal h1 { font-size: 28px; }
-  #offerModal h2 { font-size: 22px; }
-}
-#offerModal .offer-title {
-  font-size: 32px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 32px;
-  color: var(--black);
-}
-
-#offerModal .offer-subtitle {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 36px 0 16px;
-  color: var(--black);
-}
-
-@media (max-width: 768px) {
-  #offerModal .offer-title { font-size: 28px; margin-bottom: 24px; }
-  #offerModal .offer-subtitle { font-size: 20px; }
-}
-
-
-/* === КАРТОЧКИ — делаем компактнее и элегантнее === */
-.card img {
-  height: 230px;                  /* было 250px */
-}
-
-.card-content {
-  padding: 20px 24px 28px;        /* было 24px 26px 30px */
-}
-
-.card h3 {
-  font-size: 23px;                /* было 26px */
-  margin-bottom: 10px;            /* было 12px */
-}
-
-.card > p,
-.card-text-content p,
-.modal-content p {
-  font-size: 15.8px;              /* было 17px */
-  margin-bottom: 8px;             /* было 10px */
-  line-height: 1.55;              /* добавь глобально или здесь */
-}
-
-.card-text-content {
-  padding-bottom: 8px;            /* было 16px — убираем лишний воздух перед кнопками */
-}
-
-/* Убираем лишний отступ у последнего параграфа перед кнопками */
-.card-text-content p:last-of-type {
-  margin-bottom: 12px;
-}
-
-.readmore {
-  font-size: 15.5px;              /* было 16px */
-  margin: 6px 0 12px;             /* было 8px 0 16px */
-}
-
-/* Кнопки чуть ближе к тексту */
-.buttons-row {
-  margin-top: 16px;               /* было auto + лишний отступ сверху */
-  gap: 14px;                      /* было 18px */
-}
-
-.btn, .price-btn {
-  padding: 13px 24px;             /* чуть компактнее */
-  font-size: 15.5px;
-  min-width: 160px;               /* было 180px */
-}
-
-/* Сетка карточек — чуть плотнее */
-.cards {
-  gap: 28px;                      /* было 32px */
-}
-
-/* Модалка тоже должна стать компактнее */
-.modal-content {
-  padding: 32px 36px;             /* было 36px 40px */
-  line-height: 1.6;
-}
-
-.modal-content h3 {
-  font-size: 28px;                /* было 32px */
-  margin-bottom: 16px;
-}
-
-.modal-content p {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-.card-title {
-  font-size: 23px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  text-align: center;
-  width: 100%;
-}
-
-
-/* === КРАСИВЫЙ СКРОЛЛБАР, КОТОРЫЙ НЕ ЛОМАЕТ ЗАКРУГЛЕНИЯ === */
-.modal-card,
-.offer-modal-content,
-.calendly-modal-content {
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.25) transparent;
-}
-
-/* Chrome, Edge, Safari */
-.modal-card::-webkit-scrollbar,
-.offer-modal-content::-webkit-scrollbar,
-.calendly-modal-content::-webkit-scrollbar {
-  width: 10px;
-}
-
-.modal-card::-webkit-scrollbar-track,
-.offer-modal-content::-webkit-scrollbar-track,
-.calendly-modal-content::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 32px;
-  margin: 16px 0;                     /* ← отступы сверху и снизу — полоса не лезет в углы! */
-}
-
-.modal-card::-webkit-scrollbar-thumb,
-.offer-modal-content::-webkit-scrollbar-thumb,
-.calendly-modal-content::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.22);
-  border-radius: 10px;
-  border: 3px solid transparent;      /* ← главное: отодвигаем от края */
-  background-clip: content-box;       /* ← полоса не касается краёв */
-  transition: background 0.3s;
-}
-
-.modal-card::-webkit-scrollbar-thumb:hover,
-.offer-modal-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,0,0,0.35);
-  background-clip: content-box;
-}
-
-/* На мобилках вообще прячем — там и так скроллится пальцем */
-@media (max-width: 768px) {
-  .modal-card::-webkit-scrollbar,
-  .offer-modal-content::-webkit-scrollbar {
-    width: 0;
-    display: none;
-  }
-}
-
-/* Прижимаем фото и карточки к низу секции About — как было изначально */
-#about .about-wrapper {
-  align-items: flex-end !important;   /* ← ВСЁ, что нужно */
-}
-
-/* На мобильных устройствах (чтобы не было пустоты снизу) возвращаем вверх */
-@media (max-width: 992px) {
-  #about .about-wrapper {
-    align-items: flex-start !important;
-  }
-}
-
-/* === Большой и просторный основной текст в About === */
-#about .about-text {
-  font-size: 17.7px !important;
-  line-height: 2 !important;
-}
-
-/* Отступ снизу теперь не на .about-text, а на весь контейнер — карточки больше не прыгают */
-#about .about-wrapper {
-  align-items: flex-end !important;
-  margin-bottom: 36px;          /* ← вот сюда переносим отступ снизу */
-}
-
-/* На мобиле убираем прижатие к низу и отступ */
-@media (max-width: 992px) {
-  #about .about-wrapper {
-    align-items: flex-start !important;
-    margin-bottom: 0;
-  }
-}
-
-/* Карточки остаются компактными */
-#about .about-highlights {
-  font-size: 16px;
-  line-height: 1.7;
-}
-#about .about-card p,
-#about .about-card h4 {
-  font-size: inherit;
-  line-height: inherit;
-}
-
-/* === МОДАЛКА ОПЛАТА — ШИРОКАЯ, КРАСИВАЯ, РОВНАЯ === */
+/* ===================== МОДАЛКА ОПЛАТА ===================== */
 #paymentModal {
   display: none;
   position: fixed;
@@ -1042,170 +582,66 @@ footer {
 .payment-modal-content {
   background: #fff;
   border-radius: 32px;
-  max-width: 560px;           /* ← шире */
+  max-width: 560px;
   width: 100%;
   padding: 40px 48px;
   text-align: center;
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  position: relative;
 }
+.payment-modal-content h3 img { animation: wiggle 2.8s ease-in-out infinite; height: 42px; margin-right: 12px; }
+.payment-grid { display: flex; align-items: center; justify-content: center; gap: 32px; margin: 40px 0; flex-wrap: wrap; }
+.icon-row img { height: 36px; }
+.icon-row:first-child img { height: 34px; }
+.payment-labels { display: flex; flex-direction: column; gap: 24px; text-align: left; font-size: 17px; font-weight: 500; }
+.payment-note { font-size: 15px; line-height: 1.6; color: #555; margin: 20px 0 10px; }
+.modal-close { margin-top: 30px; color: #888; cursor: pointer; }
 
-/* Качающийся кошелёк */
-.payment-modal-content h3 img {
-  animation: wiggle 2.8s ease-in-out infinite;
-  transform-origin: center bottom;
-  height: 42px;
-  margin-right: 12px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.payment-modal-content h3 {
-  font-size: 28px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-/* Сетка: иконки слева — ровно по центру, текст справа — по левому краю */
-.payment-grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  margin: 40px 0;
-  flex-wrap: wrap;
-}
-
-.payment-icons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.icon-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.icon-row img {
-  height: 36px;
-  display: block;
-}
-
-/* Visa + MC — чуть меньше, чтобы в ряд красиво */
-.icon-row:first-child img {
-  height: 34px;
-}
-
-.payment-labels {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  text-align: left;
-  font-size: 17px;
-  color: #333;
-  font-weight: 500;
-  min-width: 140px;
-}
-
-.payment-note {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #555;
-  margin: 20px 0 10px;
-}
-
-.modal-close {
-  margin-top: 30px;
-  color: #888;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* === МОБИЛЬНАЯ ВЕРСИЯ — только иконки, без текста === */
+/* Мобильная версия оплаты — только иконки */
 @media (max-width: 640px) {
-  .payment-modal-content {
-    padding: 36px 28px;
-    border-radius: 24px;
-    max-height: 90vh;           /* ← чтобы не вылезало за экран */
-    overflow-y: auto;           /* ← появляется прокрутка при необходимости */
-  }
-
-  /* Скрываем весь блок с подписями */
-  .payment-labels {
-    display: none !important;
-  }
-
-  /* Оставляем только иконки, по центру и чуть компактнее */
-  .payment-grid {
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .payment-icons {
-    gap: 28px;
-  }
-
-  .icon-row img {
-    height: 40px;
-  }
-  .icon-row:first-child img {
-    height: 38px;
-  }
-
-  /* Немного больше места под кнопку "Закрити" */
-  .modal-close {
-    margin-top: 40px;
-  }
-
-  .payment-note {
-    font-size: 14.5px;
-  }
+  .payment-labels { display: none !important; }
+  .payment-grid { flex-direction: column; gap: 32px; }
 }
 
-/* === ОФЕРТА — НОВЫЙ СТИЛЬ === */
-.offer-title {
-  font-size: 36px;
-  font-weight: 700;
-  text-align: center;
-  margin: 0 0 12px 0;
-  color: var(--black);
+/* ===================== АНИМАЦИЯ ПОЯВЛЕНИЯ МОДАЛОК ===================== */
+@keyframes modalShow {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-.offer-subtitle-center {
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 40px;
-  color: #333;
-  font-weight: 500;
+/* ===================== КРАСИВЫЙ СКРОЛЛБАР ДЛЯ ВСЕХ МОДАЛОК ===================== */
+.modal-card,
+.offer-modal-content,
+.calendly-modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.25) transparent;
+}
+.modal-card::-webkit-scrollbar,
+.offer-modal-content::-webkit-scrollbar,
+.calendly-modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+.modal-card::-webkit-scrollbar-track,
+.offer-modal-content::-webkit-scrollbar-track,
+.calendly-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 32px;
+  margin: 16px 0;
+}
+.modal-card::-webkit-scrollbar-thumb,
+.offer-modal-content::-webkit-scrollbar-thumb,
+.calendly-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.22);
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.modal-card::-webkit-scrollbar-thumb:hover,
+.offer-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.35);
+  background-clip: content-box;
 }
 
-.offer-text {
-  text-align: justify;
-  margin-bottom: 24px;
-  line-height: 1.7;
-}
-
-/* === ЮРИДИЧЕСКИЙ СТИЛЬ ОФЕРТЫ — НОМЕРА СЛЕВА, ТЕКСТ УТОПЛЕН === */
-.offer-section {
-  margin: 32px 0;
-}
-
-.offer-item {
-  display: flex;
-  margin-bottom: 18px;
-  text-align: justify;
-  line-height: 1.75;
-}
-
-.offer-number {
-  flex: 0 0 50px;           /* ширина колонки с номером */
-  font-weight: 600;
-  color: var(--black);
-}
-
-.offer-paragraph {
-  flex: 1;
-  padding-left: 12px;       /* отступ текста от номера */
+@media (max-width: 768px) {
+  .modal-card::-webkit-scrollbar,
+  .offer-modal-content::-webkit-scrollbar { width: 0; display: none; }
 }
