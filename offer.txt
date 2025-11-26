@@ -40,7 +40,7 @@
     <span class="offer-number">1.9.</span>
     <span class="offer-paragraph">Терміни, що використовуються у цьому Договорі, вживаються у таких значеннях:</span>
   </div>
-  div class="offer-item">
+  <div class="offer-item">
     <span class="offer-number">1.9.1.</span>
     <span class="offer-paragraph">Публічна оферта пропозиція Виконавця про укладення Договору, розміщена на веб-сайті Виконавця та викладена Виконавцем в умовах цього Договору, що адресована невизначеному колу фізичних і юридичних осіб;</span>
   </div>
