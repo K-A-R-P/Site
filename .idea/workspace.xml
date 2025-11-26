@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="оферта тест">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="оферта текст">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/offer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/offer.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,14 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00011" summary="футер">
-      <option name="closed" value="true" />
-      <created>1764029270302</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1764029270302</updated>
     </task>
     <task id="LOCAL-00012" summary="футер 2">
       <option name="closed" value="true" />
@@ -458,11 +453,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764116471944</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="оферта текст">
+      <option name="closed" value="true" />
+      <created>1764116658686</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1764116658686</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="тест оферты 7" />
     <MESSAGE value="тест оферты 8" />
     <MESSAGE value="тест оферты 9" />
     <MESSAGE value="оферта" />
@@ -487,6 +489,7 @@
     <MESSAGE value="кастомная полоска мобильная" />
     <MESSAGE value="раб версия" />
     <MESSAGE value="оферта тест" />
-    <option name="LAST_COMMIT_MESSAGE" value="оферта тест" />
+    <MESSAGE value="оферта текст" />
+    <option name="LAST_COMMIT_MESSAGE" value="оферта текст" />
   </component>
 </project>

@@ -155,7 +155,13 @@
 
           <div class="buttons-row">
             <a class="btn btn-main" onclick="openCalendly(event, 'https://calendly.com/4ernish8/30min')">Записатися</a>
-            <button class="price-btn" onclick="event.stopPropagation(); openWayForPay()">🛒 3900 ₴</button>
+            <button
+                class="price-btn"
+                data-url="https://secure.wayforpay.com/button/b93e5be4236e3"
+                data-title="Стратегічна сесія"
+                onclick="openWayForPay(this)">
+                🛒 3900 ₴
+            </button>
           </div>
         </div>
       </div>

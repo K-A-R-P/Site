@@ -136,10 +136,16 @@ document.addEventListener('keydown', e => {
   }
 });
 
-function openWayForPay() {
-  const paymentUrl = "https://secure.wayforpay.com/button/b93e5be4236e3";
-  const currentUrl = encodeURIComponent(window.location.href);
-  const finalUrl = `${paymentUrl}?returnUrl=${currentUrl}`;
+function openWayForPay(button) {
+  // ГАСИМ ВСПЛЫТИЕ СОБЫТИЯ — ЭТО ГЛАВНОЕ
+  event.stopPropagation();          // ← ЭТА СТРОЧКА УБИВАЕТ МОРГАНИЕ
+
+  const baseUrl = button.getAttribute('data-url');
+  if (!baseUrl) return;
+
+  const returnUrl = encodeURIComponent(window.location.href);
+  const finalUrl = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}returnUrl=${returnUrl}`;
+
   window.location.href = finalUrl;
 }
 
