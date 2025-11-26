@@ -31,7 +31,6 @@ html { scroll-padding-top: 100px; }
 }
 .products-header.visible { opacity: 1; transform: translateY(0); }
 
-/* Карточки появляются снизу — как у тебя и было (это остаётся!) */
 .cards > .card {
   opacity: 0 !important;
   transform: translateY(60px) !important;
@@ -41,7 +40,6 @@ html { scroll-padding-top: 100px; }
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
-
 .fade-in-footer { opacity: 0; transform: translateY(80px); transition: opacity 1.2s ease, transform 1.2s ease; }
 .fade-in-footer.visible { opacity: 1; transform: translateY(0); }
 
@@ -89,13 +87,29 @@ header p { font-size: 20px; color: #444; }
 
 /* ===================== ABOUT ===================== */
 #about .about-wrapper {
-  display: flex; align-items: center; gap: clamp(20px, 5vw, 50px); flex-wrap: wrap; justify-content: center; padding: 0 16px;
+  display: flex;
+  align-items: flex-end;          /* ← фото и текст по нижнему краю */
+  gap: clamp(20px, 5vw, 50px);
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 16px;
+  margin-bottom: 36px;            /* ← отступ снизу на весь блок */
+}
+
+@media (max-width: 992px) {
+  #about .about-wrapper {
+    align-items: flex-start;
+    margin-bottom: 0;
+  }
 }
 #about img.about-photo { width: 100%; max-width: 420px; min-width: 280px; height: auto; border-radius: 32px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); flex-shrink: 0; }
-#about .about-text { flex: 1; min-width: 320px; font-size: 17.7px; line-height: 2; }
+#about .about-text {  flex: 1;  min-width: 320px;  font-size: 17.7px;  line-height: 2;}
 
-.about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
-@media (max-width: 992px) { .about-highlights { grid-template-columns: 1fr; } }
+#about .about-highlights {  display: grid;  grid-template-columns: 1fr 1fr;  gap: 32px;  margin-top: 28px;  font-size: 16px;  line-height: 1.7;}
+
+@media (max-width: 992px) {
+  .about-highlights { grid-template-columns: 1fr; }
+}
 
 .about-card {
   background: #fff; border: 2px solid var(--yellow); border-radius: 20px; padding: 24px 20px;
@@ -202,6 +216,19 @@ header p { font-size: 20px; color: #444; }
   background: #fff;
 }
 
+.card-text-content {
+  flex-grow: 1;                    /* ← текст растягивается вверх и занимает всё доступное место */
+  margin-bottom: 20px;             /* ← фиксированный отступ между текстом и кнопками */
+}
+
+.buttons-row {
+  margin-top: auto;                /* ← кнопки прижимаются к самому низу */
+  margin-bottom: 4px;              /* ← небольшой отступ от края карточки */
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
 .card h3 { font-size: 23px; margin-bottom: 10px; }
 .card-text-content p { font-size: 15.8px; margin-bottom: 8px; line-height: 1.55; }
 .readmore { color: var(--yellow); font-weight: 700; font-size: 15.5px; margin: 6px 0 12px; display: block; }
@@ -222,14 +249,35 @@ header p { font-size: 20px; color: #444; }
   flex: 1;
   min-width: 160px;
   font-size: 15.5px;
-  border: none;
-  cursor: var(--transition);
+  border: 2px solid transparent;   /* убирает прыжки навсегда */
   cursor: pointer;
+  transition: background 0.38s, color 0.38s, border-color 0.38s, box-shadow 0.38s;
 }
-.btn-main { background: var(--black); color: #fff; }
-.btn-main:hover { background: var(--yellow); color: var(--black); }
-.price-btn { background: var(--yellow); color: var(--black); border: 2px solid rgba(0,0,0,0.15); }
-.price-btn:hover { background: #ffd765; transform: translateY(-4px); }
+
+.btn-main {
+  background: var(--black);
+  color: #fff;
+}
+
+.price-btn {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: rgba(0,0,0,0.15);
+}
+
+.btn-main:hover {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(247,200,67,0.4);
+}
+
+.price-btn:hover {
+  background: var(--black);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
 
 /* ===================== КНОПКА НАВЕРХ ===================== */
 .scroll-top {
@@ -401,6 +449,7 @@ footer {
 }
 .modal-content p { font-size: 16px; margin-bottom: 12px; }
 
+
 /* ===================== POP-UP ОПЛАТЫ (Экспресс, Инфо-консультация) ===================== */
 #pricePopup {
   display: none;
@@ -482,7 +531,7 @@ footer {
 }
 .calendly-close-btn:hover { color: #333; }
 
-/* ===================== МОДАЛКА КОНТАКТОВ — ВЕРНУЛ ТВОЮ КРАСИВУЮ ВЕРСИЮ ===================== */
+/* ===================== МОДАЛКА КОНТАКТОВ===================== */
 #contactsModal.active { display: flex; }
 
 .contacts-modal-content {
@@ -645,3 +694,55 @@ footer {
   .modal-card::-webkit-scrollbar,
   .offer-modal-content::-webkit-scrollbar { width: 0; display: none; }
 }
+
+/* === ПОДЧЁРКИВАНИЕ "ЧИТАТИ ДАЛІ" НА ВСЮ ШИРИНУ КАРТОЧКИ === */
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Сам текст "Читати далі →" */
+.readmore {
+  position: relative;
+  display: inline-block;
+  color: var(--yellow);
+  font-weight: 700;
+  z-index: 2;
+}
+
+/* === ПОДЧЁРКИВАНИЕ "ЧИТАТИ ДАЛІ" ПРИ НАВЕДЕНИИ НА КАРТОЧКУ === */
+.card {
+  position: relative;
+  overflow: hidden;                     /* важно для плавности */
+}
+
+.readmore {
+  position: relative;
+  display: inline-block;
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+.readmore::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: var(--yellow);
+  transition: width 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: left;
+}
+
+/* Главное: подчёркивание появляется при ховере на всю карточку */
+.card:hover .readmore::after {
+  width: 100%;
+}
+
+/* Дополнительно: чуть усилим эффект — текст слегка "подсветится" */
+.card:hover .readmore {
+  color: #e8b82e;                       /* чуть темнее жёлтого — красивее */
+  text-shadow: 0 0 8px rgba(247,200,67,0.3);
+}
+
