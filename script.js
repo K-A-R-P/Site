@@ -321,7 +321,7 @@ function closeSuccessModal() {
   document.getElementById('successModal').style.display = 'none';
 }
 
-// ——— ОБНОВЛЁННАЯ ОТПРАВКА ФОРМЫ ———
+// ——— ОБНОВЛЁННАЯ ОТПРАВКА ФОРМЫ (ТОЛЬКО ЭТУ ЧАСТЬ ЗАМЕНИ) ———
 document.getElementById('bookingForm')?.addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -329,7 +329,7 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
   const price = document.getElementById('priceLabel').textContent;
   const name = e.target.name.value.trim();
   let phone = document.getElementById('phoneInput').value.trim();
-  phone = phone.replace(/\D/g, ''); // только цифры
+  phone = phone.replace(/\D/g, '');
   if (phone.startsWith('38')) phone = phone.slice(2);
   if (phone.length !== 10) {
     document.getElementById('popupStatus').innerHTML = '<span style="color:red;">Введіть коректний номер телефону!</span>';
@@ -338,8 +338,9 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
   phone = '+38' + phone;
 
   const comment = e.target.comment.value.trim();
-
   const status = document.getElementById('popupStatus');
+
+  // ← ВАЖНО: всегда начинаем с чистого состояния
   status.innerHTML = 'Відправляємо...';
   status.style.color = '#f7c843';
 
@@ -358,27 +359,44 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
     });
 
     if (response.ok) {
-      showSuccessModal();
-      e.target.reset();
+      // УСПЕХ — закрываем форму, открываем success, сбрасываем форму
+      closePricePopup();           // ← ЗАКРЫВАЕМ ФОРМУ
+      showSuccessModal();          // ← ОТКРЫВАЕМ УСПЕШКУ
+      e.target.reset();            // ← чистим поля
+      document.getElementById('phoneInput').value = ''; // на всякий случай
+      status.innerHTML = '';       // очищаем статус
     } else {
       throw new Error();
     }
-    } catch (err) {
-      status.innerHTML = `
-        <div style="color:#d32f2f; margin-bottom:16px; font-size:17px; font-weight:600;">
-          Помилка відправки
-        </div>
-        <div style="margin:24px 0 16px; font-size:18px; color:#333;">
-          Напишіть мені в Direct
-        </div>
-        <div style="margin:20px 0;">
-          <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
-            <img src="assets/icons/instagram.png"
-                 alt="Instagram Direct"
-                 style="width:68px; height:68px; animation: wiggle 2s ease-in-out infinite; transition:transform .2s;"
-                 onmouseover="this.style.transform='scale(1.12)'"
-                 onmouseout="this.style.transform='scale(1)'">
-          </a>
-      `;
-    }
+  } catch (err) {
+    status.innerHTML = `
+      <div style="color:#d32f2f; margin-bottom:16px; font-size:17px; font-weight:600;">
+        Помилка відправки
+      </div>
+      <div style="margin:24px 0 16px; font-size:18px; color:#333;">
+        Напишіть мені в Direct
+      </div>
+      <div style="margin:20px 0;">
+        <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
+          <img src="assets/icons/instagram.png"
+               alt="Instagram Direct"
+               style="width:68px; height:68px; animation: wiggle 2s ease-in-out infinite;">
+        </a>
+      </div>
+    `;
+  }
 });
+
+// ← ДОБАВЬ ЭТУ ФУНКЦИЮ — она будет сбрасывать форму и статус при каждом открытии попапа
+function openPricePopup(e, title, price) {
+  e.stopPropagation();
+
+  // Сбрасываем всё перед открытием
+  document.getElementById('priceTitle').textContent = 'Запис на ' + title;
+  document.getElementById('priceLabel').textContent = 'Вартість: ' + price;
+  document.getElementById('bookingForm').reset();
+  document.getElementById('phoneInput').value = '';
+  document.getElementById('popupStatus').innerHTML = '';
+
+  document.getElementById('pricePopup').style.display = 'flex';
+}
