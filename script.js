@@ -244,7 +244,7 @@ function updateParallax() {
 window.addEventListener('scroll', () => requestAnimationFrame(updateParallax));
 window.addEventListener('load', updateParallax);
 
-// ——— ИДЕАЛЬНОЕ ПОЛЕ ТЕЛЕФОНА +38 (0XX) XXX XX XX ———
+// ——— ИДЕАЛЬНОЕ ПОЛЕ ТЕЛЕФОНА +38 (0XX) XXX XX XX (БЕЗ ПОДСВЕТКИ) ———
 const phoneInput = document.getElementById('phoneInput');
 if (phoneInput) {
   // При фокусе — ставим +38, если пусто
@@ -254,32 +254,30 @@ if (phoneInput) {
     }
   });
 
-  // При потере фокуса — если пусто, убираем +38
+  // При потере фокуса — если только +38 и ничего больше, убираем
   phoneInput.addEventListener('blur', function() {
     if (this.value === '+38 ') {
       this.value = '';
     }
   });
 
-  // Основная магия: только цифры + форматирование + цвет при заполнении
+  // Основная магия: только цифры + форматирование
   phoneInput.addEventListener('input', function(e) {
     let value = e.target.value.replace(/\D/g, ''); // оставляем только цифры
 
-    // Если удалили всё — оставляем пусто
+    // Если удалили всё — очищаем поле
     if (value.length === 0) {
       e.target.value = '';
-      e.target.style.borderColor = '#ddd';
-      e.target.style.boxShadow = 'none';
       return;
     }
 
     // Обрезаем до 12 цифр (38 + 10)
     if (value.length > 12) value = value.slice(0, 12);
 
-    // Убираем 38 в начале, если есть
+    // Убираем 38 в начале, если случайно ввели
     if (value.startsWith('38')) value = value.slice(2);
 
-    // Форматируем: (0XX) XXX XX XX
+    // Форматируем: +38 (0XX) XXX XX XX
     let formatted = '+38 ';
     if (value.length > 0) formatted += '(' + value.slice(0, 3);
     if (value.length >= 3) formatted += ') ' + value.slice(3, 6);
@@ -288,15 +286,48 @@ if (phoneInput) {
 
     e.target.value = formatted;
 
-    // Если введено 10 цифр после +38 → зелёная обводка (как у имени)
-    if (value.length === 10) {
-      e.target.style.borderColor = '#4caf50';
-      e.target.style.boxShadow = '0 0 12px rgba(76, 175, 80, 0.3)';
-    } else {
-      e.target.style.borderColor = '#ddd';
-      e.target.style.boxShadow = 'none';
-    }
+    // ← ПОДСВЕТКУ УДАЛИЛИ ОТСЮДА — теперь она в универсальном блоке ниже!
   });
+
+  // При отправке формы — нормализуем номер (оставляем как было)
+  document.getElementById('bookingForm')?.addEventListener('submit', function(e) {
+    let phone = phoneInput.value.replace(/\D/g, '');
+    if (phone.startsWith('38')) phone = phone.slice(2);
+    if (phone.length !== 10) {
+      e.preventDefault();
+      document.getElementById('popupStatus').innerHTML = '<span style="color:#d32f2f;">Введіть повний номер (10 цифр після +38)</span>';
+      phoneInput.style.borderColor = '#d32f2f';
+      return;
+    }
+    phoneInput.value = '+38' + phone;
+  });
+}
+
+// ——— УНИВЕРСАЛЬНАЯ ПОДСВЕТКА ДЛЯ ИМЕНИ И ТЕЛЕФОНА (ТОЛЬКО ОДИН РАЗ!) ———
+document.querySelectorAll('#bookingForm input[required]').forEach(input => {
+  const checkValidity = () => {
+    const value = input.value.trim();
+    const phoneDigits = input.id === 'phoneInput' ? input.value.replace(/\D/g, '').length : 0;
+
+    const isValid =
+      (input.name === 'name' && value.length >= 2) ||
+      (input.id === 'phoneInput' && phoneDigits === 12); // +38 + 10 цифр
+
+    if (isValid) {
+      input.style.borderColor = '#4caf50';
+      input.style.boxShadow = '0 0 12px rgba(76, 175, 80, 0.3)';
+    } else {
+      input.style.borderColor = '#ddd';
+      input.style.boxShadow = 'none';
+    }
+  };
+
+  input.addEventListener('input', checkValidity);
+  input.addEventListener('blur', checkValidity);
+
+  // Проверка при открытии формы (автозаполнение браузера и т.д.)
+  checkValidity();
+});
 
   // При отправке формы — нормализуем номер
   document.getElementById('bookingForm')?.addEventListener('submit', function(e) {
