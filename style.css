@@ -700,7 +700,7 @@ footer {
 .offer-modal-content {
   background: #fff;
   border-radius: 32px;
-  max-width: 1240px;           /* ← ТОЛЬКО ЭТО ИЗМЕНИЛ — теперь почти во весь экран */
+  max-width: 1360px;           /* ← ТОЛЬКО ЭТО ИЗМЕНИЛ — теперь почти во весь экран */
   width: 100%;
   max-height: 95vh;
   overflow-y: auto;
