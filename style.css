@@ -1024,3 +1024,34 @@ footer {
 #successModal .popup-content {
   animation: modalShow 0.4s cubic-bezier(0.16,1,0.3,1);
 }
+
+/* ФОРМА ЗАПИСИ — 100% ВЛЕЗАЕТ НА ВСЕ МОБИЛКИ (iPhone SE2, 12 mini и т.д.) */
+#pricePopup {
+  padding: 16px !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+#pricePopup .popup-content {
+  width: 100%;
+  max-width: 420px;
+  max-height: 94vh;                    /* главное — не 100% */
+  margin: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 24px;
+  padding: 32px 24px;
+  box-sizing: border-box;
+}
+
+/* На совсем крошечных экранах (высота < 600px) — чуть ужмём */
+@media (max-height: 600px) {
+  #pricePopup .popup-content {
+    padding: 24px 18px;
+    max-height: 96vh;
+  }
+  #pricePopup h3 { font-size: 22px; }
+  #pricePopup input,
+  #pricePopup textarea { padding: 13px 14px; }
+  .popup-close { margin-top: 16px; }
+}
