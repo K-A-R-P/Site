@@ -317,17 +317,23 @@
   </div>
 </div>
 
-<!-- УСПЕШНАЯ МОДАЛКА — ИСПРАВЛЕННАЯ ВЕРСИЯ -->
+<!-- УСПЕШНАЯ МОДАЛКА — ФИНАЛЬНАЯ КРАСИВАЯ ВЕРСИЯ -->
 <div id="successModal">
   <div class="popup-content" style="text-align:center; max-width:420px;">
-    <img src="assets/icons/uspih.png" alt="Успіх" style="width:120px; height:120px; margin:20px 0; animation: wiggle 2s ease-in-out infinite;">
-    <h3 style="margin:20px 0; color:#222;">Дякую! Заявку надіслано</h3>
-    <p style="font-size:18px; color:#444; margin-bottom:30px;">
+    <img src="assets/icons/uspih.png" alt="Успіх"
+         style="width:120px; height:120px; margin:20px 0; animation: wiggle 2s ease-in-out infinite;">
+
+    <h3 style="margin:20px 0 12px; color:#222; font-size:24px;">Дякую!</h3>
+    <p style="font-size:18px; color:#444; margin-bottom:32px; line-height:1.6;">
+      Заявку успішно надіслано<br>
       Я зв’яжусь з вами найближчим часом
     </p>
-    <button class="btn btn-main" onclick="closeSuccessModal()" style="padding:14px 32px;">
+
+    <!-- ← ВОТ ЭТА КНОПКА — теперь как у всех модалок -->
+    <div class="modal-close" onclick="closeSuccessModal()"
+         style="margin-top:20px; color:#888; cursor:pointer; font-size:16px;">
       Закрити
-    </button>
+    </div>
   </div>
 </div>
 

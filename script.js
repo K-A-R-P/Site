@@ -353,7 +353,7 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
       body: JSON.stringify({
         action: 'new_booking',
         product: title,
-        price: price,
+        //price: price,
         name: name,
         phone: phone,
         comment: comment || '—'
