@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="оферта запрет копирования и шире испр">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="оферта запрет копирования и шире испр 1360 ширина">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,14 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00029" summary="оферта">
-      <option name="closed" value="true" />
-      <created>1764049258486</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1764049258486</updated>
     </task>
     <task id="LOCAL-00030" summary="стили и мобилка">
       <option name="closed" value="true" />
@@ -460,11 +453,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764253576294</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="оферта запрет копирования и шире испр 1360 ширина">
+      <option name="closed" value="true" />
+      <created>1764254093134</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1764254093134</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Рабочая версия с оплатой фикс мобильной версии" />
     <MESSAGE value="Рабочая версия с закрытием модалок вторым кликом" />
     <MESSAGE value="Рабочая версия с офертой" />
     <MESSAGE value="Рабочая версия убираем ебучий крестик" />
@@ -489,6 +489,7 @@
     <MESSAGE value="Рабочая с отправкой заявок мобильная версия" />
     <MESSAGE value="оферта запрет копирования и шире" />
     <MESSAGE value="оферта запрет копирования и шире испр" />
-    <option name="LAST_COMMIT_MESSAGE" value="оферта запрет копирования и шире испр" />
+    <MESSAGE value="оферта запрет копирования и шире испр 1360 ширина" />
+    <option name="LAST_COMMIT_MESSAGE" value="оферта запрет копирования и шире испр 1360 ширина" />
   </component>
 </project>
