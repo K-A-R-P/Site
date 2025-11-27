@@ -317,18 +317,51 @@
   </div>
 </div>
 
-  <!-- POPUP ОПЛАТЫ -->
-  <div id="pricePopup">
-    <div class="popup-content">
-      <h3 id="priceTitle">Запис на консультацію</h3>
-      <p id="priceLabel">Вартість: 250 грн</p>
-      <input type="text" placeholder="Ваше ім'я" />
-      <input type="email" placeholder="Email" />
-      <input type="tel" placeholder="Телефон" />
-      <button class="btn btn-main popup-buy" onclick="alert('Дякую! Я зв’яжуся з вами найближчим часом')">Оплатити та записатися</button>
-      <div class="popup-close" onclick="closePricePopup()">Закрити</div>
-    </div>
+<!-- УСПЕШНАЯ МОДАЛКА -->
+<div id="successModal" style="display:none;">
+  <div class="popup-content" style="text-align:center; max-width:420px;">
+    <img src="assets/icons/uspih.png" alt="Успіх" style="width:120px; height:120px; margin:20px 0; animation: wiggle 2s ease-in-out infinite;">
+    <h3 style="margin:20px 0; color:#222;">Дякую! Заявку надіслано</h3>
+    <p style="font-size:18px; color:#444; margin-bottom:30px;">
+      Я зв’яжусь з вами найближчим часом
+    </p>
+    <button class="btn btn-main" onclick="closeSuccessModal()" style="padding:14px 32px;">
+      Закрити
+    </button>
   </div>
+</div>
+
+<!-- ОСНОВНАЯ ФОРМА ЗАЯВКИ -->
+<div id="pricePopup">
+  <div class="popup-content">
+    <h3 id="priceTitle">Запис на Експрес-консультацію</h3>
+    <p id="priceLabel" style="margin-bottom:20px; font-size:18px; color:#555;">Вартість: 250 ₴</p>
+
+    <form id="bookingForm">
+
+      <!-- ИМЯ -->
+      <div class="required-field">
+        <input type="text" name="name" placeholder="Ваше ім'я " required>
+      </div>
+
+      <!-- ТЕЛЕФОН -->
+      <div class="required-field">
+        <input type="text" id="phoneInput" name="phone" placeholder="Телефон (без +38 )" required>
+      </div>
+
+      <!-- КОММЕНТАРИЙ (необязательно) -->
+      <textarea name="comment" rows="6" placeholder="Коли вам зручно? Які теми хочете обговорити? (не обов’язково)"
+                style="width:100%; padding:14px; margin:10px 0 0; border-radius:12px; border:1px solid #ddd; font-size:16px; resize:vertical; height:140px;"></textarea>
+
+      <button type="submit" class="btn btn-main" style="width:100%; margin-top:20px; padding:16px; font-size:18px;">
+        Відправити заявку
+      </button>
+    </form>
+
+    <div id="popupStatus" style="margin-top:15px; text-align:center; font-weight:600; min-height:50px;"></div>
+    <div class="popup-close" onclick="closePricePopup()" style="margin-top:20px; color:#888; cursor:pointer;">Закрити</div>
+  </div>
+</div>
 
   <!-- CALENDLY МОДАЛКА -->
   <div id="calendlyModal" class="calendly-modal">

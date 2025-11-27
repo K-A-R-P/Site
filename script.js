@@ -244,3 +244,141 @@ function updateParallax() {
 window.addEventListener('scroll', () => requestAnimationFrame(updateParallax));
 window.addEventListener('load', updateParallax);
 
+// ——— ИДЕАЛЬНОЕ ПОЛЕ ТЕЛЕФОНА +38 (0XX) XXX XX XX ———
+const phoneInput = document.getElementById('phoneInput');
+if (phoneInput) {
+  // При фокусе — ставим +38, если пусто
+  phoneInput.addEventListener('focus', function() {
+    if (!this.value) {
+      this.value = '+38 ';
+    }
+  });
+
+  // При потере фокуса — если пусто, убираем +38
+  phoneInput.addEventListener('blur', function() {
+    if (this.value === '+38 ') {
+      this.value = '';
+    }
+  });
+
+  // Основная магия: только цифры + форматирование + цвет при заполнении
+  phoneInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, ''); // оставляем только цифры
+
+    // Если удалили всё — оставляем пусто
+    if (value.length === 0) {
+      e.target.value = '';
+      e.target.style.borderColor = '#ddd';
+      e.target.style.boxShadow = 'none';
+      return;
+    }
+
+    // Обрезаем до 12 цифр (38 + 10)
+    if (value.length > 12) value = value.slice(0, 12);
+
+    // Убираем 38 в начале, если есть
+    if (value.startsWith('38')) value = value.slice(2);
+
+    // Форматируем: (0XX) XXX XX XX
+    let formatted = '+38 ';
+    if (value.length > 0) formatted += '(' + value.slice(0, 3);
+    if (value.length >= 3) formatted += ') ' + value.slice(3, 6);
+    if (value.length >= 6) formatted += ' ' + value.slice(6, 8);
+    if (value.length >= 8) formatted += ' ' + value.slice(8, 10);
+
+    e.target.value = formatted;
+
+    // Если введено 10 цифр после +38 → зелёная обводка (как у имени)
+    if (value.length === 10) {
+      e.target.style.borderColor = '#4caf50';
+      e.target.style.boxShadow = '0 0 12px rgba(76, 175, 80, 0.3)';
+    } else {
+      e.target.style.borderColor = '#ddd';
+      e.target.style.boxShadow = 'none';
+    }
+  });
+
+  // При отправке формы — нормализуем номер
+  document.getElementById('bookingForm')?.addEventListener('submit', function(e) {
+    let phone = phoneInput.value.replace(/\D/g, '');
+    if (phone.startsWith('38')) phone = phone.slice(2);
+    if (phone.length !== 10) {
+      e.preventDefault();
+      document.getElementById('popupStatus').innerHTML = '<span style="color:#d32f2f;">Введіть повний номер (10 цифр після +38)</span>';
+      phoneInput.style.borderColor = '#d32f2f';
+      return;
+    }
+    phoneInput.value = '+38' + phone; // гарантируем правильный формат
+  });
+}
+
+// ——— УСПЕШНАЯ МОДАЛКА ———
+function showSuccessModal() {
+  document.getElementById('pricePopup').style.display = 'none';
+  document.getElementById('successModal').style.display = 'flex';
+}
+function closeSuccessModal() {
+  document.getElementById('successModal').style.display = 'none';
+}
+
+// ——— ОБНОВЛЁННАЯ ОТПРАВКА ФОРМЫ ———
+document.getElementById('bookingForm')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById('priceTitle').textContent.replace('Запис на ', '').trim();
+  const price = document.getElementById('priceLabel').textContent;
+  const name = e.target.name.value.trim();
+  let phone = document.getElementById('phoneInput').value.trim();
+  phone = phone.replace(/\D/g, ''); // только цифры
+  if (phone.startsWith('38')) phone = phone.slice(2);
+  if (phone.length !== 10) {
+    document.getElementById('popupStatus').innerHTML = '<span style="color:red;">Введіть коректний номер телефону!</span>';
+    return;
+  }
+  phone = '+38' + phone;
+
+  const comment = e.target.comment.value.trim();
+
+  const status = document.getElementById('popupStatus');
+  status.innerHTML = 'Відправляємо...';
+  status.style.color = '#f7c843';
+
+  try {
+    const response = await fetch('https://addonsaf.pythonanywhere.com/webhook', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'new_booking',
+        product: title,
+        price: price,
+        name: name,
+        phone: phone,
+        comment: comment || '—'
+      })
+    });
+
+    if (response.ok) {
+      showSuccessModal();
+      e.target.reset();
+    } else {
+      throw new Error();
+    }
+    } catch (err) {
+      status.innerHTML = `
+        <div style="color:#d32f2f; margin-bottom:16px; font-size:17px; font-weight:600;">
+          Помилка відправки
+        </div>
+        <div style="margin:24px 0 16px; font-size:18px; color:#333;">
+          Напишіть мені в Direct
+        </div>
+        <div style="margin:20px 0;">
+          <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
+            <img src="assets/icons/instagram.png"
+                 alt="Instagram Direct"
+                 style="width:68px; height:68px; animation: wiggle 2s ease-in-out infinite; transition:transform .2s;"
+                 onmouseover="this.style.transform='scale(1.12)'"
+                 onmouseout="this.style.transform='scale(1)'">
+          </a>
+      `;
+    }
+});
