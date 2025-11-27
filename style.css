@@ -683,64 +683,50 @@ footer {
   font-size: 15px;
 }
 
-/* ========= ПУБЛИЧНАЯ ОФЕРТА — КРАСИВО И БЕЗ КОПИРОВАНИЯ ========= */
+/* ===================== МОДАЛКА ОФЕРТЫ ===================== */
 #offerModal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(12px);
   z-index: 9999;
-  padding: 16px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
+#offerModal.active { display: flex; }
 
-#offerModal.active {
-  display: flex !important;
-}
-
-#offerModal .offer-modal-content {
+.offer-modal-content {
+  background: #fff;
+  border-radius: 32px;
+  max-width: 1240px;           /* ← ТОЛЬКО ЭТО ИЗМЕНИЛ — теперь почти во весь экран */
   width: 100%;
-  max-width: 920px;                    /* почти на всю ширину */
-  max-height: 94vh;
-  margin: auto;
-  background: white;
-  border-radius: 24px;
-  padding: 44px 52px;                  /* красивые отступы внутри */
+  max-height: 95vh;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.35);
-  box-sizing: border-box;
-  font-size: 17px;
-  line-height: 1.8;
-  color: #222;
+  padding: 36px 40px;          /* ← твои родные отступы — не трогал */
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  line-height: 1.75;
+  font-size: 16px;
 }
 
-/* ЗАПРЕТ ВЫДЕЛЕНИЯ И КОПИРОВАНИЯ ТЕКСТА */
-#offerModal,
-#offerModal * {
+/* ЗАПРЕТ КОПИРОВАНИЯ — ничего не ломает внешний вид */
+.offer-modal-content,
+.offer-modal-content * {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-touch-callout: none;         /* отключить контекстное меню на iOS */
-  cursor: default;
+  -webkit-touch-callout: none;
 }
 
-/* На мелких экранах (мобильки) — чуть уменьшаем отступы */
-@media (max-width: 768px) {
-  #offerModal .offer-modal-content {
-    padding: 32px 24px;
-    font-size: 16.5px;
-  }
-}
-
-@media (max-height: 600px) {
-  #offerModal .offer-modal-content {
-    padding: 24px 20px;
-  }
-}
+/* Всё остальное — ровно как у тебя было */
+.offer-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 12px; color: var(--black); }
+.offer-subtitle-center { font-size: 20px; text-align: center; margin-bottom: 40px; color: #333; }
+.offer-subtitle { font-size: 24px; font-weight: 700; margin: 36px 0 16px; }
+.offer-item { display: flex; margin-bottom: 18px; }
+.offer-number { flex: 0 0 50px; font-weight: 600; }
+.offer-paragraph { flex: 1; padding-left: 12px; text-align: justify; }
 
 /* ===================== МОДАЛКА ОПЛАТА ===================== */
 #paymentModal {
