@@ -314,11 +314,13 @@ if (phoneInput) {
 
 // ——— УСПЕШНАЯ МОДАЛКА ———
 function showSuccessModal() {
-  document.getElementById('pricePopup').style.display = 'none';
-  document.getElementById('successModal').style.display = 'flex';
+  document.getElementById('successModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
+
 function closeSuccessModal() {
-  document.getElementById('successModal').style.display = 'none';
+  document.getElementById('successModal').classList.remove('active');
+  document.body.style.overflow = '';
 }
 
 // ——— ОБНОВЛЁННАЯ ОТПРАВКА ФОРМЫ (ТОЛЬКО ЭТУ ЧАСТЬ ЗАМЕНИ) ———

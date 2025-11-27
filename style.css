@@ -1002,3 +1002,25 @@ footer {
   font-size: 20px;
   pointer-events: none;
 }
+
+/* SUCCESS МОДАЛКА — такая же красивая, как все остальные */
+#successModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#successModal.active {
+  display: flex !important;
+}
+
+/* Анимация появления */
+#successModal .popup-content {
+  animation: modalShow 0.4s cubic-bezier(0.16,1,0.3,1);
+}
