@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Запись на консультацию поправлена мобилка">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Поправлена маска +конфети">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,14 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00038" summary="уменьшен шрифт">
-      <option name="closed" value="true" />
-      <created>1764060024361</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1764060024361</updated>
     </task>
     <task id="LOCAL-00039" summary="уменьшен шрифт">
       <option name="closed" value="true" />
@@ -463,11 +453,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764309801778</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Поправлена маска +конфети">
+      <option name="closed" value="true" />
+      <created>1764312854941</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1764312854941</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="оферта текст и универсальные ссылки оплаты" />
     <MESSAGE value="чистка css +эффект карточек при наведении" />
     <MESSAGE value="Стабильная версия чистка css +эффект карточек при наведении" />
     <MESSAGE value="параллакс" />
@@ -492,6 +489,7 @@
     <MESSAGE value="Прокрутка картинки в карточках добавлена мобильная версия" />
     <MESSAGE value="Запись на консультацию, динамические названия курсов," />
     <MESSAGE value="Запись на консультацию поправлена мобилка" />
-    <option name="LAST_COMMIT_MESSAGE" value="Запись на консультацию поправлена мобилка" />
+    <MESSAGE value="Поправлена маска +конфети" />
+    <option name="LAST_COMMIT_MESSAGE" value="Поправлена маска +конфети" />
   </component>
 </project>
