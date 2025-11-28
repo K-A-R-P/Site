@@ -73,17 +73,43 @@ function openModal(card) {
   let content = card.querySelector('.card-content').innerHTML;
   content = content.replace(/style="display:none;"/g, '');
   content = content.replace('<div class="readmore">Читати далі →</div>', '');
+
   document.getElementById('modalImg').src = img;
   document.getElementById('modalContent').innerHTML = content;
   document.getElementById('cardModal').classList.add('active');
   document.body.style.overflow = 'hidden';
-  document.querySelector('.modal-card').scrollTop = 0;
-  // ← ВАЖНО: теперь любой клик по модалке (кроме кнопок) — закрывает её
+
+  const modalCard = document.querySelector('.modal-card');
+  modalCard.scrollTop = 0;
+
+  // === ВЕРНУЛИ СТАРОЕ ПРАВИЛЬНОЕ ЗАКРЫТИЕ ===
   document.getElementById('cardModal').onclick = function(e) {
-    if (!e.target.closest('button') && !e.target.closest('a')) {
+    // Закрываем по клику на фон ИЛИ внутри карточки, но НЕ по кнопкам/ссылкам
+    if (e.target === document.getElementById('cardModal') ||
+        (e.target.closest('.modal-card') && !e.target.closest('button') && !e.target.closest('a'))) {
       closeModal();
     }
   };
+
+  // === ПЛАВНЫЙ СКРОЛЛ ВВЕРХ (настраивай только distance) ===
+  setTimeout(() => {
+    const distance = 300;                 // ← твой идеальный вариант (250–290)
+    const duration = 1500;
+    const start = modalCard.scrollTop;
+    const startTime = performance.now();
+
+    function scrollStep(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress === 1 ? 1 : 1 - Math.pow(1 - progress, 3);
+
+      modalCard.scrollTop = start + distance * ease;
+
+      if (progress < 1) requestAnimationFrame(scrollStep);
+    }
+
+    requestAnimationFrame(scrollStep);
+  }, 200);// ← задержка
 }
 
 function closeModal() {
