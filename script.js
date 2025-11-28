@@ -219,16 +219,27 @@ document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(e
 function openPaymentModal() {
   document.getElementById('paymentModal').classList.add('active');
   document.body.style.overflow = 'hidden';
+
+  // ← СБРАСЫВАЕМ СКРОЛЛ ВВЕРХ КАЖДЫЙ РАЗ ПРИ ОТКРЫТИИ
+  const modal = document.getElementById('paymentModal');
+  modal.scrollTop = 0;                 // работает, если скроллится сам #paymentModal
+  // Если у тебя внутри есть отдельный блок со скроллом (например .payment-modal-content), то так:
+  // document.querySelector('#paymentModal .payment-modal-content')?.scrollTop = 0;
 }
+
 function closePaymentModal() {
   document.getElementById('paymentModal').classList.remove('active');
   document.body.style.overflow = '';
+
+  // На всякий случай сбрасываем и при закрытии (не обязательно, но надёжно)
+  document.getElementById('paymentModal').scrollTop = 0;
 }
 
-// Закрытие по клику на фон и Escape
+// Закрытие по клику на фон и Escape — оставляем как было
 document.getElementById('paymentModal').addEventListener('click', e => {
   if (e.target === document.getElementById('paymentModal')) closePaymentModal();
 });
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && document.getElementById('paymentModal')?.classList.contains('active')) {
     closePaymentModal();
@@ -366,7 +377,7 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
 
 function openPricePopup(e, title, price) {
   e.stopPropagation();
-  document.getElementById('priceTitle').textContent = 'Запис на ' + title;
+  document.getElementById('priceTitle').textContent = title;
   document.getElementById('priceLabel').textContent = 'Вартість: ' + price;
   // Скидаємо форму при кожному відкритті
   document.getElementById('bookingForm').reset();
@@ -405,6 +416,29 @@ document.querySelectorAll('#bookingForm input[required]').forEach(input => {
   input.addEventListener('blur', check);
   check(); // на случай автозаполнения
 });
+
+// === ПОЛНЫЙ СБРОС ПОДСВЕТКИ ПОЛЕЙ ПРИ ЗАКРЫТИИ ФОРМЫ ===
+function resetFormHighlights() {
+  document.querySelectorAll('#pricePopup input, #pricePopup textarea').forEach(input => {
+    input.style.borderColor = '';
+    input.style.boxShadow = '';
+  });
+}
+
+// Обновляем функцию закрытия
+function closePricePopup() {
+  document.getElementById('pricePopup').style.display = 'none';
+
+  // Сбрасываем всё:
+  resetFormHighlights();                    // ← убираем зелёные рамки
+  document.getElementById('popupStatus').innerHTML = '';
+
+  // На всякий случай — сбрасываем форму (хотя reset() уже есть)
+  setTimeout(() => {
+    document.getElementById('bookingForm')?.reset();
+    document.getElementById('phoneInput').value = '';
+  }, 100);
+}
 
 // ------------------Жорстке рішення проблеми "пливе вгору після F5-----------------"
 (function fixScrollRestore() {

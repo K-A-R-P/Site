@@ -321,9 +321,8 @@
     <img src="assets/icons/uspih.png" alt="Успіх"
          style="width:120px; height:120px; margin:20px 0; animation: wiggle 2s ease-in-out infinite;">
 
-    <h3 style="margin:20px 0 12px; color:#222; font-size:24px;">Дякую!</h3>
+    <h3 style="margin:20px 0 12px; color:#222; font-size:24px;">Заявку надіслано</h3>
     <p style="font-size:18px; color:#444; margin-bottom:32px; line-height:1.6;">
-      Заявку успішно надіслано<br>
       Я зв’яжусь з вами найближчим часом
     </p>
 
@@ -335,35 +334,30 @@
   </div>
 </div>
 
-<!-- ОСНОВНАЯ ФОРМА ЗАЯВКИ -->
+<!-- ФОРМА ЗАПИСИ — НОВАЯ ВЕРСИЯ -->
 <div id="pricePopup">
   <div class="popup-content">
-    <h3 id="priceTitle">Запис на Експрес-консультацію</h3>
-    <p id="priceLabel" style="margin-bottom:20px; font-size:18px; color:#555;">Вартість: 250 ₴</p>
+    <h3 id="priceTitle"></h3>
+    <p id="priceLabel"></p>
 
     <form id="bookingForm">
-
-      <!-- ИМЯ -->
       <div class="required-field">
-        <input type="text" name="name" placeholder="Ваше ім'я " required>
+        <input type="text" name="name" placeholder="Ваше ім'я" required>
       </div>
 
-      <!-- ТЕЛЕФОН -->
       <div class="required-field">
-        <input type="text" id="phoneInput" name="phone" placeholder="Телефон (без +38 )" required>
+        <input type="text" id="phoneInput" name="phone" placeholder="Телефон" required>
       </div>
 
-      <!-- КОММЕНТАРИЙ (необязательно) -->
-      <textarea name="comment" rows="6" placeholder="Коли вам зручно? Які теми хочете обговорити? (не обов’язково)"
-                style="width:100%; padding:14px; margin:10px 0 0; border-radius:12px; border:1px solid #ddd; font-size:16px; resize:vertical; height:140px;"></textarea>
+      <textarea name="comment" rows="6" placeholder="Як краще з вами зв'язатися (зателефонувати, месенджер..)? Коли вам зручно? Які теми хочете обговорити? (не обов’язково)"></textarea>
 
-      <button type="submit" class="btn btn-main" style="width:100%; margin-top:20px; padding:16px; font-size:18px;">
-        Відправити заявку
-      </button>
+      <button type="submit" class="btn btn-main">Відправити заявку</button>
     </form>
 
-    <div id="popupStatus" style="margin-top:15px; text-align:center; font-weight:600; min-height:50px;"></div>
-    <div class="popup-close" onclick="closePricePopup()" style="margin-top:20px; color:#888; cursor:pointer;">  Закрити</div>
+    <div id="popupStatus"></div>
+
+    <!-- КНОПКА ЗАКРИТИ — СРАЗУ ПОД КНОПКОЙ ОТПРАВКИ -->
+    <div class="popup-close-btn" onclick="closePricePopup()">Закрити</div>
   </div>
 </div>
 
