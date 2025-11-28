@@ -377,17 +377,32 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
 
 function openPricePopup(e, title, price) {
   e.stopPropagation();
+
   document.getElementById('priceTitle').textContent = title;
   document.getElementById('priceLabel').textContent = 'Вартість: ' + price;
-  // Скидаємо форму при кожному відкритті
+
+  // Сброс формы и подсветки
   document.getElementById('bookingForm').reset();
   document.getElementById('phoneInput').value = '';
   document.getElementById('popupStatus').innerHTML = '';
-  document.getElementById('pricePopup').style.display = 'flex';
+
+  document.querySelectorAll('#pricePopup input, #pricePopup textarea').forEach(input => {
+    input.style.borderColor = '';
+    input.style.boxShadow = '';
+  });
+
+  // ← ГЛАВНОЕ: сбрасываем скролл модалки при каждом открытии
+  const popup = document.getElementById('pricePopup');
+  popup.style.display = 'flex';
+  popup.scrollTop = 0;                     // ← всегда открывается сверху
 }
 
 function closePricePopup() {
-  document.getElementById('pricePopup').style.display = 'none';
+  const popup = document.getElementById('pricePopup');
+  popup.style.display = 'none';
+  popup.scrollTop = 0;                     // ← гарантируем чистоту при следующем открытии
+  resetFormHighlights();
+  document.getElementById('popupStatus').innerHTML = '';
 }
 // Закриття по кліку на фон + Escape
 document.getElementById('pricePopup').addEventListener('click', e => {
