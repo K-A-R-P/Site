@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Поправлена маска +конфети">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="шрифт оферты">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
@@ -68,14 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00039" summary="уменьшен шрифт">
-      <option name="closed" value="true" />
-      <created>1764060183517</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1764060183517</updated>
     </task>
     <task id="LOCAL-00040" summary="шрифт и отступы в оферте">
       <option name="closed" value="true" />
@@ -461,11 +453,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764312854941</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="шрифт оферты">
+      <option name="closed" value="true" />
+      <created>1764314942855</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1764314942855</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="чистка css +эффект карточек при наведении" />
     <MESSAGE value="Стабильная версия чистка css +эффект карточек при наведении" />
     <MESSAGE value="параллакс" />
     <MESSAGE value="параллакс+блик" />
@@ -490,6 +489,7 @@
     <MESSAGE value="Запись на консультацию, динамические названия курсов," />
     <MESSAGE value="Запись на консультацию поправлена мобилка" />
     <MESSAGE value="Поправлена маска +конфети" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поправлена маска +конфети" />
+    <MESSAGE value="шрифт оферты" />
+    <option name="LAST_COMMIT_MESSAGE" value="шрифт оферты" />
   </component>
 </project>
