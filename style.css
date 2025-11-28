@@ -257,7 +257,7 @@ header p { font-size: 20px; color: #444; }
   flex-wrap: wrap;
 }
 
-.card h3 { font-size: 23px; margin-bottom: 10px; }
+.card h3 {  font-size: 19px;  margin-bottom: 12px;  text-align: center;  width: 100%;}
 .card-text-content p { font-size: 15.8px; margin-bottom: 8px; line-height: 1.55; }
 .readmore { color: var(--yellow); font-weight: 700; font-size: 15.5px; margin: 6px 0 12px; display: block; }
 

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="шрифт оферты">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="оферта">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/offer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/offer.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
@@ -69,14 +69,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Рабочая версия с оплатой">
-      <option name="closed" value="true" />
-      <created>1764101935554</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1764101935554</updated>
     </task>
     <task id="LOCAL-00047" summary="Рабочая версия с оплатой фикс мобильной версии">
       <option name="closed" value="true" />
@@ -462,11 +454,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764315891361</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="оферта">
+      <option name="closed" value="true" />
+      <created>1764316424091</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1764316424091</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Стабильная версия чистка css +эффект карточек при наведении" />
     <MESSAGE value="параллакс" />
     <MESSAGE value="параллакс+блик" />
     <MESSAGE value="фикс мобилки" />
@@ -491,6 +490,7 @@
     <MESSAGE value="Запись на консультацию поправлена мобилка" />
     <MESSAGE value="Поправлена маска +конфети" />
     <MESSAGE value="шрифт оферты" />
-    <option name="LAST_COMMIT_MESSAGE" value="шрифт оферты" />
+    <MESSAGE value="оферта" />
+    <option name="LAST_COMMIT_MESSAGE" value="оферта" />
   </component>
 </project>
