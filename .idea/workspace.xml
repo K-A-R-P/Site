@@ -68,22 +68,6 @@
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
     </task>
-    <task id="LOCAL-00050" summary="Рабочая версия с офертой">
-      <option name="closed" value="true" />
-      <created>1764104285390</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1764104285390</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Рабочая версия убираем ебучий крестик">
-      <option name="closed" value="true" />
-      <created>1764108998347</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1764108998348</updated>
-    </task>
     <task id="LOCAL-00052" summary="кастомная полоска">
       <option name="closed" value="true" />
       <created>1764110001545</created>
@@ -460,7 +444,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764325414810</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Рабочая версия">
+      <option name="closed" value="true" />
+      <created>1764325614723</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1764325614723</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Рабочая версия">
+      <option name="closed" value="true" />
+      <created>1764325679035</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1764325679035</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
