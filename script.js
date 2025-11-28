@@ -388,3 +388,44 @@ document.querySelectorAll('#bookingForm input[required]').forEach(input => {
   input.addEventListener('blur', check);
   check(); // на случай автозаполнения
 });
+
+
+// 3. ВСТАВ ЦЕ В КІНЕЦЬ script.js (після всіх функцій)
+
+// Жорстке рішення проблеми "пливе вгору після F5"
+(function fixScrollRestore() {
+  // 1. Примусово блокуємо автоматичне відновлення скролу
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // 2. Після завантаження сторінки — ставимо правильний padding і прокручуємо на 0
+  window.addEventListener('load', () => {
+    // Даємо браузеру 50 мс, щоб він "заспокоївся"
+    setTimeout(() => {
+      const headerHeight = document.querySelector('.topbar').offsetHeight;
+      document.documentElement.style.scrollPaddingTop = headerHeight + 20 + 'px';
+
+      // Якщо ми не на самому верху — плавно підправляємо позицію
+      if (window.scrollY > 0) {
+        const correctY = window.scrollY + headerHeight + 20;
+        window.scrollTo({
+          top: correctY,
+          behavior: 'instant'  // без анімації, щоб не помітно
+        });
+      }
+
+      // Додатково — ще раз через 100 мс (на випадок лагаючих шрифтів/зображень)
+      setTimeout(() => {
+        const headerHeight2 = document.querySelector('.topbar').offsetHeight;
+        document.documentElement.style.scrollPaddingTop = headerHeight2 + 20 + 'px';
+      }, 150);
+    }, 50);
+  });
+
+  // На resize теж оновлюємо (мобілка ↔ десктоп, меню відкрите і т.д.)
+  window.addEventListener('resize', () => {
+    const headerHeight = document.querySelector('.topbar').offsetHeight;
+    document.documentElement.style.scrollPaddingTop = headerHeight + 20 + 'px';
+  });
+})();
