@@ -82,7 +82,6 @@ function openModal(card) {
   const modalCard = document.querySelector('.modal-card');
   modalCard.scrollTop = 0;
 
-  // === ВЕРНУЛИ СТАРОЕ ПРАВИЛЬНОЕ ЗАКРЫТИЕ ===
   document.getElementById('cardModal').onclick = function(e) {
     // Закрываем по клику на фон ИЛИ внутри карточки, но НЕ по кнопкам/ссылкам
     if (e.target === document.getElementById('cardModal') ||
@@ -91,10 +90,15 @@ function openModal(card) {
     }
   };
 
-  // === ПЛАВНЫЙ СКРОЛЛ ВВЕРХ (настраивай только distance) ===
+    // ПЛАВНЫЙ СКРОЛЛ ВВЕРХ — С РАЗНЫМИ ЗНАЧЕНИЯМИ ДЛЯ ДЕСКТОПА И МОБИЛКИ
   setTimeout(() => {
-    const distance = 300;                 // ← твой идеальный вариант (250–290)
-    const duration = 1500;
+    // Автоопределение: мобилка или десктоп
+    const isMobile = window.innerWidth <= 768;
+
+    const distance = isMobile ? 230 : 300;     // ← мобилка: 230px, десктоп: 300px
+    const duration = isMobile ? 1400 : 1500;   // ← можно чуть быстрее на мобилке
+    // или так: const duration = 1500; // если хочешь одинаковую длительность
+
     const start = modalCard.scrollTop;
     const startTime = performance.now();
 
@@ -109,7 +113,7 @@ function openModal(card) {
     }
 
     requestAnimationFrame(scrollStep);
-  }, 200);// ← задержка
+  }, 200); // твоя задержка остаётся
 }
 
 function closeModal() {
