@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="сбросс скрола модалок при закрытии, плавнее анимация карточек продуктов">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Фикс прокрутки вверх при обновлении">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,14 +69,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00032" summary="новая карточка">
-      <option name="closed" value="true" />
-      <created>1764052615291</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1764052615291</updated>
     </task>
     <task id="LOCAL-00033" summary="новая карточка и стили">
       <option name="closed" value="true" />
@@ -463,11 +454,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764288937927</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Фикс прокрутки вверх при обновлении">
+      <option name="closed" value="true" />
+      <created>1764297857218</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1764297857218</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Рабочая версия убираем ебучий крестик" />
     <MESSAGE value="кастомная полоска" />
     <MESSAGE value="кастомная полоска мобильная" />
     <MESSAGE value="раб версия" />
@@ -492,6 +490,7 @@
     <MESSAGE value="оферта запрет копирования и шире испр 1360 ширина" />
     <MESSAGE value="чистка css" />
     <MESSAGE value="сбросс скрола модалок при закрытии, плавнее анимация карточек продуктов" />
-    <option name="LAST_COMMIT_MESSAGE" value="сбросс скрола модалок при закрытии, плавнее анимация карточек продуктов" />
+    <MESSAGE value="Фикс прокрутки вверх при обновлении" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикс прокрутки вверх при обновлении" />
   </component>
 </project>

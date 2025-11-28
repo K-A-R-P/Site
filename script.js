@@ -58,7 +58,7 @@ window.addEventListener('scroll', () => {
   document.querySelector('.scroll-top').classList.toggle('visible', window.scrollY > 200);
 });
 
-// === ВСЕ ОСТАЛЬНЫЕ ФУНКЦИИ (модалки, оферта и т.д.) — ОСТАЮТСЯ БЕЗ ИЗМЕНЕНИЙ ===
+// =============== Контакты ===
 function openContactsModal() {
   document.getElementById('contactsModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -67,20 +67,17 @@ function closeContactsModal() {
   document.getElementById('contactsModal').classList.remove('active');
   document.body.style.overflow = '';
 }
-
+//==========Карточки услуг===================================
 function openModal(card) {
   const img = card.querySelector('img').src;
   let content = card.querySelector('.card-content').innerHTML;
   content = content.replace(/style="display:none;"/g, '');
   content = content.replace('<div class="readmore">Читати далі →</div>', '');
-
   document.getElementById('modalImg').src = img;
   document.getElementById('modalContent').innerHTML = content;
   document.getElementById('cardModal').classList.add('active');
   document.body.style.overflow = 'hidden';
   document.querySelector('.modal-card').scrollTop = 0;
-
-
   // ← ВАЖНО: теперь любой клик по модалке (кроме кнопок) — закрывает её
   document.getElementById('cardModal').onclick = function(e) {
     if (!e.target.closest('button') && !e.target.closest('a')) {
@@ -100,20 +97,9 @@ document.getElementById('cardModal').addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-function openPricePopup(e, title, price) {
-  e.stopPropagation();
-  document.getElementById('priceTitle').textContent = 'Запис на ' + title;
-  document.getElementById('priceLabel').textContent = 'Вартість: ' + price;
-  document.getElementById('pricePopup').style.display = 'flex';
-}
-function closePricePopup() {
-  document.getElementById('pricePopup').style.display = 'none';
-}
 
-document.getElementById('pricePopup').addEventListener('click', e => {
-  if (e.target === document.getElementById('pricePopup')) closePricePopup();
-});
 
+//================Calendly===============================
 function openCalendly(e, url) {
   e.stopPropagation();
   const clean = url + (url.includes('?') ? '&' : '?') + 'hide_event_type_details=1&hide_gdpr_banner=1&hide_landing_page_details=1';
@@ -127,31 +113,26 @@ function closeCalendlyModal() {
   document.getElementById('calendlyIframe').src = '';
   document.body.style.overflow = '';
 }
-
 document.getElementById('calendlyModal').addEventListener('click', e => {
   if (e.target === document.getElementById('calendlyModal')) closeCalendlyModal();
 });
-
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && document.getElementById('calendlyModal')?.classList.contains('active')) {
     closeCalendlyModal();
   }
 });
 
+//=================WayForPay========================
 function openWayForPay(button) {
-  // ГАСИМ ВСПЛЫТИЕ СОБЫТИЯ — ЭТО ГЛАВНОЕ
   event.stopPropagation();          // ← ЭТА СТРОЧКА УБИВАЕТ МОРГАНИЕ
-
   const baseUrl = button.getAttribute('data-url');
   if (!baseUrl) return;
-
   const returnUrl = encodeURIComponent(window.location.href);
   const finalUrl = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}returnUrl=${returnUrl}`;
-
   window.location.href = finalUrl;
 }
 
-// === ОТКРЫТИЕ ОФЕРТЫ — теперь повторный клик по тексту закрывает ===
+// === ОТКРЫТИЕ ОФЕРТЫ  ===
 function openOfferModal() {
   console.log('Кнопка оферти клікнута!');
   const modal = document.getElementById('offerModal');
@@ -179,7 +160,6 @@ function openOfferModal() {
       activateOfferClickToClose();
     });
 }
-
 // Вспомогательная функция — включаем закрытие по клику в любое место (кроме кнопок/ссылок)
 function activateOfferClickToClose() {
   document.getElementById('offerModal').onclick = function(e) {
@@ -189,7 +169,6 @@ function activateOfferClickToClose() {
   };
 }
 
-// === ЗАКРЫТИЕ ОФЕРТЫ ===
 function closeOfferModal() {
   document.getElementById('offerModal').classList.remove('active');
   document.body.style.overflow = '';
@@ -206,6 +185,7 @@ const offerObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(el));
 
+//================ЗАПИСАТСЯ==================================
 function openPaymentModal() {
   document.getElementById('paymentModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -225,7 +205,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ВЕРСИЯ PRO — супер-плавный параллакс с requestAnimationFrame
+// ========================плавный параллакс с requestAnimationFrame===================
 let aboutParallax = 0;
 let currentY = 0;
 
@@ -278,8 +258,6 @@ if (phoneInput) {
   });
 }
 
-
-
 // ——— УСПЕШНАЯ МОДАЛКА ———
 function showSuccessModal() {
   document.getElementById('successModal').classList.add('active');
@@ -310,7 +288,6 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
   const comment = e.target.comment.value.trim();
   const status = document.getElementById('popupStatus');
 
-  // ← ВАЖНО: всегда начинаем с чистого состояния
   status.innerHTML = 'Відправляємо...';
   status.style.color = '#f7c843';
 
@@ -329,7 +306,7 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
     });
 
     if (response.ok) {
-      // УСПЕХ — закрываем форму, открываем success, сбрасываем форму
+
       closePricePopup();           // ← ЗАКРЫВАЕМ ФОРМУ
       showSuccessModal();          // ← ОТКРЫВАЕМ УСПЕШКУ
       e.target.reset();            // ← чистим поля
@@ -357,19 +334,29 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
   }
 });
 
-// ← ДОБАВЬ ЭТУ ФУНКЦИЮ — она будет сбрасывать форму и статус при каждом открытии попапа
 function openPricePopup(e, title, price) {
   e.stopPropagation();
-
-  // Сбрасываем всё перед открытием
   document.getElementById('priceTitle').textContent = 'Запис на ' + title;
   document.getElementById('priceLabel').textContent = 'Вартість: ' + price;
+  // Скидаємо форму при кожному відкритті
   document.getElementById('bookingForm').reset();
   document.getElementById('phoneInput').value = '';
   document.getElementById('popupStatus').innerHTML = '';
-
   document.getElementById('pricePopup').style.display = 'flex';
 }
+
+function closePricePopup() {
+  document.getElementById('pricePopup').style.display = 'none';
+}
+// Закриття по кліку на фон + Escape
+document.getElementById('pricePopup').addEventListener('click', e => {
+  if (e.target === document.getElementById('pricePopup')) closePricePopup();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('pricePopup').style.display === 'flex') {
+    closePricePopup();
+  }
+});
 
 // ——— УНИВЕРСАЛЬНАЯ ПОДСВЕТКА ДЛЯ ИМЕНИ И ТЕЛЕФОНА ———
 document.querySelectorAll('#bookingForm input[required]').forEach(input => {
@@ -389,10 +376,7 @@ document.querySelectorAll('#bookingForm input[required]').forEach(input => {
   check(); // на случай автозаполнения
 });
 
-
-// 3. ВСТАВ ЦЕ В КІНЕЦЬ script.js (після всіх функцій)
-
-// Жорстке рішення проблеми "пливе вгору після F5"
+// ------------------Жорстке рішення проблеми "пливе вгору після F5-----------------"
 (function fixScrollRestore() {
   // 1. Примусово блокуємо автоматичне відновлення скролу
   if ('scrollRestoration' in history) {
@@ -429,3 +413,4 @@ document.querySelectorAll('#bookingForm input[required]').forEach(input => {
     document.documentElement.style.scrollPaddingTop = headerHeight + 20 + 'px';
   });
 })();
+//__________________________________________________________________________
