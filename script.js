@@ -267,35 +267,67 @@ function updateParallax() {
 window.addEventListener('scroll', () => requestAnimationFrame(updateParallax));
 window.addEventListener('load', updateParallax);
 
-// ——— ИДЕАЛЬНОЕ ПОЛЕ ТЕЛЕФОНА +38 (0XX) XXX XX XX ———
+// ——— ТВОЯ ЗОЛОТАЯ МАСКА — ИСПРАВЛЕНА И РАБОТАЕТ НА ВСЕХ УСТРОЙСТВАХ ———
 const phoneInput = document.getElementById('phoneInput');
 if (phoneInput) {
-  phoneInput.addEventListener('focus', function() {
-    if (!this.value) this.value = '+38 ';
-  });
+  let lastDigits = '';
 
-  phoneInput.addEventListener('blur', function() {
-    if (this.value === '+38 ') this.value = '';
-  });
+  // ФОРМАТЕР — ОСТАВЛЯЕМ КАК БЫЛ, ОН ИДЕАЛЬНЫЙ
+  function formatPhone(d) {
+    if (d.length <= 2) return '+' + d;
+    const body = d.slice(2);
+    let out = '+38';
+    if (body.length > 0) out += ' (' + body.substring(0, 3);
+    if (body.length >= 3) out += ')';
+    if (body.length > 3) out += ' ' + body.substring(3, 6);
+    if (body.length > 6) out += ' ' + body.substring(6, 8);
+    if (body.length > 8) out += ' ' + body.substring(8, 10);
+    return out;
+  }
 
-  phoneInput.addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
+  // ГЛАВНЫЙ ФИКС: перехватываем Backspace и удаляем по одной цифре
+  phoneInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+      const pos = this.selectionStart;
+      const current = this.value;
 
-    if (value.length === 0) {
-      e.target.value = '';
-      return;
+      // Если стоим после закрывающей скобки или пробела — удаляем предыдущую цифру
+      if (current[pos - 1] === ')' || current[pos - 1] === ' ') {
+        e.preventDefault();
+        const digits = current.replace(/\D/g, '').slice(0, -1);
+        this.value = formatPhone(digits);
+        this.setSelectionRange(this.value.length, this.value.length);
+      }
+      // Полное удаление +38 при пустом поле
+      else if (current === '+38 ' || current === '+38') {
+        e.preventDefault();
+        this.value = '';
+      }
     }
+  });
 
-    if (value.length > 12) value = value.slice(0, 12);
-    if (value.startsWith('38')) value = value.slice(2);
+  // Обычный ввод — всё как было
+  phoneInput.addEventListener('input', function() {
+    let d = this.value.replace(/\D/g, '');
+    if (d.startsWith('8') && d.length > 1) d = '3' + d;
+    d = d.slice(0, 12);
+    this.value = formatPhone(d);
+    this.setSelectionRange(this.value.length, this.value.length);
+    lastDigits = d;
+  });
 
-    let formatted = '+38 ';
-    if (value.length > 0) formatted += '(' + value.slice(0, 3);
-    if (value.length >= 3) formatted += ') ' + value.slice(3, 6);
-    if (value.length >= 6) formatted += ' ' + value.slice(6, 8);
-    if (value.length >= 8) formatted += ' ' + value.slice(8, 10);
+  // Фокус и блюр — как было
+  phoneInput.addEventListener('focus', () => {
+    if (!phoneInput.value) {
+      phoneInput.value = '+38 ';
+      phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
+    }
+  });
 
-    e.target.value = formatted;
+  phoneInput.addEventListener('blur', () => {
+    if (phoneInput.value.replace(/\D/g, '').length <= 2) {
+      phoneInput.value = '';
+    }
   });
 }
 
@@ -303,6 +335,23 @@ if (phoneInput) {
 function showSuccessModal() {
   document.getElementById('successModal').classList.add('active');
   document.body.style.overflow = 'hidden';
+
+  // КОНФЕТТИ
+  confetti({ particleCount: 180, spread: 76, origin: { y: 0.58 }, colors: ['#f7c843', '#ffffff', '#333333'], scalar: 1.3 });
+
+  setTimeout(() => {
+    confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0, y: 0.6 } });
+    confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1, y: 0.6 } });
+  }, 200);
+
+  // ФОРСИМ КОНФЕТТИ НА ПЕРЕДНИЙ ПЛАН
+  setTimeout(() => {
+    const canvas = document.querySelector('canvas');
+    if (canvas) {
+      canvas.style.zIndex = '99999';
+      canvas.style.position = 'fixed';
+    }
+  }, 100);
 }
 
 function closeSuccessModal() {

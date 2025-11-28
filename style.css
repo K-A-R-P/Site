@@ -920,6 +920,12 @@ footer {
   animation: modalShow 0.4s cubic-bezier(0.16,1,0.3,1);
   box-sizing: border-box;
 }
+/* Делаем конфетти ВЫШЕ всех модалок */
+canvas.confetti-canvas {
+  z-index: 99999 !important;   /* выше successModal и всего остального */
+  pointer-events: none;        /* чтобы не мешал кликам */
+  position: fixed !important;  /* на всякий случай */
+}
 
 /* Адаптив для мобильных */
 @media (max-width: 480px) {
@@ -938,7 +944,6 @@ footer {
 }
 
 /* ==================== ФОРМА ЗАПИСИ — ФИНАЛЬНАЯ ВЕРСИЯ ==================== */
-/* ==================== ФОРМА ЗАПИСИ — ФИНАЛЬНАЯ РАБОЧАЯ ВЕРСИЯ ДЛЯ МОБИЛОК ==================== */
 #pricePopup {
   display: none;
   position: fixed;
