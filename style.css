@@ -429,7 +429,7 @@ footer {
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   display: flex;
   flex-direction: column;
-  animation: modalShow 0.5s ease;
+  animation: modalShowLux 0.92s cubic-bezier(0.23, 0, 0.32, 1) forwards;
 }
 #modalImg {
   width: 100%;
@@ -676,6 +676,17 @@ footer {
   from { opacity: 0; transform: scale(0.92); }
   to { opacity: 1; transform: scale(1); }
 }
+
+@keyframes modalShowLux {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}Ы
 
 
 
@@ -1067,3 +1078,4 @@ footer {
   font-size: 20px;
   pointer-events: none;
 }
+

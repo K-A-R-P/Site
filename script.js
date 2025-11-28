@@ -78,6 +78,8 @@ function openModal(card) {
   document.getElementById('modalContent').innerHTML = content;
   document.getElementById('cardModal').classList.add('active');
   document.body.style.overflow = 'hidden';
+  document.querySelector('.modal-card').scrollTop = 0;
+
 
   // ← ВАЖНО: теперь любой клик по модалке (кроме кнопок) — закрывает её
   document.getElementById('cardModal').onclick = function(e) {
