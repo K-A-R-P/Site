@@ -68,14 +68,6 @@
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
     </task>
-    <task id="LOCAL-00041" summary="шрифт и отступы в оферте">
-      <option name="closed" value="true" />
-      <created>1764066449340</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1764066449340</updated>
-    </task>
     <task id="LOCAL-00042" summary="Рабочая версия с охуенной полоской">
       <option name="closed" value="true" />
       <created>1764067147663</created>
@@ -460,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764315424180</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="шрифт оферты">
+      <option name="closed" value="true" />
+      <created>1764315647238</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1764315647238</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
