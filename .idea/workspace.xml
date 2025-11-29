@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Правки текста карточек">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Правки текста карточек, правка стилей, чистка мусора">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/facebook.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/facebook.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/instagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/instagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/telegram.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/telegram.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
@@ -69,14 +72,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00054" summary="раб версия">
-      <option name="closed" value="true" />
-      <created>1764113613649</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1764113613649</updated>
     </task>
     <task id="LOCAL-00055" summary="оферта тест">
       <option name="closed" value="true" />
@@ -462,11 +457,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764436174290</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Правки текста карточек, правка стилей, чистка мусора">
+      <option name="closed" value="true" />
+      <created>1764445503099</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1764445503099</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="отправка боту тест" />
     <MESSAGE value="отправка боту рабочая версия" />
     <MESSAGE value="отправка боту исправление модалки" />
     <MESSAGE value="успешная модалка" />
@@ -491,6 +493,7 @@
     <MESSAGE value="шрифт заголовка карточек" />
     <MESSAGE value="Рабочая версия" />
     <MESSAGE value="Правки текста карточек" />
-    <option name="LAST_COMMIT_MESSAGE" value="Правки текста карточек" />
+    <MESSAGE value="Правки текста карточек, правка стилей, чистка мусора" />
+    <option name="LAST_COMMIT_MESSAGE" value="Правки текста карточек, правка стилей, чистка мусора" />
   </component>
 </project>

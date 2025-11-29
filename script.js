@@ -11,60 +11,69 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 
-// === ГЛАВНАЯ АНИМАЦИЯ ПРИ ЗАГРУЗКЕ (2025 — чисто, без косяков) ===
+/// === ГЛАВНАЯ АНИМАЦИЯ ПРИ ЗАГРУЗКЕ (только первый блок + шапка/about) ===
 window.addEventListener('load', () => {
-  // 1. Шапка, about и всё, что с классами .fade-up / .fade-left — сразу
+  // 1. Шапка, about, заголовки и всё с классами .fade-up / .fade-left (кроме карточек первого блока)
   document.querySelectorAll('.fade-up, .fade-left').forEach(el => {
-    // Исключаем карточки продуктов — их анимируем отдельно и красивее
-    if (!el.closest('.cards')) {
+    if (!el.closest('.cards') && !el.closest('[class*="scroll-animate"]')) {
       el.classList.add('visible');
     }
   });
 
   // 2. Заголовок «Мої продукти» — через 500 мс
   setTimeout(() => {
-    const header = document.querySelector('.products-header');
+    const header = document.querySelector('#products .products-header');
     if (header) header.classList.add('visible');
 
-    // 3. Карточки — по очереди, с правильным reflow и плавным выездом
-    const cards = document.querySelectorAll('.cards > .card');
-    cards.forEach((card, index) => {
+    // 3. Только ПЕРВЫЙ блок карточек — по очереди
+    const firstBlockCards = document.querySelectorAll('#products .cards > .card');
+    firstBlockCards.forEach((card, index) => {
       setTimeout(() => {
-
-        // Магия — запускаем пересчёт стилей
-        void card.offsetHeight;
-
-        // Теперь анимируем появление
+        void card.offsetHeight;           // reflow
         card.classList.add('visible');
-      }, 200 + index * 220); // плавная лесенка: 200, 420, 640 мс
+      }, 200 + index * 220);              // лесенка: 200, 420, 640 мс
     });
-  }, 500); // заголовок появляется через полсекунды
+  }, 500);
 });
 
-// === АНИМАЦИЯ ПРИ СКРОЛЛЕ (ниже по странице) ===
+// === УНИВЕРСАЛЬНАЯ АНИМАЦИЯ ПРИ СКРОЛЛЕ (все блоки после первого + футер) ===
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      scrollObserver.unobserve(entry.target);
+      // Находим все элементы с анимацией внутри секции
+      const animElements = entry.target.querySelectorAll('.scroll-animate');
+      animElements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, index * 150);  // красивая лесенка при скролле
+      });
     }
   });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.card-scroll, .offer-scroll').forEach(el => {
-  scrollObserver.observe(el);
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -80px 0px'   // срабатывает чуть раньше
 });
 
-// Футер — отдельно, чуть позже
-const footerObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.3 });
+// Наблюдаем за ВСЕМИ секциями, где есть элементы с классом .scroll-animate
+document.querySelectorAll('section').forEach(section => {
+  if (section.querySelector('.scroll-animate')) {
+    scrollObserver.observe(section);
+  }
+});
+
+// === ФУТЕР — ДОБАВЛЯЕМ КЛАСС ИЗНАЧАЛЬНО (без анимации при скролле) ===
 const footer = document.querySelector('footer');
-if (footer) footerObserver.observe(footer);
+if (footer) {
+  footer.classList.add('visible');   // футер виден сразу, без задержек
+}
+
+// Кнопка «вверх»
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+window.addEventListener('scroll', () => {
+  document.querySelector('.scroll-top')?.classList.toggle('visible', window.scrollY > 300);
+});
 
 // Кнопка вверх
 function scrollToTop() {
