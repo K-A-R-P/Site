@@ -1125,4 +1125,50 @@ canvas.confetti-canvas {
   pointer-events: none;
 }
 
+/* 1. Карточки товаров — основной радиус */
+.card {
+  border-radius: 14px;          /* было 32px → стало 14px */
+  overflow: hidden;
+}
 
+/* Фото внутри карточек — теперь тоже 14px сверху */
+.card img {
+  border-radius: 14px 14px 0 0; /* было 32px 32px 0 0 */
+}
+
+/* 2. Модальное окно при клике на карточку */
+.modal-card {
+  border-radius: 14px !important;   /* было 32px */
+}
+
+/* Фото в модалке карточки */
+#modalImg {
+  border-radius: 14px 14px 0 0 !important;
+}
+
+/* 3. Все остальные модальные окна — тоже приводим к 14px (единый стиль) */
+.popup-content,
+.offer-modal-content,
+.payment-modal-content,
+.contacts-modal-content,
+.calendly-modal-content,
+#successModal .popup-content,
+#pricePopup .popup-content {
+  border-radius: 14px !important;
+}
+
+/* На мобильных тоже 14px (убираем отдельный 26px) */
+@media (max-width: 480px) {
+  #pricePopup .popup-content {
+    border-radius: 14px !important;   /* было 26px */
+  }
+  #successModal .popup-content {
+    border-radius: 14px !important;
+  }
+}
+
+/* 4. Дополнительно: оферта и другие модалки (на всякий случай) */
+.offer-modal-content,
+#offerContent * {
+  border-radius: 14px !important;
+}
