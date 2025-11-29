@@ -11,29 +11,37 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 
-// === ГЛАВНАЯ АНИМАЦИЯ ПРИ ЗАГРУЗКЕ ===
+// === ГЛАВНАЯ АНИМАЦИЯ ПРИ ЗАГРУЗКЕ (2025 — чисто, без косяков) ===
 window.addEventListener('load', () => {
-  // 1. Обычные fade-up и fade-left (шапка, about)
+  // 1. Шапка, about и всё, что с классами .fade-up / .fade-left — сразу
   document.querySelectorAll('.fade-up, .fade-left').forEach(el => {
-    el.classList.add('visible');
+    // Исключаем карточки продуктов — их анимируем отдельно и красивее
+    if (!el.closest('.cards')) {
+      el.classList.add('visible');
+    }
   });
 
-  // 2. Заголовок «Мої продукти» — появляется первым
+  // 2. Заголовок «Мої продукти» — через 500 мс
   setTimeout(() => {
     const header = document.querySelector('.products-header');
     if (header) header.classList.add('visible');
 
-    // 3. Через 400 мс после заголовка — начинаем показывать ВСЕ карточки по очереди
+    // 3. Карточки — по очереди, с правильным reflow и плавным выездом
     const cards = document.querySelectorAll('.cards > .card');
     cards.forEach((card, index) => {
       setTimeout(() => {
+
+        // Магия — запускаем пересчёт стилей
+        void card.offsetHeight;
+
+        // Теперь анимируем появление
         card.classList.add('visible');
-      }, 400 + index * 300); // 400мс после заголовка + 300мс между карточками
+      }, 200 + index * 220); // плавная лесенка: 200, 420, 640 мс
     });
-  }, 700); // сам заголовок через 700мс
+  }, 500); // заголовок появляется через полсекунды
 });
 
-// Остальные анимации при скролле (ниже по странице)
+// === АНИМАЦИЯ ПРИ СКРОЛЛЕ (ниже по странице) ===
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -42,20 +50,28 @@ const scrollObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.15 });
-document.querySelectorAll('.card-scroll').forEach(card => scrollObserver.observe(card));
 
+document.querySelectorAll('.card-scroll, .offer-scroll').forEach(el => {
+  scrollObserver.observe(el);
+});
+
+// Футер — отдельно, чуть позже
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
   });
 }, { threshold: 0.3 });
-footerObserver.observe(document.querySelector('footer'));
+const footer = document.querySelector('footer');
+if (footer) footerObserver.observe(footer);
 
+// Кнопка вверх
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 window.addEventListener('scroll', () => {
-  document.querySelector('.scroll-top').classList.toggle('visible', window.scrollY > 200);
+  document.querySelector('.scroll-top')?.classList.toggle('visible', window.scrollY > 300);
 });
 
 // =============== Контакты ===
