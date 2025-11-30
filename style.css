@@ -444,7 +444,7 @@ header p {
   background: #fff;
   padding: 26px 26px 30px;
   border-radius: 22px;
-  /* border: 2px solid var(--yellow);*/
+  /* border: 2px solid var(--yellow); */
   box-shadow: 0 12px 28px rgba(0,0,0,0.08);
   transition:
       transform .8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -469,6 +469,19 @@ header p {
   width: 42px;
   height: 42px;
   flex-shrink: 0;
+}
+
+/* 🔥 WIGGLE-анимация иконки при hover карточки */
+.mini-feature:hover .mini-icon {
+  animation: icon-wiggle 0.45s ease-in-out;
+}
+
+@keyframes icon-wiggle {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(-4deg) scale(1.04); }
+  50%  { transform: rotate(4deg) scale(1.05); }
+  75%  { transform: rotate(-2deg) scale(1.03); }
+  100% { transform: rotate(0deg) scale(1); }
 }
 
 .mini-top h3 {
