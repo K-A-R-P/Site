@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="карточки новые">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="карточки новые правки обтекания">
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,14 +66,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00069" summary="отправка боту рабочая версия">
-      <option name="closed" value="true" />
-      <created>1764241712768</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1764241712768</updated>
     </task>
     <task id="LOCAL-00070" summary="отправка боту исправление модалки">
       <option name="closed" value="true" />
@@ -461,11 +451,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764508267528</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="карточки новые правки обтекания">
+      <option name="closed" value="true" />
+      <created>1764512533576</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1764512533576</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="сбросс скрола модалок при закрытии, плавнее анимация карточек продуктов" />
     <MESSAGE value="Фикс прокрутки вверх при обновлении" />
     <MESSAGE value="Очистка скриптов, убрана старая модалка оплаты" />
     <MESSAGE value="Прокрутка картинки в карточках при открытии" />
@@ -490,6 +487,7 @@
     <MESSAGE value="тайминги" />
     <MESSAGE value="правка анимации" />
     <MESSAGE value="карточки новые" />
-    <option name="LAST_COMMIT_MESSAGE" value="карточки новые" />
+    <MESSAGE value="карточки новые правки обтекания" />
+    <option name="LAST_COMMIT_MESSAGE" value="карточки новые правки обтекания" />
   </component>
 </project>
