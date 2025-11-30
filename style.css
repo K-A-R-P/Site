@@ -906,6 +906,12 @@ footer .c {
   padding: 20px;
 }
 
+#offerModal {
+  align-items: flex-start !important;
+  padding-top: 110px !important; /* высота кнопки + запас */
+}
+
+
 /* Активные состояния (где нужно) */
 
 #cardModal.active,
@@ -916,6 +922,8 @@ footer .c {
 #successModal.active {
   display: flex !important;
 }
+
+
 
 /* ===================== МОДАЛКА КАРТОЧКИ ===================== */
 
@@ -1066,7 +1074,11 @@ footer .c {
   line-height: 1.75;
   font-size: 16px;
   border: none;
+
+  /* 🎬 новая анимация открытия */
+  animation: offerGrow 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 
 /* Отрубаем линию/отступы offer-section внутри модалки */
 .offer-modal-content .offer-section {
@@ -1116,6 +1128,22 @@ footer .c {
   flex: 1;
   text-align: justify;
 }
+
+@keyframes offerGrow {
+  0% {
+    opacity: 0;
+    transform: translateY(200px) scale(0.6);
+    transform-origin: center top;
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(40px) scale(0.9);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
 
 /* ===================== МОДАЛКА ОПЛАТЫ ===================== */
 
@@ -1497,4 +1525,31 @@ canvas.confetti-canvas {
     width: 0;
     display: none;
   }
+}
+
+
+/* --- Оферта всплывает от кнопки вверх --- */
+#offerModal {
+  align-items: flex-start !important;
+  padding-top: 110px !important;
+}
+
+/* --- Анимация роста модалки от кнопки вверх --- */
+@keyframes offerGrow {
+  0% {
+    opacity: 0;
+    transform: translateY(200px) scale(0.6);
+    transform-origin: center top;
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(40px) scale(0.9);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.offer-modal-content {
+  animation: offerGrow 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
