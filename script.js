@@ -11,49 +11,79 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 
-/// === ГЛАВНАЯ АНИМАЦИЯ ПРИ ЗАГРУЗКЕ (только первый блок + шапка/about) ===
+// === ПРЕМИАЛЬНАЯ APPLE-АНИМАЦИЯ ПРИ ЗАГРУЗКЕ ===
 window.addEventListener('load', () => {
-  // 1. Шапка, about, заголовки и всё с классами .fade-up / .fade-left (кроме карточек первого блока)
-  document.querySelectorAll('.fade-up, .fade-left').forEach(el => {
-    if (!el.closest('.cards') && !el.closest('[class*="scroll-animate"]')) {
-      el.classList.add('visible');
-    }
+
+  // 1) HERO TITLE — появляется первым
+  const hero = document.querySelector('header.fade-up');
+
+  if (hero) {
+    setTimeout(() => {
+      hero.classList.add('visible');
+    }, 300);
+  }
+
+  // 2) ABOUT BLOCK — фото + текст (появляются слева)
+  const aboutBlock = document.querySelector('#about .about-wrapper');
+  if (aboutBlock) {
+    setTimeout(() => {
+      aboutBlock.classList.add('visible');
+    }, 1100);
+  }
+
+  // 3) Заголовок первого продуктового блока
+  const firstSectionHeader = document.querySelector('#products .products-header');
+  if (firstSectionHeader) {
+    setTimeout(() => {
+      firstSectionHeader.classList.add('visible');
+    }, 1500);
+  }
+
+  // 4) Карточки первого блока (ступенькой)
+  const firstCards = document.querySelectorAll('#products .cards > .card');
+  firstCards.forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add('visible');
+      // Эффект "дыхания" как у Apple
+      card.animate(
+        [
+          { transform: 'scale(0.98)', offset: 0 },
+          { transform: 'scale(1.02)', offset: 0.4 },
+          { transform: 'scale(1)', offset: 1 },
+        ],
+        {
+          duration: 900,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          fill: 'forwards'
+        }
+      );
+    }, 1800 + index * 220);
   });
-
-  // 2. Заголовок «Мої продукти» — через 500 мс
-  setTimeout(() => {
-    const header = document.querySelector('#products .products-header');
-    if (header) header.classList.add('visible');
-
-    // 3. Только ПЕРВЫЙ блок карточек — по очереди
-    const firstBlockCards = document.querySelectorAll('#products .cards > .card');
-    firstBlockCards.forEach((card, index) => {
-      setTimeout(() => {
-        void card.offsetHeight;           // reflow
-        card.classList.add('visible');
-      }, 200 + index * 220);              // лесенка: 200, 420, 640 мс
-    });
-  }, 800);
 });
+
 
 // === УНИВЕРСАЛЬНАЯ АНИМАЦИЯ ПРИ СКРОЛЛЕ (все блоки после первого + футер) ===
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Находим все элементы с анимацией внутри секции
+
       const animElements = entry.target.querySelectorAll('.scroll-animate');
+
       animElements.forEach((el, index) => {
         setTimeout(() => {
-        void el.offsetHeight;         // ← И ЭТУ СТРОЧКУ ВЕРНИ!
           el.classList.add('visible');
-        }, index * 150);  // красивая лесенка при скролле
+        }, index * 180);  // плавнее, чем 150
       });
+
+      // чтобы один раз срабатывало
+      scrollObserver.unobserve(entry.target);
     }
   });
 }, {
-  threshold: 0.15,
-  rootMargin: '0px 0px -80px 0px'   // срабатывает чуть раньше
+  threshold: 0.25,          // не 0.15 → Apple даёт позже, эффект мягче
+  rootMargin: "0px 0px -10%" // почти без раннего триггера
 });
+
 
 // Наблюдаем за ВСЕМИ секциями, где есть элементы с классом .scroll-animate
 document.querySelectorAll('section').forEach(section => {
