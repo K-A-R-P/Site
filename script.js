@@ -29,7 +29,7 @@ window.addEventListener('load', () => {
   if (aboutBlock) {
     setTimeout(() => {
       aboutBlock.classList.add('visible');
-    }, 1100);
+    }, 700);
   }
 
   /* 3) FIRST SECTION TITLE */
@@ -37,7 +37,7 @@ window.addEventListener('load', () => {
   if (firstSectionHeader) {
     setTimeout(() => {
       firstSectionHeader.classList.add('visible');
-    }, 1400);
+    }, 1100);
   }
 
   /* 4) FIRST SECTION CARDS (stagger + fade-up + Apple breath) */
