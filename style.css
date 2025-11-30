@@ -439,57 +439,63 @@ header p {
 }
 
 /* ===== КАРТОЧКА ===== */
+
 .mini-feature {
-  display: block;              /* 🔥 КРИТИЧНО */
   background: #fff;
-  padding: 22px 24px;
+  padding: 26px 26px 30px;
   border-radius: 22px;
   border: 2px solid var(--yellow);
   box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-
-  width: 100%;
-  max-width: 100%;             /* 🔥 карточка больше НЕ ломает сетку */
-  box-sizing: border-box;
-
   transition:
-    transform .8s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow .8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform .8s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow .8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hover */
 .mini-feature:hover {
   transform: scale(1.04);
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
 
-/* ===== ИКОНКА ===== */
-.mini-feature img {
-  width: 56px;
-  height: 56px;
+/* ===== верх карточки: иконка + заголовок ===== */
 
-  float: left;                 /* 🔥 теперь работает */
-  margin-right: 16px;
-  margin-bottom: 6px;
+.mini-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
-/* ===== ТЕКСТ ===== */
-.mini-feature h3 {
-  margin: 0 0 10px 0;
+.mini-top img.mini-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.mini-top h3 {
+  margin: 0;
   font-size: 18px;
   font-weight: 700;
   color: var(--black);
-  line-height: 1.25;
+  line-height: 1.35;
+  width: 100%;
+  text-align: center;
 }
 
-.mini-feature p,
-.mini-feature ul {
-  margin-top: 0;
+/* ===== ТЕКСТ ===== */
+
+.mini-feature p {
+  margin: 6px 0 0 0;
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 .mini-feature ul {
-  padding-left: 20px;
   margin: 10px 0 0 0;
+  padding-left: 20px;
+  line-height: 1.55;
+  font-size: 15px;
 }
+
 
 
 
