@@ -44,6 +44,7 @@ const scrollObserver = new IntersectionObserver((entries) => {
       const animElements = entry.target.querySelectorAll('.scroll-animate');
       animElements.forEach((el, index) => {
         setTimeout(() => {
+        void el.offsetHeight;         // ← И ЭТУ СТРОЧКУ ВЕРНИ!
           el.classList.add('visible');
         }, index * 150);  // красивая лесенка при скролле
       });
