@@ -592,18 +592,44 @@ footer .c{
   margin: 12px 0;
   color: #444;
 }
+/* ← ЭТОТ СЕЛЕКТОР У ТЕБЯ НЕ БЫЛ — ИЗ-ЗА ЭТОГО В МОДАЛКЕ НЕ РАБОТАЛО! */
+.social a,
+.contacts-socials a {          /* ← вот эта строчка решает всё */
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: transform 0.35s ease;
+}
+
+.social a:hover,
+.contacts-socials a:hover {    /* ← и эта */
+  transform: scale(1.15);
+}
 .contacts-socials {
   display: flex;
   justify-content: center;
-  gap: 32px;
-  margin: 40px 0 10px;
+  gap: 56px;
+  margin: 36px 0 24px;
 }
-.contacts-socials a {
-  display: block;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+#contactsModal .contacts-socials a,
+#contactsModal .contacts-socials a img {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
 }
-.contacts-socials a:hover {
-  transform: translateY(-10px);
+
+/* На совсем узких мобилках можно чуть меньше — но всё равно фиксировано */
+@media (max-width: 380px) {
+  #contactsModal .contacts-socials a,
+  #contactsModal .contacts-socials a img {
+    width: 48px !important;
+    height: 48px !important;
+  }
 }
 .contacts-modal-content > div[onclick="closeContactsModal()"] {
   margin-top: 30px;

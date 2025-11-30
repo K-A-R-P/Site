@@ -371,29 +371,36 @@
   </div>
 </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
-  <div id="contactsModal">
-    <div class="contacts-modal-content">
-      <h3>
-        <img src="assets/icons/phone.png" alt="Телефон">
-        Контакти
-      </h3>
-      <p>ФОП Стецуріна Ірина Олександрівна</p>
-      <p>Україна, м. Київ</p>
-      <div class="contacts-socials">
-        <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
-          <img src="assets/icons/instagram.png" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com/IrenStetsurina" target="_blank">
-          <img src="assets/icons/facebook.png" alt="Facebook">
-        </a>
-        <a href="https://t.me/Stec0407" target="_blank">
-          <img src="assets/icons/telegram.png" alt="Telegram">
-        </a>
-      </div>
-      <div style="margin-top: 30px; color: #888; cursor: pointer;" onclick="closeContactsModal()">Закрити</div>
+<!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ — ТОЧЬ-В-ТОЧЬ КАК В ФУТЕРЕ (БЕЗ БАГОВ) -->
+<div id="contactsModal">
+  <div class="contacts-modal-content">
+    <h3>
+      <img src="assets/icons/phone.png" alt="Телефон" style="height: 28px; margin-right: 8px; vertical-align: middle;">
+      Контакти
+    </h3>
+    <p style="margin: 16px 0 8px; color: #444;">ФОП Стецуріна Ірина Олександрівна</p>
+    <p style="color: #666; margin-bottom: 32px;">Україна, м. Київ</p>
+
+    <div class="contacts-socials">
+  <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
+    <img src="assets/icons/instagram-gray.png" class="gray" alt="Instagram">
+    <img src="assets/icons/instagram.png" class="color" alt="Instagram">
+  </a>
+  <a href="https://www.facebook.com/IrenStetsurina" target="_blank">
+    <img src="assets/icons/facebook-gray.png" class="gray" alt="Facebook">
+    <img src="assets/icons/facebook.png" class="color" alt="Facebook">
+  </a>
+  <a href="https://t.me/Stec0407" target="_blank">
+    <img src="assets/icons/telegram-gray.png" class="gray" alt="Telegram">
+    <img src="assets/icons/telegram.png" class="color" alt="Telegram">
+  </a>
+</div>
+
+    <div style="margin-top: 32px; color: #888; cursor: pointer; font-size: 15px;" onclick="closeContactsModal()">
+      Закрити
     </div>
   </div>
+</div>
 
   <!-- КАРТОЧКА -->
 <div id="cardModal">
