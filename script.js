@@ -221,6 +221,10 @@ function openWayForPay(button) {
 function openOfferModal() {
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
+  const offerBtn = document.querySelector('.offer-button'); // 🔥 кнопка оферти
+
+  // добавляем активное состояние кнопке
+  if (offerBtn) offerBtn.classList.add('active');
 
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
@@ -254,9 +258,14 @@ function activateOfferClickToClose() {
 }
 
 function closeOfferModal() {
+  const offerBtn = document.querySelector('.offer-button'); // 🔥 кнопка оферти
+
   document.getElementById('offerModal').classList.remove('active');
   document.body.style.overflow = '';
   document.getElementById('offerModal').onclick = null;
+
+  // снимаем активное состояние кнопки
+  if (offerBtn) offerBtn.classList.remove('active');
 }
 
 const offerObserver = new IntersectionObserver((entries) => {
@@ -269,6 +278,7 @@ const offerObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 
 document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(el));
+
 
 /* =========================================================
    PAYMENT MODAL

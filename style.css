@@ -416,62 +416,79 @@ header p {
 
 
 /* ===== MINI FEATURES BLOCK ===== */
-#intro-features {
-  margin-top: 60px;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.features-title {
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 40px;
-}
-
-/* сетка 3 в ряд */
 .mini-features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   padding: 0 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.mini-feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
+@media (max-width: 1100px) {
+  .mini-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+@media (max-width: 700px) {
+  .mini-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== КАРТОЧКА ===== */
+.mini-feature {
+  display: block;              /* 🔥 КРИТИЧНО */
   background: #fff;
   padding: 22px 24px;
   border-radius: 22px;
   border: 2px solid var(--yellow);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
 
-  /* Apple hover animation */
+  width: 100%;
+  max-width: 100%;             /* 🔥 карточка больше НЕ ломает сетку */
+  box-sizing: border-box;
+
   transition:
     transform .8s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow .8s cubic-bezier(0.16, 1, 0.3, 1);
-
-  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-  cursor: default; /* можно pointer, если надо */
 }
 
+/* Hover */
 .mini-feature:hover {
   transform: scale(1.04);
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
 
+/* ===== ИКОНКА ===== */
 .mini-feature img {
-  width: 58px;
-  height: 58px;
-  flex-shrink: 0;
-  border-radius: 14px;
+  width: 56px;
+  height: 56px;
+
+  float: left;                 /* 🔥 теперь работает */
+  margin-right: 16px;
+  margin-bottom: 6px;
 }
 
-.mini-feature p {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.55;
+/* ===== ТЕКСТ ===== */
+.mini-feature h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.25;
+}
+
+.mini-feature p,
+.mini-feature ul {
+  margin-top: 0;
+}
+
+.mini-feature ul {
+  padding-left: 20px;
+  margin: 10px 0 0 0;
 }
 
 
@@ -884,30 +901,38 @@ footer .c {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--yellow);
-  color: var(--black) !important;
+
+  background: var(--gray);              /* 🔥 было yellow */
+  color: #fff !important;               /* 🔥 белый текст */
+
   font-weight: 600;
   font-size: 14px;
   padding: 12px 48px;
   border: none;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
+
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   user-select: none;
+
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
-  border: 3px solid #f7c843;
+  border: 3px solid var(--gray);        /* 🔥 в цвет фона */
   border-top: 0;
   background-clip: padding-box;
 }
 
+
+/* Ховер всегда делает кнопку жёлтой, даже если она неактивна */
 .offer-button:hover {
-  background: var(--black);
-  color: #fff !important;
+  background: var(--yellow);
+  color: var(--black) !important;
   padding: 12px 62px;
-  border-color: var(--black);
+  border-color: var(--yellow);
 }
+
+
 
 /* Блик по кнопке оферты */
 
@@ -948,6 +973,15 @@ footer .c {
     padding: 10px 44px;
   }
 }
+
+/* === Активное состояние кнопки оферти (модалка открыта) === */
+#offerModal.active ~ .offer-section .offer-button,
+.offer-button.active {
+  background: var(--yellow);        /* жёлтая кнопка */
+  color: var(--black) !important;   /* чёрный текст */
+  border-color: var(--yellow);      /* жёлтая рамка */
+}
+
 
 /* ===================== ОБЩИЙ ОВЕРЛЕЙ ДЛЯ МОДАЛОК ===================== */
 
