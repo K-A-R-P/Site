@@ -44,7 +44,7 @@ body {
       opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
       transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
       filter 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform: translateY(50px) scale(0.96) !important;
+  transform: translateY(50px) scale(0.96);
   filter: blur(12px) !important;
 }
 
@@ -414,6 +414,68 @@ header p {
   }
 }
 
+
+/* ===== MINI FEATURES BLOCK ===== */
+#intro-features {
+  margin-top: 60px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* сетка 3 в ряд */
+.mini-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 32px;
+  padding: 0 20px;
+}
+
+.mini-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+
+  background: #fff;
+  padding: 22px 24px;
+  border-radius: 22px;
+  border: 2px solid var(--yellow);
+
+  /* Apple hover animation */
+  transition:
+    transform .8s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow .8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  cursor: default; /* можно pointer, если надо */
+}
+
+.mini-feature:hover {
+  transform: scale(1.04);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+}
+
+.mini-feature img {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 14px;
+}
+
+.mini-feature p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+
+
 /* ===================== PRODUCTS / КАРТОЧКИ ===================== */
 
 .products-header {
@@ -425,7 +487,8 @@ header p {
 /* сетка карточек */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 400px));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+
   gap: 28px;
   justify-content: center;
   width: 100%;
@@ -1499,4 +1562,9 @@ canvas.confetti-canvas {
     width: 0;
     display: none;
   }
+}
+/* чтобы fade-up не убивал hover-увеличение мини-карточек */
+.mini-feature.fade-up.visible:hover {
+  transform: scale(1.04) !important;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }

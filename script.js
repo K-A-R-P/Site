@@ -32,40 +32,15 @@ window.addEventListener('load', () => {
     }, 700);
   }
 
-  /* 3) FIRST SECTION TITLE */
-  const firstSectionHeader = document.querySelector('#products .products-header');
-  if (firstSectionHeader) {
-    setTimeout(() => {
-      firstSectionHeader.classList.add('visible');
-    }, 1100);
-  }
-
-  /* 4) FIRST SECTION CARDS (stagger + fade-up + Apple breath) */
-  const firstCards = document.querySelectorAll('#products .cards > .card');
-  firstCards.forEach((card, index) => {
-
-    // apply fade-up animation on load
-    card.classList.add('fade-up');
-
+  // 3) INTRO FEATURES — stagger
+  const introCards = document.querySelectorAll('#intro-features .mini-feature');
+  introCards.forEach((card, index) => {
     setTimeout(() => {
       card.classList.add('visible');
-
-      // Apple Breathing effect
-      card.animate(
-        [
-          { transform: 'scale(0.97)' },
-          { transform: 'scale(1.02)' },
-          { transform: 'scale(1)' }
-        ],
-        {
-          duration: 900,
-          easing: 'cubic-bezier(0.22,1,0.36,1)',
-          fill: 'forwards'
-        }
-      );
-    }, 1900 + index * 240);
+    }, 1600 + index * 180);
   });
-});
+
+}); // ← вот этого не хватало
 
 /* =========================================================
    SCROLL ANIMATIONS (HEADERS + CARDS)
