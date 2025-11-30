@@ -11,19 +11,20 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 
-// === ПРЕМИАЛЬНАЯ APPLE-АНИМАЦИЯ ПРИ ЗАГРУЗКЕ ===
+/* =========================================================
+   APPLE-LIKE INITIAL LOAD ANIMATION
+   ========================================================= */
 window.addEventListener('load', () => {
 
-  // 1) HERO TITLE — появляется первым
+  /* 1) HERO BLOCK (header) */
   const hero = document.querySelector('header.fade-up');
-
   if (hero) {
     setTimeout(() => {
       hero.classList.add('visible');
-    }, 300);
+    }, 200);
   }
 
-  // 2) ABOUT BLOCK — фото + текст (появляются слева)
+  /* 2) ABOUT BLOCK */
   const aboutBlock = document.querySelector('#about .about-wrapper');
   if (aboutBlock) {
     setTimeout(() => {
@@ -31,74 +32,99 @@ window.addEventListener('load', () => {
     }, 1100);
   }
 
-  // 3) Заголовок первого продуктового блока
+  /* 3) FIRST SECTION TITLE */
   const firstSectionHeader = document.querySelector('#products .products-header');
   if (firstSectionHeader) {
     setTimeout(() => {
       firstSectionHeader.classList.add('visible');
-    }, 1500);
+    }, 1400);
   }
 
-  // 4) Карточки первого блока (ступенькой)
+  /* 4) FIRST SECTION CARDS (stagger + fade-up + Apple breath) */
   const firstCards = document.querySelectorAll('#products .cards > .card');
   firstCards.forEach((card, index) => {
+
+    // apply fade-up animation on load
+    card.classList.add('fade-up');
+
     setTimeout(() => {
       card.classList.add('visible');
-      // Эффект "дыхания" как у Apple
+
+      // Apple Breathing effect
       card.animate(
         [
-          { transform: 'scale(0.98)', offset: 0 },
-          { transform: 'scale(1.02)', offset: 0.4 },
-          { transform: 'scale(1)', offset: 1 },
+          { transform: 'scale(0.97)' },
+          { transform: 'scale(1.02)' },
+          { transform: 'scale(1)' }
         ],
         {
           duration: 900,
-          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          easing: 'cubic-bezier(0.22,1,0.36,1)',
           fill: 'forwards'
         }
       );
-    }, 1800 + index * 220);
+    }, 1900 + index * 240);
   });
 });
 
+/* =========================================================
+   SCROLL ANIMATIONS (HEADERS + CARDS)
+   ========================================================= */
 
-// === УНИВЕРСАЛЬНАЯ АНИМАЦИЯ ПРИ СКРОЛЛЕ (все блоки после первого + футер) ===
+/* --- A) Section headers appear first --- */
+document.querySelectorAll('section .products-header:not(.no-scroll-trigger)').forEach(header => {
+  const obsH = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        header.classList.add('visible');
+        observer.unobserve(header);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -5%"
+  });
+
+  obsH.observe(header);
+});
+
+/* --- B) Cards appear AFTER headers (stagger) --- */
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
 
-      const animElements = entry.target.querySelectorAll('.scroll-animate');
+      const cards = entry.target.querySelectorAll('.card.scroll-animate');
 
-      animElements.forEach((el, index) => {
+      cards.forEach((card, index) => {
         setTimeout(() => {
-          el.classList.add('visible');
-        }, index * 180);  // плавнее, чем 150
+          card.classList.add('visible');
+        }, 450 + index * 200);
       });
 
-      // чтобы один раз срабатывало
       scrollObserver.unobserve(entry.target);
     }
   });
 }, {
-  threshold: 0.25,          // не 0.15 → Apple даёт позже, эффект мягче
-  rootMargin: "0px 0px -10%" // почти без раннего триггера
+  threshold: 0.07,
+  rootMargin: "0px 0px -5%"
 });
 
-
-// Наблюдаем за ВСЕМИ секциями, где есть элементы с классом .scroll-animate
-document.querySelectorAll('section').forEach(section => {
-  if (section.querySelector('.scroll-animate')) {
-    scrollObserver.observe(section);
+/* Observe only sections that have scroll-animate cards */
+document.querySelectorAll('section').forEach(sec => {
+  if (sec.querySelector('.card.scroll-animate')) {
+    scrollObserver.observe(sec);
   }
 });
 
-// === ФУТЕР — ДОБАВЛЯЕМ КЛАСС ИЗНАЧАЛЬНО (без анимации при скролле) ===
+/* =========================================================
+   FOOTER SHOW IMMEDIATELY
+   ========================================================= */
 const footer = document.querySelector('footer');
-if (footer) {
-  footer.classList.add('visible');   // футер виден сразу, без задержек
-}
+if (footer) footer.classList.add('visible');
 
-// Кнопка «вверх»
+/* =========================================================
+   SCROLL TO TOP
+   ========================================================= */
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -106,15 +132,9 @@ window.addEventListener('scroll', () => {
   document.querySelector('.scroll-top')?.classList.toggle('visible', window.scrollY > 300);
 });
 
-// Кнопка вверх
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-window.addEventListener('scroll', () => {
-  document.querySelector('.scroll-top')?.classList.toggle('visible', window.scrollY > 300);
-});
-
-// =============== Контакты ===
+/* =========================================================
+   CONTACT MODAL
+   ========================================================= */
 function openContactsModal() {
   document.getElementById('contactsModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -123,7 +143,10 @@ function closeContactsModal() {
   document.getElementById('contactsModal').classList.remove('active');
   document.body.style.overflow = '';
 }
-//==========Карточки услуг===================================
+
+/* =========================================================
+   CARD MODAL
+   ========================================================= */
 function openModal(card) {
   const img = card.querySelector('img').src;
   let content = card.querySelector('.card-content').innerHTML;
@@ -139,21 +162,17 @@ function openModal(card) {
   modalCard.scrollTop = 0;
 
   document.getElementById('cardModal').onclick = function(e) {
-    // Закрываем по клику на фон ИЛИ внутри карточки, но НЕ по кнопкам/ссылкам
     if (e.target === document.getElementById('cardModal') ||
         (e.target.closest('.modal-card') && !e.target.closest('button') && !e.target.closest('a'))) {
       closeModal();
     }
   };
 
-    // ПЛАВНЫЙ СКРОЛЛ ВВЕРХ — С РАЗНЫМИ ЗНАЧЕНИЯМИ ДЛЯ ДЕСКТОПА И МОБИЛКИ
+  // Smooth mini-scroll inside modal
   setTimeout(() => {
-    // Автоопределение: мобилка или десктоп
     const isMobile = window.innerWidth <= 768;
-
-    const distance = isMobile ? 230 : 300;     // ← мобилка: 230px, десктоп: 300px
-    const duration = isMobile ? 1400 : 1500;   // ← можно чуть быстрее на мобилке
-    // или так: const duration = 1500; // если хочешь одинаковую длительность
+    const distance = isMobile ? 230 : 300;
+    const duration = isMobile ? 1400 : 1500;
 
     const start = modalCard.scrollTop;
     const startTime = performance.now();
@@ -169,13 +188,13 @@ function openModal(card) {
     }
 
     requestAnimationFrame(scrollStep);
-  }, 200); // твоя задержка остаётся
+  }, 200);
 }
 
 function closeModal() {
   document.getElementById('cardModal').classList.remove('active');
   document.body.style.overflow = '';
-  document.getElementById('cardModal').onclick = null; // сбрасываем обработчик
+  document.getElementById('cardModal').onclick = null;
 }
 
 document.getElementById('cardModal').addEventListener('click', e => {
@@ -183,9 +202,9 @@ document.getElementById('cardModal').addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-
-
-//================Calendly===============================
+/* =========================================================
+   CALENDLY MODAL
+   ========================================================= */
 function openCalendly(e, url) {
   e.stopPropagation();
   const clean = url + (url.includes('?') ? '&' : '?') + 'hide_event_type_details=1&hide_gdpr_banner=1&hide_landing_page_details=1';
@@ -199,6 +218,7 @@ function closeCalendlyModal() {
   document.getElementById('calendlyIframe').src = '';
   document.body.style.overflow = '';
 }
+
 document.getElementById('calendlyModal').addEventListener('click', e => {
   if (e.target === document.getElementById('calendlyModal')) closeCalendlyModal();
 });
@@ -208,9 +228,11 @@ document.addEventListener('keydown', e => {
   }
 });
 
-//=================WayForPay========================
+/* =========================================================
+   WAYFORPAY
+   ========================================================= */
 function openWayForPay(button) {
-  event.stopPropagation();          // ← ЭТА СТРОЧКА УБИВАЕТ МОРГАНИЕ
+  event.stopPropagation();
   const baseUrl = button.getAttribute('data-url');
   if (!baseUrl) return;
   const returnUrl = encodeURIComponent(window.location.href);
@@ -218,16 +240,17 @@ function openWayForPay(button) {
   window.location.href = finalUrl;
 }
 
-// === ОТКРЫТИЕ ОФЕРТЫ  ===
+/* =========================================================
+   OFFER MODAL
+   ========================================================= */
 function openOfferModal() {
-  console.log('Кнопка оферти клікнута!');
   const modal = document.getElementById('offerModal');
   const content = document.getElementById('offerContent');
 
   if (content.innerHTML.trim() !== '') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    activateOfferClickToClose();        // ← включаем магию
+    activateOfferClickToClose();
     return;
   }
 
@@ -237,7 +260,7 @@ function openOfferModal() {
       content.innerHTML = text;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-      activateOfferClickToClose();      // ← включаем магию после загрузки
+      activateOfferClickToClose();
     })
     .catch(() => {
       content.innerHTML = `<h1>Публічна оферта</h1><p>Це резервний текст...</p>`;
@@ -246,7 +269,7 @@ function openOfferModal() {
       activateOfferClickToClose();
     });
 }
-// Вспомогательная функция — включаем закрытие по клику в любое место (кроме кнопок/ссылок)
+
 function activateOfferClickToClose() {
   document.getElementById('offerModal').onclick = function(e) {
     if (!e.target.closest('a') && !e.target.closest('button')) {
@@ -258,7 +281,7 @@ function activateOfferClickToClose() {
 function closeOfferModal() {
   document.getElementById('offerModal').classList.remove('active');
   document.body.style.overflow = '';
-  document.getElementById('offerModal').onclick = null;   // ← сбрасываем обработчик
+  document.getElementById('offerModal').onclick = null;
 }
 
 const offerObserver = new IntersectionObserver((entries) => {
@@ -269,29 +292,24 @@ const offerObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.2 });
+
 document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(el));
 
-//================ЗАПИСАТСЯ==================================
+/* =========================================================
+   PAYMENT MODAL
+   ========================================================= */
 function openPaymentModal() {
   document.getElementById('paymentModal').classList.add('active');
   document.body.style.overflow = 'hidden';
-
-  // ← СБРАСЫВАЕМ СКРОЛЛ ВВЕРХ КАЖДЫЙ РАЗ ПРИ ОТКРЫТИИ
-  const modal = document.getElementById('paymentModal');
-  modal.scrollTop = 0;                 // работает, если скроллится сам #paymentModal
-  // Если у тебя внутри есть отдельный блок со скроллом (например .payment-modal-content), то так:
-  // document.querySelector('#paymentModal .payment-modal-content')?.scrollTop = 0;
+  document.getElementById('paymentModal').scrollTop = 0;
 }
 
 function closePaymentModal() {
   document.getElementById('paymentModal').classList.remove('active');
   document.body.style.overflow = '';
-
-  // На всякий случай сбрасываем и при закрытии (не обязательно, но надёжно)
   document.getElementById('paymentModal').scrollTop = 0;
 }
 
-// Закрытие по клику на фон и Escape — оставляем как было
 document.getElementById('paymentModal').addEventListener('click', e => {
   if (e.target === document.getElementById('paymentModal')) closePaymentModal();
 });
@@ -302,7 +320,9 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ========================плавный параллакс с requestAnimationFrame===================
+/* =========================================================
+   ABOUT PARALLAX
+   ========================================================= */
 let aboutParallax = 0;
 let currentY = 0;
 
@@ -312,9 +332,9 @@ function updateParallax() {
 
   const rect = about.getBoundingClientRect();
   const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
-  aboutParallax = offset * -0.12; // коэффицент скорости (меньше = медленнее)
+  aboutParallax = offset * -0.12;
 
-  currentY += (aboutParallax - currentY) * 0.08; // сглаживание
+  currentY += (aboutParallax - currentY) * 0.08;
   about.querySelector('.about-photo').style.transform = `translateY(${currentY}px) scale(1.06)`;
 
   if (Math.abs(aboutParallax - currentY) > 0.5) requestAnimationFrame(updateParallax);
@@ -323,12 +343,13 @@ function updateParallax() {
 window.addEventListener('scroll', () => requestAnimationFrame(updateParallax));
 window.addEventListener('load', updateParallax);
 
-// ——— ТВОЯ ЗОЛОТАЯ МАСКА — ИСПРАВЛЕНА И РАБОТАЕТ НА ВСЕХ УСТРОЙСТВАХ ———
+/* =========================================================
+   PHONE MASK (fixed)
+   ========================================================= */
 const phoneInput = document.getElementById('phoneInput');
 if (phoneInput) {
   let lastDigits = '';
 
-  // ФОРМАТЕР — ОСТАВЛЯЕМ КАК БЫЛ, ОН ИДЕАЛЬНЫЙ
   function formatPhone(d) {
     if (d.length <= 2) return '+' + d;
     const body = d.slice(2);
@@ -341,20 +362,17 @@ if (phoneInput) {
     return out;
   }
 
-  // ГЛАВНЫЙ ФИКС: перехватываем Backspace и удаляем по одной цифре
   phoneInput.addEventListener('keydown', function(e) {
     if (e.key === 'Backspace') {
       const pos = this.selectionStart;
       const current = this.value;
 
-      // Если стоим после закрывающей скобки или пробела — удаляем предыдущую цифру
       if (current[pos - 1] === ')' || current[pos - 1] === ' ') {
         e.preventDefault();
         const digits = current.replace(/\D/g, '').slice(0, -1);
         this.value = formatPhone(digits);
         this.setSelectionRange(this.value.length, this.value.length);
       }
-      // Полное удаление +38 при пустом поле
       else if (current === '+38 ' || current === '+38') {
         e.preventDefault();
         this.value = '';
@@ -362,7 +380,6 @@ if (phoneInput) {
     }
   });
 
-  // Обычный ввод — всё как было
   phoneInput.addEventListener('input', function() {
     let d = this.value.replace(/\D/g, '');
     if (d.startsWith('8') && d.length > 1) d = '3' + d;
@@ -372,7 +389,6 @@ if (phoneInput) {
     lastDigits = d;
   });
 
-  // Фокус и блюр — как было
   phoneInput.addEventListener('focus', () => {
     if (!phoneInput.value) {
       phoneInput.value = '+38 ';
@@ -387,12 +403,13 @@ if (phoneInput) {
   });
 }
 
-// ——— УСПЕШНАЯ МОДАЛКА ———
+/* =========================================================
+   SUCCESS MODAL + CONFETTI
+   ========================================================= */
 function showSuccessModal() {
   document.getElementById('successModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // КОНФЕТТИ
   confetti({ particleCount: 180, spread: 76, origin: { y: 0.58 }, colors: ['#f7c843', '#ffffff', '#333333'], scalar: 1.3 });
 
   setTimeout(() => {
@@ -400,7 +417,6 @@ function showSuccessModal() {
     confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1, y: 0.6 } });
   }, 200);
 
-  // ФОРСИМ КОНФЕТТИ НА ПЕРЕДНИЙ ПЛАН
   setTimeout(() => {
     const canvas = document.querySelector('canvas');
     if (canvas) {
@@ -415,7 +431,9 @@ function closeSuccessModal() {
   document.body.style.overflow = '';
 }
 
-// ——— ОБНОВЛЁННАЯ ОТПРАВКА ФОРМЫ ———
+/* =========================================================
+   FORM SEND (unchanged)
+   ========================================================= */
 document.getElementById('bookingForm')?.addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -444,7 +462,6 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
       body: JSON.stringify({
         action: 'new_booking',
         product: title,
-        //price: price,
         name: name,
         phone: phone,
         comment: comment || '—'
@@ -452,12 +469,11 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
     });
 
     if (response.ok) {
-
-      closePricePopup();           // ← ЗАКРЫВАЕМ ФОРМУ
-      showSuccessModal();          // ← ОТКРЫВАЕМ УСПЕШКУ
-      e.target.reset();            // ← чистим поля
-      document.getElementById('phoneInput').value = ''; // на всякий случай
-      status.innerHTML = '';       // очищаем статус
+      closePricePopup();
+      showSuccessModal();
+      e.target.reset();
+      document.getElementById('phoneInput').value = '';
+      status.innerHTML = '';
     } else {
       throw new Error();
     }
@@ -480,13 +496,15 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
   }
 });
 
+/* =========================================================
+   PRICE POPUP
+   ========================================================= */
 function openPricePopup(e, title, price) {
   e.stopPropagation();
 
   document.getElementById('priceTitle').textContent = title;
   document.getElementById('priceLabel').textContent = 'Вартість: ' + price;
 
-  // Сброс формы и подсветки
   document.getElementById('bookingForm').reset();
   document.getElementById('phoneInput').value = '';
   document.getElementById('popupStatus').innerHTML = '';
@@ -496,30 +514,32 @@ function openPricePopup(e, title, price) {
     input.style.boxShadow = '';
   });
 
-  // ← ГЛАВНОЕ: сбрасываем скролл модалки при каждом открытии
   const popup = document.getElementById('pricePopup');
   popup.style.display = 'flex';
-  popup.scrollTop = 0;                     // ← всегда открывается сверху
+  popup.scrollTop = 0;
 }
 
 function closePricePopup() {
   const popup = document.getElementById('pricePopup');
   popup.style.display = 'none';
-  popup.scrollTop = 0;                     // ← гарантируем чистоту при следующем открытии
+  popup.scrollTop = 0;
   resetFormHighlights();
   document.getElementById('popupStatus').innerHTML = '';
 }
-// Закриття по кліку на фон + Escape
+
 document.getElementById('pricePopup').addEventListener('click', e => {
   if (e.target === document.getElementById('pricePopup')) closePricePopup();
 });
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && document.getElementById('pricePopup').style.display === 'flex') {
     closePricePopup();
   }
 });
 
-// ——— УНИВЕРСАЛЬНАЯ ПОДСВЕТКА ДЛЯ ИМЕНИ И ТЕЛЕФОНА ———
+/* =========================================================
+   FIELD HIGHLIGHT LOGIC
+   ========================================================= */
 document.querySelectorAll('#bookingForm input[required]').forEach(input => {
   const check = () => {
     const val = input.value.trim();
@@ -534,10 +554,9 @@ document.querySelectorAll('#bookingForm input[required]').forEach(input => {
 
   input.addEventListener('input', check);
   input.addEventListener('blur', check);
-  check(); // на случай автозаполнения
+  check();
 });
 
-// === ПОЛНЫЙ СБРОС ПОДСВЕТКИ ПОЛЕЙ ПРИ ЗАКРЫТИИ ФОРМЫ ===
 function resetFormHighlights() {
   document.querySelectorAll('#pricePopup input, #pricePopup textarea').forEach(input => {
     input.style.borderColor = '';
@@ -545,45 +564,27 @@ function resetFormHighlights() {
   });
 }
 
-// Обновляем функцию закрытия
-function closePricePopup() {
-  document.getElementById('pricePopup').style.display = 'none';
-
-  // Сбрасываем всё:
-  resetFormHighlights();                    // ← убираем зелёные рамки
-  document.getElementById('popupStatus').innerHTML = '';
-
-  // На всякий случай — сбрасываем форму (хотя reset() уже есть)
-  setTimeout(() => {
-    document.getElementById('bookingForm')?.reset();
-    document.getElementById('phoneInput').value = '';
-  }, 100);
-}
-
-// ------------------Жорстке рішення проблеми "пливе вгору після F5-----------------"
+/* =========================================================
+   FIX SCROLL RESTORE ON RELOAD
+   ========================================================= */
 (function fixScrollRestore() {
-  // 1. Примусово блокуємо автоматичне відновлення скролу
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
 
-  // 2. Після завантаження сторінки — ставимо правильний padding і прокручуємо на 0
   window.addEventListener('load', () => {
-    // Даємо браузеру 50 мс, щоб він "заспокоївся"
     setTimeout(() => {
       const headerHeight = document.querySelector('.topbar').offsetHeight;
       document.documentElement.style.scrollPaddingTop = headerHeight + 20 + 'px';
 
-      // Якщо ми не на самому верху — плавно підправляємо позицію
       if (window.scrollY > 0) {
         const correctY = window.scrollY + headerHeight + 20;
         window.scrollTo({
           top: correctY,
-          behavior: 'instant'  // без анімації, щоб не помітно
+          behavior: 'instant'
         });
       }
 
-      // Додатково — ще раз через 100 мс (на випадок лагаючих шрифтів/зображень)
       setTimeout(() => {
         const headerHeight2 = document.querySelector('.topbar').offsetHeight;
         document.documentElement.style.scrollPaddingTop = headerHeight2 + 20 + 'px';
@@ -591,10 +592,8 @@ function closePricePopup() {
     }, 50);
   });
 
-  // На resize теж оновлюємо (мобілка ↔ десктоп, меню відкрите і т.д.)
   window.addEventListener('resize', () => {
     const headerHeight = document.querySelector('.topbar').offsetHeight;
     document.documentElement.style.scrollPaddingTop = headerHeight + 20 + 'px';
   });
 })();
-//__________________________________________________________________________
