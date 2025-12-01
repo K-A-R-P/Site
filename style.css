@@ -1644,11 +1644,13 @@ canvas.confetti-canvas {
   width: 100%;
 }
 
+/* 🔥 УБИРАЕМ CSS-анимацию полностью — теперь JS рулит */
 .clients-track {
   display: flex;
   gap: 80px;
   width: max-content;
-  animation: clientsScroll 32s linear infinite;
+  will-change: transform;
+  transform: translateX(0); /* старт */
 }
 
 /* === logo-box (рамка вокруг логотипа) === */
@@ -1667,6 +1669,8 @@ canvas.confetti-canvas {
   object-fit: contain;
   opacity: .75;
   filter: grayscale(1);
+  transform: translateZ(0);
+  will-change: transform;
   transition: transform .4s ease, filter .4s ease, opacity .4s ease;
 }
 
@@ -1677,11 +1681,6 @@ canvas.confetti-canvas {
   opacity: 1;
 }
 
-/* === пауза при наведении === */
-.clients-wrapper:hover .clients-track {
-  animation-play-state: paused;
-}
-
 /* === fade-up входная анимация === */
 #clients.fade-up.visible {
   opacity: 1;
@@ -1689,17 +1688,7 @@ canvas.confetti-canvas {
   filter: blur(0);
 }
 
-/* === Бесконечная прокрутка === */
-@keyframes clientsScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-/* === FIX: Прогрев трансформации, чтобы не было рывка при первом hover === */
-.logo-box img {
-  transform: translateZ(0); /* включает GPU слой заранее */
-  will-change: transform;
-}
-
+/* === FIX GPU === */
 .logo-box {
   backface-visibility: hidden;
   transform: translateZ(0);

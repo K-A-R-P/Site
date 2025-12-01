@@ -583,42 +583,59 @@ function resetFormHighlights() {
   });
 })();
 
-/* ===================== CLIENTS: появление + бесшовная лента ===================== */
+/* ===================== CLIENTS: появление + бесшовная лента (APPLE-STYLE JS scroll) ===================== */
 window.addEventListener('load', () => {
-  const clientsSection = document.getElementById('clients');
+  const section = document.getElementById('clients');
   const track = document.getElementById('clientsTrack');
 
-  if (!clientsSection || !track) return;
+  if (!section || !track) return;
 
   /* Плавное появление */
   const obs = new IntersectionObserver((entries, o) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        clientsSection.classList.add('visible');
-        o.unobserve(clientsSection);
+        section.classList.add('visible');
+        o.unobserve(section);
       }
     });
   }, { threshold: 0.2 });
-  obs.observe(clientsSection);
+  obs.observe(section);
 
-  /* Бесшовный клон */
+  /* Бесшовный клон (дублируем logos) */
   const logos = Array.from(track.children);
-  const clone = logos.map(el => el.cloneNode(true));
-  clone.forEach(el => track.appendChild(el));
+  logos.forEach(el => track.appendChild(el.cloneNode(true)));
 
-  /* Анти-джамп: задержка старта */
-  track.style.animation = 'none';
-  setTimeout(() => {
-    track.style.animation = 'clientsScroll 32s linear infinite';
-  }, 300);
+  /* === JS-анимация без прыжков === */
+  let pos = 0;                 // текущая позиция
+  let speed = 0.25;            // текущая скорость
+  let targetSpeed = 0.25;      // желаемая скорость (к ней тянемся)
+  const slowSpeed = 0.07;      // при наведении
+  const normalSpeed = 0.25;    // обычная скорость
 
-  /* 🔥 ПАУЗА ПРИ НАВЕДЕНИИ — JS версия */
+  function loop() {
+    pos -= speed;
+
+    if (pos <= -track.scrollWidth / 2) {
+      pos = 0; // бесконечная прокрутка
+    }
+
+    track.style.transform = `translateX(${pos}px)`;
+
+    // инерция — плавный переход скорости
+    speed += (targetSpeed - speed) * 0.05;
+
+    requestAnimationFrame(loop);
+  }
+
+  requestAnimationFrame(loop);
+
+  /* === Ховер — замедление === */
   track.addEventListener('mouseenter', () => {
-    track.style.animationPlayState = 'paused';
+    targetSpeed = slowSpeed;
   });
 
+  /* === Уход курсора — ускорение назад === */
   track.addEventListener('mouseleave', () => {
-    track.style.animationPlayState = 'running';
+    targetSpeed = normalSpeed;
   });
-
 });
