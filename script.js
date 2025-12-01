@@ -583,7 +583,7 @@ function resetFormHighlights() {
   });
 })();
 
-/* ===================== CLIENTS: scroll + auto-highlight + magnetic tilt + FPS BOOST ===================== */
+/* ===================== CLIENTS: scroll + auto-highlight + magnetic tilt + FPS BOOST + DEPTH PARALLAX ===================== */
 window.addEventListener('load', () => {
   const section = document.getElementById('clients');
   const track = document.getElementById('clientsTrack');
@@ -600,7 +600,7 @@ window.addEventListener('load', () => {
   }, { threshold: 0.2 });
   obs.observe(section);
 
-  /* Дублирование */
+  /* Бесшовное дублирование */
   const logos = Array.from(track.children);
   logos.forEach(el => track.appendChild(el.cloneNode(true)));
 
@@ -609,12 +609,11 @@ window.addEventListener('load', () => {
   (function detectFPS() {
     let last = performance.now();
     let frames = 0;
-
     function frame(now) {
       frames++;
       if (now - last >= 1000) {
         fps = frames;
-        return; // фиксируем FPS, дальше код сам подстроится
+        return;
       }
       requestAnimationFrame(frame);
     }
@@ -623,12 +622,11 @@ window.addEventListener('load', () => {
 
   /* ===== Скорость с учётом FPS ===== */
   function computeSpeed() {
-    if (fps < 30) return 0.25 * 1.9;   // супер слабое устройство
-    if (fps < 45) return 0.25 * 1.5;   // слабый ноут
-    if (fps < 55) return 0.25 * 1.2;   // обычный ноут
-    return 0.25;                       // норм
+    if (fps < 30) return 0.25 * 1.9;
+    if (fps < 45) return 0.25 * 1.5;
+    if (fps < 55) return 0.25 * 1.2;
+    return 0.25;
   }
-
   function computeSlow() {
     if (fps < 30) return 0.07 * 1.9;
     if (fps < 45) return 0.07 * 1.5;
@@ -636,7 +634,6 @@ window.addEventListener('load', () => {
     return 0.07;
   }
 
-  /* Первичная инициализация скоростей */
   let normalSpeed = window.innerWidth < 900 ? computeSpeed() * 1.8 : computeSpeed();
   let slowSpeed   = window.innerWidth < 900 ? computeSlow() * 1.8  : computeSlow();
 
@@ -652,6 +649,11 @@ window.addEventListener('load', () => {
     box.addEventListener('mouseenter', () => box.classList.add('hovered'));
     box.addEventListener('mouseleave', () => box.classList.remove('hovered'));
   });
+
+  /* ===== DEPTH PARALLAX CONFIG (вариант B: средний) ===== */
+  const PARALLAX_AMPLITUDE = 8;     // средняя сила волны
+  const PARALLAX_SPEED = 0.004;     // скорость волны
+  const PHASE_SHIFT = 140;          // разная высота волн на логотипах
 
   /* AUTO-HIGHLIGHT */
   function applyAutoHighlight() {
@@ -671,19 +673,20 @@ window.addEventListener('load', () => {
       const opacity = 0.55 + k * 0.45;
       const gray = 1 - k;
 
-      box.style.transform = `scale(${scale})`;
+      /* ===== PARALLAX WAVE (применяем поверх scale) ===== */
+      const dy = Math.sin((pos + i * PHASE_SHIFT) * PARALLAX_SPEED) * PARALLAX_AMPLITUDE;
+
+      box.style.transform = `scale(${scale}) translateY(${dy}px)`;
       img.style.opacity = opacity;
       img.style.filter = `grayscale(${gray})`;
     });
   }
 
-  /* TILT */
+  /* MAGNETIC TILT */
   function applyTilt(e) {
     const mouseX = e.clientX;
-
     boxes.forEach((box, i) => {
       const img = imgs[i];
-
       if (box.classList.contains('hovered')) return;
 
       const rect = box.getBoundingClientRect();
@@ -695,7 +698,6 @@ window.addEventListener('load', () => {
       img.style.transform = `rotateY(${rotateY}deg)`;
     });
   }
-
   function resetTilt() {
     imgs.forEach(img => img.style.transform = "rotateY(0deg)");
   }
@@ -705,7 +707,7 @@ window.addEventListener('load', () => {
   });
   track.addEventListener('mouseleave', resetTilt);
 
-  /* ===== LOOP ===== */
+  /* LOOP */
   function loop() {
     pos -= speed;
     if (pos <= -track.scrollWidth / 2) pos = 0;
@@ -720,12 +722,8 @@ window.addEventListener('load', () => {
   requestAnimationFrame(loop);
 
   /* Hover замедление */
-  track.addEventListener('mouseenter', () => {
-    targetSpeed = slowSpeed;
-  });
-  track.addEventListener('mouseleave', () => {
-    targetSpeed = normalSpeed;
-  });
+  track.addEventListener('mouseenter', () => targetSpeed = slowSpeed);
+  track.addEventListener('mouseleave', () => targetSpeed = normalSpeed);
 
   /* Resize */
   window.addEventListener('resize', () => {
@@ -735,6 +733,3 @@ window.addEventListener('load', () => {
   });
 
 });
-
-
-
