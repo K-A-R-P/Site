@@ -638,7 +638,7 @@ window.addEventListener('load', () => {
       const dist = Math.abs(mid - center);
       const k = Math.max(0, 1 - dist / 500);
 
-      const scale = 1 + k * 0.16;
+      const scale = 1 + k * 0.3;
       const opacity = 0.55 + k * 0.45;
       const gray = 1 - k;
 
