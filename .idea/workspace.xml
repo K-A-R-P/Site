@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Лента клиентов (лента с расскрашиванием в центре)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Лента клиентов (лента с расскрашиванием в центре и MAGNETIC TILT)">
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,14 +66,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00076" summary="оферта запрет копирования и шире">
-      <option name="closed" value="true" />
-      <created>1764252874653</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1764252874653</updated>
     </task>
     <task id="LOCAL-00077" summary="оферта запрет копирования и шире испр">
       <option name="closed" value="true" />
@@ -461,11 +451,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764568422697</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="Лента клиентов (лента с расскрашиванием в центре и MAGNETIC TILT)">
+      <option name="closed" value="true" />
+      <created>1764576538884</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1764576538884</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Запись на консультацию поправлена мобилка" />
     <MESSAGE value="Поправлена маска +конфети" />
     <MESSAGE value="шрифт оферты" />
     <MESSAGE value="оферта" />
@@ -490,6 +487,7 @@
     <MESSAGE value="Лента клиентов (не остановка а замедление при наведении)" />
     <MESSAGE value="Лента клиентов (не фикс скорости на мобилках)" />
     <MESSAGE value="Лента клиентов (лента с расскрашиванием в центре)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Лента клиентов (лента с расскрашиванием в центре)" />
+    <MESSAGE value="Лента клиентов (лента с расскрашиванием в центре и MAGNETIC TILT)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Лента клиентов (лента с расскрашиванием в центре и MAGNETIC TILT)" />
   </component>
 </project>
