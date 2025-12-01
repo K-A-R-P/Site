@@ -583,7 +583,7 @@ function resetFormHighlights() {
   });
 })();
 
-/* ===================== CLIENTS: появление + бесшовная лента (APPLE-STYLE JS scroll) ===================== */
+/* ===================== CLIENTS: появление + бесшовная лента + auto-highlight + hover-fix ===================== */
 window.addEventListener('load', () => {
   const section = document.getElementById('clients');
   const track = document.getElementById('clientsTrack');
@@ -601,13 +601,11 @@ window.addEventListener('load', () => {
   }, { threshold: 0.2 });
   obs.observe(section);
 
-  /* Бесшовный клон (дублируем logos) */
+  /* Дублирование */
   const logos = Array.from(track.children);
   logos.forEach(el => track.appendChild(el.cloneNode(true)));
 
-  /* === JS-анимация без прыжков + скоростной мобильный фикс === */
-
-  // 🔥 Динамические скорости (мобильный / десктоп)
+  /* Скорость */
   let normalSpeed = window.innerWidth < 900 ? 0.45 : 0.25;
   let slowSpeed   = window.innerWidth < 900 ? 0.14 : 0.07;
 
@@ -615,39 +613,66 @@ window.addEventListener('load', () => {
   let speed = normalSpeed;
   let targetSpeed = normalSpeed;
 
+  const boxes = track.querySelectorAll('.logo-box');
+  const imgs  = track.querySelectorAll('.logo-box img');
+
+  /* === Hover fix — при наведении ставим .hovered === */
+  boxes.forEach(box => {
+    box.addEventListener('mouseenter', () => box.classList.add('hovered'));
+    box.addEventListener('mouseleave', () => box.classList.remove('hovered'));
+  });
+
+  /* AUTO-HIGHLIGHT */
+  function applyAutoHighlight() {
+    const center = window.innerWidth / 2;
+
+    boxes.forEach((box, i) => {
+
+      // если логотип под ховером — автоэффект не трогаем
+      if (box.classList.contains('hovered')) return;
+
+      const img = imgs[i];
+      const rect = box.getBoundingClientRect();
+      const mid = rect.left + rect.width / 2;
+
+      const dist = Math.abs(mid - center);
+      const k = Math.max(0, 1 - dist / 500);
+
+      const scale = 1 + k * 0.16;
+      const opacity = 0.55 + k * 0.45;
+      const gray = 1 - k;
+
+      box.style.transform = `scale(${scale})`;
+      img.style.opacity = opacity;
+      img.style.filter = `grayscale(${gray})`;
+    });
+  }
+
   function loop() {
     pos -= speed;
-
-    if (pos <= -track.scrollWidth / 2) {
-      pos = 0; // бесконечная прокрутка
-    }
+    if (pos <= -track.scrollWidth / 2) pos = 0;
 
     track.style.transform = `translateX(${pos}px)`;
 
-    // инерция — плавный переход скорости
     speed += (targetSpeed - speed) * 0.05;
+
+    applyAutoHighlight();
 
     requestAnimationFrame(loop);
   }
 
   requestAnimationFrame(loop);
 
-  /* === Ховер — замедление === */
-  track.addEventListener('mouseenter', () => {
-    targetSpeed = slowSpeed;
-  });
+  /* Hover замедление */
+  track.addEventListener('mouseenter', () => { targetSpeed = slowSpeed; });
 
-  /* === Уход курсора — ускорение назад === */
-  track.addEventListener('mouseleave', () => {
-    targetSpeed = normalSpeed;
-  });
+  track.addEventListener('mouseleave', () => { targetSpeed = normalSpeed; });
 
-  /* 🔥 При ресайзе или повороте телефона — обновить скорость */
+  /* Resize */
   window.addEventListener('resize', () => {
     normalSpeed = window.innerWidth < 900 ? 0.45 : 0.25;
     slowSpeed   = window.innerWidth < 900 ? 0.14 : 0.07;
-    targetSpeed = normalSpeed;  // мгновенно подхватываем новую нормальную скорость
+    targetSpeed = normalSpeed;
   });
-
 });
 

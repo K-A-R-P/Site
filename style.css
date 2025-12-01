@@ -1644,16 +1644,15 @@ canvas.confetti-canvas {
   width: 100%;
 }
 
-/* 🔥 УБИРАЕМ CSS-анимацию полностью — теперь JS рулит */
 .clients-track {
   display: flex;
   gap: 80px;
   width: max-content;
   will-change: transform;
-  transform: translateX(0); /* старт */
+  transform: translateX(0);
 }
 
-/* === logo-box (рамка вокруг логотипа) === */
+/* Контейнер логотипа */
 .logo-box {
   display: flex;
   align-items: center;
@@ -1661,34 +1660,38 @@ canvas.confetti-canvas {
   padding: 14px 20px;
   border-radius: 12px;
   flex-shrink: 0;
+  transition: transform .22s ease;
+  will-change: transform;
 }
 
-/* === ЛОГОТИПЫ === */
+/* Лого */
 .logo-box img {
   height: 60px;
   object-fit: contain;
-  opacity: .75;
+  opacity: .65;
   filter: grayscale(1);
   transform: translateZ(0);
-  will-change: transform;
-  transition: transform .4s ease, filter .4s ease, opacity .4s ease;
+  will-change: opacity, filter;
+  transition: opacity .22s ease, filter .22s ease;
 }
 
-/* === hover: увеличиваем, красим === */
-.logo-box:hover img {
-  transform: scale(1.22);
-  filter: grayscale(0);
-  opacity: 1;
+/* ========= РУЧНОЙ HOVER ВОЗВРАЩАЕМ 🔥 — работает независимо от автоHighlight ========= */
+.logo-box.hovered {
+  transform: scale(1.22) !important;   /* ручной скейл */
 }
 
-/* === fade-up входная анимация === */
+.logo-box.hovered img {
+  opacity: 1 !important;
+  filter: grayscale(0) !important;     /* раскрашивание */
+}
+
+/* fade-up */
 #clients.fade-up.visible {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
-/* === FIX GPU === */
 .logo-box {
   backface-visibility: hidden;
   transform: translateZ(0);
