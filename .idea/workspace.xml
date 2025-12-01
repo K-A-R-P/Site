@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Лента клиентов наполнение">
-      <change beforePath="$PROJECT_DIR$/assets/clients/client14.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/clients/client14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/clients/client22.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,14 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00079" summary="чистка css">
-      <option name="closed" value="true" />
-      <created>1764284520660</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1764284520660</updated>
     </task>
     <task id="LOCAL-00080" summary="сбросс скрола модалок при закрытии, плавнее анимация карточек продуктов">
       <option name="closed" value="true" />
@@ -460,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764581047043</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="Лента клиентов наполнение">
+      <option name="closed" value="true" />
+      <created>1764581696342</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1764581696342</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
