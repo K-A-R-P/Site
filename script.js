@@ -605,12 +605,15 @@ window.addEventListener('load', () => {
   const logos = Array.from(track.children);
   logos.forEach(el => track.appendChild(el.cloneNode(true)));
 
-  /* === JS-анимация без прыжков === */
-  let pos = 0;                 // текущая позиция
-  let speed = 0.25;            // текущая скорость
-  let targetSpeed = 0.25;      // желаемая скорость (к ней тянемся)
-  const slowSpeed = 0.07;      // при наведении
-  const normalSpeed = 0.25;    // обычная скорость
+  /* === JS-анимация без прыжков + скоростной мобильный фикс === */
+
+  // 🔥 Динамические скорости (мобильный / десктоп)
+  let normalSpeed = window.innerWidth < 900 ? 0.45 : 0.25;
+  let slowSpeed   = window.innerWidth < 900 ? 0.14 : 0.07;
+
+  let pos = 0;
+  let speed = normalSpeed;
+  let targetSpeed = normalSpeed;
 
   function loop() {
     pos -= speed;
@@ -638,4 +641,13 @@ window.addEventListener('load', () => {
   track.addEventListener('mouseleave', () => {
     targetSpeed = normalSpeed;
   });
+
+  /* 🔥 При ресайзе или повороте телефона — обновить скорость */
+  window.addEventListener('resize', () => {
+    normalSpeed = window.innerWidth < 900 ? 0.45 : 0.25;
+    slowSpeed   = window.innerWidth < 900 ? 0.14 : 0.07;
+    targetSpeed = normalSpeed;  // мгновенно подхватываем новую нормальную скорость
+  });
+
 });
+
