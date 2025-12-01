@@ -1696,3 +1696,12 @@ canvas.confetti-canvas {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+/* ===================== MAGNETIC TILT ===================== */
+.logo-box {
+  perspective: 800px;
+}
+
+.logo-box img {
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease;
+}

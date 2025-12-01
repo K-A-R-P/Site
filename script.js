@@ -583,11 +583,10 @@ function resetFormHighlights() {
   });
 })();
 
-/* ===================== CLIENTS: появление + бесшовная лента + auto-highlight + hover-fix ===================== */
+/* ===================== CLIENTS: scroll + auto-highlight + magnetic tilt ===================== */
 window.addEventListener('load', () => {
   const section = document.getElementById('clients');
   const track = document.getElementById('clientsTrack');
-
   if (!section || !track) return;
 
   /* Плавное появление */
@@ -601,11 +600,11 @@ window.addEventListener('load', () => {
   }, { threshold: 0.2 });
   obs.observe(section);
 
-  /* Дублирование */
+  /* Бесшовное дублирование */
   const logos = Array.from(track.children);
   logos.forEach(el => track.appendChild(el.cloneNode(true)));
 
-  /* Скорость */
+  /* Скорости */
   let normalSpeed = window.innerWidth < 900 ? 0.45 : 0.25;
   let slowSpeed   = window.innerWidth < 900 ? 0.14 : 0.07;
 
@@ -616,19 +615,17 @@ window.addEventListener('load', () => {
   const boxes = track.querySelectorAll('.logo-box');
   const imgs  = track.querySelectorAll('.logo-box img');
 
-  /* === Hover fix — при наведении ставим .hovered === */
+  /* Hover fix */
   boxes.forEach(box => {
     box.addEventListener('mouseenter', () => box.classList.add('hovered'));
     box.addEventListener('mouseleave', () => box.classList.remove('hovered'));
   });
 
-  /* AUTO-HIGHLIGHT */
+  /* AUTO-HIGHLIGHT (центр экрана) */
   function applyAutoHighlight() {
     const center = window.innerWidth / 2;
 
     boxes.forEach((box, i) => {
-
-      // если логотип под ховером — автоэффект не трогаем
       if (box.classList.contains('hovered')) return;
 
       const img = imgs[i];
@@ -638,7 +635,7 @@ window.addEventListener('load', () => {
       const dist = Math.abs(mid - center);
       const k = Math.max(0, 1 - dist / 500);
 
-      const scale = 1 + k * 0.3;
+      const scale = 1 + k * 0.22;     // сильнее центр
       const opacity = 0.55 + k * 0.45;
       const gray = 1 - k;
 
@@ -648,24 +645,52 @@ window.addEventListener('load', () => {
     });
   }
 
+  /* =============== MAGNETIC TILT (❤️ Apple-style 3D) =============== */
+  function applyTilt(e) {
+    const mouseX = e.clientX;
+
+    boxes.forEach((box, i) => {
+      const img = imgs[i];
+
+      if (box.classList.contains('hovered')) return;
+
+      const rect = box.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+
+      const diff = mouseX - centerX;
+      const rotateY = Math.max(-12, Math.min(12, diff * -0.06));
+      // -12° … +12° пределы поворота
+
+      img.style.transform = `rotateY(${rotateY}deg)`;
+    });
+  }
+
+  /* Сбрасываем наклон при уходе мыши */
+  function resetTilt() {
+    imgs.forEach(img => img.style.transform = "rotateY(0deg)");
+  }
+
+  track.addEventListener('mousemove', e => {
+    if (window.innerWidth > 900) applyTilt(e);   // только десктоп
+  });
+  track.addEventListener('mouseleave', resetTilt);
+
+  /* =============== SCROLL LOOP =============== */
   function loop() {
     pos -= speed;
     if (pos <= -track.scrollWidth / 2) pos = 0;
 
     track.style.transform = `translateX(${pos}px)`;
-
     speed += (targetSpeed - speed) * 0.05;
 
     applyAutoHighlight();
 
     requestAnimationFrame(loop);
   }
-
   requestAnimationFrame(loop);
 
   /* Hover замедление */
   track.addEventListener('mouseenter', () => { targetSpeed = slowSpeed; });
-
   track.addEventListener('mouseleave', () => { targetSpeed = normalSpeed; });
 
   /* Resize */
@@ -675,4 +700,5 @@ window.addEventListener('load', () => {
     targetSpeed = normalSpeed;
   });
 });
+
 
