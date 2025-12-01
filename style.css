@@ -1621,3 +1621,86 @@ canvas.confetti-canvas {
   transform: scale(1.04) !important;
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
+
+
+/* ===================== CLIENTS ===================== */
+
+#clients {
+  max-width: 1400px;
+  margin: 120px auto;
+  padding: 0 20px;
+}
+
+.clients-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.clients-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.clients-track {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+  animation: clientsScroll 32s linear infinite;
+}
+
+/* === logo-box (рамка вокруг логотипа) === */
+.logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* === ЛОГОТИПЫ === */
+.logo-box img {
+  height: 60px;
+  object-fit: contain;
+  opacity: .75;
+  filter: grayscale(1);
+  transition: transform .4s ease, filter .4s ease, opacity .4s ease;
+}
+
+/* === hover: увеличиваем, красим === */
+.logo-box:hover img {
+  transform: scale(1.22);
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* === пауза при наведении === */
+.clients-wrapper:hover .clients-track {
+  animation-play-state: paused;
+}
+
+/* === fade-up входная анимация === */
+#clients.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* === Бесконечная прокрутка === */
+@keyframes clientsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* === FIX: Прогрев трансформации, чтобы не было рывка при первом hover === */
+.logo-box img {
+  transform: translateZ(0); /* включает GPU слой заранее */
+  will-change: transform;
+}
+
+.logo-box {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

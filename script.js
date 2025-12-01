@@ -582,3 +582,43 @@ function resetFormHighlights() {
     document.documentElement.style.scrollPaddingTop = headerHeight + 20 + 'px';
   });
 })();
+
+/* ===================== CLIENTS: появление + бесшовная лента ===================== */
+window.addEventListener('load', () => {
+  const clientsSection = document.getElementById('clients');
+  const track = document.getElementById('clientsTrack');
+
+  if (!clientsSection || !track) return;
+
+  /* Плавное появление */
+  const obs = new IntersectionObserver((entries, o) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        clientsSection.classList.add('visible');
+        o.unobserve(clientsSection);
+      }
+    });
+  }, { threshold: 0.2 });
+  obs.observe(clientsSection);
+
+  /* Бесшовный клон */
+  const logos = Array.from(track.children);
+  const clone = logos.map(el => el.cloneNode(true));
+  clone.forEach(el => track.appendChild(el));
+
+  /* Анти-джамп: задержка старта */
+  track.style.animation = 'none';
+  setTimeout(() => {
+    track.style.animation = 'clientsScroll 32s linear infinite';
+  }, 300);
+
+  /* 🔥 ПАУЗА ПРИ НАВЕДЕНИИ — JS версия */
+  track.addEventListener('mouseenter', () => {
+    track.style.animationPlayState = 'paused';
+  });
+
+  track.addEventListener('mouseleave', () => {
+    track.style.animationPlayState = 'running';
+  });
+
+});
