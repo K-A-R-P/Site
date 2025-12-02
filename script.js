@@ -583,6 +583,32 @@ function resetFormHighlights() {
   });
 })();
 
+
+/* =========================================================
+   FADE-UP OBSERVER FOR APPLE GALLERY
+   ========================================================= */
+(function initAppleGalleryObserver() {
+
+  const gallery = document.querySelector('#appleGallery');
+  if (!gallery) return;
+
+  const obs = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        gallery.classList.add('visible');   // показать секцию
+        observer.unobserve(gallery);
+      }
+    });
+  }, {
+    threshold: 0.25,
+    rootMargin: "0px 0px -10%"
+  });
+
+  obs.observe(gallery);
+
+})();
+
+
 /* ====================================================================
 CLIENTS: scroll + auto-highlight + magnetic tilt + FPS BOOST
  ======================================================================== */
@@ -843,3 +869,137 @@ window.addEventListener('load', () => {
   });
 
 });
+
+/* ===================== APPLE GALLERY — FULL VERSION ===================== */
+
+window.addEventListener("load", () => {
+  const track = document.querySelector(".apple-gallery-track");
+  if (!track) return;
+
+  const slides = [...document.querySelectorAll(".apple-slide")];
+  const dotsContainer = document.querySelector(".apple-dots");
+
+  let index = 0;
+  let autoTimer;
+
+  /* ---------- CREATE DOTS ---------- */
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.className = "apple-dot";
+    dot.onclick = () => {
+      clearInterval(autoTimer);
+      slideTo(i);
+      autoStart();
+    };
+    dotsContainer.appendChild(dot);
+  });
+  const dots = [...dotsContainer.children];
+
+
+  /* ---------- APPLY ACTIVE STATES ---------- */
+  function updateUI() {
+    slides.forEach((sl, i) => {
+      sl.classList.remove("center", "side");
+      sl.classList.add(i === index ? "center" : "side");
+    });
+
+    dots.forEach((d, i) => {
+      d.classList.toggle("active", i === index);
+    });
+  }
+
+
+  /* ---------- SLIDE TO INDEX ---------- */
+  function slideTo(i, animate = true) {
+  index = (i + slides.length) % slides.length;
+
+  const slideWidth = slides[0].offsetWidth + 24; // твой gap 24px
+  const viewportWidth = track.parentElement.offsetWidth;
+
+  const currentSlide = slides[index];
+  const currentWidth = currentSlide.offsetWidth;
+
+  // чистый базовый сдвиг как раньше
+  const baseOffset = -(slideWidth * index);
+
+  // центрируем слайд
+  const centerOffset = (viewportWidth - currentWidth) / 2;
+
+  // ДОБАВЛЯЕМ СИММЕТРИЮ ОГРЫЗКОВ
+  const symmetricalOffset = centerOffset - (24 / 2);
+  // 24 = gap, таким образом даём одинаковый остаток слева и справа
+
+  const finalOffset = baseOffset + symmetricalOffset;
+
+  track.style.transition = animate
+    ? "transform 0.9s cubic-bezier(.16,1,.3,1)"
+    : "none";
+
+  track.style.transform = `translateX(${finalOffset}px)`;
+
+  updateUI();
+}
+
+
+
+  /* ---------- AUTO SLIDE ---------- */
+  function autoStart() {
+    autoTimer = setInterval(() => {
+      slideTo(index + 1);
+    }, 3500);
+  }
+
+  updateUI();
+  slideTo(0);
+  autoStart();
+
+
+  /* ---------- DRAG CONTROL ---------- */
+  let startX = 0;
+  let current = 0;
+  let dragging = false;
+
+  function dragStart(e) {
+    clearInterval(autoTimer);
+    dragging = true;
+    track.classList.add("dragging");
+
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+    current = new DOMMatrix(getComputedStyle(track).transform).m41;
+  }
+
+  function dragMove(e) {
+    if (!dragging) return;
+
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const delta = x - startX;
+    track.style.transition = "none";
+    track.style.transform = `translateX(${current + delta}px)`;
+  }
+
+  function dragEnd(e) {
+    if (!dragging) return;
+    dragging = false;
+    track.classList.remove("dragging");
+
+    const x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const diff = x - startX;
+
+    if (Math.abs(diff) > 80) {
+      slideTo(index + (diff < 0 ? 1 : -1));
+    } else {
+      slideTo(index);
+    }
+
+    autoStart();
+  }
+
+  track.addEventListener("mousedown", dragStart);
+  window.addEventListener("mousemove", dragMove);
+  window.addEventListener("mouseup", dragEnd);
+
+  track.addEventListener("touchstart", dragStart, { passive: true });
+  window.addEventListener("touchmove", dragMove, { passive: true });
+  window.addEventListener("touchend", dragEnd);
+});
+
