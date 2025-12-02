@@ -776,7 +776,9 @@ header p {
   );
 }
 
-/* ===================== КНОПКА НАВЕРХ ===================== */
+/* =================================================
+                КНОПКА НАВЕРХ
+ ================================================== */
 
 .scroll-top {
   position: fixed;
@@ -816,7 +818,9 @@ header p {
   height: 28px;
 }
 
-/* ===================== ФУТЕР ===================== */
+/* ===================================================
+                         ФУТЕР
+  ====================================================== */
 
 footer {
   background: #fff;
@@ -902,7 +906,9 @@ footer .c {
   }
 }
 
-/* ===================== БЛОК ОФЕРТЫ КНОПКА ===================== */
+/* =====================================================
+                  БЛОК ОФЕРТЫ КНОПКА
+  ==================================================== */
 
 .offer-section {
   position: relative;
@@ -1002,7 +1008,9 @@ footer .c {
 }
 
 
-/* ===================== ОБЩИЙ ОВЕРЛЕЙ ДЛЯ МОДАЛОК ===================== */
+/* ===========================================================
+                   ОБЩИЙ ОВЕРЛЕЙ ДЛЯ МОДАЛОК
+  ============================================================ */
 
 #cardModal,
 #pricePopup,
@@ -1033,7 +1041,9 @@ footer .c {
   display: flex !important;
 }
 
-/* ===================== МОДАЛКА КАРТОЧКИ ===================== */
+/* ============================================
+                 МОДАЛКА КАРТОЧКИ
+  ======================================== */
 
 .modal-card {
   background: #fff;
@@ -1071,7 +1081,9 @@ footer .c {
   margin-bottom: 12px;
 }
 
-/* ===================== CALENDLY-МОДАЛКА ===================== */
+/* ===============================================
+              CALENDLY-МОДАЛКА
+  ==================================== */
 
 .calendly-modal-content {
   position: relative;
@@ -1107,7 +1119,9 @@ footer .c {
   color: #333;
 }
 
-/* ===================== МОДАЛКА КОНТАКТОВ ===================== */
+/* ===========================================================
+                         МОДАЛКА КОНТАКТОВ
+ ========================================================== */
 
 .contacts-modal-content {
   background: #fff;
@@ -1168,7 +1182,9 @@ footer .c {
   font-size: 15px;
 }
 
-/* ===================== МОДАЛКА ОФЕРТЫ (ТЕКСТ ДОГОВОРА) ===================== */
+/* ===================================================================
+              МОДАЛКА ОФЕРТЫ (ТЕКСТ ДОГОВОРА)
+  ============================================  */
 
 .offer-modal-content {
   background: #fff;
@@ -1235,7 +1251,9 @@ footer .c {
 
 
 
-/* ===================== МОДАЛКА ОПЛАТЫ ===================== */
+/* ============================================================
+                      МОДАЛКА ОПЛАТЫ
+============================================================ */
 
 .payment-modal-content {
   background: #fff;
@@ -1350,7 +1368,9 @@ footer .c {
   }
 }
 
-/* ===================== SUCCESS-МОДАЛКА ===================== */
+/* =========================================================
+                           SUCCESS-МОДАЛКА
+ =========================================================== */
 
 #successModal .popup-content {
   background: #fff;
@@ -1411,7 +1431,9 @@ canvas.confetti-canvas {
   }
 }
 
-/* ===================== PRICE POPUP (форма записи) ===================== */
+/* =====================================================
+                 PRICE POPUP (форма записи)
+========================================================== */
 
 #pricePopup {
   display: none;
@@ -1571,7 +1593,9 @@ canvas.confetti-canvas {
   pointer-events: none;
 }
 
-/* ===================== СКРОЛЛБАР ДЛЯ МОДАЛОК ===================== */
+/* ===================================================
+                    СКРОЛЛБАР ДЛЯ МОДАЛОК
+====================================================== */
 
 .modal-card,
 .offer-modal-content,
@@ -1623,7 +1647,9 @@ canvas.confetti-canvas {
 }
 
 
-/* ===================== CLIENTS ===================== */
+/* =======================================================
+                     КЛИЕНТЫ
+ ======================================================== */
 
 #clients {
   max-width: 1400px;
@@ -1705,3 +1731,217 @@ canvas.confetti-canvas {
   transform-style: preserve-3d;
   transition: transform 0.18s ease;
 }
+/* ================================================
+                    ОТЗЫВЫ
+  ============================================ */
+
+#testimonials {
+  max-width: 1400px;
+  margin: 120px auto;
+  padding: 0 20px;
+}
+
+.testimonials-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.testimonials-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;          /* по бокам режем, как у клиентов */
+  padding: 26px 0;           /* сверху/снизу запас, чтобы при scale ничто не резало */
+}
+
+.testimonials-track {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+  will-change: transform;
+  transform: translateX(0);
+}
+
+/* Карточка отзыва */
+.testimonial-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 22px 22px 24px;
+  width: 340px;
+  max-width: 90vw;
+  flex-shrink: 0;
+  position: relative;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.35s ease;
+  box-shadow: 0 0 0 rgba(0,0,0,0);  /* тени НЕТ, пока мышка не навелась */
+  transform-origin: center;
+}
+
+.testimonial-card {
+  border: 2px solid transparent;         /* изначально невидимая */
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    filter 0.35s ease;
+}
+
+.testimonial-card:hover {
+  transform: scale(1.08) translateY(-6px);
+  border-color: #e7d3a8; /* мягкий теплый оттенок под фон, можно подогнать под твой бренд */
+}
+
+
+
+/* Текст отзыва */
+.testimonial-text {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 18px;
+}
+
+/* Автор */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--black);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 15.5px;
+}
+
+.testimonial-role {
+  font-size: 14px;
+  color: #777;
+}
+
+/* fade-up для секции отзывов, как у клиентов */
+#testimonials.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  #testimonials {
+    margin: 80px auto;
+  }
+  .testimonials-title {
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+  .testimonial-card {
+    width: 300px;
+  }
+}
+
+
+/* =========================================================
+   Вертикальная сетка 32px между секциями
+   ========================================================= */
+
+.section {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.section + .section {
+  margin-top: 32px !important;
+}
+
+.section h2,
+.testimonials-title,
+.clients-title {
+  margin-bottom: 32px !important;
+}
+
+/* ==================   Testimonials  ========================================================= */
+
+#testimonials.section {
+  padding-bottom: 0 !important;
+  margin-bottom: 32px !important;
+}
+
+/* НЕ ОГРАНИЧИВАЕМ ВЫСОТУ — она должна быть авто! */
+.testimonials-wrapper {
+  overflow: hidden !important;
+  position: relative;
+}
+
+.testimonials-track {
+  display: flex !important;
+  flex-wrap: nowrap !important; /* ← ключ */
+  align-items: stretch !important;
+}
+
+/* Перенос fade-up на содержимое */
+#testimonials.fade-up { transform: none !important; }
+#testimonials.fade-up > * {
+  transform: translateY(40px) scale(0.98);
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity .9s cubic-bezier(0.16,1,0.3,1),
+    transform .9s cubic-bezier(0.16,1,0.3,1),
+    filter .9s cubic-bezier(0.16,1,0.3,1);
+}
+#testimonials.fade-up.visible > * {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ======================   Clients   ========================================================= */
+
+#clients.section {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 32px !important;
+}
+
+/* fade-up аналогично */
+#clients.fade-up { transform: none !important; }
+#clients.fade-up > * {
+  transform: translateY(40px) scale(0.98);
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity .9s cubic-bezier(0.16,1,0.3,1),
+    transform .9s cubic-bezier(0.16,1,0.3,1),
+    filter .9s cubic-bezier(0.16,1,0.3,1);
+}
+#clients.fade-up.visible > * {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ======================   Cards cleanup   ========================================================= */
+.cards {
+  margin-bottom: 0 !important;
+}
+
+/* ==============   Offer + Footer   ========================================================= */
+
+.offer-section { margin-top: 0 !important; }
+.offer-section + footer { margin-top: 0 !important; }

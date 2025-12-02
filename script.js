@@ -329,7 +329,7 @@ window.addEventListener('scroll', () => requestAnimationFrame(updateParallax));
 window.addEventListener('load', updateParallax);
 
 /* =========================================================
-   PHONE MASK (fixed)
+   PHONE MASK
    ========================================================= */
 const phoneInput = document.getElementById('phoneInput');
 if (phoneInput) {
@@ -417,7 +417,7 @@ function closeSuccessModal() {
 }
 
 /* =========================================================
-   FORM SEND (unchanged)
+   FORM SEND
    ========================================================= */
 document.getElementById('bookingForm')?.addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -523,7 +523,7 @@ document.addEventListener('keydown', e => {
 });
 
 /* =========================================================
-   FIELD HIGHLIGHT LOGIC
+   ПОДСВЕТКА ПОЛЕЙ ВВОДА
    ========================================================= */
 document.querySelectorAll('#bookingForm input[required]').forEach(input => {
   const check = () => {
@@ -583,7 +583,9 @@ function resetFormHighlights() {
   });
 })();
 
-/* ===================== CLIENTS: scroll + auto-highlight + magnetic tilt + FPS BOOST ===================== */
+/* ====================================================================
+CLIENTS: scroll + auto-highlight + magnetic tilt + FPS BOOST
+ ======================================================================== */
 window.addEventListener('load', () => {
   const section = document.getElementById('clients');
   const track = document.getElementById('clientsTrack');
@@ -736,5 +738,59 @@ window.addEventListener('load', () => {
 
 });
 
+/* ===================== TESTIMONIALS: scroll + hover pause ===================== */
+window.addEventListener('load', () => {
+  const section = document.getElementById('testimonials');
+  const track = document.getElementById('testimonialsTrack');
+  if (!section || !track) return;
+
+  /* Плавное появление (решаем fade-up / visible, как у клиентов) */
+  const obs = new IntersectionObserver((entries, o) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        section.classList.add('visible');
+        o.unobserve(section);
+      }
+    });
+  }, { threshold: 0.2 });
+  obs.observe(section);
+
+  /* Бесшовное дублирование карточек, как у клиентов */
+  const cards = Array.from(track.children);
+  cards.forEach(card => track.appendChild(card.cloneNode(true)));
+
+  let pos = 0;
+  const baseSpeed = 0.35;   // скорость в px за кадр (можно подкрутить)
+  let paused = false;
+
+  function loop() {
+    if (!paused) {
+      pos -= baseSpeed;
+      const half = track.scrollWidth / 2;
+
+      if (pos <= -half) {
+        pos += half;        // возврат в начало — бесконечная лента
+      }
+
+      track.style.transform = `translateX(${pos}px)`;
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  /* При наведении на карточку — увеличиваем и останавливаем ленту */
+  track.querySelectorAll('.testimonial-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      paused = true;
+    });
+    card.addEventListener('mouseleave', () => {
+      paused = false;
+    });
+  });
+
+  /* На всякий случай — если водим мышью по пустому месту ленты */
+  track.addEventListener('mouseenter', () => { paused = true; });
+  track.addEventListener('mouseleave', () => { paused = false; });
+});
 
 
