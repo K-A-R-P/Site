@@ -22,6 +22,7 @@ body {
   overflow-x: hidden;
   scroll-padding-top: 0 !important;
 }
+
 h1, h2, h3,
 .products-header,
 .clients-title,
@@ -47,6 +48,7 @@ h1, h2, h3,
     filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
+
 /* ===== Более плавный fade-up для загрузки (не трогаем scroll) ===== */
 .fade-up {
   transition:
@@ -61,7 +63,6 @@ h1, h2, h3,
   transform: translateY(0) scale(1) !important;
   filter: blur(0) !important;
 }
-
 
 .fade-up.visible,
 .scroll-animate.visible {
@@ -111,6 +112,7 @@ h1, h2, h3,
   opacity: 1;
   transform: translateY(0);
 }
+
 /* Плавная, замедленная анимация для ABOUT */
 #about .scroll-animate-left,
 #about .fade-left {
@@ -118,6 +120,21 @@ h1, h2, h3,
       opacity 2.4s cubic-bezier(0.16, 1, 0.3, 1),
       transform 2.4s cubic-bezier(0.16, 1, 0.3, 1),
       filter 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Отключение тяжёлых анимаций, если в системе включено reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .scroll-animate,
+  .fade-left,
+  .scroll-animate-left,
+  .fade-in-footer,
+  .offer-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
 }
 
 
@@ -234,7 +251,7 @@ header p {
 .section {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 0; /* для сетки 32px — отступы дальше задаём через margin между секциями */
 }
 
 /* ===================== ABOUT ===================== */
@@ -453,11 +470,10 @@ header p {
   background: #fff;
   padding: 26px 26px 30px;
   border-radius: 22px;
-  /* border: 2px solid var(--yellow); */
   box-shadow: 0 12px 28px rgba(0,0,0,0.08);
   transition:
-      transform .8s cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow .8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform .8s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow .8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mini-feature:hover {
@@ -465,7 +481,7 @@ header p {
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
 
-/* ===== верх карточки: иконка + заголовок ===== */
+/* верх карточки: иконка + заголовок */
 
 .mini-top {
   display: flex;
@@ -480,7 +496,8 @@ header p {
   flex-shrink: 0;
 }
 
-/* 🔥 WIGGLE-анимация иконки при hover карточки */
+/* WIGGLE-анимация */
+
 .mini-feature:hover .mini-icon {
   animation: icon-wiggle 0.45s ease-in-out;
 }
@@ -503,22 +520,20 @@ header p {
   text-align: center;
 }
 
-/* ===== ТЕКСТ ===== */
+/* ТЕКСТ */
 
 .mini-feature p {
-  margin: 6px 0 0 0;
+  margin: 6px 0 0;
   font-size: 15px;
   line-height: 1.55;
 }
 
 .mini-feature ul {
-  margin: 10px 0 0 0;
+  margin: 10px 0 0;
   padding-left: 20px;
   line-height: 1.55;
   font-size: 15px;
 }
-
-
 
 
 /* ===================== PRODUCTS / КАРТОЧКИ ===================== */
@@ -533,7 +548,6 @@ header p {
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-
   gap: 28px;
   justify-content: center;
   width: 100%;
@@ -542,12 +556,13 @@ header p {
   margin: 0 auto;
 }
 
-/* Сама карточка */
+/* Карточка продукта */
+
 .card {
   background: #fff;
   border-radius: 32px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -558,13 +573,13 @@ header p {
     box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* hover для карточки в стиле Apple */
 .card:hover {
   transform: scale(1.035);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.28);
 }
 
-/* Фото в карточке */
+/* Фото */
+
 .card img {
   width: 100%;
   height: 230px;
@@ -579,7 +594,8 @@ header p {
   transform: scale(1.03);
 }
 
-/* Блик по карточке */
+/* Блик */
+
 .card::before {
   content: '';
   position: absolute;
@@ -587,9 +603,9 @@ header p {
   background: linear-gradient(
     115deg,
     transparent 30%,
-    rgba(247, 200, 67, 0.22) 44%,
-    rgba(255, 255, 255, 0.9) 50%,
-    rgba(247, 200, 67, 0.22) 56%,
+    rgba(247,200,67,0.22) 44%,
+    rgba(255,255,255,0.9) 50%,
+    rgba(247,200,67,0.22) 56%,
     transparent 70%
   );
   transform: translateX(-120%) skewX(-20deg);
@@ -606,16 +622,16 @@ header p {
   transform: translateX(120%) skewX(-20deg);
 }
 
-/* Контент в карточке */
+/* Контент */
 
 .card-content {
   padding: 20px 24px 28px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  background: #fff;
   position: relative;
   z-index: 3;
-  background: #fff;
 }
 
 .card-text-content {
@@ -627,7 +643,6 @@ header p {
   font-size: 19px;
   margin-bottom: 12px;
   text-align: center;
-  width: 100%;
 }
 
 .card-text-content p {
@@ -636,7 +651,7 @@ header p {
   line-height: 1.55;
 }
 
-/* "Читати далі" + underline при hover карточки */
+/* Читати далі */
 
 .readmore {
   color: var(--yellow);
@@ -656,7 +671,6 @@ header p {
   height: 2px;
   background: var(--yellow);
   transition: width 0.68s cubic-bezier(0.22, 1, 0.36, 1);
-  transform-origin: left;
 }
 
 .card:hover .readmore::after {
@@ -665,10 +679,10 @@ header p {
 
 .card:hover .readmore {
   color: #e8b82e;
-  text-shadow: 0 0 8px rgba(247, 200, 67, 0.3);
+  text-shadow: 0 0 8px rgba(247,200,67,0.3);
 }
 
-/* Кнопки внутри карточки */
+/* Кнопки */
 
 .buttons-row {
   margin-top: auto;
@@ -708,23 +722,21 @@ header p {
 .price-btn {
   background: var(--yellow);
   color: var(--black);
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0,0,0,0.15);
 }
-
-/* hover кнопок */
 
 .btn-main:hover {
   background: var(--yellow);
   color: var(--black);
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: 0 8px 25px rgba(247, 200, 67, 0.4);
+  border-color: rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(247,200,67,0.4);
 }
 
 .price-btn:hover {
   background: var(--black);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 /* Блик на кнопках */
@@ -740,49 +752,22 @@ header p {
   background: linear-gradient(
     115deg,
     transparent 30%,
-    rgba(247, 200, 67, 0.3) 44%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(247, 200, 67, 0.3) 56%,
+    rgba(247,200,67,0.3) 44%,
+    rgba(255,255,255,0.85) 50%,
+    rgba(247,200,67,0.3) 56%,
     transparent 70%
   );
   transform: skewX(-20deg);
-  transition: left 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: left 1.4s cubic-bezier(0.16,1,0.3,1);
   pointer-events: none;
-  z-index: 2;
   opacity: 0;
+  z-index: 2;
 }
 
 .btn:hover::before,
 .price-btn:hover::before {
   left: 120%;
   opacity: 1;
-}
-
-.btn:hover,
-.price-btn:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
-}
-
-.btn-main:hover::before {
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(247, 200, 67, 0.4) 44%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(247, 200, 67, 0.4) 56%,
-    transparent 70%
-  );
-}
-
-.price-btn:hover::before {
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.7) 48%,
-    rgba(255, 255, 255, 0.95) 52%,
-    rgba(255, 255, 255, 0.7) 56%,
-    transparent 70%
-  );
 }
 
 /* =================================================
@@ -826,7 +811,6 @@ header p {
   width: 28px;
   height: 28px;
 }
-
 /* ===================================================
                          ФУТЕР
   ====================================================== */
@@ -866,7 +850,7 @@ footer .c {
   height: 48px;
   overflow: hidden;
   border-radius: 50%;
-  transition: transform 0.35s ease;
+  transition: transform .35s ease;
 }
 
 .social a:hover,
@@ -882,7 +866,7 @@ footer .c {
   position: absolute;
   top: 0;
   left: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity .4s ease;
 }
 
 .social a img.gray,
@@ -915,8 +899,9 @@ footer .c {
   }
 }
 
+
 /* =====================================================
-                  БЛОК ОФЕРТЫ КНОПКА
+                  БЛОК ОФЕРТЫ — КНОПКА
   ==================================================== */
 
 .offer-section {
@@ -936,29 +921,29 @@ footer .c {
   left: 50%;
   transform: translateX(-50%);
 
-  background: var(--gray);              /* 🔥 было yellow */
-  color: #fff !important;               /* 🔥 белый текст */
+  background: var(--gray);
+  color: #fff !important;
 
   font-weight: 600;
   font-size: 14px;
   padding: 12px 48px;
+
   border: none;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
+  border: 3px solid var(--gray);
+  border-top: 0;
+  background-clip: padding-box;
 
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
   cursor: pointer;
   user-select: none;
 
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
-  border: 3px solid var(--gray);        /* 🔥 в цвет фона */
-  border-top: 0;
-  background-clip: padding-box;
 }
 
-
-/* Ховер всегда делает кнопку жёлтой, даже если она неактивна */
+/* Ховер всегда желтый */
 .offer-button:hover {
   background: var(--yellow);
   color: var(--black) !important;
@@ -966,9 +951,7 @@ footer .c {
   border-color: var(--yellow);
 }
 
-
-
-/* Блик по кнопке оферты */
+/* Блик */
 
 .offer-button::before {
   content: '';
@@ -977,16 +960,18 @@ footer .c {
   left: -120%;
   width: 60%;
   height: 100%;
+
   background: linear-gradient(
     115deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.4) 44%,
-    rgba(255, 255, 255, 0.9) 50%,
-    rgba(255, 255, 255, 0.4) 56%,
+    rgba(255,255,255,0.4) 44%,
+    rgba(255,255,255,0.9) 50%,
+    rgba(255,255,255,0.4) 56%,
     transparent 70%
   );
+
   transform: skewX(-20deg);
-  transition: left 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: left 1.4s cubic-bezier(0.16,1,0.3,1);
   pointer-events: none;
   opacity: 0;
   z-index: 2;
@@ -1002,18 +987,18 @@ footer .c {
     padding: 10px 36px;
     font-size: 13px;
   }
-
   .offer-button:hover {
     padding: 10px 44px;
   }
 }
 
-/* === Активное состояние кнопки оферти (модалка открыта) === */
+/* Активная кнопка (модалка открыта) */
+
 #offerModal.active ~ .offer-section .offer-button,
 .offer-button.active {
-  background: var(--yellow);        /* жёлтая кнопка */
-  color: var(--black) !important;   /* чёрный текст */
-  border-color: var(--yellow);      /* жёлтая рамка */
+  background: var(--yellow);
+  color: var(--black) !important;
+  border-color: var(--yellow);
 }
 
 
@@ -1031,7 +1016,7 @@ footer .c {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(12px);
   z-index: 9999;
   align-items: center;
@@ -1039,7 +1024,7 @@ footer .c {
   padding: 20px;
 }
 
-/* Активные состояния (где нужно) */
+/* Активные состояния */
 
 #cardModal.active,
 #calendlyModal.active,
@@ -1049,10 +1034,9 @@ footer .c {
 #successModal.active {
   display: flex !important;
 }
-
 /* ============================================
                  МОДАЛКА КАРТОЧКИ
-  ======================================== */
+  ============================================ */
 
 .modal-card {
   background: #fff;
@@ -1061,10 +1045,10 @@ footer .c {
   width: 100%;
   max-height: 95vh;
   overflow-y: auto;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   display: flex;
   flex-direction: column;
-  animation: modalShowLux 0.92s cubic-bezier(0.23, 0, 0.32, 1) forwards;
+  animation: modalShowLux .92s cubic-bezier(0.23,0,0.32,1) forwards;
 }
 
 #modalImg {
@@ -1090,9 +1074,10 @@ footer .c {
   margin-bottom: 12px;
 }
 
+
 /* ===============================================
               CALENDLY-МОДАЛКА
-  ==================================== */
+  =============================================== */
 
 .calendly-modal-content {
   position: relative;
@@ -1102,7 +1087,7 @@ footer .c {
   height: 90vh;
   max-height: 96vh;
   max-width: 96vw;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.5);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1121,16 +1106,17 @@ footer .c {
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color .3s;
 }
 
 .calendly-close-btn:hover {
   color: #333;
 }
 
+
 /* ===========================================================
                          МОДАЛКА КОНТАКТОВ
- ========================================================== */
+  =========================================================== */
 
 .contacts-modal-content {
   background: #fff;
@@ -1139,7 +1125,7 @@ footer .c {
   text-align: center;
   max-width: 460px;
   width: 100%;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   position: relative;
 }
 
@@ -1191,9 +1177,10 @@ footer .c {
   font-size: 15px;
 }
 
+
 /* ===================================================================
               МОДАЛКА ОФЕРТЫ (ТЕКСТ ДОГОВОРА)
-  ============================================  */
+  =================================================================== */
 
 .offer-modal-content {
   background: #fff;
@@ -1203,13 +1190,12 @@ footer .c {
   max-height: 95vh;
   overflow-y: auto;
   padding: 36px 40px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   line-height: 1.75;
   font-size: 16px;
-  border: none;
 }
 
-/* Отрубаем линию/отступы offer-section внутри модалки */
+/* Убираем стиль offer-section внутри модалки */
 .offer-modal-content .offer-section {
   border: 0 !important;
   margin-top: 0 !important;
@@ -1234,7 +1220,7 @@ footer .c {
 .offer-subtitle {
   font-size: 16px;
   font-weight: 700;
-  margin: 16px 0 16px;
+  margin: 16px 0;
 }
 
 .offer-item {
@@ -1259,10 +1245,9 @@ footer .c {
 }
 
 
-
 /* ============================================================
                       МОДАЛКА ОПЛАТЫ
-============================================================ */
+  ============================================================ */
 
 .payment-modal-content {
   background: #fff;
@@ -1271,7 +1256,7 @@ footer .c {
   width: 100%;
   padding: 40px 48px;
   text-align: center;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
 }
 
 .payment-modal-content h3 img {
@@ -1284,7 +1269,6 @@ footer .c {
 
 .payment-modal-content h3 {
   font-size: 28px;
-  vertical-align: middle;
 }
 
 .payment-grid {
@@ -1376,7 +1360,6 @@ footer .c {
     font-size: 14.5px;
   }
 }
-
 /* =========================================================
                            SUCCESS-МОДАЛКА
  =========================================================== */
@@ -1388,8 +1371,8 @@ footer .c {
   text-align: center;
   max-width: 440px;
   width: 100%;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-  animation: modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  animation: modalShow .4s cubic-bezier(0.16,1,0.3,1);
   box-sizing: border-box;
 }
 
@@ -1440,6 +1423,7 @@ canvas.confetti-canvas {
   }
 }
 
+
 /* =====================================================
                  PRICE POPUP (форма записи)
 ========================================================== */
@@ -1448,7 +1432,7 @@ canvas.confetti-canvas {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(0,0,0,0.78);
   backdrop-filter: blur(14px);
   z-index: 9999;
   align-items: flex-start;
@@ -1470,8 +1454,8 @@ canvas.confetti-canvas {
   max-width: 420px;
   width: 100%;
   margin: 20px auto 40px;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
-  animation: modalShow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.38);
+  animation: modalShow .45s cubic-bezier(0.16,1,0.3,1);
   position: relative;
 }
 
@@ -1518,14 +1502,14 @@ canvas.confetti-canvas {
   border-radius: 16px;
   font-size: 16px;
   margin-bottom: 16px;
-  transition: all 0.3s;
+  transition: all .3s;
 }
 
 #pricePopup input:focus,
 #pricePopup textarea:focus {
   outline: none;
   border-color: var(--yellow);
-  box-shadow: 0 0 0 4px rgba(247, 200, 67, 0.22);
+  box-shadow: 0 0 0 4px rgba(247,200,67,0.22);
 }
 
 #pricePopup textarea {
@@ -1597,10 +1581,11 @@ canvas.confetti-canvas {
   top: 50%;
   transform: translateY(-50%);
   color: #e53935;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 20px;
   pointer-events: none;
 }
+
 
 /* ===================================================
                     СКРОЛЛБАР ДЛЯ МОДАЛОК
@@ -1610,7 +1595,7 @@ canvas.confetti-canvas {
 .offer-modal-content,
 .calendly-modal-content {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+  scrollbar-color: rgba(0,0,0,0.25) transparent;
 }
 
 .modal-card::-webkit-scrollbar,
@@ -1630,7 +1615,7 @@ canvas.confetti-canvas {
 .modal-card::-webkit-scrollbar-thumb,
 .offer-modal-content::-webkit-scrollbar-thumb,
 .calendly-modal-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0,0,0,0.22);
   border-radius: 10px;
   border: 3px solid transparent;
   background-clip: content-box;
@@ -1638,7 +1623,7 @@ canvas.confetti-canvas {
 
 .modal-card::-webkit-scrollbar-thumb:hover,
 .offer-modal-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0,0,0,0.35);
   background-clip: content-box;
 }
 
@@ -1649,16 +1634,15 @@ canvas.confetti-canvas {
     display: none;
   }
 }
+
 /* чтобы fade-up не убивал hover-увеличение мини-карточек */
 .mini-feature.fade-up.visible:hover {
   transform: scale(1.04) !important;
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
-
-
 /* =======================================================
                      КЛИЕНТЫ
- ======================================================== */
+======================================================== */
 
 #clients {
   max-width: 1400px;
@@ -1684,10 +1668,9 @@ canvas.confetti-canvas {
   gap: 80px;
   width: max-content;
   will-change: transform;
-  transform: translateX(0);
 }
 
-/* Контейнер логотипа */
+/* логотип */
 .logo-box {
   display: flex;
   align-items: center;
@@ -1696,53 +1679,47 @@ canvas.confetti-canvas {
   border-radius: 12px;
   flex-shrink: 0;
   transition: transform .22s ease;
-  will-change: transform;
+  perspective: 800px; /* для магнитного наклона */
 }
 
-/* Лого */
 .logo-box img {
   height: 60px;
   object-fit: contain;
   opacity: .65;
   filter: grayscale(1);
-  transform: translateZ(0);
-  will-change: opacity, filter;
-  transition: opacity .22s ease, filter .22s ease;
+  transition: opacity .22s ease, filter .22s ease, transform .18s ease;
+  transform-style: preserve-3d;
 }
 
-/* ========= РУЧНОЙ HOVER ВОЗВРАЩАЕМ 🔥 — работает независимо от автоHighlight ========= */
+/* Hover */
 .logo-box.hovered {
-  transform: scale(1.22) !important;   /* ручной скейл */
+  transform: scale(1.22);
 }
-
 .logo-box.hovered img {
-  opacity: 1 !important;
-  filter: grayscale(0) !important;     /* раскрашивание */
+  opacity: 1;
+  filter: grayscale(0);
 }
 
 /* fade-up */
-#clients.fade-up.visible {
+#clients.fade-up > * {
+  transform: translateY(40px) scale(.98);
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity .9s cubic-bezier(.16,1,.3,1),
+    transform .9s cubic-bezier(.16,1,.3,1),
+    filter .9s cubic-bezier(.16,1,.3,1);
+}
+#clients.fade-up.visible > * {
+  transform: translateY(0) scale(1);
   opacity: 1;
-  transform: translateY(0);
   filter: blur(0);
 }
 
-.logo-box {
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-/* ===================== MAGNETIC TILT ===================== */
-.logo-box {
-  perspective: 800px;
-}
 
-.logo-box img {
-  transform-style: preserve-3d;
-  transition: transform 0.18s ease;
-}
-/* ================================================
-                    ОТЗЫВЫ
-  ============================================ */
+/* =======================================================
+                     ОТЗЫВЫ
+======================================================== */
 
 #testimonials {
   max-width: 1400px;
@@ -1760,8 +1737,8 @@ canvas.confetti-canvas {
 .testimonials-wrapper {
   position: relative;
   width: 100%;
-  overflow: hidden;          /* по бокам режем, как у клиентов */
-  padding: 26px 0;           /* сверху/снизу запас, чтобы при scale ничто не резало */
+  overflow: hidden;    /* как у клиентов */
+  padding: 26px 0;
 }
 
 .testimonials-track {
@@ -1769,10 +1746,9 @@ canvas.confetti-canvas {
   gap: 32px;
   width: max-content;
   will-change: transform;
-  transform: translateX(0);
 }
 
-/* Карточка отзыва */
+/* Карточка */
 .testimonial-card {
   background: #fff;
   border-radius: 24px;
@@ -1780,35 +1756,24 @@ canvas.confetti-canvas {
   width: 340px;
   max-width: 90vw;
   flex-shrink: 0;
-  position: relative;
+  border: 2px solid transparent;
   transition:
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.35s ease;
-  box-shadow: 0 0 0 rgba(0,0,0,0);  /* тени НЕТ, пока мышка не навелась */
-  transform-origin: center;
-}
-
-.testimonial-card {
-  border: 2px solid transparent;         /* изначально невидимая */
-  transition:
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.35s ease,
-    filter 0.35s ease;
+    transform .45s cubic-bezier(0.16,1,0.3,1),
+    border-color .35s ease,
+    filter .35s ease;
 }
 
 .testimonial-card:hover {
   transform: scale(1.08) translateY(-6px);
-  border-color: #e7d3a8; /* мягкий теплый оттенок под фон, можно подогнать под твой бренд */
+  border-color: #e7d3a8;
 }
 
-
-
-/* Текст отзыва */
+/* Текст */
 .testimonial-text {
   font-size: 15.5px;
   line-height: 1.7;
-  color: #444;
+  font-style: italic !important;
+  color: var(--gray) !important;
   margin-bottom: 18px;
 }
 
@@ -1825,12 +1790,11 @@ canvas.confetti-canvas {
   border-radius: 50%;
   background: var(--yellow);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   font-weight: 700;
   color: var(--black);
   font-size: 18px;
-  flex-shrink: 0;
 }
 
 .testimonial-name {
@@ -1843,14 +1807,22 @@ canvas.confetti-canvas {
   color: #777;
 }
 
-/* fade-up для секции отзывов, как у клиентов */
-#testimonials.fade-up.visible {
+/* fade-up */
+#testimonials.fade-up > * {
+  transform: translateY(40px) scale(.98);
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity .9s cubic-bezier(.16,1,.3,1),
+    transform .9s cubic-bezier(.16,1,.3,1),
+    filter .9s cubic-bezier(.16,1,.3,1);
+}
+#testimonials.fade-up.visible > * {
+  transform: translateY(0) scale(1);
   opacity: 1;
-  transform: translateY(0);
   filter: blur(0);
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
   #testimonials {
     margin: 80px auto;
@@ -1865,105 +1837,33 @@ canvas.confetti-canvas {
 }
 
 
-/* =========================================================
-   Вертикальная сетка 32px между секциями
-   ========================================================= */
+/* =======================================================
+                СЕТКА 32px
+======================================================== */
 
 .section {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
-
 .section + .section {
   margin-top: 32px !important;
 }
-
 .section h2,
 .testimonials-title,
 .clients-title {
   margin-bottom: 32px !important;
 }
 
-/* ==================   Testimonials  ========================================================= */
-
-#testimonials.section {
-  padding-bottom: 0 !important;
-  margin-bottom: 32px !important;
-}
-
-/* НЕ ОГРАНИЧИВАЕМ ВЫСОТУ — она должна быть авто! */
-.testimonials-wrapper {
-  overflow: hidden !important;
-  position: relative;
-}
-
-.testimonials-track {
-  display: flex !important;
-  flex-wrap: nowrap !important; /* ← ключ */
-  align-items: stretch !important;
-}
-
-/* Перенос fade-up на содержимое */
-#testimonials.fade-up { transform: none !important; }
-#testimonials.fade-up > * {
-  transform: translateY(40px) scale(0.98);
-  opacity: 0;
-  filter: blur(10px);
-  transition:
-    opacity .9s cubic-bezier(0.16,1,0.3,1),
-    transform .9s cubic-bezier(0.16,1,0.3,1),
-    filter .9s cubic-bezier(0.16,1,0.3,1);
-}
-#testimonials.fade-up.visible > * {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  filter: blur(0);
-}
-
-/* ==== Текст відгуку курсивом і в кольорі --gray ==== */
-.testimonial-text {
-  font-style: italic !important;
-  color: var(--gray) !important;
-}
-
-
-/* ======================   Clients   ========================================================= */
-
+#testimonials.section,
 #clients.section {
-  padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-bottom: 32px !important;
 }
 
-/* fade-up аналогично */
-#clients.fade-up { transform: none !important; }
-#clients.fade-up > * {
-  transform: translateY(40px) scale(0.98);
-  opacity: 0;
-  filter: blur(10px);
-  transition:
-    opacity .9s cubic-bezier(0.16,1,0.3,1),
-    transform .9s cubic-bezier(0.16,1,0.3,1),
-    filter .9s cubic-bezier(0.16,1,0.3,1);
-}
-#clients.fade-up.visible > * {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  filter: blur(0);
-}
 
-/* ======================   Cards cleanup   ========================================================= */
-.cards {
-  margin-bottom: 0 !important;
-}
-
-/* ==============   Offer + Footer   ========================================================= */
-
-.offer-section { margin-top: 0 !important; }
-.offer-section + footer { margin-top: 0 !important; }
-
-
-/* ===================== APPLE GALLERY — FIXED FULL VERSION (FINAL, WORKING) ===================== */
+/* =======================================================
+                   APPLE GALLERY — ЧИСТАЯ ВЕРСИЯ
+======================================================== */
 
 /* секция */
 #appleGallery.section {

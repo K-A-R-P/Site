@@ -4,8 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="рабочая версия с галереей">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="рабочая версия с галереей и отзывами курсивом">
+      <change afterPath="$PROJECT_DIR$/assets/images/122.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/budget.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/kpi.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/oblik-control.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/rashody.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/strat-plan.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/upr-uchet.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favicon-180.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favicon-192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favicon-32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favicon-512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00089" summary="шрифт оферты">
-      <option name="closed" value="true" />
-      <created>1764315424180</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1764315424180</updated>
     </task>
     <task id="LOCAL-00090" summary="шрифт оферты">
       <option name="closed" value="true" />
@@ -460,11 +466,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764659914230</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="рабочая версия с галереей и отзывами курсивом">
+      <option name="closed" value="true" />
+      <created>1764661062757</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1764661062759</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Рабочая версия" />
     <MESSAGE value="фикс полос в оферте" />
     <MESSAGE value="эплл анимация" />
     <MESSAGE value="эплл анимация подбор" />
@@ -489,6 +502,7 @@
     <MESSAGE value="рабочая версия с отзывами" />
     <MESSAGE value="рабочая версия с отзывами (прокрутка в видимую зону)" />
     <MESSAGE value="рабочая версия с галереей" />
-    <option name="LAST_COMMIT_MESSAGE" value="рабочая версия с галереей" />
+    <MESSAGE value="рабочая версия с галереей и отзывами курсивом" />
+    <option name="LAST_COMMIT_MESSAGE" value="рабочая версия с галереей и отзывами курсивом" />
   </component>
 </project>
