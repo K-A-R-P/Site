@@ -738,13 +738,16 @@ window.addEventListener('load', () => {
 
 });
 
-/* ===================== TESTIMONIALS: scroll + hover pause ===================== */
+/* ===================== TESTIMONIALS — PERFECT SMOOTH SINGLE TRACK ===================== */
 window.addEventListener('load', () => {
+
   const section = document.getElementById('testimonials');
-  const track = document.getElementById('testimonialsTrack');
+  const track   = document.getElementById('testimonialsTrack');
+  const wrapper = document.querySelector('.testimonials-wrapper');
+
   if (!section || !track) return;
 
-  /* Плавное появление (решаем fade-up / visible, как у клиентов) */
+  /* fade-up */
   const obs = new IntersectionObserver((entries, o) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -755,42 +758,88 @@ window.addEventListener('load', () => {
   }, { threshold: 0.2 });
   obs.observe(section);
 
-  /* Бесшовное дублирование карточек, как у клиентов */
-  const cards = Array.from(track.children);
-  cards.forEach(card => track.appendChild(card.cloneNode(true)));
+  /* ———————————————
+     1) ФИКСИРУЕМ ШИРИНУ ТРЕКА НАВСЕГДА
+     ——————————————— */
+  const initialWidth = track.scrollWidth;
+  track.style.width = initialWidth + "px";
 
+  /* ———————————————
+     2) ДЕЛАЕМ БЕССШОВНОЕ ДУБЛИРОВАНИЕ КОНТЕНТА
+     ——————————————— */
+  const cards = Array.from(track.children);
+  cards.forEach(c => track.appendChild(c.cloneNode(true)));
+
+  /* движение */
   let pos = 0;
-  const baseSpeed = 0.35;   // скорость в px за кадр (можно подкрутить)
+  let speed = 0.35;
   let paused = false;
 
+  let targetPos = 0;
+  let smoothPos = 0;
+
+  const half = initialWidth;   // фиксированная половина!
+
+  /* ———————————————
+     3) LOOP — БЕССШОВНЫЙ, ТЕПЕРЬ НЕ ПРЫГАЕТ НИКОГДА
+     ——————————————— */
   function loop() {
+
+    /* плавное движение */
+    smoothPos += (targetPos - smoothPos) * 0.08;
+    pos = smoothPos;
+
+    track.style.transform = `translateX(${pos}px)`;
+
     if (!paused) {
-      pos -= baseSpeed;
-      const half = track.scrollWidth / 2;
-
-      if (pos <= -half) {
-        pos += half;        // возврат в начало — бесконечная лента
-      }
-
-      track.style.transform = `translateX(${pos}px)`;
+      targetPos -= speed;
     }
+
+    /* ПЕРЕХОД В НАЧАЛО — БЕЗ РЫВКА */
+    if (pos <= -half) {
+      targetPos += half;
+      smoothPos += half;
+      pos += half;
+    }
+
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
 
-  /* При наведении на карточку — увеличиваем и останавливаем ленту */
+  /* ———————————————
+     4) АВТО-ВЫРАВНИВАНИЕ ПРИ HOVER
+     ——————————————— */
+  function ensureCardInView(card) {
+    const wrap = wrapper.getBoundingClientRect();
+    const r = card.getBoundingClientRect();
+
+    const leftOverflow  = wrap.left - r.left;
+    const rightOverflow = r.right - wrap.right;
+
+    if (leftOverflow > 0)  targetPos = pos + leftOverflow;
+    if (rightOverflow > 0) targetPos = pos - rightOverflow;
+  }
+
   track.querySelectorAll('.testimonial-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
+
+    card.addEventListener("mouseenter", () => {
       paused = true;
+
+      let active = true;
+      function stabilize() {
+        if (!active) return;
+        ensureCardInView(card);
+        requestAnimationFrame(stabilize);
+      }
+      stabilize();
+
+      card.addEventListener("mouseleave", () => {
+        active = false;
+        paused = false;
+      }, { once: true });
+
     });
-    card.addEventListener('mouseleave', () => {
-      paused = false;
-    });
+
   });
 
-  /* На всякий случай — если водим мышью по пустому месту ленты */
-  track.addEventListener('mouseenter', () => { paused = true; });
-  track.addEventListener('mouseleave', () => { paused = false; });
 });
-
-
