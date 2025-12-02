@@ -1920,6 +1920,13 @@ canvas.confetti-canvas {
   filter: blur(0);
 }
 
+/* ==== Текст відгуку курсивом і в кольорі --gray ==== */
+.testimonial-text {
+  font-style: italic !important;
+  color: var(--gray) !important;
+}
+
+
 /* ======================   Clients   ========================================================= */
 
 #clients.section {
