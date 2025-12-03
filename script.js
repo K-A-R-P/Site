@@ -563,6 +563,47 @@ function resetFormHighlights() {
 })();
 
 
+/* ================== DIPLOMA MODAL (FINAL PREMIUM VERSION) ================== */
+
+document.querySelectorAll('.about-card img').forEach(img => {
+  img.addEventListener('click', () => openDiplomaModal(img.src));
+});
+
+function openDiplomaModal(src) {
+  const modal = document.getElementById('diplomaModal');
+  const modalImg = document.getElementById('diplomaModalImg');
+
+  modalImg.src = src;
+  modal.classList.add('active');
+
+  // ===== FIX дергания страницы при исчезновении scrollbar =====
+  const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+  document.body.style.paddingRight = scrollBarWidth + "px";
+  document.body.style.overflow = "hidden";
+}
+
+// Клик по фону или по картинке — закрыть
+document.getElementById('diplomaModal').addEventListener('click', closeDiplomaModal);
+
+// ESC закрывает
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDiplomaModal();
+});
+
+function closeDiplomaModal() {
+  const modal = document.getElementById('diplomaModal');
+  modal.classList.remove('active');
+
+  // Даем время анимации исчезновения пройти,
+  // после чего возвращаем scroll и убираем paddingRight
+  setTimeout(() => {
+    if (!modal.classList.contains('active')) {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
+  }, 550); // === тайминг совпадает с CSS transition для плавного fade-out
+}
+
 
 
 
