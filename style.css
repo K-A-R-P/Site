@@ -336,94 +336,68 @@ header p {
   line-height: 2;
 }
 
-/* Карточки внутри about */
+/* ================== НОВЫЕ КАРТОЧКИ-DIPLOMAS ================== */
 
 .about-highlights {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 28px;
-  font-size: 16px;
-  line-height: 1.7;
+  display: flex;
+  gap: 28px;
+  margin-top: 12px;              /* 🔥 уменьшили расстояние к тексту */
+
+  flex-wrap: wrap;
+  align-items: flex-end;
+
+  justify-content: center;       /* 🔥 выравниваем дипломы по центру */
+  width: 100%;                   /* 🔥 чтобы занимали всю ширину текстового блока */
 }
-
-@media (max-width: 992px) {
-  .about-highlights {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-highlights {
-    gap: 20px;
-  }
-
-  .about-card {
-    padding: 20px 16px;
-  }
-
-  .about-card img {
-    width: 48px !important;
-    height: 48px !important;
-  }
-}
-
-/* Плавный hover для about-карточек */
 
 .about-card {
   background: #fff;
   border: 2px solid var(--yellow);
   border-radius: 20px;
-  padding: 24px 20px;
+  overflow: hidden;
+  padding: 0;                    /* убрали */
+  width: auto;
+  height: 184px;                 /* фиксированная высота как ты хотел */
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  align-items: flex-end;
+  cursor: pointer;
+
   transition:
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform .9s cubic-bezier(0.16,1,.3,1),
+    box-shadow .9s cubic-bezier(0.16,1,.3,1);
 }
 
 .about-card:hover {
-  transform: scale(1.04);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+  transform: scale(1.05);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.22);
 }
 
+/* изображение внутри */
 .about-card img {
-  width: 56px !important;
-  height: 56px !important;
-  flex-shrink: 0;
+  height: 100%;
+  width: auto;                   /* сохраняем пропорции */
+  display: block;
+  object-fit: contain;
+  object-position: bottom;       /* выравниваем СНИЗУ */
+  transition: transform .9s cubic-bezier(0.16,1,.3,1);
 }
 
 .about-card:hover img {
-  animation: wiggle 1.5s ease-in-out;
+  transform: scale(1.06);
 }
 
-@keyframes wiggle {
-  0% {
-    transform: rotate(0deg);
+/* мобильная адаптация */
+@media (max-width: 480px) {
+  .about-highlights {
+    gap: 20px;
+    justify-content: center;
   }
-  15% {
-    transform: rotate(-10deg);
-  }
-  30% {
-    transform: rotate(8deg);
-  }
-  45% {
-    transform: rotate(-6deg);
-  }
-  60% {
-    transform: rotate(4deg);
-  }
-  75% {
-    transform: rotate(-2deg);
-  }
-  100% {
-    transform: rotate(0deg);
+  .about-card {
+    height: 160px;
   }
 }
 
-/* Параллакс и блик на фото "Про мене" */
+/* ================== ПАРАЛЛАКС УБРАТЬ — ОСТАВЛЕН ТОЛЬКО БЛИК ================== */
 
 .about-photo-wrapper {
   position: relative;
@@ -443,7 +417,6 @@ header p {
   transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
-
 
 /* Блик поверх фото */
 .about-photo-wrapper::before {
@@ -472,10 +445,10 @@ header p {
   transform: translateX(120%) skewX(-20deg);
 }
 
-/* Лёгкий hover-эффект на фото */
+/* Лёгкий hover-эффект */
 .about-photo-wrapper:hover .about-photo {
   transform: scale(1.04) translateY(-8px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.28);
 }
 
 @media (max-width: 992px) {
@@ -483,6 +456,7 @@ header p {
     transform: none;
   }
 }
+
 
 
 /* =========================================

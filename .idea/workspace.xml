@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Рабочая версия">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Галерея без фаде ин">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/gallery/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/gallery/1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/gallery/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/gallery/2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/gallery/3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/gallery/3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/gallery/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/gallery/4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/gallery/5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/gallery/5.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,14 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00092" summary="шрифт оферты">
-      <option name="closed" value="true" />
-      <created>1764315773386</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1764315773386</updated>
     </task>
     <task id="LOCAL-00093" summary="шрифт оферты">
       <option name="closed" value="true" />
@@ -467,11 +453,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764742444327</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Галерея без фаде ин">
+      <option name="closed" value="true" />
+      <created>1764767845905</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1764767845905</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="эплл анимация подбор" />
     <MESSAGE value="эплл анимация подбор2" />
     <MESSAGE value="модалка оферты" />
     <MESSAGE value="модалка оферты возврат" />
@@ -496,6 +489,7 @@
     <MESSAGE value="рабочая версия с галереей и отзывами курсивом" />
     <MESSAGE value="упрощенный стиль и иконка" />
     <MESSAGE value="Рабочая версия" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рабочая версия" />
+    <MESSAGE value="Галерея без фаде ин" />
+    <option name="LAST_COMMIT_MESSAGE" value="Галерея без фаде ин" />
   </component>
 </project>
