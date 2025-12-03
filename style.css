@@ -336,32 +336,33 @@ header p {
   line-height: 2;
 }
 
-/* ================== НОВЫЕ КАРТОЧКИ-DIPLOMAS ================== */
+/* ================== ДИПЛОМЫ — 3 В РЯД НА ВСЮ ШИРИНУ ПРАВОЙ ЧАСТИ ================== */
 
 .about-highlights {
   display: flex;
-  gap: 28px;
-  margin-top: 12px;              /* 🔥 уменьшили расстояние к тексту */
+  justify-content: space-between;   /* 🔥 равномерно распределяем 3 карточки */
+  gap: 56px;                        /* 🔥 увеличили gap чтобы убрать белые поля */
+  margin-top: 16px;
 
-  flex-wrap: wrap;
-  align-items: flex-end;
-
-  justify-content: center;       /* 🔥 выравниваем дипломы по центру */
-  width: 100%;                   /* 🔥 чтобы занимали всю ширину текстового блока */
+  width: 100%;                       /* 🔥 занимает всю ширину about-text */
 }
 
+/* Каждая карточка берет ТРЕТЬ ширины */
 .about-card {
+  flex: 1 1 calc(33.333% - 56px);    /* 🔥 корректная ширина под новый gap */
   background: #fff;
   border: 2px solid var(--yellow);
   border-radius: 20px;
   overflow: hidden;
-  padding: 0;                    /* убрали */
-  width: auto;
-  height: 184px;                 /* фиксированная высота как ты хотел */
+
+  height: 184px;                     /* 🔥 ограничение высоты только десктоп */
+  max-height: 184px;
+
   display: flex;
   align-items: flex-end;
-  cursor: pointer;
+  justify-content: center;
 
+  cursor: pointer;
   transition:
     transform .9s cubic-bezier(0.16,1,.3,1),
     box-shadow .9s cubic-bezier(0.16,1,.3,1);
@@ -372,13 +373,13 @@ header p {
   box-shadow: 0 25px 60px rgba(0,0,0,0.22);
 }
 
-/* изображение внутри */
+/* Картинка */
 .about-card img {
-  height: 100%;
-  width: auto;                   /* сохраняем пропорции */
-  display: block;
+  height: 100%;         /* ограничиваем только высоту */
+  width: auto;          /* сохраняем пропорции JPG */
   object-fit: contain;
-  object-position: bottom;       /* выравниваем СНИЗУ */
+  object-position: bottom;
+
   transition: transform .9s cubic-bezier(0.16,1,.3,1);
 }
 
@@ -386,16 +387,36 @@ header p {
   transform: scale(1.06);
 }
 
-/* мобильная адаптация */
-@media (max-width: 480px) {
+}
+
+/* ================== АДАПТИВ ================== */
+
+/* Планшет — 2 в ряд */
+@media (max-width: 992px) {
   .about-highlights {
-    gap: 20px;
-    justify-content: center;
+    flex-wrap: wrap;
   }
   .about-card {
+    flex: 1 1 calc(50% - 16px);
     height: 160px;
+    max-height: 160px;
   }
 }
+
+/* Мобилка — 1 в ряд, высота НЕ ограничена */
+@media (max-width: 600px) {
+  .about-card {
+    flex: 1 1 100%;
+    height: auto;
+    max-height: none;
+  }
+  .about-card img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
 
 /* ================== ПАРАЛЛАКС УБРАТЬ — ОСТАВЛЕН ТОЛЬКО БЛИК ================== */
 
