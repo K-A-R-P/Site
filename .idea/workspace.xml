@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="дипломы">
-      <change afterPath="$PROJECT_DIR$/assets/gallery/10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/gallery/11.jpg" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="3 диплома в ряд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
@@ -76,14 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Рабочая версия">
-      <option name="closed" value="true" />
-      <created>1764325679035</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1764325679035</updated>
     </task>
     <task id="LOCAL-00101" summary="Рабочая версия">
       <option name="closed" value="true" />
@@ -469,11 +459,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764771047638</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="3 диплома в ряд">
+      <option name="closed" value="true" />
+      <created>1764784301033</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1764784301033</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="модалка оферты" />
     <MESSAGE value="модалка оферты возврат" />
     <MESSAGE value="тайминги" />
     <MESSAGE value="правка анимации" />
@@ -498,6 +495,7 @@
     <MESSAGE value="Рабочая версия" />
     <MESSAGE value="Галерея без фаде ин" />
     <MESSAGE value="дипломы" />
-    <option name="LAST_COMMIT_MESSAGE" value="дипломы" />
+    <MESSAGE value="3 диплома в ряд" />
+    <option name="LAST_COMMIT_MESSAGE" value="3 диплома в ряд" />
   </component>
 </project>

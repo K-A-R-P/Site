@@ -340,29 +340,28 @@ header p {
 
 .about-highlights {
   display: flex;
-  justify-content: space-between;   /* 🔥 равномерно распределяем 3 карточки */
-  gap: 56px;                        /* 🔥 увеличили gap чтобы убрать белые поля */
+  justify-content: space-between;
+  gap: 56px;                     /* 🔥 увеличили gap */
   margin-top: 16px;
-
-  width: 100%;                       /* 🔥 занимает всю ширину about-text */
+  width: 100%;
 }
 
-/* Каждая карточка берет ТРЕТЬ ширины */
+/* Десктоп: 3 в ряд */
 .about-card {
-  flex: 1 1 calc(33.333% - 56px);    /* 🔥 корректная ширина под новый gap */
+  flex: 1 1 calc(33.333% - 56px);
   background: #fff;
   border: 2px solid var(--yellow);
   border-radius: 20px;
   overflow: hidden;
 
-  height: 184px;                     /* 🔥 ограничение высоты только десктоп */
+  height: 184px;
   max-height: 184px;
 
   display: flex;
   align-items: flex-end;
   justify-content: center;
-
   cursor: pointer;
+
   transition:
     transform .9s cubic-bezier(0.16,1,.3,1),
     box-shadow .9s cubic-bezier(0.16,1,.3,1);
@@ -373,13 +372,11 @@ header p {
   box-shadow: 0 25px 60px rgba(0,0,0,0.22);
 }
 
-/* Картинка */
 .about-card img {
-  height: 100%;         /* ограничиваем только высоту */
-  width: auto;          /* сохраняем пропорции JPG */
+  height: 100%;
+  width: auto;
   object-fit: contain;
   object-position: bottom;
-
   transition: transform .9s cubic-bezier(0.16,1,.3,1);
 }
 
@@ -387,32 +384,35 @@ header p {
   transform: scale(1.06);
 }
 
-}
-
-/* ================== АДАПТИВ ================== */
-
-/* Планшет — 2 в ряд */
+/* ================== ПЛАНШЕТ — 2 В РЯД ================== */
 @media (max-width: 992px) {
   .about-highlights {
+    gap: 28px;
     flex-wrap: wrap;
   }
+
   .about-card {
-    flex: 1 1 calc(50% - 16px);
+    flex: 1 1 calc(50% - 28px);
     height: 160px;
     max-height: 160px;
   }
 }
 
-/* Мобилка — 1 в ряд, высота НЕ ограничена */
+/* ================== МОБИЛЬНЫЕ — 1 В РЯД ================== */
 @media (max-width: 600px) {
-  .about-card {
-    flex: 1 1 100%;
-    height: auto;
-    max-height: none;
+  .about-highlights {
+    gap: 20px;
   }
+
+  .about-card {
+    flex: 1 1 100% !important;   /* 🔥 ОДНА КАРТОЧКА В РЯД */
+    height: auto !important;     /* 🔥 высота НЕ ограничена */
+    max-height: none !important;
+  }
+
   .about-card img {
-    width: 100%;
-    height: auto;
+    width: 100%;                /* 🔥 тянется по ширине */
+    height: auto;               /* сохраняя пропорции */
   }
 }
 
