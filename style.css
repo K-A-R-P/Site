@@ -486,7 +486,7 @@ header p {
 
 
 /* =========================================
-   MINI FEATURES BLOCK — FIX BLUR TEXT
+   MINI FEATURES BLOCK — FINAL CLEAN VERSION
    ========================================= */
 
 /* GRID */
@@ -511,48 +511,48 @@ header p {
   }
 }
 
-/* CARD */
+/* CARD STRUCTURE */
+
 .mini-feature {
-  background: #fff;
-  padding: 0;
-  border-radius: 22px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-  overflow: hidden;
   position: relative;
+  border-radius: 22px;
+  overflow: visible; /* важно — чтобы рамка могла увеличиваться */
 }
 
-/* Inner — масштабируем только его */
-.mini-feature-inner {
-  padding: 26px 26px 30px;
+/* Рамка, которая увеличивается */
+.mini-feature-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
   transition:
-    transform .8s cubic-bezier(0.16,1,0.3,1),
-    box-shadow .8s cubic-bezier(0.16,1,0.3,1);
-
-  /* 🔥 фикс мути */
-  will-change: transform;
+    transform .6s cubic-bezier(0.16,1,0.3,1),
+    box-shadow .6s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform, box-shadow;
+  z-index: 1;
 }
 
-.mini-feature-inner * {
+/* Контент — НЕ увеличивается, НЕ мутнеет */
+.mini-feature-content {
+  position: relative;
+  z-index: 2;
+  padding: 26px 26px 30px;
+
+  /* чёткий текст */
+  -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
 
-/* Hover */
-.mini-feature:hover .mini-feature-inner {
-  transform: scale(1.04);
-}
-
-.mini-feature:hover {
+/* HOVER — увеличивается только border */
+.mini-feature:hover .mini-feature-border {
+  transform: scale(1.05);
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
 
-/* 🔥 Убираем эффект остаточного blur после fade-up */
-.mini-feature.fade-up.visible {
-  filter: none !important;
-  will-change: auto !important;
-}
-
 /* TOP: ICON + TITLE */
+
 .mini-top {
   position: relative;
   padding-left: 52px;
@@ -572,15 +572,14 @@ header p {
   height: 42px;
 }
 
-/* LONG TITLE */
 .mini-top h3 {
   margin: 0;
   font-size: 18px;
   font-weight: 700;
   color: var(--black);
+  line-height: 1.35;
   width: 100%;
   text-align: left;
-  line-height: 1.35;
 }
 
 /* SHORT TITLE */
@@ -593,7 +592,7 @@ header p {
   text-align: center !important;
 }
 
-/* ICON ANIMATION */
+/* ICON WIGGLE */
 .mini-feature:hover .mini-icon {
   animation: icon-wiggle .45s ease-in-out;
 }
@@ -612,6 +611,7 @@ header p {
   font-size: 15px;
   line-height: 1.55;
 }
+
 
 
 
@@ -2043,23 +2043,6 @@ canvas.confetti-canvas {
   transform: scale(1.8);
 }
 
-/* fade-up */
-#appleGallery.fade-up { transform: none !important; }
 
-#appleGallery.fade-up > * {
-  transform: translateY(40px) scale(.98);
-  opacity: 0;
-  filter: blur(10px);
-  transition:
-    opacity .9s cubic-bezier(.16,1,.3,1),
-    transform .9s cubic-bezier(.16,1,.3,1),
-    filter .9s cubic-bezier(.16,1,.3,1);
-}
-
-#appleGallery.fade-up.visible > * {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  filter: blur(0);
-}
 
 

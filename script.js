@@ -563,29 +563,7 @@ function resetFormHighlights() {
 })();
 
 
-/* =========================================================
-   FADE-UP OBSERVER FOR APPLE GALLERY
-   ========================================================= */
-(function initAppleGalleryObserver() {
 
-  const gallery = document.querySelector('#appleGallery');
-  if (!gallery) return;
-
-  const obs = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        gallery.classList.add('visible');   // показать секцию
-        observer.unobserve(gallery);
-      }
-    });
-  }, {
-    threshold: 0.25,
-    rootMargin: "0px 0px -10%"
-  });
-
-  obs.observe(gallery);
-
-})();
 
 
 /* ====================================================================
