@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="рабочая версия с галереей и отзывами курсивом">
-      <change afterPath="$PROJECT_DIR$/assets/images/122.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/budget.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/kpi.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/oblik-control.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/rashody.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/strat-plan.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/upr-uchet.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favicon-180.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favicon-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favicon-32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favicon-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="упрощенный стиль и иконка">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/mashtab.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/opyt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/record.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icons/variant.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,14 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00090" summary="шрифт оферты">
-      <option name="closed" value="true" />
-      <created>1764315647238</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1764315647238</updated>
     </task>
     <task id="LOCAL-00091" summary="шрифт оферты">
       <option name="closed" value="true" />
@@ -474,11 +459,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764661062759</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="упрощенный стиль и иконка">
+      <option name="closed" value="true" />
+      <created>1764708288673</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1764708288673</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="фикс полос в оферте" />
     <MESSAGE value="эплл анимация" />
     <MESSAGE value="эплл анимация подбор" />
     <MESSAGE value="эплл анимация подбор2" />
@@ -503,6 +495,7 @@
     <MESSAGE value="рабочая версия с отзывами (прокрутка в видимую зону)" />
     <MESSAGE value="рабочая версия с галереей" />
     <MESSAGE value="рабочая версия с галереей и отзывами курсивом" />
-    <option name="LAST_COMMIT_MESSAGE" value="рабочая версия с галереей и отзывами курсивом" />
+    <MESSAGE value="упрощенный стиль и иконка" />
+    <option name="LAST_COMMIT_MESSAGE" value="упрощенный стиль и иконка" />
   </component>
 </project>

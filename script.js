@@ -305,28 +305,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* =========================================================
-   ABOUT PARALLAX
-   ========================================================= */
-let aboutParallax = 0;
-let currentY = 0;
 
-function updateParallax() {
-  const about = document.getElementById('about');
-  if (!about) return;
-
-  const rect = about.getBoundingClientRect();
-  const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
-  aboutParallax = offset * -0.12;
-
-  currentY += (aboutParallax - currentY) * 0.08;
-  about.querySelector('.about-photo').style.transform = `translateY(${currentY}px) scale(1.06)`;
-
-  if (Math.abs(aboutParallax - currentY) > 0.5) requestAnimationFrame(updateParallax);
-}
-
-window.addEventListener('scroll', () => requestAnimationFrame(updateParallax));
-window.addEventListener('load', updateParallax);
 
 /* =========================================================
    PHONE MASK

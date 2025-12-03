@@ -141,21 +141,32 @@ h1, h2, h3,
 /* ===================== TOPBAR ===================== */
 
 .topbar {
-  background: #fff;
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 14px 32px;
+
+  /* GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  padding: 12px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid var(--yellow);
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+
+  /* премиум минимальная линия вместо жёлтой */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  /* убираем тень – стекло выглядит чище */
+  box-shadow: none !important;
 }
 
 .logo img {
-  height: 48px;
+  height: 40px; /* уменьшили для премиального вида */
 }
+
+/* ===== BURGER ===== */
 
 .burger {
   display: none;
@@ -186,23 +197,55 @@ h1, h2, h3,
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* ===== NAV ===== */
+
 nav {
   display: flex;
-  gap: 32px;
+  gap: 32px; /* расстояние НЕ меняем */
 }
 
+/* Базовый стиль ссылок */
 nav a {
+  position: relative;
+  display: inline-block; /* важнейшее — позволяет scale работать */
   text-decoration: none;
-  color: var(--black);
+  color: var(--gray) !important;
   font-weight: 600;
-  font-size: 16px;
-  transition: color 0.3s;
+  font-size: 15px;
   cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    transform 0.35s cubic-bezier(.16,1,.3,1);
 }
 
+/* Hover — увеличение + underline */
 nav a:hover {
-  color: var(--yellow);
+  transform: scale(1.13); /* увеличение хорошо видно */
+  color: var(--gray) !important; /* не меняем цвет */
 }
+
+/* Жёлтое подчёркивание (как Читати далі) */
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 0%;
+  height: 2px;
+  background: var(--yellow);
+
+  transition: width .55s cubic-bezier(.22,1,.36,1);
+  border-radius: 2px;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+
+/* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
   .burger {
@@ -214,12 +257,17 @@ nav a:hover {
     position: absolute;
     top: 70px;
     right: 16px;
-    background: #fff;
+
+    /* mobile glass */
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
     padding: 20px;
-    border-radius: 16px;
+    border-radius: 18px;
     flex-direction: column;
     gap: 18px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
   }
 
   nav.open {
@@ -396,10 +444,6 @@ header p {
   will-change: transform;
 }
 
-/* Параллакс при скролле */
-#about.scrolled .about-photo {
-  transform: translateY(15%) scale(1.06);
-}
 
 /* Блик поверх фото */
 .about-photo-wrapper::before {
@@ -441,8 +485,11 @@ header p {
 }
 
 
-/* ===== MINI FEATURES BLOCK ===== */
+/* =========================================
+   MINI FEATURES BLOCK — FIX BLUR TEXT
+   ========================================= */
 
+/* GRID */
 .mini-features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -464,76 +511,108 @@ header p {
   }
 }
 
-/* ===== КАРТОЧКА ===== */
-
+/* CARD */
 .mini-feature {
   background: #fff;
-  padding: 26px 26px 30px;
+  padding: 0;
   border-radius: 22px;
   box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Inner — масштабируем только его */
+.mini-feature-inner {
+  padding: 26px 26px 30px;
   transition:
-    transform .8s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow .8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform .8s cubic-bezier(0.16,1,0.3,1),
+    box-shadow .8s cubic-bezier(0.16,1,0.3,1);
+
+  /* 🔥 фикс мути */
+  will-change: transform;
+}
+
+.mini-feature-inner * {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Hover */
+.mini-feature:hover .mini-feature-inner {
+  transform: scale(1.04);
 }
 
 .mini-feature:hover {
-  transform: scale(1.04);
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
 
-/* верх карточки: иконка + заголовок */
+/* 🔥 Убираем эффект остаточного blur после fade-up */
+.mini-feature.fade-up.visible {
+  filter: none !important;
+  will-change: auto !important;
+}
 
+/* TOP: ICON + TITLE */
 .mini-top {
+  position: relative;
+  padding-left: 52px;
+  min-height: 42px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
+  justify-content: center;
 }
 
 .mini-top img.mini-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 42px;
   height: 42px;
-  flex-shrink: 0;
 }
 
-/* WIGGLE-анимация */
-
-.mini-feature:hover .mini-icon {
-  animation: icon-wiggle 0.45s ease-in-out;
-}
-
-@keyframes icon-wiggle {
-  0%   { transform: rotate(0deg) scale(1); }
-  25%  { transform: rotate(-4deg) scale(1.04); }
-  50%  { transform: rotate(4deg) scale(1.05); }
-  75%  { transform: rotate(-2deg) scale(1.03); }
-  100% { transform: rotate(0deg) scale(1); }
-}
-
+/* LONG TITLE */
 .mini-top h3 {
   margin: 0;
   font-size: 18px;
   font-weight: 700;
   color: var(--black);
-  line-height: 1.35;
   width: 100%;
-  text-align: center;
+  text-align: left;
+  line-height: 1.35;
 }
 
-/* ТЕКСТ */
-
-.mini-feature p {
-  margin: 6px 0 0;
-  font-size: 15px;
-  line-height: 1.55;
+/* SHORT TITLE */
+.mini-top.short-mode {
+  padding-left: 0 !important;
+  justify-content: center !important;
 }
 
+.mini-top.short-mode h3 {
+  text-align: center !important;
+}
+
+/* ICON ANIMATION */
+.mini-feature:hover .mini-icon {
+  animation: icon-wiggle .45s ease-in-out;
+}
+
+@keyframes icon-wiggle {
+  0%   { transform: translateY(-50%) rotate(0deg) scale(1); }
+  25%  { transform: translateY(-50%) rotate(-4deg) scale(1.04); }
+  50%  { transform: translateY(-50%) rotate(4deg) scale(1.05); }
+  75%  { transform: translateY(-50%) rotate(-2deg) scale(1.03); }
+  100% { transform: translateY(-50%) rotate(0deg) scale(1); }
+}
+
+/* TEXT */
+.mini-feature p,
 .mini-feature ul {
-  margin: 10px 0 0;
-  padding-left: 20px;
-  line-height: 1.55;
   font-size: 15px;
+  line-height: 1.55;
 }
+
 
 
 /* ===================== PRODUCTS / КАРТОЧКИ ===================== */
@@ -816,11 +895,14 @@ header p {
   ====================================================== */
 
 footer {
-  background: #fff;
+  background: #fdfbf7; /* как было, не трогаем */
   padding: 40px 0 60px;
   color: #666;
   font-size: 14px;
   text-align: center;
+
+  /* УБИРАЕМ ЛЮБУЮ ПОЛОСКУ — она НЕ должна быть в футере */
+  border-top: none !important;
 }
 
 footer .c {
@@ -901,18 +983,23 @@ footer .c {
 
 
 /* =====================================================
-                  БЛОК ОФЕРТЫ — КНОПКА
+                  БЛОК ОФЕРТЫ — GLASS BUTTON
   ==================================================== */
 
 .offer-section {
   position: relative;
-  background: #fff;
+  background: #fdfbf7; /* как было — не меняем */
   padding: 20px 0 0;
   text-align: center;
   pointer-events: none;
-  border-top: 1px solid #36454f;
+
+  /* старая жирная линия была: border-top: 1px solid #36454f; */
+  /* теперь ставим тонкую премиальную, как в хедере */
+  border-top: 1px solid rgba(0,0,0,0.08);
+
   margin-top: 80px;
 }
+
 
 .offer-button {
   pointer-events: all;
@@ -921,21 +1008,21 @@ footer .c {
   left: 50%;
   transform: translateX(-50%);
 
-  background: var(--gray);
-  color: #fff !important;
+  background: rgba(255,255,255,0.72);       /* стеклянная кнопка */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
+  color: var(--black) !important;
   font-weight: 600;
   font-size: 14px;
+
   padding: 12px 48px;
 
-  border: none;
+  border: 1px solid rgba(0,0,0,0.08);        /* тонкая линия */
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
-  border: 3px solid var(--gray);
-  border-top: 0;
-  background-clip: padding-box;
 
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 -4px 18px rgba(0,0,0,0.09);   /* мягче, чем раньше */
   cursor: pointer;
   user-select: none;
 
@@ -943,7 +1030,7 @@ footer .c {
   z-index: 10;
 }
 
-/* Ховер всегда желтый */
+/* Ховер */
 .offer-button:hover {
   background: var(--yellow);
   color: var(--black) !important;
@@ -952,7 +1039,6 @@ footer .c {
 }
 
 /* Блик */
-
 .offer-button::before {
   content: '';
   position: absolute;
@@ -992,14 +1078,14 @@ footer .c {
   }
 }
 
-/* Активная кнопка (модалка открыта) */
-
+/* Активная кнопка (при открытой модалке) */
 #offerModal.active ~ .offer-section .offer-button,
 .offer-button.active {
   background: var(--yellow);
   color: var(--black) !important;
   border-color: var(--yellow);
 }
+
 
 
 /* ===========================================================
@@ -1765,7 +1851,7 @@ canvas.confetti-canvas {
 
 .testimonial-card:hover {
   transform: scale(1.08) translateY(-6px);
-  border-color: #e7d3a8;
+  border-color: #f7c843 ;
 }
 
 /* Текст */
@@ -1975,3 +2061,5 @@ canvas.confetti-canvas {
   opacity: 1;
   filter: blur(0);
 }
+
+
