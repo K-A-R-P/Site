@@ -1,15 +1,20 @@
 function toggleMenu() {
   const menu = document.getElementById('menu');
   const burger = document.querySelector('.burger');
+  const topbar = document.querySelector('.topbar');
+
   menu.classList.toggle('open');
   burger.classList.toggle('active');
+  topbar.classList.toggle('open-menu');
 }
 
 function closeMenu() {
   document.getElementById('menu').classList.remove('open');
   document.querySelector('.burger').classList.remove('active');
+  document.querySelector('.topbar').classList.remove('open-menu');
   document.body.style.overflow = '';
 }
+
 
 /* =========================================================
    APPLE-LIKE INITIAL LOAD ANIMATION

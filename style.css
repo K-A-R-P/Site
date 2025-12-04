@@ -155,16 +155,29 @@ h1, h2, h3,
   justify-content: space-between;
   align-items: center;
 
-  /* премиум минимальная линия вместо жёлтой */
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-
-  /* убираем тень – стекло выглядит чище */
   box-shadow: none !important;
+
+  transition: padding .35s ease, border-radius .35s ease, background .35s ease;
 }
 
 .logo img {
-  height: 40px; /* уменьшили для премиального вида */
+  height: 40px;
 }
+
+/* Когда меню открыто — topbar растягивается и становится плотнее */
+.topbar.open-menu {
+  padding-bottom: 22px;
+
+  /* 🔥 убираем СОВСЕМ любое скругление */
+  border-radius: 0 !important;
+
+  /* стекло остаётся таким же */
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
 
 /* ===== BURGER ===== */
 
@@ -201,41 +214,33 @@ h1, h2, h3,
 
 nav {
   display: flex;
-  gap: 32px; /* расстояние НЕ меняем */
+  gap: 32px;
 }
 
-/* Базовый стиль ссылок */
 nav a {
   position: relative;
-  display: inline-block; /* важнейшее — позволяет scale работать */
+  display: inline-block;
   text-decoration: none;
   color: var(--gray) !important;
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
-
-  transition:
-    color 0.25s ease,
-    transform 0.35s cubic-bezier(.16,1,.3,1);
+  transition: color 0.25s ease, transform 0.35s cubic-bezier(.16,1,.3,1);
 }
 
-/* Hover — увеличение + underline */
 nav a:hover {
-  transform: scale(1.13); /* увеличение хорошо видно */
-  color: var(--gray) !important; /* не меняем цвет */
+  transform: scale(1.13);
+  color: var(--gray) !important;
 }
 
-/* Жёлтое подчёркивание (как Читати далі) */
 nav a::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: -4px;
-
   width: 0%;
   height: 2px;
   background: var(--yellow);
-
   transition: width .55s cubic-bezier(.22,1,.36,1);
   border-radius: 2px;
 }
@@ -245,35 +250,54 @@ nav a:hover::after {
 }
 
 
-/* ===== MOBILE ===== */
+/* ============ MOBILE — TOPBAR EXPANDS + MENU INSIDE ============ */
 
 @media (max-width: 768px) {
+
   .burger {
     display: flex;
   }
 
+  /* Стандартный нав в мобилке скрыт, пока .open не появится */
   nav {
     display: none;
-    position: absolute;
-    top: 70px;
-    right: 16px;
+    position: static !important;
 
-    /* mobile glass */
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    /* меню теперь берёт стекло от topbar, фон прозрачный */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 
-    padding: 20px;
-    border-radius: 18px;
+    padding: 0;
     flex-direction: column;
     gap: 18px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+
+    text-align: right;
+    align-items: flex-end;
+
+    width: 100%;
   }
 
+  nav a {
+    width: 100%;
+    text-align: right !important;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray) !important;
+  }
+
+  /* Появление меню */
   nav.open {
+    display: flex;
+    margin-top: 16px;
+  }
+
+  /* Когда меню открыто — topbar растягивается, меню внутри */
+  .topbar.open-menu nav {
     display: flex;
   }
 }
+
 
 /* ===================== HEADER ===================== */
 
