@@ -531,14 +531,13 @@ header p {
 }
 
 /* CARD STRUCTURE */
-
 .mini-feature {
   position: relative;
   border-radius: 22px;
-  overflow: visible; /* важно — чтобы рамка могла увеличиваться */
+  overflow: visible; /* нужно для scale рамки */
 }
 
-/* Рамка, которая увеличивается */
+/* Красивый фон-бордер (увеличивается на hover) */
 .mini-feature-border {
   position: absolute;
   inset: 0;
@@ -552,26 +551,23 @@ header p {
   z-index: 1;
 }
 
-/* Контент — НЕ увеличивается, НЕ мутнеет */
+/* Контент */
 .mini-feature-content {
   position: relative;
   z-index: 2;
   padding: 26px 26px 30px;
-
-  /* чёткий текст */
   -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
 
-/* HOVER — увеличивается только border */
+/* HOVER — ДЕСКТОП */
 .mini-feature:hover .mini-feature-border {
   transform: scale(1.05);
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
 }
 
 /* TOP: ICON + TITLE */
-
 .mini-top {
   position: relative;
   padding-left: 52px;
@@ -606,12 +602,11 @@ header p {
   padding-left: 0 !important;
   justify-content: center !important;
 }
-
 .mini-top.short-mode h3 {
   text-align: center !important;
 }
 
-/* ICON WIGGLE */
+/* ICON WIGGLE — только на десктопе */
 .mini-feature:hover .mini-icon {
   animation: icon-wiggle .45s ease-in-out;
 }
@@ -630,6 +625,33 @@ header p {
   font-size: 15px;
   line-height: 1.55;
 }
+
+/* =========================================
+   MOBILE — DISABLE ALL HOVER EFFECTS
+   ========================================= */
+@media (max-width: 768px) {
+
+  /* Отключаем увеличение */
+  .mini-feature-border,
+  .mini-feature:hover .mini-feature-border {
+    transform: none !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08) !important;
+    transition: none !important;
+  }
+
+  /* Отключаем wiggle */
+  .mini-feature:hover .mini-icon {
+    animation: none !important;
+    transform: translateY(-50%) !important;
+  }
+
+  /* Убираем любые transform карточки */
+  .mini-feature,
+  .mini-feature:hover {
+    transform: none !important;
+  }
+}
+
 
 
 
@@ -1530,7 +1552,7 @@ canvas.confetti-canvas {
 
 
 /* =====================================================
-                 PRICE POPUP (форма записи)
+                 PRICE POPUP — PREMIUM CENTERED
 ========================================================== */
 
 #pricePopup {
@@ -1540,48 +1562,59 @@ canvas.confetti-canvas {
   background: rgba(0,0,0,0.78);
   backdrop-filter: blur(14px);
   z-index: 9999;
-  align-items: flex-start;
-  justify-content: center;
+
+  /* НОВОЕ → ВСЕГДА центрируем */
+  align-items: center !important;
+  justify-content: center !important;
+
   padding: 20px 16px;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
+/* Актив */
 #pricePopup.active,
 #pricePopup[style*="flex"] {
   display: flex !important;
 }
 
+/* КОНТЕНТ */
 #pricePopup .popup-content {
   background: #fff;
   border-radius: 32px;
   padding: 44px 48px 52px;
   max-width: 420px;
   width: 100%;
-  margin: 20px auto 40px;
   box-shadow: 0 30px 90px rgba(0,0,0,0.38);
-  animation: modalShow .45s cubic-bezier(0.16,1,0.3,1);
-  position: relative;
+
+  /* 🔥 НОВАЯ супер-анимация */
+  transform: scale(.84) translateY(20px);
+  opacity: 0;
+  animation: pricePopupShow .65s cubic-bezier(.16,1,.3,1) forwards;
 }
 
+@keyframes pricePopupShow {
+  0% {
+    opacity: 0;
+    transform: scale(.84) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Мобилка */
 @media (max-width: 480px) {
   #pricePopup {
-    padding: 12px 12px 40px;
+    padding: 16px;
   }
 
   #pricePopup .popup-content {
-    padding: 36px 28px;
+    padding: 34px 26px 40px;
     border-radius: 26px;
-    margin: 16px auto 60px;
   }
 }
 
-@media (max-height: 670px) {
-  #pricePopup .popup-content {
-    padding: 32px 24px 44px;
-    margin: 10px auto 70px;
-  }
-}
 
 #pricePopup h3#priceTitle {
   margin: 0 0 10px;
@@ -1629,6 +1662,20 @@ canvas.confetti-canvas {
   padding: 17px;
   font-size: 18px;
   margin: 4px 0 0;
+}
+
+#pricePopup .btn-main {
+  background: var(--yellow) !important;
+  color: var(--black) !important;
+  border: 2px solid rgba(0,0,0,0.15) !important;
+  transition: all .35s cubic-bezier(.16,1,.3,1);
+}
+
+#pricePopup .btn-main:hover {
+  background: var(--black) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
 }
 
 /* Статус */

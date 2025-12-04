@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка диплома">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="мобильное меню">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/offer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/offer.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
@@ -75,14 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00103" summary="Правки текста карточек, правка стилей, чистка мусора">
-      <option name="closed" value="true" />
-      <created>1764445503099</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1764445503099</updated>
     </task>
     <task id="LOCAL-00104" summary="Рабочая версия замена футера">
       <option name="closed" value="true" />
@@ -468,11 +460,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764787131529</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="мобильное меню">
+      <option name="closed" value="true" />
+      <created>1764810265709</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1764810265709</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="тайминги" />
     <MESSAGE value="правка анимации" />
     <MESSAGE value="карточки новые" />
     <MESSAGE value="карточки новые правки обтекания" />
@@ -497,6 +496,7 @@
     <MESSAGE value="дипломы" />
     <MESSAGE value="3 диплома в ряд" />
     <MESSAGE value="модалка диплома" />
-    <option name="LAST_COMMIT_MESSAGE" value="модалка диплома" />
+    <MESSAGE value="мобильное меню" />
+    <option name="LAST_COMMIT_MESSAGE" value="мобильное меню" />
   </component>
 </project>

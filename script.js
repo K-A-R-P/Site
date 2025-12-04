@@ -484,27 +484,48 @@ function openPricePopup(e, title, price) {
   });
 
   const popup = document.getElementById('pricePopup');
-  popup.style.display = 'flex';
+
+  /* ——————————————
+     Правильная активация
+     —————————————— */
+  popup.classList.add('active');
   popup.scrollTop = 0;
+
+  // Блокируем скролл страницы ТОЛЬКО при открытии попапа
+  document.body.style.overflow = 'hidden';
 }
 
 function closePricePopup() {
   const popup = document.getElementById('pricePopup');
-  popup.style.display = 'none';
+
+  /* ——————————————
+     Правильное закрытие
+     —————————————— */
+  popup.classList.remove('active');
   popup.scrollTop = 0;
+
+  // Возвращаем скролл страницы
+  document.body.style.overflow = '';
+
   resetFormHighlights();
   document.getElementById('popupStatus').innerHTML = '';
 }
 
+/* Закрытие кликом по фону */
 document.getElementById('pricePopup').addEventListener('click', e => {
-  if (e.target === document.getElementById('pricePopup')) closePricePopup();
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('pricePopup').style.display === 'flex') {
+  if (e.target === document.getElementById('pricePopup')) {
     closePricePopup();
   }
 });
+
+/* ESC закрытие */
+document.addEventListener('keydown', e => {
+  const popup = document.getElementById('pricePopup');
+  if (e.key === 'Escape' && popup.classList.contains('active')) {
+    closePricePopup();
+  }
+});
+
 
 /* =========================================================
    ПОДСВЕТКА ПОЛЕЙ ВВОДА
