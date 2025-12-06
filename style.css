@@ -1737,58 +1737,76 @@ canvas.confetti-canvas {
 }
 
 /* =====================================================
-                 PRICE POPUP — PREMIUM CENTERED
+                 PRICE POPUP — GLASS + SOFT POP
 ========================================================== */
 
 #pricePopup {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.78);
-  backdrop-filter: blur(14px);
-  z-index: 9999;
 
-  /* НОВОЕ → ВСЕГДА центрируем */
+  /* 🔥 стеклянный оверлей как у contacts/payment */
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  z-index: 9999;
   align-items: center !important;
   justify-content: center !important;
 
   padding: 20px 16px;
   overflow-y: auto;
+
+  opacity: 0;
+  transform: scale(.88) translateY(30px);
+  transition:
+    opacity .55s cubic-bezier(.16,1,.3,1),
+    transform .55s cubic-bezier(.16,1,.3,1);
 }
 
 /* Актив */
 #pricePopup.active,
 #pricePopup[style*="flex"] {
   display: flex !important;
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
-/* КОНТЕНТ */
+/* =====================================================
+   GLASS CONTENT (как contacts/payment)
+====================================================== */
+
 #pricePopup .popup-content {
-  background: #fff;
+  background: rgba(255,255,255,0.58);   /* 🔥 стекло */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
   border-radius: 32px;
   padding: 44px 48px 52px;
   max-width: 420px;
   width: 100%;
-  box-shadow: 0 30px 90px rgba(0,0,0,0.38);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.28);
 
-  /* 🔥 НОВАЯ супер-анимация */
-  transform: scale(.84) translateY(20px);
+  /* мягкое появление */
   opacity: 0;
+  transform: translateY(20px) scale(.88);
   animation: pricePopupShow .65s cubic-bezier(.16,1,.3,1) forwards;
 }
 
 @keyframes pricePopupShow {
   0% {
     opacity: 0;
-    transform: scale(.84) translateY(20px);
+    transform: translateY(20px) scale(.88);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-/* Мобилка */
+/* =====================================================
+   MOBILE
+====================================================== */
 @media (max-width: 480px) {
   #pricePopup {
     padding: 16px;
@@ -1800,27 +1818,37 @@ canvas.confetti-canvas {
   }
 }
 
+/* =====================================================
+   TITLE + PRICE
+====================================================== */
 
 #pricePopup h3#priceTitle {
   margin: 0 0 10px;
   font-size: 26px;
   line-height: 1.2;
   text-align: center !important;
+  color: #2b2b2b;
 }
 
 #pricePopup #priceLabel {
   margin: 0 0 28px;
   font-size: 19px;
-  color: #555;
+  color: #444 !important;
   text-align: center !important;
 }
 
-/* Поля формы */
+/* =====================================================
+   FORM FIELDS (НЕ ПРОЗРАЧНЫЕ)
+====================================================== */
 
 #pricePopup input,
 #pricePopup textarea {
   width: 100%;
   padding: 15px 16px;
+
+  background: #ffffff !important;          /* 🔥 ОСТАЮТСЯ НЕПРОЗРАЧНЫМИ */
+  backdrop-filter: none !important;
+
   border: 2px solid #e3e3e3;
   border-radius: 16px;
   font-size: 16px;
@@ -1840,19 +1868,20 @@ canvas.confetti-canvas {
   resize: vertical;
 }
 
-/* Кнопка отправки */
+/* =====================================================
+   BUTTON
+====================================================== */
 
 #pricePopup .btn-main {
   width: 100%;
   padding: 17px;
   font-size: 18px;
   margin: 4px 0 0;
-}
 
-#pricePopup .btn-main {
   background: var(--yellow) !important;
   color: var(--black) !important;
   border: 2px solid rgba(0,0,0,0.15) !important;
+
   transition: all .35s cubic-bezier(.16,1,.3,1);
 }
 
@@ -1863,7 +1892,9 @@ canvas.confetti-canvas {
   box-shadow: 0 8px 25px rgba(0,0,0,0.35);
 }
 
-/* Статус */
+/* =====================================================
+   STATUS
+====================================================== */
 
 #popupStatus {
   min-height: 44px;
@@ -1875,8 +1906,7 @@ canvas.confetti-canvas {
   color: #555;
 }
 
-/* Ошибки (красный текст) */
-
+/* ошибки */
 #popupStatus span[style*="red"],
 #popupStatus div[style*="red"] {
   display: block;
@@ -1884,18 +1914,22 @@ canvas.confetti-canvas {
   font-size: 17px !important;
 }
 
-/* Кнопка "Закрити" под формой */
+/* =====================================================
+   CLOSE BUTTON
+====================================================== */
 
 .popup-close-btn {
   margin: 7px auto 0 !important;
-  color: #888;
+  color: #888 !important;
   font-size: 15px;
   cursor: pointer;
   text-align: center;
   line-height: 1;
 }
 
-/* Красные звёздочки для обязательных полей */
+/* =====================================================
+   REQUIRED STAR
+====================================================== */
 
 .required-field {
   position: relative;
@@ -1922,6 +1956,7 @@ canvas.confetti-canvas {
   font-size: 20px;
   pointer-events: none;
 }
+
 
 
 /* ===================================================
