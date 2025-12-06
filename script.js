@@ -413,13 +413,22 @@ if (phoneInput) {
 }
 
 /* =========================================================
-   SUCCESS MODAL + CONFETTI
-   ========================================================= */
+   SUCCESS MODAL + CONFETTI + CLICK CLOSE
+========================================================= */
+
 function showSuccessModal() {
-  document.getElementById('successModal').classList.add('active');
+  const modal = document.getElementById('successModal');
+  modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  confetti({ particleCount: 180, spread: 76, origin: { y: 0.58 }, colors: ['#f7c843', '#ffffff', '#333333'], scalar: 1.3 });
+  // --- CONFETTI ---
+  confetti({
+    particleCount: 180,
+    spread: 76,
+    origin: { y: 0.58 },
+    colors: ['#f7c843', '#ffffff', '#333333'],
+    scalar: 1.3
+  });
 
   setTimeout(() => {
     confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0, y: 0.6 } });
@@ -436,9 +445,41 @@ function showSuccessModal() {
 }
 
 function closeSuccessModal() {
-  document.getElementById('successModal').classList.remove('active');
+  const modal = document.getElementById('successModal');
+  modal.classList.remove('active');
   document.body.style.overflow = '';
 }
+
+/* =========================================================
+   SUCCESS — CLICK HANDLERS (как в оплате)
+========================================================= */
+
+// Клик по фону — закрыть
+document.getElementById('successModal').addEventListener('click', e => {
+  const modal = document.getElementById('successModal');
+  const content = modal.querySelector('.popup-content');
+
+  // если кликнули именно по фону (modal), а не по окну — закрыть
+  if (e.target === modal) {
+    closeSuccessModal();
+  }
+});
+
+// Клик внутри окна — закрыть (кроме кнопок/ссылок)
+document.querySelector('#successModal .popup-content').addEventListener('click', e => {
+  if (!e.target.closest('a') && !e.target.closest('button')) {
+    closeSuccessModal();
+  }
+});
+
+// ESC — закрыть
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' &&
+      document.getElementById('successModal').classList.contains('active')) {
+    closeSuccessModal();
+  }
+});
+
 
 /* =========================================================
    FORM SEND

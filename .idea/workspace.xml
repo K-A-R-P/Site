@@ -75,14 +75,6 @@
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
     </task>
-    <task id="LOCAL-00106" summary="Рабочая версия">
-      <option name="closed" value="true" />
-      <created>1764465145244</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1764465145244</updated>
-    </task>
     <task id="LOCAL-00107" summary="фикс полос в оферте">
       <option name="closed" value="true" />
       <created>1764466881651</created>
@@ -467,7 +459,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765005442001</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Рабочая версия контакты и оплата прозрачные">
+      <option name="closed" value="true" />
+      <created>1765007730177</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1765007730177</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
