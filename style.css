@@ -1514,53 +1514,83 @@ footer .c {
 
 
 /* ============================================================
-                      МОДАЛКА ОПЛАТЫ
-  ============================================================ */
+                      МОДАЛКА ОПЛАТЫ — GLASS + SOFT POP (как контакты)
+============================================================ */
 
+#paymentModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.18);     /* мягкое затемнение как у контактов */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+
+  opacity: 0;
+  transform: scale(.92);
+  transition:
+    opacity .45s cubic-bezier(.16,1,.3,1),
+    transform .45s cubic-bezier(.16,1,.3,1);
+}
+
+#paymentModal.active {
+  display: flex !important;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Контент */
 .payment-modal-content {
-  /* было: background: #fff; */
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(255,255,255,0.62);       /* стекло как у контактов */
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
   border-radius: 32px;
+  text-align: center;
+  padding: 50px 60px;
+
   max-width: 560px;
   width: 100%;
-  padding: 40px 48px;
-  text-align: center;
-  /* было: 0 30px 80px rgba(0,0,0,0.35); */
+
   box-shadow: 0 18px 46px rgba(0,0,0,0.20);
 
-  /* мягкое появление как у контактов */
   opacity: 0;
   transform: scale(.92);
-  animation: contactsSoftPop .65s cubic-bezier(.16,1,.3,1) forwards;
+  animation: contactsSoftPop .55s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* Заголовок */
+.payment-modal-content h3 {
+  font-weight: 700;
+  line-height: 1;
+  color: #2b2b2b;
 }
 
 .payment-modal-content h3 img {
-  /* анимация как у контактов: вылет слева + покачивание */
-  height: 28px !important;
-   margin-right: 8px !important;
-  vertical-align: middle !important;
-  transform-origin: center bottom;
+  height: 28px !important;         /* как в контактах */
+  margin-right: 8px;
+  vertical-align: middle;
+
   opacity: 0;
   transform: translateX(-40px);
+  transform-origin: center bottom;
 
   animation:
-    contactIconLeft .9s cubic-bezier(.16,1,.3,1) .15s forwards,
+    contactIconLeft .85s cubic-bezier(.16,1,.3,1) .15s forwards,
     wiggleSoft 3s ease-in-out 1.2s infinite;
 }
 
-
-
-/* ===== СЕТКА — НЕ ТРОГАЕМ СТРУКТУРУ ===== */
-
+/* Сетка — без изменений */
 .payment-grid {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 40px;
-  margin: 24px 0;  /* как в контактах */
+  margin: 28px 0;
 }
 
 .payment-icons,
@@ -1570,88 +1600,47 @@ footer .c {
   gap: 26px;
 }
 
-.payment-icons {
-  align-items: flex-end;
-}
-
+.payment-icons { align-items: flex-end; }
 .payment-labels {
   align-items: flex-start;
   font-size: 17px;
   font-weight: 500;
-  color: #333;
-  line-height: 1.4;
+  color: #2b2b2b; /* как контакты */
 }
 
-/* подписи выравниваем по центру иконок,
-   не меняя сетку и размеры самих иконок */
-.payment-labels > div {
-  display: flex;
-  align-items: center;
-  min-height: 36px; /* под ключевую высоту иконок */
-}
-
-.icon-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.icon-row img {
-  height: 36px;
-}
-
-.icon-row:first-child img {
-  height: 34px;
-}
-
+/* Текст */
 .payment-note {
   font-size: 15px;
-  line-height: 1.6;
-  color: #555;
+  color: #2b2b2b;
   margin: 20px 0 10px;
 }
 
-.modal-close {
-  margin-top: 30px;
-  color: #888;
+/* Кнопка Закрити */
+.payment-modal-content .modal-close {
+  margin-top: 28px;
+  font-size: 15px;
   cursor: pointer;
-  font-size: 16px;
+  color: var(--gray) !important;  /* как в контактах */
+  opacity: .9;
+  transition: opacity .25s ease;
 }
+
+.payment-modal-content .modal-close:hover {
+  opacity: 1;
+}
+
+/* Мультимедиа — без изменений */
+.icon-row { display: flex; gap: 12px; align-items: center; }
+.icon-row img { height: 36px; }
+.icon-row:first-child img { height: 34px; }
 
 @media (max-width: 640px) {
   .payment-modal-content {
     padding: 36px 28px;
   }
-
-  .payment-labels {
-    display: none;
-  }
-
-  .payment-grid {
-    gap: 32px;
-  }
-
-  .payment-icons {
-    align-items: center;
-    gap: 28px;
-  }
-
-  .icon-row img {
-    height: 40px;
-  }
-
-  .icon-row:first-child img {
-    height: 38px;
-  }
-
-  .modal-close {
-    margin-top: 40px;
-  }
-
-  .payment-note {
-    font-size: 14.5px;
-  }
+  .payment-labels { display: none; }
 }
+
 
 /* =========================================================
                      SUCCESS-МОДАЛКА — НОВАЯ

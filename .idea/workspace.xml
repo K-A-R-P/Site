@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Рабочая версия">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Рабочая версия контакты и оплата прозрачные">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
@@ -75,14 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Рабочая версия правка анимации и шаблоны блоков">
-      <option name="closed" value="true" />
-      <created>1764462744502</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1764462744502</updated>
     </task>
     <task id="LOCAL-00106" summary="Рабочая версия">
       <option name="closed" value="true" />
@@ -468,7 +459,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764991908321</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Рабочая версия контакты и оплата прозрачные">
+      <option name="closed" value="true" />
+      <created>1765005442001</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1765005442001</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -483,7 +482,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="правка анимации" />
     <MESSAGE value="карточки новые" />
     <MESSAGE value="карточки новые правки обтекания" />
     <MESSAGE value="карточки правки" />
@@ -508,6 +506,7 @@
     <MESSAGE value="модалка диплома" />
     <MESSAGE value="мобильное меню" />
     <MESSAGE value="Рабочая версия" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рабочая версия" />
+    <MESSAGE value="Рабочая версия контакты и оплата прозрачные" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рабочая версия контакты и оплата прозрачные" />
   </component>
 </project>

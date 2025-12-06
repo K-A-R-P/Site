@@ -317,30 +317,39 @@ document.querySelectorAll('.offer-scroll').forEach(el => offerObserver.observe(e
 
 
 /* =========================================================
-   PAYMENT MODAL
-   ========================================================= */
+   PAYMENT MODAL — как у контактов
+========================================================= */
 function openPaymentModal() {
-  document.getElementById('paymentModal').classList.add('active');
+  const modal = document.getElementById('paymentModal');
+  modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  document.getElementById('paymentModal').scrollTop = 0;
 }
 
 function closePaymentModal() {
-  document.getElementById('paymentModal').classList.remove('active');
+  const modal = document.getElementById('paymentModal');
+  modal.classList.remove('active');
   document.body.style.overflow = '';
-  document.getElementById('paymentModal').scrollTop = 0;
 }
 
+/* Клик по фону */
 document.getElementById('paymentModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('paymentModal')) closePaymentModal();
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('paymentModal')?.classList.contains('active')) {
+  if (e.target === document.getElementById('paymentModal')) {
     closePaymentModal();
   }
 });
 
+/* ESC */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' &&
+      document.getElementById('paymentModal').classList.contains('active')) {
+    closePaymentModal();
+  }
+});
+document.querySelector('.payment-modal-content').addEventListener('click', e => {
+  if (!e.target.closest('button') && !e.target.closest('a')) {
+    closePaymentModal();
+  }
+});
 
 
 /* =========================================================
