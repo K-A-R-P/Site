@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="мобильное меню">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Рабочая версия">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icons/phone.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/phone.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icons/wallet.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/wallet.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
@@ -77,14 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Рабочая версия замена футера">
-      <option name="closed" value="true" />
-      <created>1764455406154</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1764455406154</updated>
     </task>
     <task id="LOCAL-00105" summary="Рабочая версия правка анимации и шаблоны блоков">
       <option name="closed" value="true" />
@@ -470,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764810265709</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Рабочая версия">
+      <option name="closed" value="true" />
+      <created>1764991908321</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1764991908321</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,12 +502,12 @@
     <MESSAGE value="рабочая версия с галереей" />
     <MESSAGE value="рабочая версия с галереей и отзывами курсивом" />
     <MESSAGE value="упрощенный стиль и иконка" />
-    <MESSAGE value="Рабочая версия" />
     <MESSAGE value="Галерея без фаде ин" />
     <MESSAGE value="дипломы" />
     <MESSAGE value="3 диплома в ряд" />
     <MESSAGE value="модалка диплома" />
     <MESSAGE value="мобильное меню" />
-    <option name="LAST_COMMIT_MESSAGE" value="мобильное меню" />
+    <MESSAGE value="Рабочая версия" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рабочая версия" />
   </component>
 </project>

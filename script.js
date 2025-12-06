@@ -123,11 +123,10 @@ function openContactsModal() {
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  /* Сбрасываем анимацию, чтобы при повторном открытии работало снова */
-  content.style.animation = 'none';
-  void content.offsetWidth;
-  content.style.animation = '';
+  // запускаем анимацию только здесь
+  content.style.animation = 'contactsSoftPop .55s cubic-bezier(.16,1,.3,1) forwards';
 }
+
 
 function closeContactsModal() {
   const modal = document.getElementById('contactsModal');
