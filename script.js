@@ -113,16 +113,48 @@ window.addEventListener('scroll', () => {
 });
 
 /* =========================================================
-   CONTACT MODAL
+   CONTACT MODAL — PREMIUM VERSION
    ========================================================= */
+
 function openContactsModal() {
-  document.getElementById('contactsModal').classList.add('active');
+  const modal = document.getElementById('contactsModal');
+  const content = modal.querySelector('.contacts-modal-content');
+
+  modal.classList.add('active');
   document.body.style.overflow = 'hidden';
+
+  /* Сбрасываем анимацию, чтобы при повторном открытии работало снова */
+  content.style.animation = 'none';
+  void content.offsetWidth;
+  content.style.animation = '';
 }
+
 function closeContactsModal() {
-  document.getElementById('contactsModal').classList.remove('active');
+  const modal = document.getElementById('contactsModal');
+  modal.classList.remove('active');
   document.body.style.overflow = '';
 }
+
+/* Клик по фону — закрыть */
+document.getElementById('contactsModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('contactsModal')) closeContactsModal();
+});
+
+/* Клик внутри, НО если не кнопка/не ссылка → закрываем */
+document.querySelector('.contacts-modal-content').addEventListener('click', e => {
+  if (!e.target.closest('a') && !e.target.closest('button')) {
+    closeContactsModal();
+  }
+});
+
+/* ESC */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' &&
+      document.getElementById('contactsModal').classList.contains('active')) {
+    closeContactsModal();
+  }
+});
+
 
 /* =========================================================
    CARD MODAL

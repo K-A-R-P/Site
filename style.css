@@ -1242,9 +1242,24 @@ footer .c {
 
 
 /* ===========================================================
-                         МОДАЛКА КОНТАКТОВ
+               МОДАЛКА КОНТАКТОВ — PREMIUM LIKE SUCCESS
   =========================================================== */
 
+/* ОВЕРЛЕЙ — появляется плавно */
+#contactsModal {
+  opacity: 0;
+  transform: scale(.88) translateY(30px);
+  transition:
+    opacity .65s cubic-bezier(.16,1,.3,1),
+    transform .65s cubic-bezier(.16,1,.3,1);
+}
+
+#contactsModal.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* КОНТЕНТ: больше нет выезда слева — как в success */
 .contacts-modal-content {
   background: #fff;
   border-radius: 32px;
@@ -1253,29 +1268,57 @@ footer .c {
   max-width: 460px;
   width: 100%;
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  position: relative;
+
+  /* модалка появляется аналогично success popup-content */
+  opacity: 0;
+  transform: translateY(30px) scale(.88);
+  animation: contactsShow .85s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-.contacts-modal-content h3 {
-  font-size: 28px;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+@keyframes contactsShow {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(.88);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
+/* ===== ИКОНКА (единственная с выездом слева) ===== */
 .contacts-modal-content h3 img {
   height: 42px;
-  animation: wiggle 2.8s ease-in-out infinite;
+  opacity: 0;
+  transform: translateX(-40px);
   transform-origin: center bottom;
+
+  animation:
+    contactIconLeft .9s cubic-bezier(.16,1,.3,1) .15s forwards,
+    wiggleSoft 3s ease-in-out 1.2s infinite;
 }
 
+@keyframes contactIconLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Премиальное мягкое покачивание */
+@keyframes wiggleSoft {
+  0%   { transform: translateX(0) rotate(0deg) scale(1); }
+  25%  { transform: translateX(-2px) rotate(-2deg) scale(1.02); }
+  50%  { transform: translateX(2px) rotate(2deg) scale(1.015); }
+  75%  { transform: translateX(-1px) rotate(-1deg) scale(1.02); }
+  100% { transform: translateX(0) rotate(0deg) scale(1); }
+}
+
+/* Текст */
 .contacts-modal-content p {
   margin: 12px 0;
   color: #444;
 }
 
+/* Соцсети */
 .contacts-socials {
   gap: 56px;
   margin: 36px 0 24px;
@@ -1297,6 +1340,7 @@ footer .c {
   }
 }
 
+/* Кнопка Закрити */
 .contacts-modal-content > div[onclick="closeContactsModal()"] {
   margin-top: 30px;
   color: #888;
@@ -1305,10 +1349,25 @@ footer .c {
 }
 
 
-/* ===================================================================
-              МОДАЛКА ОФЕРТЫ (ТЕКСТ ДОГОВОРА)
-  =================================================================== */
+/* ====================================================================
+              МОДАЛКА ОФЕРТЫ — PREMIUM LIKE SUCCESS
+==================================================================== */
 
+/* Оверлей (модалка) — плавное появление */
+#offerModal {
+  opacity: 0;
+  transform: scale(.88) translateY(30px);
+  transition:
+    opacity .65s cubic-bezier(.16,1,.3,1),
+    transform .65s cubic-bezier(.16,1,.3,1);
+}
+
+#offerModal.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Контент — эффект как у success popup */
 .offer-modal-content {
   background: #fff;
   border-radius: 32px;
@@ -1320,15 +1379,24 @@ footer .c {
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   line-height: 1.75;
   font-size: 16px;
+
+  opacity: 0;
+  transform: translateY(30px) scale(.88);
+  animation: offerShow .85s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-/* Убираем стиль offer-section внутри модалки */
-.offer-modal-content .offer-section {
-  border: 0 !important;
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+@keyframes offerShow {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(.88);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
+/* Заголовки и структура — оставляем как есть */
 .offer-title {
   font-size: 24px;
   font-weight: 700;
@@ -1369,6 +1437,22 @@ footer .c {
 .offer-paragraph-nonumber {
   flex: 1;
   text-align: justify;
+}
+
+/* Убираем горизонтальную линию offer-section внутрь модалки */
+.offer-modal-content .offer-section {
+  border: none !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Скроллбар оставляем */
+.offer-modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+.offer-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.22);
+  border-radius: 10px;
 }
 
 
@@ -1488,42 +1572,64 @@ footer .c {
   }
 }
 /* =========================================================
-                           SUCCESS-МОДАЛКА
- =========================================================== */
+                     SUCCESS-МОДАЛКА — НОВАЯ
+=========================================================== */
 
 #successModal .popup-content {
   background: #fff;
   border-radius: 32px;
-  padding: 50px 40px;
+  padding: 36px 32px; /* расстояние уменьшено */
   text-align: center;
-  max-width: 440px;
+  max-width: 420px;
   width: 100%;
   box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  animation: modalShow .4s cubic-bezier(0.16,1,0.3,1);
-  box-sizing: border-box;
+
+  /* более плавное и медленное открытие */
+  opacity: 0;
+  transform: translateY(30px) scale(.88);
+  animation: successShow 0.85s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-@keyframes modalShow {
+@keyframes successShow {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(.88);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- FADE-LEFT для изображения --- */
+.success-icon {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation:
+    fadeLeft 0.9s cubic-bezier(.16,1,.3,1) forwards,
+    wiggleSoft 3s ease-in-out 1.1s infinite;  /* мягкое цикличное "трушение" */
+}
+
+@keyframes fadeLeft {
   from {
     opacity: 0;
-    transform: scale(0.92);
+    transform: translateX(-40px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
   }
 }
 
-@keyframes modalShowLux {
-  from {
-    opacity: 0;
-    transform: scale(0.6) translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+/* мягкое, премиальное покачивание, как heartbeat+wiggle */
+@keyframes wiggleSoft {
+  0%   { transform: translateX(0) rotate(0deg) scale(1); }
+  25%  { transform: translateX(-2px) rotate(-2deg) scale(1.02); }
+  50%  { transform: translateX(2px)  rotate(2deg)  scale(1.015); }
+  75%  { transform: translateX(-1px) rotate(-1deg) scale(1.02); }
+  100% { transform: translateX(0) rotate(0deg) scale(1); }
 }
+
 
 /* Конфетти — выше всех слоёв */
 
