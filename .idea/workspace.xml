@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Прозрачные succes,контакты и оплата">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="прозрачная заявка">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,14 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00108" summary="эплл анимация">
-      <option name="closed" value="true" />
-      <created>1764476297515</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1764476297515</updated>
     </task>
     <task id="LOCAL-00109" summary="эплл анимация подбор">
       <option name="closed" value="true" />
@@ -466,7 +459,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765035442276</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="прозрачная заявка">
+      <option name="closed" value="true" />
+      <created>1765041690603</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1765041690603</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -481,7 +482,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="карточки новые правки обтекания" />
     <MESSAGE value="карточки правки" />
     <MESSAGE value="Лента клиентов" />
     <MESSAGE value="Лента клиентов (не остановка а замедление при наведении)" />
@@ -506,6 +506,7 @@
     <MESSAGE value="Рабочая версия" />
     <MESSAGE value="Рабочая версия контакты и оплата прозрачные" />
     <MESSAGE value="Прозрачные succes,контакты и оплата" />
-    <option name="LAST_COMMIT_MESSAGE" value="Прозрачные succes,контакты и оплата" />
+    <MESSAGE value="прозрачная заявка" />
+    <option name="LAST_COMMIT_MESSAGE" value="прозрачная заявка" />
   </component>
 </project>

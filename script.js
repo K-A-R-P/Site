@@ -156,62 +156,57 @@ document.addEventListener('keydown', e => {
 
 
 /* =========================================================
-   CARD MODAL
-   ========================================================= */
+   CARD MODAL — FULL TEXT + GLASS EDGES + WHITE CONTENT
+========================================================== */
+
 function openModal(card) {
-  const img = card.querySelector('img').src;
-  let content = card.querySelector('.card-content').innerHTML;
-  content = content.replace(/style="display:none;"/g, '');
-  content = content.replace('<div class="readmore">Читати далі →</div>', '');
 
-  document.getElementById('modalImg').src = img;
-  document.getElementById('modalContent').innerHTML = content;
-  document.getElementById('cardModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
+  // 1. Берём ПОЛНЫЙ текст карточки
+  let content = card.querySelector(".card-content").innerHTML;
 
-  const modalCard = document.querySelector('.modal-card');
+  // 2. Убираем скрытие длинного текста
+  content = content.replace(/style="display:none;"/g, "");
+
+  // 3. Убираем "Читати далі"
+  content = content.replace('<div class="readmore">Читати далі →</div>', "");
+
+  // 4. Вставляем
+  document.getElementById("modalContent").innerHTML = content;
+
+  // 5. Открываем модалку
+  const modal = document.getElementById("cardModal");
+  const modalCard = modal.querySelector(".modal-card");
+
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  // 6. Всегда сверху
   modalCard.scrollTop = 0;
 
-  document.getElementById('cardModal').onclick = function(e) {
-    if (e.target === document.getElementById('cardModal') ||
-        (e.target.closest('.modal-card') && !e.target.closest('button') && !e.target.closest('a'))) {
-      closeModal();
-    }
+  // 7. Закрытие по клику вне окна
+  modal.onclick = (e) => {
+    if (e.target === modal) closeModal();
   };
-
-  // Smooth mini-scroll inside modal
-  setTimeout(() => {
-    const isMobile = window.innerWidth <= 768;
-    const distance = isMobile ? 230 : 300;
-    const duration = isMobile ? 1400 : 1500;
-
-    const start = modalCard.scrollTop;
-    const startTime = performance.now();
-
-    function scrollStep(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = progress === 1 ? 1 : 1 - Math.pow(1 - progress, 3);
-
-      modalCard.scrollTop = start + distance * ease;
-
-      if (progress < 1) requestAnimationFrame(scrollStep);
-    }
-
-    requestAnimationFrame(scrollStep);
-  }, 200);
 }
+
+/* Клик ВНУТРИ карточки → закрыть (кроме ссылок и кнопок) */
+document.querySelector('#cardModal .modal-card').addEventListener('click', e => {
+  if (!e.target.closest('button') && !e.target.closest('a')) {
+    closeModal();
+  }
+});
+
 
 function closeModal() {
-  document.getElementById('cardModal').classList.remove('active');
-  document.body.style.overflow = '';
-  document.getElementById('cardModal').onclick = null;
+  const modal = document.getElementById("cardModal");
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
 }
 
-document.getElementById('cardModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('cardModal')) closeModal();
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
 
 /* =========================================================
    CALENDLY MODAL
