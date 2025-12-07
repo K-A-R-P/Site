@@ -1103,3 +1103,127 @@ window.addEventListener("load", () => {
   window.addEventListener("touchend", dragEnd);
 });
 
+/* ===================== EXIT INTENT POPUP ===================== */
+
+let exitShown = false;
+
+function openExitPopup() {
+  if (exitShown) return;
+  exitShown = true;
+
+  const popup = document.getElementById("exitPopup");
+  popup.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeExitPopup() {
+  const popup = document.getElementById("exitPopup");
+  popup.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+/* ловимо вихід */
+document.addEventListener("mouseleave", (e) => {
+  if (e.clientY <= 0 && !exitShown) {
+    openExitPopup();
+  }
+});
+
+/* відправка */
+document.getElementById("exitForm")?.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const name = this.name.value.trim();
+  let phone = this.phone.value.replace(/\D/g, '');
+  const email = this.email.value.trim();
+  const status = document.getElementById("exitStatus");
+
+  if (phone.startsWith("38")) phone = phone.slice(2);
+  if (phone.length !== 10) {
+    status.innerHTML = "<span style='color:red;'>Невірний номер телефону</span>";
+    return;
+  }
+  phone = "+38" + phone;
+
+  status.innerHTML = "Відправляємо...";
+  status.style.color = "#f7c843";
+
+  try {
+    const r = await fetch("https://addonsaf.pythonanywhere.com/webhook", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "new_booking",
+        product: "Чек-лист Exit Popup",
+        name: name,
+        phone: phone,
+        comment: "Email: " + email
+      })
+    });
+
+    if (r.ok) {
+      status.innerHTML = "";
+      closeExitPopup();
+      showSuccessModal(); // твоя вже існуюча
+      this.reset();
+    } else {
+      throw new Error();
+    }
+  } catch (err) {
+    status.innerHTML = "<span style='color:red;'>Помилка. Спробуйте ще раз</span>";
+  }
+});
+/* ===================== EXIT POPUP — PHONE MASK ===================== */
+
+const exitPhone = document.getElementById('exitPhone');
+if (exitPhone) {
+  function formatExitPhone(d) {
+    if (d.length <= 2) return '+' + d;
+    const body = d.slice(2);
+    let out = '+38';
+    if (body.length > 0) out += ' (' + body.substring(0, 3);
+    if (body.length >= 3) out += ')';
+    if (body.length > 3) out += ' ' + body.substring(3, 6);
+    if (body.length > 6) out += ' ' + body.substring(6, 8);
+    if (body.length > 8) out += ' ' + body.substring(8, 10);
+    return out;
+  }
+
+  exitPhone.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+      const pos = this.selectionStart;
+      const current = this.value;
+
+      if (current[pos - 1] === ')' || current[pos - 1] === ' ') {
+        e.preventDefault();
+        const digits = current.replace(/\D/g, '').slice(0, -1);
+        this.value = formatExitPhone(digits);
+        this.setSelectionRange(this.value.length, this.value.length);
+      } else if (current === '+38 ' || current === '+38') {
+        e.preventDefault();
+        this.value = '';
+      }
+    }
+  });
+
+  exitPhone.addEventListener('input', function() {
+    let d = this.value.replace(/\D/g, '');
+    if (d.startsWith('8') && d.length > 1) d = '3' + d;
+    d = d.slice(0, 12);
+    this.value = formatExitPhone(d);
+    this.setSelectionRange(this.value.length, this.value.length);
+  });
+
+  exitPhone.addEventListener('focus', () => {
+    if (!exitPhone.value) {
+      exitPhone.value = '+38 ';
+      exitPhone.setSelectionRange(exitPhone.value.length, exitPhone.value.length);
+    }
+  });
+
+  exitPhone.addEventListener('blur', () => {
+    if (exitPhone.value.replace(/\D/g, '').length <= 2) {
+      exitPhone.value = '';
+    }
+  });
+}
