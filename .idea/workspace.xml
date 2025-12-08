@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="прозрачная карточка">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="всплывачка и правка текста">
+      <change beforePath="$PROJECT_DIR$/assets/images/about-photo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/about-photo.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,22 +73,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00110" summary="эплл анимация подбор2">
-      <option name="closed" value="true" />
-      <created>1764481552078</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1764481552078</updated>
-    </task>
-    <task id="LOCAL-00111" summary="модалка оферты">
-      <option name="closed" value="true" />
-      <created>1764482361766</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1764482361766</updated>
     </task>
     <task id="LOCAL-00112" summary="модалка оферты возврат">
       <option name="closed" value="true" />
@@ -468,7 +450,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765074347277</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="всплывачка и правка текста">
+      <option name="closed" value="true" />
+      <created>1765151675066</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1765151675066</updated>
+    </task>
+    <task id="LOCAL-00160" summary="всплывачка и правка текста">
+      <option name="closed" value="true" />
+      <created>1765151760855</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1765151760855</updated>
+    </task>
+    <option name="localTasksCounter" value="161" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -483,7 +481,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Лента клиентов" />
     <MESSAGE value="Лента клиентов (не остановка а замедление при наведении)" />
     <MESSAGE value="Лента клиентов (не фикс скорости на мобилках)" />
     <MESSAGE value="Лента клиентов (лента с расскрашиванием в центре)" />
@@ -508,6 +505,7 @@
     <MESSAGE value="Прозрачные succes,контакты и оплата" />
     <MESSAGE value="прозрачная заявка" />
     <MESSAGE value="прозрачная карточка" />
-    <option name="LAST_COMMIT_MESSAGE" value="прозрачная карточка" />
+    <MESSAGE value="всплывачка и правка текста" />
+    <option name="LAST_COMMIT_MESSAGE" value="всплывачка и правка текста" />
   </component>
 </project>
