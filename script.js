@@ -1227,3 +1227,51 @@ if (exitPhone) {
     }
   });
 }
+
+/* ===================== фак ===================== */
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const answer = item.querySelector('.faq-answer');
+
+  item.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+
+    // ---- 1) ЗАКРЫВАЕМ ВСЕ ДРУГИЕ ВОПРОСЫ ----
+    faqItems.forEach(other => {
+      if (other !== item && other.classList.contains('open')) {
+        const otherAnswer = other.querySelector('.faq-answer');
+        otherAnswer.style.height = otherAnswer.scrollHeight + "px";
+        requestAnimationFrame(() => {
+          otherAnswer.style.height = "0px";
+        });
+        other.classList.remove('open');
+      }
+    });
+
+    // ---- 2) ЕСЛИ КЛИКНУЛИ ПО ОТКРЫТОМУ → ЗАКРЫВАЕМ ----
+    if (isOpen) {
+      answer.style.height = answer.scrollHeight + "px";
+      requestAnimationFrame(() => {
+        answer.style.height = "0px";
+      });
+      item.classList.remove('open');
+      return;
+    }
+
+    // ---- 3) ОТКРЫВАЕМ НОВЫЙ ----
+    answer.style.height = answer.scrollHeight + "px";
+    item.classList.add('open');
+
+    answer.addEventListener(
+      "transitionend",
+      () => {
+        if (item.classList.contains("open")) {
+          answer.style.height = "auto";
+        }
+      },
+      { once: true }
+    );
+  });
+});
+
