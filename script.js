@@ -970,6 +970,27 @@ window.addEventListener('load', () => {
 
 });
 
+/* =========================================================
+   FAQ FADE-UP
+========================================================= */
+const faq = document.querySelector('.faq-list.fade-up');
+if (faq) {
+  const faqObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        faq.classList.add('visible');
+        observer.unobserve(faq);
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: "0px 0px -10%"
+  });
+
+  faqObserver.observe(faq);
+}
+
+
 /* ===================== APPLE GALLERY — FULL VERSION ===================== */
 
 window.addEventListener("load", () => {
