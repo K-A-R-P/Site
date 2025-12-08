@@ -2672,5 +2672,45 @@ canvas.confetti-canvas {
   opacity: 1;
   transform: translateY(0);
 }
+/* ============================
+   Premium FAQ Hover (clean)
+   ============================ */
+
+/* Базовый вопрос */
+.faq-question {
+  position: relative;
+  transition:
+    color .3s ease,
+    transform .35s cubic-bezier(.16,1,.3,1);
+}
+
+/* Аккуратный подъём */
+.faq-item:hover .faq-question {
+  transform: translateY(-2px);
+  color: var(--gray);
+}
+
+/* Иконка: только проявляется и чуть масштабируется */
+.faq-icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.6;
+  transition:
+    opacity .35s ease,
+    transform .35s cubic-bezier(.16,1,.3,1);
+}
+
+/* НИКАКОГО вращения при наведении */
+.faq-item:hover .faq-icon {
+  opacity: 1;
+  transform: scale(1.06); /* лёгкий эффект премиальности */
+}
+
+/* P.S. Поворот остаётся ТОЛЬКО при ОТКРЫТИИ вопроса */
+.faq-item.open .faq-icon {
+  transform: rotate(90deg) scale(1.05);
+  opacity: 1;
+}
+
 
 
