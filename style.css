@@ -1171,8 +1171,8 @@ footer .c {
   inset: 0;
 
   background: rgba(0,0,0,0.18);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
   z-index: 9999;
   align-items: center;
@@ -1227,7 +1227,7 @@ footer .c {
 /* ==== САМА КАРТОЧКА ==== */
 
 .modal-card {
-  background: rgba(255,255,255,0.62);     /* СТЕКЛО как в контактах 0.62*/
+  background: rgba(255,255,255,0.72);     /* СТЕКЛО как в контактах 0.62*/
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
