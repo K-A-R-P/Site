@@ -482,62 +482,105 @@ document.addEventListener('keydown', e => {
 document.getElementById('bookingForm')?.addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  const title = document.getElementById('priceTitle').textContent.replace('Запис на ', '').trim();
-  const price = document.getElementById('priceLabel').textContent;
-  const name = e.target.name.value.trim();
+  const title = document.getElementById('priceTitle').textContent;
+  const name = this.querySelector('input[name="name"]').value.trim();
   let phone = document.getElementById('phoneInput').value.trim();
-  phone = phone.replace(/\D/g, '');
-  if (phone.startsWith('38')) phone = phone.slice(2);
-  if (phone.length !== 10) {
-    document.getElementById('popupStatus').innerHTML = '<span style="color:red;">Введіть коректний номер телефону!</span>';
+  const email = document.getElementById('emailInput').value.trim();
+  const comment = this.querySelector('textarea[name="comment"]').value.trim();
+
+  const status = document.getElementById('popupStatus');
+  status.innerHTML = "";
+
+  // -----------------------------
+  // EMAIL VALIDATION
+  // -----------------------------
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    status.innerHTML = '<span style="color:red;">Введіть коректний email!</span>';
     return;
   }
-  phone = '+38' + phone;
 
-  const comment = e.target.comment.value.trim();
-  const status = document.getElementById('popupStatus');
+  // -----------------------------
+  // PHONE NORMALIZATION
+  // -----------------------------
+  if (!phone.startsWith("+38")) {
+    phone = "+38" + phone.replace(/\D/g, '');
+  }
 
-  status.innerHTML = 'Відправляємо...';
-  status.style.color = '#f7c843';
+  // -----------------------------
+  // READ CONFIG FROM CARD
+  // -----------------------------
+  const card = window.bookingCard || null;
+  let send_email = false;
+  let email_template = "";
+  let pay_link = "";
+  let price = "";
+
+  if (card) {
+    send_email = card.dataset.sendEmail === "true";
+    email_template = card.dataset.emailTemplate || "";
+    pay_link = card.dataset.payLink || "";
+    price = card.dataset.price || "";
+  }
+
+  // -----------------------------
+  // GENERATE EMAIL HTML FROM TEMPLATE
+  // -----------------------------
+  let email_html = "";
+  if (send_email && email_template) {
+    const tpl = document.getElementById(`email-template-${email_template}`);
+    if (tpl) {
+      email_html = tpl.innerHTML
+        .replace(/{{name}}/g, name)
+        .replace(/{{product}}/g, title)
+        .replace(/{{price}}/g, price)
+        .replace(/{{paylink}}/g, pay_link);
+    }
+  }
 
   try {
-    const response = await fetch('https://addonsaf.pythonanywhere.com/webhook', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        action: 'new_booking',
-        product: title,
-        name: name,
-        phone: phone,
-        comment: comment || '—'
-      })
-    });
+    const response = await fetch(
+      "https://addonsaf.pythonanywhere.com/webhook",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "new_booking",
+          product: title,
+          name,
+          phone,
+          email,
+          comment,
+          send_email,
+          email_html
+        })
+      }
+    );
 
-    if (response.ok) {
+    const data = await response.json();
+
+    if (data.status === "ok") {
+      // очищаем форму
+      this.reset();
+
+      // закрываем форму записи
       closePricePopup();
+
+      // показываем успешную модалку
       showSuccessModal();
-      e.target.reset();
-      document.getElementById('phoneInput').value = '';
-      status.innerHTML = '';
+
+      // редирект на оплату — только для платных продуктов
+      if (pay_link && card && card.dataset.redirect === "true") {
+        setTimeout(() => {
+          window.location.href = pay_link;
+        }, 700);
+      }
     } else {
-      throw new Error();
+      status.innerHTML = '<span style="color:red;">Помилка. Спробуйте ще раз.</span>';
     }
   } catch (err) {
-    status.innerHTML = `
-      <div style="color:#d32f2f; margin-bottom:16px; font-size:17px; font-weight:600;">
-        Помилка відправки
-      </div>
-      <div style="margin:24px 0 16px; font-size:18px; color:#333;">
-        Напишіть мені в Direct
-      </div>
-      <div style="margin:20px 0;">
-        <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
-          <img src="assets/icons/instagram.png"
-               alt="Instagram Direct"
-               style="width:68px; height:68px; animation: wiggle 2s ease-in-out infinite;">
-        </a>
-      </div>
-    `;
+    console.error(err);
+    status.innerHTML = '<span style="color:red;">Помилка з’єднання. Спробуйте ще раз.</span>';
   }
 });
 
@@ -547,40 +590,31 @@ document.getElementById('bookingForm')?.addEventListener('submit', async functio
 function openPricePopup(e, title, price) {
   e.stopPropagation();
 
+  // сохраняем карточку, из которой вызвали
+  window.bookingCard = e.target.closest('.card');
+
   document.getElementById('priceTitle').textContent = title;
   document.getElementById('priceLabel').textContent = 'Вартість: ' + price;
 
   document.getElementById('bookingForm').reset();
-  document.getElementById('phoneInput').value = '';
   document.getElementById('popupStatus').innerHTML = '';
-
-  document.querySelectorAll('#pricePopup input, #pricePopup textarea').forEach(input => {
-    input.style.borderColor = '';
-    input.style.boxShadow = '';
-  });
+  resetFormHighlights();
 
   const popup = document.getElementById('pricePopup');
-
-  /* ——————————————
-     Правильная активация
-     —————————————— */
   popup.classList.add('active');
   popup.scrollTop = 0;
 
-  // Блокируем скролл страницы ТОЛЬКО при открытии попапа
+  // блокируем скролл страницы
   document.body.style.overflow = 'hidden';
 }
 
 function closePricePopup() {
   const popup = document.getElementById('pricePopup');
 
-  /* ——————————————
-     Правильное закрытие
-     —————————————— */
   popup.classList.remove('active');
   popup.scrollTop = 0;
 
-  // Возвращаем скролл страницы
+  // возвращаем скролл
   document.body.style.overflow = '';
 
   resetFormHighlights();
@@ -588,7 +622,7 @@ function closePricePopup() {
 }
 
 /* Закрытие кликом по фону */
-document.getElementById('pricePopup').addEventListener('click', e => {
+document.getElementById('pricePopup')?.addEventListener('click', e => {
   if (e.target === document.getElementById('pricePopup')) {
     closePricePopup();
   }
@@ -609,10 +643,17 @@ document.addEventListener('keydown', e => {
 document.querySelectorAll('#bookingForm input[required]').forEach(input => {
   const check = () => {
     const val = input.value.trim();
-    const digits = input.id === 'phoneInput' ? input.value.replace(/\D/g, '').length : 0;
-    const valid =
-      (input.name === 'name' && val.length >= 2) ||
-      (input.id === 'phoneInput' && digits === 12);
+    let valid = false;
+
+    if (input.name === 'name') {
+      valid = val.length >= 2;
+    } else if (input.id === 'phoneInput') {
+      const digits = input.value.replace(/\D/g, '').length;
+      valid = digits === 12;
+    } else if (input.id === 'emailInput') {
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      valid = pattern.test(val);
+    }
 
     input.style.borderColor = valid ? '#4caf50' : '#ddd';
     input.style.boxShadow = valid ? '0 0 12px rgba(76,175,80,0.3)' : 'none';
@@ -629,6 +670,46 @@ function resetFormHighlights() {
     input.style.boxShadow = '';
   });
 }
+
+
+/* =========================================================
+   ПОДСВЕТКА ПОЛЕЙ ВВОДА (имя, телефон, email)
+   ========================================================= */
+document.querySelectorAll('#bookingForm input[required]').forEach(input => {
+  const check = () => {
+    const val = input.value.trim();
+
+    let valid = false;
+
+    if (input.name === 'name') {
+      valid = val.length >= 2;
+    }
+
+    if (input.id === 'phoneInput') {
+      valid = input.value.replace(/\D/g, '').length === 12;
+    }
+
+    if (input.id === 'emailInput') {
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      valid = pattern.test(val);
+    }
+
+    input.style.borderColor = valid ? '#4caf50' : '#ddd';
+    input.style.boxShadow = valid ? '0 0 12px rgba(76,175,80,0.3)' : 'none';
+  };
+
+  input.addEventListener('input', check);
+  input.addEventListener('blur', check);
+  check();
+});
+
+function resetFormHighlights() {
+  document.querySelectorAll('#pricePopup input, #pricePopup textarea').forEach(input => {
+    input.style.borderColor = '';
+    input.style.boxShadow = '';
+  });
+}
+
 
 /* =========================================================
    FIX SCROLL RESTORE ON RELOAD
@@ -1124,7 +1205,7 @@ window.addEventListener("load", () => {
   window.addEventListener("touchend", dragEnd);
 });
 
-/* ===================== EXIT INTENT POPUP ===================== */
+/* ===================== EXIT-INTENT POPUP — FULL VERSION ===================== */
 
 let exitShown = false;
 
@@ -1143,19 +1224,46 @@ function closeExitPopup() {
   document.body.style.overflow = "";
 }
 
-/* ловимо вихід */
+/* --- триггер — уход мыши вверх --- */
 document.addEventListener("mouseleave", (e) => {
   if (e.clientY <= 0 && !exitShown) {
     openExitPopup();
   }
 });
 
-/* відправка */
+/* ===================== GREEN VALIDATION ===================== */
+document.querySelectorAll('#exitForm input[required]').forEach(input => {
+  const check = () => {
+    const val = input.value.trim();
+    let valid = false;
+
+    if (input.name === 'name') valid = val.length >= 2;
+
+    if (input.name === 'email') {
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      valid = pattern.test(val);
+    }
+
+    if (input.name === 'phone') {
+      valid = input.value.replace(/\D/g, '').length === 12;
+    }
+
+    input.style.borderColor = valid ? '#4caf50' : '#ddd';
+    input.style.boxShadow = valid ? '0 0 12px rgba(76,175,80,0.3)' : 'none';
+  };
+
+  input.addEventListener('input', check);
+  input.addEventListener('blur', check);
+  check();
+});
+
+/* ===================== EXIT FORM SEND ===================== */
+
 document.getElementById("exitForm")?.addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const name = this.name.value.trim();
-  let phone = this.phone.value.replace(/\D/g, '');
+  let phone = this.phone.value.replace(/\D/g, "");
   const email = this.email.value.trim();
   const status = document.getElementById("exitStatus");
 
@@ -1165,6 +1273,12 @@ document.getElementById("exitForm")?.addEventListener("submit", async function(e
     return;
   }
   phone = "+38" + phone;
+
+  /* ==== СГЕНЕРИРОВАТЬ EMAIL ИЗ ШАБЛОНА ==== */
+  const emailHtml = getEmailHtml("exit", {
+    name: name,
+    product: "Exit Popup Checklist",
+  });
 
   status.innerHTML = "Відправляємо...";
   status.style.color = "#f7c843";
@@ -1178,14 +1292,17 @@ document.getElementById("exitForm")?.addEventListener("submit", async function(e
         product: "Чек-лист Exit Popup",
         name: name,
         phone: phone,
-        comment: "Email: " + email
+        email: email,
+        comment: "",
+        send_email: true,
+        email_html: emailHtml
       })
     });
 
     if (r.ok) {
       status.innerHTML = "";
       closeExitPopup();
-      showSuccessModal(); // твоя вже існуюча
+      showSuccessModal();
       this.reset();
     } else {
       throw new Error();
@@ -1194,6 +1311,7 @@ document.getElementById("exitForm")?.addEventListener("submit", async function(e
     status.innerHTML = "<span style='color:red;'>Помилка. Спробуйте ще раз</span>";
   }
 });
+
 /* ===================== EXIT POPUP — PHONE MASK ===================== */
 
 const exitPhone = document.getElementById('exitPhone');
@@ -1211,18 +1329,14 @@ if (exitPhone) {
   }
 
   exitPhone.addEventListener('keydown', function(e) {
+    const pos = this.selectionStart;
     if (e.key === 'Backspace') {
-      const pos = this.selectionStart;
       const current = this.value;
-
       if (current[pos - 1] === ')' || current[pos - 1] === ' ') {
         e.preventDefault();
         const digits = current.replace(/\D/g, '').slice(0, -1);
         this.value = formatExitPhone(digits);
         this.setSelectionRange(this.value.length, this.value.length);
-      } else if (current === '+38 ' || current === '+38') {
-        e.preventDefault();
-        this.value = '';
       }
     }
   });
@@ -1248,6 +1362,7 @@ if (exitPhone) {
     }
   });
 }
+
 
 /* ===================== фак ===================== */
 const faqItems = document.querySelectorAll('.faq-item');
@@ -1295,4 +1410,24 @@ faqItems.forEach(item => {
     );
   });
 });
+
+
+
+ // ---- Подбор шаблона письма----
+function getEmailHtml(templateName, config) {
+
+  const tpl = document.getElementById(`email-template-${templateName}`);
+  if (!tpl) return "";
+
+  let html = tpl.innerHTML;
+
+  // подмена переменных
+  html = html.replace(/{{name}}/g, config.name || "");
+  html = html.replace(/{{product}}/g, config.product || "");
+  html = html.replace(/{{price}}/g, config.price || "");
+  html = html.replace(/{{paylink}}/g, config.payLink || "");
+
+  return html;
+}
+
 

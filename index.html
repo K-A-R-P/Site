@@ -292,7 +292,13 @@
 
 <!--======================== КАРТОЧКА 2 ========================-->
 <div class="card scroll-animate"
- onclick="openModal(this)">
+ onclick="openModal(this)"
+     data-price="6000 ₴"
+     data-pay-link="https://secure.wayforpay.com/button/b93e5be4236e3"
+     data-send-email="true"
+     data-email-template="paid"
+     data-redirect="false">
+
         <img src="assets/images/strategy-session.jpg" alt="Стратегічна сесія" />
         <div class="card-content">
           <div class="card-text-content">
@@ -342,14 +348,8 @@
             <div class="card-bottom">
       <div class="readmore">Читати далі →</div>
           <div class="buttons-row">
-            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Стратегічна сесія', '6000 ₴')">Записатися</button>
-            <button
-                class="price-btn"
-                data-url="https://secure.wayforpay.com/button/b93e5be4236e3"
-                data-title="Стратегічна сесія"
-                onclick="openWayForPay(this)">
-                🛒 6000 ₴
-            </button>
+            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Стратегічна сесія', '6000 ₴')">🛒 6000 ₴</button>
+
           </div>
         </div>
       </div>
@@ -503,7 +503,13 @@
     </div>
 
     <!--======================== КАРТОЧКА 2 ========================-->
-    <div class="card scroll-animate" onclick="openModal(this)">
+    <div class="card scroll-animate" onclick="openModal(this)"
+    data-product="Власницький облік і контроль бізнесу"
+     data-price=""
+     data-pay-link=""
+     data-send-email="true"
+     data-email-template="free"
+     data-redirect="false">
       <img src="assets/images/oblik-control.jpg" alt="Власницький облік і контроль бізнесу" />
 
       <div class="card-content">
@@ -997,6 +1003,11 @@
         <input type="text" id="phoneInput" name="phone" placeholder="Телефон" required>
       </div>
 
+        <div class="required-field">
+  <input type="email" id="emailInput" name="email" placeholder="Email" required>
+</div>
+
+
       <textarea name="comment" rows="6" placeholder="Як краще з вами зв'язатися (зателефонувати, месенджер..)? Коли вам зручно? Які теми хочете обговорити? (не обов’язково)"></textarea>
 
       <button type="submit" class="btn btn-main">Відправити заявку</button>
@@ -1075,6 +1086,135 @@
 
   <!-- Підключення скрипта -->
   <script src="script.js"></script>
+ // ---- ПИСЬМА ----
+ // ---- PAID (письмо с кнопкой оплаты)----
+ <script id="email-template-paid" type="text/template">
+<div style="font-family: Manrope, Arial, sans-serif;
+            max-width: 520px; margin: 0 auto; padding: 20px; color:#222;">
+
+  <div style="text-align:center; margin-bottom: 25px;">
+    <a href="https://i-s-business-consulting.pp.ua" target="_blank">
+      <img src="https://i-s-business-consulting.pp.ua/assets/images/logo.png"
+           style="width:160px; height:auto;">
+    </a>
+  </div>
+
+  <h2 style="font-size:24px; margin-bottom:14px; color:#1a1a1a;">
+    Вітаю, {{name}}!
+  </h2>
+
+  <p style="font-size:17px; line-height:1.6; color:#444;">
+    Ви залишили заявку на <strong>{{product}}</strong>.
+  </p>
+
+  <p style="font-size:16px; line-height:1.6; color:#444;">
+    Для завершення — перейдіть за кнопкою нижче:
+  </p>
+
+  <div style="text-align:center; margin:28px 0 32px;">
+    <a href="{{paylink}}"
+       style="padding:14px 28px; background:#f7c843; color:#000;
+              border-radius:14px; font-size:18px; font-weight:600;
+              text-decoration:none; display:inline-block;">
+      Оплатити {{price}}
+    </a>
+  </div>
+
+  <p style="font-size:15px; color:#666; line-height:1.6; text-align:center;">
+    Якщо виникнуть питання — просто відповідайте на це письмо ❤️<br>
+    або напишіть мені в одну з соцмереж:
+  </p>
+
+  <div style="text-align:center; margin-top:18px;">
+    <a href="https://ig.me/m/stetsurina.irina_coach"><img src="https://i-s-business-consulting.pp.ua/assets/icons/instagram.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+    <a href="https://www.facebook.com/IrenStetsurina"><img src="https://i-s-business-consulting.pp.ua/assets/icons/facebook.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+    <a href="https://t.me/Stec0407"><img src="https://i-s-business-consulting.pp.ua/assets/icons/telegram.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+  </div>
+
+</div>
+</script>
+
+ // ---- FREE (без цены и без кнопки оплаты)----
+ <script id="email-template-free" type="text/template">
+<div style="font-family: Manrope, Arial, sans-serif;
+            max-width: 520px; margin: 0 auto; padding: 20px; color:#222;">
+
+  <div style="text-align:center; margin-bottom: 25px;">
+    <a href="https://i-s-business-consulting.pp.ua" target="_blank">
+      <img src="https://i-s-business-consulting.pp.ua/assets/images/logo.png"
+           style="width:160px; height:auto;">
+    </a>
+  </div>
+
+  <h2 style="font-size:24px; margin-bottom:14px; color:#1a1a1a;">
+    Вітаю, {{name}}!
+  </h2>
+
+  <p style="font-size:17px; line-height:1.6; color:#444;">
+    Ви залишили заявку на <strong>{{product}}</strong>.
+  </p>
+
+  <p style="font-size:16px; line-height:1.6; color:#444;">
+    Я зв’яжусь із вами найближчим часом.
+  </p>
+
+  <p style="font-size:15px; color:#666; line-height:1.6; text-align:center; margin-top:32px;">
+    Якщо виникнуть питання — просто відповідайте на це письмо ❤️<br>
+    або напишіть мені в одну з соцмереж:
+  </p>
+
+  <div style="text-align:center; margin-top:18px;">
+    <a href="https://ig.me/m/stetsurina.irina_coach"><img src="https://i-s-business-consulting.pp.ua/assets/icons/instagram.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+    <a href="https://www.facebook.com/IrenStetsurina"><img src="https://i-s-business-consulting.pp.ua/assets/icons/facebook.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+    <a href="https://t.me/Stec0407"><img src="https://i-s-business-consulting.pp.ua/assets/icons/telegram.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+  </div>
+
+</div>
+</script>
+ // ---- EXIT-INTENT (чек-лист / подарок)----
+ <script id="email-template-exit" type="text/template">
+<div style="font-family: Manrope, Arial, sans-serif;
+            max-width: 520px; margin: 0 auto; padding: 20px; color:#222;">
+
+  <div style="text-align:center; margin-bottom: 25px;">
+    <a href="https://i-s-business-consulting.pp.ua" target="_blank">
+      <img src="https://i-s-business-consulting.pp.ua/assets/images/logo.png"
+           style="width:160px; height:auto;">
+    </a>
+  </div>
+
+  <h2 style="font-size:24px; margin-bottom:14px; color:#1a1a1a;">
+    Ваш подарунок готовий 🎁
+  </h2>
+
+  <p style="font-size:17px; line-height:1.6; color:#444;">
+    Дякуємо, {{name}}!
+    Тримайте ваш <strong>чекліст</strong>
+  </p>
+
+  <div style="text-align:center; margin: 28px 0 32px;">
+    <a href="https://i-s-business-consulting.pp.ua/checklist.pdf"
+       style="padding:14px 28px; background:#f7c843; color:#000;
+              border-radius:14px; font-size:18px; font-weight:600;
+              text-decoration:none; display:inline-block;">
+      Завантажити
+    </a>
+  </div>
+
+  <p style="font-size:15px; color:#666; line-height:1.6; text-align:center;">
+    Якщо виникнуть питання — просто відповідайте на це письмо ❤️<br>
+    або напишіть мені в одну з соцмереж:
+  </p>
+
+  <div style="text-align:center; margin-top:18px;">
+    <a href="https://ig.me/m/stetsurina.irina_coach"><img src="https://i-s-business-consulting.pp.ua/assets/icons/instagram.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+    <a href="https://www.facebook.com/IrenStetsurina"><img src="https://i-s-business-consulting.pp.ua/assets/icons/facebook.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+    <a href="https://t.me/Stec0407"><img src="https://i-s-business-consulting.pp.ua/assets/icons/telegram.png" style="width:48px;height:48px;border-radius:50%;margin:0 10px;"></a>
+  </div>
+
+</div>
+</script>
+
 
 </body>
 </html>
