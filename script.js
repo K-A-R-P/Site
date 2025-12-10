@@ -1430,19 +1430,43 @@ function getEmailHtml(templateName, config) {
   return html;
 }
 
-
-// HERO плавное появление при загрузке
+// HERO — появление при загрузке
 window.addEventListener("load", () => {
-    document.querySelector('.topbar-wrapper').classList.add('visible');
+  document.querySelector('#hero')?.classList.add('visible');
 });
 
-// SHRINK — превращение в маленький прозрачный хедер
+// HERO scroll disappear (progressive)
 window.addEventListener("scroll", () => {
-    const wrap = document.querySelector('.topbar-wrapper');
+  const hero = document.getElementById("hero");
+  if (!hero) return;
 
-    if (window.scrollY > 120) {
-        wrap.classList.add("shrink");
-    } else {
-        wrap.classList.remove("shrink");
-    }
+  const limit = 260; // насколько нужно прокрутить, чтобы полностью исчезнуть
+  const y = window.scrollY;
+
+  // Прогрессивная анимация по скроллу
+  const progress = Math.min(y / limit, 1);
+
+  hero.style.opacity = 1 - progress;
+  hero.style.transform = `translateY(${-progress * 80}px)`;
+
+  // Когда полностью исчез — добавляем класс (убираем залипание)
+  if (progress >= 1) {
+    hero.classList.add("shrink");
+  } else {
+    hero.classList.remove("shrink");
+  }
+});
+// HERO — появление при загрузке
+window.addEventListener("load", () => {
+  const hero = document.querySelector('#hero');
+
+  if (hero) {
+    // картинка fade-up (уже работает)
+    hero.classList.add('visible');
+
+    // текст — позже
+    setTimeout(() => {
+      hero.classList.add('text-visible');
+    }, 300);
+  }
 });
