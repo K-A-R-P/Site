@@ -1431,3 +1431,18 @@ function getEmailHtml(templateName, config) {
 }
 
 
+// HERO плавное появление при загрузке
+window.addEventListener("load", () => {
+    document.querySelector('.topbar-wrapper').classList.add('visible');
+});
+
+// SHRINK — превращение в маленький прозрачный хедер
+window.addEventListener("scroll", () => {
+    const wrap = document.querySelector('.topbar-wrapper');
+
+    if (window.scrollY > 120) {
+        wrap.classList.add("shrink");
+    } else {
+        wrap.classList.remove("shrink");
+    }
+});
