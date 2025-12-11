@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="херо модуль">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="смещение заголовка влево">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,14 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00126" summary="Лента клиентов На слабом ноуте — автоматический буст скорости">
-      <option name="closed" value="true" />
-      <created>1764577687805</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1764577687805</updated>
     </task>
     <task id="LOCAL-00127" summary="Лента клиентов наполнение">
       <option name="closed" value="true" />
@@ -468,7 +459,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765400164159</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="смещение заголовка влево">
+      <option name="closed" value="true" />
+      <created>1765455257667</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1765455257667</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -483,7 +482,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="рабочая версия с отзывами" />
     <MESSAGE value="рабочая версия с отзывами (прокрутка в видимую зону)" />
     <MESSAGE value="рабочая версия с галереей" />
     <MESSAGE value="рабочая версия с галереей и отзывами курсивом" />
@@ -508,6 +506,7 @@
     <MESSAGE value="почта" />
     <MESSAGE value="почта, рабочая версия" />
     <MESSAGE value="херо модуль" />
-    <option name="LAST_COMMIT_MESSAGE" value="херо модуль" />
+    <MESSAGE value="смещение заголовка влево" />
+    <option name="LAST_COMMIT_MESSAGE" value="смещение заголовка влево" />
   </component>
 </project>

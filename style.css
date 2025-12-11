@@ -2740,7 +2740,7 @@ canvas.confetti-canvas {
   margin: 0;
   position: relative;
   overflow: hidden;
-  height: 420px; /* высота hero */
+  height: 420px;
 }
 
 .hero-wrapper {
@@ -2753,20 +2753,22 @@ canvas.confetti-canvas {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0;
   display: block;
   filter: brightness(0.88);
   transition: opacity .5s ease, transform .5s ease;
 }
 
-/* ТЕКСТ поверх картинки */
+/* ТЕКСТ поверх картинки — выравниваем по контентной сетке */
 .hero-text {
   position: absolute;
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;       /* <<< КРИТИЧЕСКИЙ ФИКС: теперь текст не убегает на широких экранах */
+  padding: 0 40px;
+  color: #000;
   text-align: center;
-  color: #000000;
 }
 
 .hero-text h1 {
@@ -2779,7 +2781,6 @@ canvas.confetti-canvas {
   font-size: 22px;
 }
 
-
 /* ------- SCROLL SHRINK EFFECT ------- */
 #hero.shrink .hero-cover {
   opacity: 0;
@@ -2790,8 +2791,8 @@ canvas.confetti-canvas {
   opacity: 0;
   transform: translateX(-50%) translateY(-60px);
 }
-/* ================= HERO TEXT SEQUENCE ================= */
 
+/* ================= HERO TEXT SEQUENCE ================= */
 .hero-line {
   opacity: 0;
   transform: translateY(25px);
@@ -2800,7 +2801,6 @@ canvas.confetti-canvas {
     transform .8s cubic-bezier(.16,1,.3,1);
 }
 
-/* Когда hero активен */
 #hero.text-visible .hero-line-1 {
   opacity: 1;
   transform: translateY(0);
@@ -2821,7 +2821,7 @@ canvas.confetti-canvas {
 
 /* ===== DESKTOP HERO LINE-SPACING FIX ===== */
 #hero .hero-text h1 {
-  line-height: 1.18; /* было ~1.3, поэтому строки разъезжались */
+  line-height: 1.18;
   margin-bottom: 4px;
 }
 
@@ -2829,13 +2829,50 @@ canvas.confetti-canvas {
   line-height: 1.18;
 }
 
+/* ===== FINAL DESKTOP ALIGNMENT FIX ===== */
+@media (min-width: 1024px) {
+
+  /* Центрируем ВЕСЬ блок */
+  .hero-text {
+    text-align: left;      /* ← строки левосторонние */
+    max-width: 900px;      /* ← ширина как в ABOUT */
+    margin: 0 auto;        /* ← центрируем блок */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Первая строка — обычная, без смещений */
+  .hero-line-1 {
+    display: block;
+  }
+
+  /* Вторая строка — точно под первой */
+  .hero-line-2,
+  .hero-line-3 {
+    display: block;
+  }
+
+  /* УДАЛЯЕМ ЛЮБЫЕ translateX, indent, смещения */
+  .hero-line-1 .shifted {
+    transform: none !important;
+  }
+}
+  /* ===== DESKTOP HERO SECOND LINE SIZE ===== */
+@media (min-width: 1024px) {
+  .hero-line-2 {
+    font-size: 34px !important; /* ← ПОДБИРАЙ РАЗМЕР */
+    line-height: 1.12 !important;
+  }
+}
+
+
 
 /* ===================== HERO MOBILE FIX ===================== */
 @media (max-width: 768px) {
 
   #hero {
-    padding-top: 28px;              /* опускание блока, чтобы верхняя строка влезала */
-    min-height: 300px;              /* достаточно места для текста */
+    padding-top: 28px;
+    min-height: 300px;
     height: auto;
   }
 
@@ -2843,24 +2880,17 @@ canvas.confetti-canvas {
     padding: 0 14px;
   }
 
-  /* === Заголовки на мобилке — меньше, плотнее === */
   .hero-text h1,
   .hero-line {
-    font-size: 22px !important;     /* ↓↓↓ уменьшили с 30+ */
-    line-height: 1.12 !important;   /* компактно, но читаемо */
+    font-size: 22px !important;
+    line-height: 1.12 !important;
     margin: 0;
     font-weight: 700;
   }
 
-  /* Строки выравниваем чётко по вертикали */
-  .hero-line-1 {
-    margin-bottom: 4px;
-  }
-  .hero-line-2 {
-    margin-bottom: 4px;
-  }
+  .hero-line-1 { margin-bottom: 4px; }
+  .hero-line-2 { margin-bottom: 4px; }
 
-  /* Подзаголовок */
   .hero-sub {
     font-size: 16px !important;
     line-height: 1.25 !important;
@@ -2870,28 +2900,12 @@ canvas.confetti-canvas {
     margin-right: auto;
   }
 
-  /* Картинка не должна выталкивать текст */
   .hero-cover {
-    height: 180px;                  /* ниже чем на десктопе */
-    object-position: center top;    /* чтобы планшет не перекрывал текст */
+    height: 180px;
+    object-position: center top;
   }
 }
 
-@media (min-width: 1024px) {
-  .hero-line-1 {
-    text-align: left; /* не ломает позицию */
-  }
-
-  .hero-line-1 .shifted {
-    display: inline-block;
-    transform: translateX(-0px); /* ← регулируй силу смещения */
-  }
-
-  .hero-line-2,
-  .hero-line-3 {
-    text-align: center;
-  }
-}
 
 
 
