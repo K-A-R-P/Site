@@ -2819,4 +2819,79 @@ canvas.confetti-canvas {
   transition-delay: 0.9s;
 }
 
+/* ===== DESKTOP HERO LINE-SPACING FIX ===== */
+#hero .hero-text h1 {
+  line-height: 1.18; /* было ~1.3, поэтому строки разъезжались */
+  margin-bottom: 4px;
+}
+
+#hero .hero-line {
+  line-height: 1.18;
+}
+
+
+/* ===================== HERO MOBILE FIX ===================== */
+@media (max-width: 768px) {
+
+  #hero {
+    padding-top: 28px;              /* опускание блока, чтобы верхняя строка влезала */
+    min-height: 300px;              /* достаточно места для текста */
+    height: auto;
+  }
+
+  .hero-wrapper {
+    padding: 0 14px;
+  }
+
+  /* === Заголовки на мобилке — меньше, плотнее === */
+  .hero-text h1,
+  .hero-line {
+    font-size: 22px !important;     /* ↓↓↓ уменьшили с 30+ */
+    line-height: 1.12 !important;   /* компактно, но читаемо */
+    margin: 0;
+    font-weight: 700;
+  }
+
+  /* Строки выравниваем чётко по вертикали */
+  .hero-line-1 {
+    margin-bottom: 4px;
+  }
+  .hero-line-2 {
+    margin-bottom: 4px;
+  }
+
+  /* Подзаголовок */
+  .hero-sub {
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    margin-top: 10px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Картинка не должна выталкивать текст */
+  .hero-cover {
+    height: 180px;                  /* ниже чем на десктопе */
+    object-position: center top;    /* чтобы планшет не перекрывал текст */
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-line-1 {
+    text-align: left; /* не ломает позицию */
+  }
+
+  .hero-line-1 .shifted {
+    display: inline-block;
+    transform: translateX(-0px); /* ← регулируй силу смещения */
+  }
+
+  .hero-line-2,
+  .hero-line-3 {
+    text-align: center;
+  }
+}
+
+
 
