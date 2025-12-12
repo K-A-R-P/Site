@@ -1224,6 +1224,7 @@ function closeExitPopup() {
   document.body.style.overflow = "";
 }
 
+
 /* --- триггер — уход мыши вверх --- */
 document.addEventListener("mouseleave", (e) => {
   if (e.clientY <= 0 && !exitShown) {
@@ -1362,6 +1363,35 @@ if (exitPhone) {
     }
   });
 }
+// ================= EXIT POPUP CLOSE =================
+
+// закрытие по крестику
+document.addEventListener('click', function (e) {
+  if (e.target.closest('#exitPopup .modal-x')) {
+    closeExitPopup();
+  }
+});
+
+// закрытие кликом вне окна
+document.getElementById('exitPopup')?.addEventListener('click', function (e) {
+  if (e.target.id === 'exitPopup') {
+    closeExitPopup();
+  }
+});
+
+// закрытие по ESC
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closeExitPopup();
+  }
+});
+
+function closeExitPopup() {
+  const popup = document.getElementById('exitPopup');
+  popup.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
 
 
 /* ===================== фак ===================== */

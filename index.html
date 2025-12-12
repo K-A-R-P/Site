@@ -19,6 +19,8 @@
 <!-- ===================== EXIT-INTENT POPUP ===================== -->
 <div id="exitPopup">
   <div class="exit-popup-content">
+      <button class="modal-x" aria-label="Закрити">&times;</button>
+
 
     <img src="assets/images/checklist.png" class="exit-img" alt="Check-list">
 
@@ -39,8 +41,6 @@
     </form>
 
     <div id="exitStatus"></div>
-
-    <div class="exit-close" onclick="closeExitPopup()">Закрити</div>
   </div>
 </div>
 
@@ -81,6 +81,7 @@
   <p class="hero-sub hero-line hero-line-3">
     Для тих, хто хоче керувати бізнесом, а не бігати за ним
   </p>
+        <br><br>
 </div>
 
 
@@ -379,7 +380,12 @@
     </div>
 <!--======================== КАРТОЧКА 3 ========================-->
 <div class="card scroll-animate"
- onclick="openModal(this)">
+ onclick="openModal(this)"
+     data-price="3500 ₴"
+     data-pay-link="https://secure.wayforpay.com/button/b221e8882d224"
+     data-send-email="true"
+     data-email-template="paid"
+     data-redirect="false">
   <img src="assets/images/information-consult.jpg" alt="Інформаційна консультація" />
 
   <div class="card-content">
@@ -437,15 +443,9 @@
 <div class="card-bottom">
       <div class="readmore">Читати далі →</div>
     <div class="buttons-row">
-      <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Інформаційна консультація', '3500 ₴')">Записатися</button>
+      <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Інформаційна консультація', '3500 ₴')">🛒 3500 ₴</button>
 
-        <button
-                class="price-btn"
-                data-url="https://secure.wayforpay.com/button/b221e8882d224"
-                data-title="Інформаційна консультація"
-                onclick="openWayForPay(this)">
-                🛒 3500 ₴
-            </button>
+        
     </div>
   </div>
 </div>
@@ -464,7 +464,12 @@
   <div class="cards">
 
     <!--======================== КАРТОЧКА 1 ========================-->
-    <div class="card scroll-animate" onclick="openModal(this)">
+    <div class="card scroll-animate" onclick="openModal(this)"data-product="Стратегічне планування та розвиток бізнесу"
+     data-price=""
+     data-pay-link=""
+     data-send-email="true"
+     data-email-template="free"
+     data-redirect="false">
       <img src="assets/images/strat-plan.jpg" alt="Стратегічне планування та розвиток бізнесу" />
 
       <div class="card-content">
@@ -592,7 +597,13 @@
     </div>
 
     <!--======================== КАРТОЧКА 3 ========================-->
-    <div class="card scroll-animate" onclick="openModal(this)">
+    <div class="card scroll-animate" onclick="openModal(this)"
+         data-product="Система KPI та мотивації, що працює на прибуток"
+     data-price=""
+     data-pay-link=""
+     data-send-email="true"
+     data-email-template="free"
+     data-redirect="false">
       <img src="assets/images/kpi.jpg" alt="Система KPI та мотивації, що працює на прибуток" />
 
       <div class="card-content">
@@ -610,9 +621,7 @@
             <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Система KPI та мотивації, що працює на прибуток', '0 ₴')">
               Записатися
             </button>
-            <button class="price-btn" data-url="https://secure.wayforpay.com/" data-title="Система KPI та мотивації, що працює на прибуток" onclick="event.stopPropagation(); openWayForPay(this)">
-              0 ₴
-            </button>
+
           </div>
         </div>
       </div>
@@ -627,7 +636,13 @@
   <div class="cards">
 
     <!-------------------------------- КАРТОЧКА 1 --------------------------------->
-    <div class="card scroll-animate" onclick="openModal(this)">
+    <div class="card scroll-animate" onclick="openModal(this)"
+         data-product="Управлінський облік під ключ"
+     data-price=""
+     data-pay-link=""
+     data-send-email="true"
+     data-email-template="free"
+     data-redirect="false">
       <img src="assets/images/upr-uchet.jpg" alt="Управлінський облік під ключ" />
 
       <div class="card-content">
@@ -646,16 +661,20 @@
             <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Управлінський облік під ключ', '0 ₴')">
               Записатися
             </button>
-            <button class="price-btn" data-url="https://secure.wayforpay.com/" data-title="Управлінський облік під ключ" onclick="event.stopPropagation(); openWayForPay(this)">
-              0 ₴
-            </button>
+
           </div>
         </div>
       </div>
     </div>
 
     <!----------------------- КАРТОЧКА 2 ----------------------------------------------->
-    <div class="card scroll-animate" onclick="openModal(this)">
+    <div class="card scroll-animate" onclick="openModal(this)"
+         data-product="истема управління витратами та собівартістю"
+     data-price=""
+     data-pay-link=""
+     data-send-email="true"
+     data-email-template="free"
+     data-redirect="false">
       <img src="assets/images/rashody.jpg" alt="Система управління витратами та собівартістю" />
 
       <div class="card-content">
@@ -674,16 +693,20 @@
             <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Система управління витратами та собівартістю', '0 ₴')">
               Записатися
             </button>
-            <button class="price-btn" data-url="https://secure.wayforpay.com/" data-title="Система управління витратами та собівартістю" onclick="event.stopPropagation(); openWayForPay(this)">
-              0 ₴
-            </button>
+
           </div>
         </div>
       </div>
     </div>
 
     <!--------------------------- КАРТОЧКА 3 ------------------------------->
-    <div class="card scroll-animate" onclick="openModal(this)">
+    <div class="card scroll-animate" onclick="openModal(this)"
+         data-product="Бюджетне управління, яке реально працює"
+     data-price=""
+     data-pay-link=""
+     data-send-email="true"
+     data-email-template="free"
+     data-redirect="false">
       <img src="assets/images/budget.jpg" alt="Бюджетне управління, яке реально працює" />
 
       <div class="card-content">
@@ -702,9 +725,7 @@
             <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Бюджетне управління, яке реально працює', '0 ₴')">
               Записатися
             </button>
-            <button class="price-btn" data-url="https://secure.wayforpay.com/" data-title="Бюджетне управління, яке реально працює" onclick="event.stopPropagation(); openWayForPay(this)">
-              0 ₴
-            </button>
+
           </div>
         </div>
       </div>
@@ -949,6 +970,8 @@
  =====================================================-->
 <div id="contactsModal">
   <div class="contacts-modal-content">
+     <button class="modal-x" aria-label="Закрити"onclick="closeContactsModal()">&times;</button>
+
     <h3>
       <img src="assets/icons/phone.png" alt="Телефон" style="height: 28px; margin-right: 8px; vertical-align: middle;">
       Контакти
@@ -971,9 +994,7 @@
   </a>
 </div>
 
-    <div style="margin-top: 32px; color: #888; cursor: pointer; font-size: 15px;" onclick="closeContactsModal()">
-      Закрити
-    </div>
+
   </div>
 </div>
 
@@ -1014,6 +1035,8 @@
  ================================================= -->
 <div id="pricePopup">
   <div class="popup-content">
+      <button class="modal-x" aria-label="Закрити"onclick="closePricePopup()">&times;</button>
+
     <h3 id="priceTitle"></h3>
     <p id="priceLabel"></p>
 
@@ -1038,8 +1061,7 @@
 
     <div id="popupStatus"></div>
 
-    <!-- КНОПКА ЗАКРИТИ — СРАЗУ ПОД КНОПКОЙ ОТПРАВКИ -->
-    <div class="popup-close-btn" onclick="closePricePopup()">Закрити</div>
+
   </div>
 </div>
 
@@ -1048,8 +1070,10 @@
    =========================================================-->
   <div id="calendlyModal" class="calendly-modal">
     <div class="calendly-modal-content">
+        <button class="modal-x" aria-label="Закрити"onclick="closeCalendlyModal()">&times;</button>
+
       <iframe id="calendlyIframe" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-      <div class="calendly-close-btn" onclick="closeCalendlyModal()">Закрити</div>
+
     </div>
   </div>
 
@@ -1065,6 +1089,8 @@
    =============================================== -->
 <div id="paymentModal">
   <div class="payment-modal-content">
+      <button class="modal-x" aria-label="Закрити" onclick="closePaymentModal()">&times;</button>
+
     <h3>
       <img src="assets/icons/wallet.png" alt="Гаманець">
       <span>Оплата</span>
@@ -1096,7 +1122,7 @@
       Повернення- згідно із Законом «Про захист прав споживачів»
     </p>
 
-    <div class="modal-close" onclick="closePaymentModal()">Закрити</div>
+
   </div>
 </div>
 
