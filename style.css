@@ -3,6 +3,15 @@
   --black: #1a1a1a;
   --bg: #f5f1ea;
   --gray: #36454f;
+  --text-main: #2b2b2b;
+  --text-dark: #222;
+  --text-muted: #444;
+  --text-light: #777;
+  --glass-bg: rgba(255,255,255,0.62);
+  --glass-bg-soft: rgba(255,255,255,0.58);
+
+  --overlay-dark: rgba(0,0,0,0.75);
+  --overlay-light: rgba(0,0,0,0.18);
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -17,7 +26,7 @@
 body {
   font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
-  color: #2b2b2b;
+  color: var(--text-main);
   line-height: 1.7;
   overflow-x: hidden;
   scroll-padding-top: 0 !important;
@@ -333,7 +342,7 @@ h1 {
 
 header p {
   font-size: 26px;
-  color: #444;
+  color: var(--text-muted);
 }
 
 /* ======================================
@@ -1066,7 +1075,7 @@ footer .c {
   text-align: center;
   pointer-events: none;
 
-  /* старая жирная линия была: border-top: 1px solid #36454f; */
+  /* старая жирная линия была: border-top: 1px solid var(--gray); */
   /* теперь ставим тонкую премиальную, как в хедере */
   border-top: 1px solid rgba(0,0,0,0.08);
 
@@ -1278,7 +1287,7 @@ footer .c {
 
 .modal-content p,
 .modal-content h3 {
-  color: #2b2b2b;
+  color: var(--text-main);
   line-height: 1.65;
 }
 .modal-content h3 {
@@ -1323,7 +1332,7 @@ footer .c {
 
 /* ==== Окно Calendly ==== */
 .calendly-modal-content {
-  background: rgba(255,255,255,0.62);      /* стекло как контакты/оплата */
+  background: var(--glass-bg);      /* стекло как контакты/оплата */
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -1457,13 +1466,13 @@ footer .c {
 }
 
 .contacts-modal-content .location {
-  color: #2b2b2b;
+  color: var(--text-main);
   font-weight: 400;
 }
 
 .contacts-modal-content .contact-name {
   margin: 16px 0 8px;
-  color: #2b2b2b;        /* глубокий чёрный */
+  color: var(--text-main);        /* глубокий чёрный */
   font-weight: 500;      /* чуть плотнее */
 }
 
@@ -1633,7 +1642,7 @@ footer .c {
 
 /* Контент */
 .payment-modal-content {
-  background: rgba(255,255,255,0.62);       /* стекло как у контактов */
+  background: var(--glass-bg);       /* стекло как у контактов */
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -1655,7 +1664,7 @@ footer .c {
 .payment-modal-content h3 {
   font-weight: 700;
   line-height: 1;
-  color: #2b2b2b;
+  color: var(--text-main);
 }
 
 .payment-modal-content h3 img {
@@ -1693,13 +1702,13 @@ footer .c {
   align-items: flex-start;
   font-size: 17px;
   font-weight: 500;
-  color: #2b2b2b; /* как контакты */
+  color: var(--text-main); /* как контакты */
 }
 
 /* Текст */
 .payment-note {
   font-size: 15px;
-  color: #2b2b2b;
+  color: var(--text-main);
   margin: 20px 0 10px;
 }
 
@@ -1739,7 +1748,7 @@ footer .c {
 
 /* === САМО ОКНО — СТЕКЛО, как контакты/payment === */
 #successModal .popup-content {
-  background: rgba(255,255,255,0.58);      /* стеклянный фон */
+  background: var(--glass-bg-soft);      /* стеклянный фон */
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -1784,13 +1793,13 @@ footer .c {
 
 /* Text */
 #successModal .popup-content h3 {
-  color: #222;
+  color: var(--text-dark);
   font-size: 24px;
   margin: 20px 0 12px;
 }
 
 #successModal .popup-content p {
-  color: #444;
+  color: var(--text-muted);
   font-size: 18px;
   line-height: 1.6;
 }
@@ -1849,7 +1858,7 @@ canvas.confetti-canvas {
 /* ======================   GLASS CONTENT (как contacts/payment)   ============================== */
 
 #pricePopup .popup-content {
-  background: rgba(255,255,255,0.58);   /* 🔥 стекло */
+  background: var(--glass-bg-soft);   /* 🔥 стекло */
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -1895,13 +1904,13 @@ canvas.confetti-canvas {
   font-size: 26px;
   line-height: 1.2;
   text-align: center !important;
-  color: #2b2b2b;
+  color: var(--text-main);
 }
 
 #pricePopup #priceLabel {
   margin: 0 0 28px;
   font-size: 19px;
-  color: #444 !important;
+  color: var(--text-muted) !important;
   text-align: center !important;
 }
 
@@ -2195,7 +2204,7 @@ canvas.confetti-canvas {
 
 .testimonial-card:hover {
   transform: scale(1.08) translateY(-6px);
-  border-color: #f7c843 ;
+  border-color: var(--yellow) ;
 }
 
 /* Текст */
@@ -2234,7 +2243,7 @@ canvas.confetti-canvas {
 
 .testimonial-role {
   font-size: 14px;
-  color: #777;
+  color: var(--text-light);
 }
 
 /* fade-up */
@@ -2383,7 +2392,7 @@ canvas.confetti-canvas {
 }
 
 .apple-dot.active {
-  background: #36454f !important;
+  background: var(--gray) !important;
   transform: scale(1.8);
 }
 
@@ -2499,12 +2508,12 @@ canvas.confetti-canvas {
 }
 
 .exit-popup-content {
-  background: rgba(255,255,255,0.62);
+  background: var(--glass-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
   border-radius: 32px;
-  padding: 40px 40px 48px;
+  padding: 40px 40px 0px;
   max-width: 420px;
   width: 100%;
   text-align: center;
@@ -2521,24 +2530,55 @@ canvas.confetti-canvas {
 }
 
 /* картинка */
+/* картинка — появление + покачивание */
 .exit-img {
   width: 120px;
   height: auto;
   margin-bottom: 20px;
+
+  opacity: 0;
+  transform: translateY(-20px) scale(0.9);
+  transform-origin: center bottom;
+
+  animation:
+    exitImgIn .7s cubic-bezier(.16,1,.3,1) .15s forwards,
+    exitWiggle 3.2s ease-in-out 1s infinite;
 }
+
+/* появление */
+@keyframes exitImgIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* премиальное покачивание */
+@keyframes exitWiggle {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  25%  { transform: translateY(-2px) rotate(-2deg) scale(1.02); }
+  50%  { transform: translateY(0) rotate(2deg) scale(1.015); }
+  75%  { transform: translateY(-1px) rotate(-1deg) scale(1.02); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
 
 /* заголовок і текст */
 .exit-popup-content h3 {
   font-size: 26px;
   margin-bottom: 12px;
-  color: #222;
+  color: var(--text-dark);
 }
 
 .exit-sub {
   font-size: 17px;
   margin-bottom: 22px;
   line-height: 1.55;
-  color: #444;
+  color: var(--text-muted);
 }
 
 /* поля */
@@ -2574,13 +2614,56 @@ canvas.confetti-canvas {
   font-weight: 600;
 }
 
-/* кнопка Закрити */
-.exit-close {
-  margin-top: 18px;
-  color: #777;
-  cursor: pointer;
-  font-size: 15px;
+/* ===== EXIT POPUP BUTTON — INVERT ===== */
+.exit-btn {
+  background: var(--yellow) !important;
+  color: var(--black) !important;
+  border: 2px solid rgba(0,0,0,0.15) !important;
+
+  transition:
+    background .35s cubic-bezier(.16,1,.3,1),
+    color .35s cubic-bezier(.16,1,.3,1),
+    box-shadow .35s cubic-bezier(.16,1,.3,1);
 }
+
+/* hover — инверсия */
+.exit-btn:hover {
+  background: var(--black) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+}
+
+/* блик */
+.exit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255,255,255,0.35) 44%,
+    rgba(255,255,255,0.85) 50%,
+    rgba(255,255,255,0.35) 56%,
+    transparent 70%
+  );
+
+  transform: skewX(-20deg);
+  transition: left 1.3s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+}
+
+.exit-btn:hover::before {
+  left: 120%;
+  opacity: 1;
+}
+
 
 /* ===== ФИКС МОДАЛКИ КОНТАКТІВ НА МОБІЛКАХ ===== */
 @media (max-width: 480px) {

@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="заголовки">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="чистка">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/hero.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/hero.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,14 +76,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00133" summary="рабочая версия">
-      <option name="closed" value="true" />
-      <created>1764623464089</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1764623464089</updated>
     </task>
     <task id="LOCAL-00134" summary="рабочая версия">
       <option name="closed" value="true" />
@@ -467,7 +461,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765603506446</updated>
     </task>
-    <option name="localTasksCounter" value="182" />
+    <task id="LOCAL-00182" summary="чистка">
+      <option name="closed" value="true" />
+      <created>1765604645866</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1765604645866</updated>
+    </task>
+    <option name="localTasksCounter" value="183" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -482,7 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="дипломы" />
     <MESSAGE value="3 диплома в ряд" />
     <MESSAGE value="модалка диплома" />
     <MESSAGE value="мобильное меню" />
@@ -507,6 +508,7 @@
     <MESSAGE value="изменена цена на индивидуальную, стиль топбара меняется при скроле,везде кнопка Х" />
     <MESSAGE value="корректные отправки письма" />
     <MESSAGE value="заголовки" />
-    <option name="LAST_COMMIT_MESSAGE" value="заголовки" />
+    <MESSAGE value="чистка" />
+    <option name="LAST_COMMIT_MESSAGE" value="чистка" />
   </component>
 </project>
