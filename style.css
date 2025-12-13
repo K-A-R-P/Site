@@ -145,38 +145,54 @@ h1, h2, h3,
   top: 0;
   z-index: 100;
 
-  /* GLASS EFFECT */
-  background: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  /* === СТАРТОВОЕ СОСТОЯНИЕ (HERO ВИДЕН) === */
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 
   padding: 12px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: none;
   box-shadow: none !important;
 
-  transition: padding .35s ease, border-radius .35s ease, background .35s ease;
+  transition:
+    background .35s ease,
+    backdrop-filter .35s ease,
+    border-bottom .35s ease,
+    padding .35s ease;
+}
+
+/* === СОСТОЯНИЕ ПОСЛЕ HERO === */
+.topbar.scrolled {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .logo img {
   height: 40px;
 }
 
-/* Когда меню открыто — topbar растягивается и становится плотнее */
+/* === КОГДА МЕНЮ ОТКРЫТО (МОБИЛКА) === */
 .topbar.open-menu {
   padding-bottom: 22px;
 
-  /* 🔥 убираем СОВСЕМ любое скругление */
+  /* убираем любые скругления */
   border-radius: 0 !important;
 
-  /* стекло остаётся таким же */
+  /* меню ВСЕГДА на стекле, даже если hero виден */
   background: rgba(255, 255, 255, 0.62);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
+
 
 
 /* ===== BURGER ===== */
@@ -326,7 +342,9 @@ header p {
   padding: 0; /* для сетки 32px — отступы дальше задаём через margin между секциями */
 }
 
-/* ===================== ABOUT ===================== */
+/* =======================================================================
+              ABOUT
+ ======================================================================== */
 
 #about .about-wrapper {
   display: flex;
@@ -335,6 +353,7 @@ header p {
   flex-wrap: wrap;
   justify-content: center;
   padding: 0 16px;
+  padding-top: 16px;
 }
 
 @media (max-width: 992px) {
@@ -360,8 +379,9 @@ header p {
   line-height: 2;
 }
 
-/* ================== ДИПЛОМЫ — 3 В РЯД НА ВСЮ ШИРИНУ ПРАВОЙ ЧАСТИ ================== */
-
+/* =========================================================
+      ДИПЛОМЫ — 3 В РЯД НА ВСЮ ШИРИНУ ПРАВОЙ ЧАСТИ
+===========================================================*/
 .about-highlights {
   display: flex;
   justify-content: space-between;
@@ -1335,20 +1355,7 @@ footer .c {
   background: transparent;
 }
 
-/* Кнопка Закрити — как у Contacts/Payment */
-.calendly-close-btn {
-  padding: 18px;
-  text-align: center;
-  font-size: 15px;
-  color: #36454f !important;
-  cursor: pointer;
-  transition: opacity .25s ease;
-  background: rgba(255,255,255,0.8);
-}
 
-.calendly-close-btn:hover {
-  opacity: 1;
-}
 
 
 /* ===========================================================
@@ -1483,17 +1490,6 @@ footer .c {
   }
 }
 
-/* Кнопка Закрити */
-.contacts-modal-content > div[onclick="closeContactsModal()"] {
-  color: #36454f !important;        /* глобальный серый */
-  font-weight: 500;
-  opacity: 0.9;
-  transition: opacity .25s ease;
-}
-
-.contacts-modal-content > div[onclick="closeContactsModal()"]:hover {
-  opacity: 1;
-}
 
 
 
@@ -1707,19 +1703,6 @@ footer .c {
   margin: 20px 0 10px;
 }
 
-/* Кнопка Закрити */
-.payment-modal-content .modal-close {
-  margin-top: 28px;
-  font-size: 15px;
-  cursor: pointer;
-  color: var(--gray) !important;  /* как в контактах */
-  opacity: .9;
-  transition: opacity .25s ease;
-}
-
-.payment-modal-content .modal-close:hover {
-  opacity: 1;
-}
 
 /* Мультимедиа — без изменений */
 .icon-row { display: flex; gap: 12px; align-items: center; }
@@ -2907,7 +2890,7 @@ canvas.confetti-canvas {
 }
 
 /* =========================
-   MODAL CLOSE — X BUTTON
+   MODAL CLOSE — X (CLEAN PREMIUM)
 ========================= */
 
 .modal-x {
@@ -2920,145 +2903,35 @@ canvas.confetti-canvas {
 
   border-radius: 50%;
   border: none;
-
-  background: rgba(0,0,0,0.06);
-  backdrop-filter: blur(6px);
-
-  font-size: 24px;
-  line-height: 1;
-  font-weight: 400;
-
-  color: #444;
   cursor: pointer;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition:
-    background .25s ease,
-    transform .25s cubic-bezier(.16,1,.3,1),
-    color .25s ease;
-}
-
-.modal-x:hover {
-  background: rgba(0,0,0,0.12);
-  color: #000;
-  transform: scale(1.08);
-}
-
-/* мобилка — чуть меньше */
-@media (max-width: 480px) {
-  .modal-x {
-    top: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
-    font-size: 22px;
-  }
-}
-
-
-
-/* =========================
-   MODAL CLOSE — X ANIMATION
-========================= */
-
-.modal-x {
-  opacity: 0;
-  transform:
-    scale(0.6)
-    rotate(-20deg);
-  animation: modalXIn .55s cubic-bezier(.16,1,.3,1) forwards;
-  animation-delay: .18s; /* появляется ПОСЛЕ окна */
-}
-
-@keyframes modalXIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.6) rotate(-20deg);
-  }
-  70% {
-    opacity: 1;
-    transform: scale(1.06) rotate(2deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-/* Мобилка — быстрее и спокойнее */
-@media (max-width: 480px) {
-  .modal-x {
-    animation-duration: .45s;
-    animation-delay: .14s;
-  }
-}
-
-/* =========================
-   MODAL CLOSE — X BUTTON
-========================= */
-
-.modal-x {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-
-  width: 38px;
-  height: 38px;
-
-  border-radius: 50%;
-  border: none;
-
-  background: rgba(0,0,0,0.06);
-  backdrop-filter: blur(6px);
-
-  font-size: 24px;
-  line-height: 1;
-  font-weight: 400;
-
-  color: #444;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition:
-    background .25s ease,
-    transform .25s cubic-bezier(.16,1,.3,1),
-    color .25s ease;
-}
-
-/* =========================
-   MODAL X — GLASS BASE
-========================= */
-
-.modal-x {
-  position: absolute;
-
+  /* glass */
   background: rgba(255,255,255,0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 
+  /* base */
+  font-size: 0; /* убираем текстовый × */
   color: rgba(0,0,0,0.55);
-  font-size: 24px;
-  font-weight: 400;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* animation */
+  opacity: 0;
+  transform: scale(0.4) rotate(-90deg) translateY(-6px);
+  transform-origin: 50% 50%;
+
+  animation: modalXAssemble .85s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay: .22s;
 
   transition:
     background .35s cubic-bezier(.16,1,.3,1),
     box-shadow .35s cubic-bezier(.16,1,.3,1);
 }
 
-/* =========================
-   ICON (✕) AS SEPARATE LAYER
-========================= */
-
+/* ===== ICON (✕) ===== */
 .modal-x::after {
   content: '×';
   position: absolute;
@@ -3066,7 +2939,6 @@ canvas.confetti-canvas {
   font-size: 24px;
   line-height: 1;
   font-weight: 500;
-
   color: inherit;
 
   transform: scale(1) rotate(0deg);
@@ -3077,41 +2949,7 @@ canvas.confetti-canvas {
   pointer-events: none;
 }
 
-/* Убираем текстовый × из кнопки */
-.modal-x {
-  font-size: 0;
-}
-
-/* =========================
-   HOVER — ONLY ICON MOVES
-========================= */
-
-.modal-x:hover {
-  background: rgba(255,255,255,0.72);
-  box-shadow:
-    0 8px 24px rgba(0,0,0,0.14),
-    inset 0 0 0 1px rgba(255,255,255,0.45);
-}
-
-/* ✕ увеличивается и поворачивается */
-.modal-x:hover::after {
-  color: rgba(0,0,0,0.95);
-  transform: scale(1.25) rotate(8deg);
-}
-
-/* =========================
-   ACTIVE — CLICK FEEDBACK
-========================= */
-
-.modal-x:active::after {
-  transform: scale(0.9) rotate(-6deg);
-  color: #000;
-}
-
-/* =========================
-   SOFT HALO (AIR)
-========================= */
-
+/* ===== SOFT HALO ===== */
 .modal-x::before {
   content: '';
   position: absolute;
@@ -3128,77 +2966,68 @@ canvas.confetti-canvas {
   pointer-events: none;
 }
 
+/* ===== HOVER ===== */
+.modal-x:hover {
+  background: rgba(255,255,255,0.72);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.14),
+    inset 0 0 0 1px rgba(255,255,255,0.45);
+}
+
+.modal-x:hover::after {
+  color: rgba(0,0,0,0.95);
+  transform: scale(1.25) rotate(8deg);
+}
+
 .modal-x:hover::before {
   opacity: 1;
 }
 
-/* =========================
-   MOBILE — NO HOVER NOISE
-========================= */
-@media (hover: none) {
-  .modal-x:hover::after {
-    transform: scale(1.1);
-  }
+/* ===== ACTIVE ===== */
+.modal-x:active::after {
+  transform: scale(0.9) rotate(-6deg);
+  color: #000;
 }
 
-
-/* мобилка — чуть меньше */
-@media (max-width: 480px) {
-  .modal-x {
-    top: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
-    font-size: 22px;
-  }
-}
-
-/* =========================
-   MODAL CLOSE — X PREMIUM ANIMATION
-========================= */
-
-.modal-x {
-  opacity: 0;
-  transform:
-    scale(0.4)
-    rotate(-90deg)
-    translateY(-6px);
-
-  transform-origin: 50% 50%;
-
-  animation: modalXAssemble .85s cubic-bezier(.16,1,.3,1) forwards;
-  animation-delay: .22s; /* появляется чуть позже окна */
-}
-
+/* ===== PREMIUM ANIMATION ===== */
 @keyframes modalXAssemble {
   0% {
     opacity: 0;
     transform: scale(0.4) rotate(-90deg) translateY(-6px);
   }
-
   55% {
     opacity: 1;
     transform: scale(1.18) rotate(8deg) translateY(0);
   }
-
   78% {
     transform: scale(0.96) rotate(-3deg);
   }
-
   100% {
     opacity: 1;
     transform: scale(1) rotate(0deg);
   }
 }
 
-/* =========================
-   MOBILE — calmer motion
-========================= */
+/* ===== MOBILE ===== */
 @media (max-width: 480px) {
   .modal-x {
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
     animation-duration: .6s;
     animation-delay: .16s;
-    transform: scale(0.6);
+  }
+
+  .modal-x::after {
+    font-size: 22px;
+  }
+}
+
+/* ===== TOUCH DEVICES — NO HOVER NOISE ===== */
+@media (hover: none) {
+  .modal-x:hover::after {
+    transform: scale(1.1);
   }
 }
 

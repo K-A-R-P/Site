@@ -1462,41 +1462,42 @@ function getEmailHtml(templateName, config) {
 
 // HERO — появление при загрузке
 window.addEventListener("load", () => {
-  document.querySelector('#hero')?.classList.add('visible');
-});
-
-// HERO scroll disappear (progressive)
-window.addEventListener("scroll", () => {
-  const hero = document.getElementById("hero");
-  if (!hero) return;
-
-  const limit = 260; // насколько нужно прокрутить, чтобы полностью исчезнуть
-  const y = window.scrollY;
-
-  // Прогрессивная анимация по скроллу
-  const progress = Math.min(y / limit, 1);
-
-  hero.style.opacity = 1 - progress;
-  hero.style.transform = `translateY(${-progress * 80}px)`;
-
-  // Когда полностью исчез — добавляем класс (убираем залипание)
-  if (progress >= 1) {
-    hero.classList.add("shrink");
-  } else {
-    hero.classList.remove("shrink");
-  }
-});
-// HERO — появление при загрузке
-window.addEventListener("load", () => {
-  const hero = document.querySelector('#hero');
+  const hero = document.getElementById('hero');
 
   if (hero) {
-    // картинка fade-up (уже работает)
     hero.classList.add('visible');
 
-    // текст — позже
+    // текст — чуть позже
     setTimeout(() => {
       hero.classList.add('text-visible');
     }, 300);
   }
 });
+
+// HERO scroll disappear + TOPBAR sync
+window.addEventListener("scroll", () => {
+  const hero = document.getElementById("hero");
+  const topbar = document.querySelector(".topbar");
+
+  if (!hero || !topbar) return;
+
+  const limit = 260;          // точка полного исчезновения hero
+  const y = window.scrollY;
+
+  // Прогресс 0 → 1
+  const progress = Math.min(y / limit, 1);
+
+  /* ===== HERO PROGRESSIVE DISAPPEAR ===== */
+  hero.style.opacity = 1 - progress;
+  hero.style.transform = `translateY(${-progress * 80}px)`;
+
+  /* ===== STATE SWITCH ===== */
+  if (progress >= 1) {
+    hero.classList.add("shrink");
+    topbar.classList.add("scrolled");   // 🔥 СИНХРОННО
+  } else {
+    hero.classList.remove("shrink");
+    topbar.classList.remove("scrolled");
+  }
+});
+

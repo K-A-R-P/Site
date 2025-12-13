@@ -79,7 +79,7 @@
   <p class="hero-sub hero-line hero-line-3">
     Для тих, хто хоче керувати бізнесом, а не бігати за ним
   </p>
-        <br><br>
+        <br>
 </div>
 
 
@@ -91,10 +91,7 @@
 <!-- =================================================================
                        ОБО МНЕ (ABOUT)
  =================================================================== -->
-  <header class="fade-up">
-
-    <p></p>
-  </header>
+  <!-- <header class="fade-up"></header>-->
 
   <section class="section" id="about">
     <div class="about-wrapper fade-left">
@@ -616,7 +613,7 @@
         <div class="card-bottom">
           <div class="readmore">Читати далі →</div>
           <div class="buttons-row">
-            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Система KPI та мотивації, що працює на прибуток', '0 ₴')">
+            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Система KPI та мотивації, що працює на прибуток', 'Індивідуальна')">
               Записатися
             </button>
 
@@ -656,7 +653,7 @@
         <div class="card-bottom">
           <div class="readmore">Читати далі →</div>
           <div class="buttons-row">
-            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Управлінський облік під ключ', '0 ₴')">
+            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Управлінський облік під ключ', 'Індивідуальна')">
               Записатися
             </button>
 
@@ -688,7 +685,7 @@
         <div class="card-bottom">
           <div class="readmore">Читати далі →</div>
           <div class="buttons-row">
-            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Система управління витратами та собівартістю', '0 ₴')">
+            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Система управління витратами та собівартістю', 'Індивідуальна')">
               Записатися
             </button>
 
@@ -720,7 +717,7 @@
         <div class="card-bottom">
           <div class="readmore">Читати далі →</div>
           <div class="buttons-row">
-            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Бюджетне управління, яке реально працює', '0 ₴')">
+            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Бюджетне управління, яке реально працює', 'Індивідуальна')">
               Записатися
             </button>
 
@@ -1008,25 +1005,30 @@
 
 <!--=======================================================
  УСПЕШНАЯ МОДАЛКА
- ==========================================================-->
+==========================================================-->
 <div id="successModal">
-  <div class="popup-content" style="text-align:center; max-width:420px;">
+  <div class="popup-content" style="text-align:center; max-width:420px; position:relative;">
+
+    <!-- ✕ КРЕСТИК -->
+    <button class="modal-x"
+            onclick="closeSuccessModal()"
+            aria-label="Закрити"></button>
+
     <img src="assets/icons/uspih.png" alt="Успіх"
-     class="success-icon" style="width:120px; height:120px; margin:14px 0;">
+         class="success-icon"
+         style="width:120px; height:120px; margin:14px 0;">
 
+    <h3 style="margin:20px 0 12px; color:#222; font-size:24px;">
+      Заявку надіслано
+    </h3>
 
-    <h3 style="margin:20px 0 12px; color:#222; font-size:24px;">Заявку надіслано</h3>
-    <p style="font-size:18px; color:#444; margin-bottom:32px; line-height:1.6;">
+    <p style="font-size:18px; color:#444; margin-bottom:8px; line-height:1.6;">
       Я зв’яжусь з вами найближчим часом
     </p>
 
-    <!-- ← ВОТ ЭТА КНОПКА — теперь как у всех модалок -->
-    <div class="modal-close" onclick="closeSuccessModal()"
-         style="margin-top:20px; color:#888; cursor:pointer; font-size:16px;">
-      Закрити
-    </div>
   </div>
 </div>
+
 
 <!--==========================================================
  ФОРМА ЗАПИСИ
