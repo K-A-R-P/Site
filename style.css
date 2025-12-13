@@ -1863,7 +1863,7 @@ canvas.confetti-canvas {
   -webkit-backdrop-filter: blur(14px);
 
   border-radius: 32px;
-  padding: 44px 48px 52px;
+  padding: 44px 48px 0px;
   max-width: 420px;
   width: 100%;
   box-shadow: 0 30px 90px rgba(0,0,0,0.28);
