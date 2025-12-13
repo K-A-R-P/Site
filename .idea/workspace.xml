@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="Кпи пости все">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="меню проба">
+      <change afterPath="$PROJECT_DIR$/finansova-roztjazhka/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -74,14 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00136" summary="рабочая версия с отзывами (прокрутка в видимую зону)">
-      <option name="closed" value="true" />
-      <created>1764636226029</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1764636226029</updated>
     </task>
     <task id="LOCAL-00137" summary="рабочая версия с галереей">
       <option name="closed" value="true" />
@@ -467,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765642941568</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="меню проба">
+      <option name="closed" value="true" />
+      <created>1765667769615</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1765667769615</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -482,7 +483,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="мобильное меню" />
     <MESSAGE value="Рабочая версия" />
     <MESSAGE value="Рабочая версия контакты и оплата прозрачные" />
     <MESSAGE value="Прозрачные succes,контакты и оплата" />
@@ -507,6 +507,7 @@
     <MESSAGE value="чистка" />
     <MESSAGE value="правки" />
     <MESSAGE value="Кпи пости все" />
-    <option name="LAST_COMMIT_MESSAGE" value="Кпи пости все" />
+    <MESSAGE value="меню проба" />
+    <option name="LAST_COMMIT_MESSAGE" value="меню проба" />
   </component>
 </project>
