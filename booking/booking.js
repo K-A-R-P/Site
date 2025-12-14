@@ -1,15 +1,14 @@
 'use strict';
 
 /* =====================================================
-   BOOKING APP — SCOPED TO BOOKING MODAL (NO EXIT CONFLICT)
+   BOOKING APP — SAFE, BASED ON WORKING VERSION
 ===================================================== */
 
-const MOCK_AVAILABILITY = {
-  "2025-12-15": ["09:00", "11:00"],
-  "2025-12-16": ["09:00", "11:00", "13:00"],
-  "2025-12-18": ["11:00"]
-};
+/* ===== BACKEND ===== */
+const BOOKING_API = 'https://booking-backend-riod.onrender.com';
+let AVAILABILITY = {};
 
+/* ===== STATE ===== */
 const state = {
   currentMonth: null,
   selectedDate: null,
@@ -34,11 +33,23 @@ function updateMeta(root) {
   root.querySelectorAll('.selected-meta').forEach(el => el.textContent = txt);
 }
 
+/* ---------- LOAD SLOTS FROM BACKEND ---------- */
+async function loadAvailability() {
+  try {
+    const res = await fetch(`${BOOKING_API}/api/slots`);
+    if (!res.ok) throw new Error('slots fetch failed');
+    AVAILABILITY = await res.json();
+  } catch (e) {
+    console.error('Slots load error:', e);
+    AVAILABILITY = {};
+  }
+}
+
 /* ---------- calendar ---------- */
 function renderCalendar(root) {
   const grid  = root.querySelector('.calendar-grid');
   const label = root.querySelector('.month-label');
-  if (!grid || !label) return;
+  if (!grid || !label || !state.currentMonth) return;
 
   grid.innerHTML = '';
 
@@ -46,7 +57,10 @@ function renderCalendar(root) {
   const y = state.currentMonth.getFullYear();
   const m = state.currentMonth.getMonth();
 
-  label.textContent = state.currentMonth.toLocaleString('uk-UA', { month: 'long', year: 'numeric' });
+  label.textContent = state.currentMonth.toLocaleString('uk-UA', {
+    month: 'long',
+    year: 'numeric'
+  });
 
   const firstDay = new Date(y, m, 1);
   const offset = (firstDay.getDay() + 6) % 7;
@@ -68,7 +82,7 @@ function renderCalendar(root) {
     btn.className = 'day';
     btn.textContent = day;
 
-    const hasSlots = (MOCK_AVAILABILITY[iso] || []).length > 0;
+    const hasSlots = (AVAILABILITY[iso] || []).length > 0;
 
     if (startOfDay(d) <= today || !hasSlots) {
       btn.disabled = true;
@@ -93,7 +107,7 @@ function renderTimes(root) {
   if (!list) return;
 
   list.innerHTML = '';
-  const times = MOCK_AVAILABILITY[state.selectedDate] || [];
+  const times = AVAILABILITY[state.selectedDate] || [];
 
   if (!times.length) {
     list.innerHTML = "<div class='step-sub'>На цю дату немає вільного часу</div>";
@@ -116,19 +130,16 @@ function renderTimes(root) {
   });
 }
 
-/* ---------- phone mask (booking only) ---------- */
+/* ---------- phone mask ---------- */
 function initPhoneMask(input) {
   if (!input) return;
 
   function format(digits) {
-    // digits must be max 12 for UA: 380XXXXXXXXX
     digits = digits.replace(/\D/g, '');
-    if (digits.startsWith('8') && digits.length > 1) digits = '3' + digits;
     if (!digits.startsWith('38')) digits = '38' + digits.replace(/^0+/, '');
     digits = digits.slice(0, 12);
 
-    // +38 (0XX) XXX XX XX style, but digits are 38 + 10
-    const body = digits.slice(2); // 10 digits
+    const body = digits.slice(2);
     let out = '+38';
     if (body.length > 0) out += ' (' + body.substring(0, 3);
     if (body.length >= 3) out += ')';
@@ -139,16 +150,12 @@ function initPhoneMask(input) {
   }
 
   input.addEventListener('focus', () => {
-    if (!input.value) {
-      input.value = '+38 ';
-      input.setSelectionRange(input.value.length, input.value.length);
-    }
+    if (!input.value) input.value = '+38 ';
   });
 
   input.addEventListener('input', () => {
     const digits = input.value.replace(/\D/g, '');
     input.value = format(digits);
-    input.setSelectionRange(input.value.length, input.value.length);
   });
 
   input.addEventListener('blur', () => {
@@ -167,62 +174,55 @@ function mark(el, ok) {
 }
 
 /* =====================================================
-   INIT — called from openBookingModal (every open)
+   INIT — CALLED FROM MODAL OPEN
 ===================================================== */
-window.initBookingApp = function () {
-  // scope strictly to booking modal DOM (so we never touch exit popup)
-  const modal = document.getElementById('bookingModal');
-  const root = modal ? modal : document;
+window.initBookingApp = async function () {
+  const root = document.getElementById('bookingApp');
+  if (!root) return;
 
-  const container = root.querySelector('#bookingContainer') || root;
-  const formOld = container.querySelector('#bookingForm');
+  const formOld = root.querySelector('#bookingForm');
   if (!formOld) return;
 
-  // убираем старые обработчики без перезаписи всего DOM
-  const form = formOld.cloneNode(true);
-  formOld.replaceWith(form);
+  // reload slots EACH open
+  await loadAvailability();
 
+  // reset state
   const now = new Date();
   state.currentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
   state.selectedDate = null;
   state.selectedTime = null;
 
   // nav
-  container.querySelector('.nav-btn.prev')?.addEventListener('click', () => {
-    state.currentMonth = new Date(state.currentMonth.getFullYear(), state.currentMonth.getMonth() - 1, 1);
-    renderCalendar(container);
+  root.querySelector('.nav-btn.prev')?.addEventListener('click', () => {
+    state.currentMonth.setMonth(state.currentMonth.getMonth() - 1);
+    renderCalendar(root);
   });
 
-  container.querySelector('.nav-btn.next')?.addEventListener('click', () => {
-    state.currentMonth = new Date(state.currentMonth.getFullYear(), state.currentMonth.getMonth() + 1, 1);
-    renderCalendar(container);
+  root.querySelector('.nav-btn.next')?.addEventListener('click', () => {
+    state.currentMonth.setMonth(state.currentMonth.getMonth() + 1);
+    renderCalendar(root);
   });
 
-  container.querySelector('.back-to-date')?.addEventListener('click', () => {
-    state.selectedTime = null;
-    updateMeta(container);
-    setStep(container, '.step-date');
+  root.querySelector('.back-to-date')?.addEventListener('click', () => {
+    setStep(root, '.step-date');
   });
 
-  container.querySelector('.back-to-time')?.addEventListener('click', () => {
-    updateMeta(container);
-    setStep(container, '.step-time');
+  root.querySelector('.back-to-time')?.addEventListener('click', () => {
+    setStep(root, '.step-time');
   });
 
-  // fields (ВАЖНО: только внутри bookingForm!)
+  const form = formOld.cloneNode(true);
+  formOld.replaceWith(form);
+
   const name  = form.querySelector('input[name="name"]');
   const email = form.querySelector('input[name="email"]');
-  const phone = form.querySelector('input[name="phone"]') || form.querySelector('#phoneInput'); // на всякий
+  const phone = form.querySelector('input[name="phone"]') || form.querySelector('#phoneInput');
+  const status = root.querySelector('.form-status');
 
-  const status = container.querySelector('.form-status');
-
-  if (!name || !email || !phone) return;
-
-  // mask + live validation
   initPhoneMask(phone);
 
   const repaint = () => {
-    mark(name,  validName(name.value));
+    mark(name, validName(name.value));
     mark(email, validEmail(email.value));
     mark(phone, validPhone(phone.value));
   };
@@ -231,9 +231,7 @@ window.initBookingApp = function () {
   email.addEventListener('input', repaint);
   phone.addEventListener('input', repaint);
 
-  repaint();
-
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (!state.selectedDate || !state.selectedTime) {
@@ -241,34 +239,54 @@ window.initBookingApp = function () {
       return;
     }
 
-    const ok1 = validName(name.value);
-    const ok2 = validEmail(email.value);
-    const ok3 = validPhone(phone.value);
-
-    mark(name, ok1);
-    mark(email, ok2);
-    mark(phone, ok3);
-
-    if (!ok1 || !ok2 || !ok3) {
+    if (!validName(name.value) || !validEmail(email.value) || !validPhone(phone.value)) {
       if (status) status.textContent = 'Заповніть форму коректно';
+      repaint();
       return;
     }
 
-    console.log({
-      product: window.bookingProduct,
-      price: window.bookingPrice,
-      date: state.selectedDate,
-      time: state.selectedTime,
-      name: name.value,
-      email: email.value,
-      phone: phone.value
-    });
+    if (status) status.textContent = 'Надсилаємо заявку…';
 
-    if (status) status.textContent = 'Заявку прийнято ✔';
-    form.reset();
-    [name, email, phone].forEach(el => el.classList.remove('valid', 'invalid'));
+    try {
+      const res = await fetch(`${BOOKING_API}/api/book`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          date: state.selectedDate,
+          time: state.selectedTime,
+          name: name.value.trim(),
+          email: email.value.trim(),
+          phone: phone.value.trim(),
+          product: window.bookingProduct || '',
+          price: window.bookingPrice || '',
+          pay_link: window.bookingPayLink || '',
+          comment: ''
+        })
+      });
+
+      if (res.status === 409) {
+        status.textContent = 'Цей час вже зайнятий 🙏';
+        return;
+      }
+
+      if (!res.ok) {
+        status.textContent = 'Помилка сервера';
+        return;
+      }
+
+      status.textContent = 'Заявку прийнято ✔';
+      form.reset();
+      repaint();
+
+      if (window.openSuccessModal) window.openSuccessModal();
+
+    } catch (err) {
+      console.error(err);
+      status.textContent = 'Сервер недоступний';
+    }
   });
 
-  updateMeta(container);
-  renderCalendar(container);
+  updateMeta(root);
+  setStep(root, '.step-date');
+  renderCalendar(root);
 };

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка календарь с маскойпизда стилю">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка календарь с маской">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking/booking.css" beforeDir="false" afterPath="$PROJECT_DIR$/booking/booking.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/booking/booking.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,14 +77,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00152" summary="мобильное меню">
-      <option name="closed" value="true" />
-      <created>1764810265709</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1764810265709</updated>
     </task>
     <task id="LOCAL-00153" summary="Рабочая версия">
       <option name="closed" value="true" />
@@ -470,7 +462,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765719328589</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="модалка календарь с маской">
+      <option name="closed" value="true" />
+      <created>1765723234523</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1765723234523</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -485,7 +485,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="всплывачка и правка текста смена фоток" />
     <MESSAGE value="фак" />
     <MESSAGE value="фак эффект" />
     <MESSAGE value="Текст консалтинга" />
@@ -510,6 +509,7 @@
     <MESSAGE value="модалка календарь заработала" />
     <MESSAGE value="модалка календарь проба маски телефона" />
     <MESSAGE value="модалка календарь с маскойпизда стилю" />
-    <option name="LAST_COMMIT_MESSAGE" value="модалка календарь с маскойпизда стилю" />
+    <MESSAGE value="модалка календарь с маской" />
+    <option name="LAST_COMMIT_MESSAGE" value="модалка календарь с маской" />
   </component>
 </project>
