@@ -1362,3 +1362,31 @@ on(document, 'keydown', e => {
     });
   });
 })();
+
+/* =========================================================
+   FIX HASH ANCHOR OFFSET AFTER PAGE LOAD
+   (для перехода с других страниц)
+========================================================= */
+
+window.addEventListener('load', () => {
+  if (!location.hash) return;
+
+  const target = document.querySelector(location.hash);
+  const topbar = document.querySelector('.topbar');
+
+  if (!target || !topbar) return;
+
+  // даём браузеру закончить авто-прыжок
+  setTimeout(() => {
+    const topbarHeight = topbar.offsetHeight;
+    const rect = target.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    const targetY = rect.top + scrollTop - topbarHeight - 20;
+
+    window.scrollTo({
+      top: targetY,
+      behavior: 'instant'
+    });
+  }, 60); // ключевой момент
+});
