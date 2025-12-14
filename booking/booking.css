@@ -1,6 +1,7 @@
 /* =====================================================
-   BOOKING MODAL — FINAL GLASS POLISH
+   BOOKING MODAL — FINAL CLEAN GLASS
 ===================================================== */
+
 
 /* ================= OVERLAY ================= */
 #bookingModal {
@@ -12,13 +13,13 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(0,0,0,0.28);
+  background: rgba(0,0,0,0.35);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
   opacity: 0;
   pointer-events: none;
-  transition: opacity .35s ease;
+  transition: opacity .25s ease;
 }
 
 #bookingModal.active {
@@ -26,45 +27,36 @@
   pointer-events: auto;
 }
 
-/* ================= SHELL ================= */
-#bookingContainer {
+
+/* ================= WINDOW (FIXED SIZE) ================= */
+#bookingModal .booking-modal-content {
   width: 100%;
   max-width: 520px;
-  height: 620px;
+
+  /* 🔑 КЛЮЧЕВОЕ */
+  height: 560px;
   max-height: 90vh;
 
-  /* МОЛОЧНОЕ СТЕКЛО */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.94),
-      rgba(255,255,255,0.86)
-    );
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
+  background: rgba(255,255,255,0.72); /* МЕНЬШЕ БЕЛОГО = ВИДНО СТЕКЛО */
   border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.45);
-  background-clip: padding-box; /* 🔥 УБИРАЕТ ГРЯЗЬ */
 
   box-shadow:
-    0 22px 60px rgba(0,0,0,0.30),
-    inset 0 1px 0 rgba(255,255,255,0.65);
+    0 20px 55px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.6);
 
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
 }
+
 
 /* ================= CLOSE ================= */
 #bookingModal .modal-x {
   position: absolute;
   top: 16px;
   right: 16px;
-  z-index: 10;
 
   width: 36px;
   height: 36px;
@@ -73,32 +65,34 @@
 
   background: rgba(0,0,0,0.08);
   color: #333;
-  cursor: pointer;
   font-size: 22px;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  transition: background .25s ease, transform .25s ease;
+  transition: background .2s ease, transform .2s ease;
 }
 
 #bookingModal .modal-x:hover {
   background: rgba(0,0,0,0.14);
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
-/* ================= BODY ================= */
-#bookingContainer .step {
+
+/* ================= STEPS ================= */
+#bookingModal .step {
   flex: 1;
   padding: 32px 28px 28px;
   overflow-y: auto;
   display: none;
 }
 
-#bookingContainer .step.active {
+#bookingModal .step.active {
   display: block;
 }
+
 
 /* ================= TITLES ================= */
 .step-title {
@@ -115,6 +109,7 @@
   color: #555;
   margin-bottom: 20px;
 }
+
 
 /* ================= CALENDAR ================= */
 .calendar-header {
@@ -151,7 +146,6 @@
   margin-bottom: 8px;
 }
 
-/* ===== DAYS ===== */
 .day {
   height: 42px;
   border-radius: 12px;
@@ -161,23 +155,20 @@
   color: #333;
 }
 
-/* доступные даты */
 .day.available {
   cursor: pointer;
   border: 2px solid rgba(247,200,67,0.85);
 }
 
-/* hover */
 .day.available:hover {
   background: #f7c843;
   color: #000;
 }
 
-/* disabled */
 .day.disabled {
   opacity: .35;
-  border: none;
 }
+
 
 /* ================= TIME ================= */
 .time-list {
@@ -200,6 +191,7 @@
   background: #f7c843;
 }
 
+
 /* ================= FORM ================= */
 #bookingModal input {
   width: 100%;
@@ -216,13 +208,6 @@
   border-color: #f7c843;
 }
 
-#bookingModal input.valid {
-  border-color: #2ecc71;
-}
-
-#bookingModal input.invalid {
-  border-color: #e74c3c;
-}
 
 /* ================= BUTTON ================= */
 #bookingModal button[type="submit"] {
@@ -239,6 +224,7 @@
   cursor: pointer;
 }
 
+
 /* ================= BACK ================= */
 .back-btn {
   background: none;
@@ -248,35 +234,60 @@
   cursor: pointer;
   margin-bottom: 14px;
 }
-/* =========================================
-   BOOKING — GLASS LIKE MAIN MODAL (PATCH)
-========================================= */
 
-/* overlay — как у формы */
-#bookingModal {
-  background: rgba(0,0,0,0.32);
-  backdrop-filter: blur(8px);
+
+/* =====================================================
+   BOOKING — RESTORE REQUIRED STAR + VALIDATION
+   (NO HTML CHANGES)
+===================================================== */
+
+
+/* ================= REQUIRED STAR ================= */
+/* звёздочка как БЫЛО — через обёртку */
+#bookingModal .required-field {
+  position: relative;
 }
 
-/* окно — БЕЗ blur, чтобы не было грязи */
-#bookingContainer {
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 20px 55px rgba(0,0,0,0.28);
-  border-radius: 28px;
+#bookingModal .required-field::after {
+  content: '*';
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  color: #e53935;
+  font-size: 18px;
+  font-weight: 600;
+  pointer-events: none;
 }
 
-/* ничего больше не трогаем */
 
-/* === BOOKING FORCE OVERRIDE === */
-
-#bookingModal {
-  background: rgba(0,0,0,0.32) !important;
-  backdrop-filter: blur(8px) !important;
+/* ================= INPUT BASE ================= */
+#bookingModal input {
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
-#bookingContainer {
-  background: rgba(255,255,255,0.92) !important;
-  border-radius: 28px !important;
-  box-shadow: 0 20px 55px rgba(0,0,0,0.28) !important;
+
+/* ================= VALID ================= */
+#bookingModal input.valid {
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.18);
 }
 
+
+/* ================= INVALID ================= */
+#bookingModal input.invalid {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.18);
+}
+
+
+/* ================= FOCUS PRIORITY ================= */
+#bookingModal input:focus.valid {
+  border-color: #2ecc71;
+}
+
+#bookingModal input:focus.invalid {
+  border-color: #e74c3c;
+}
