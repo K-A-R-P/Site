@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="меню проба 2">
+      <change afterPath="$PROJECT_DIR$/script-safe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finansova-roztjazhka/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/finansova-roztjazhka/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +60,9 @@
       <recent name="E:\Pyton_code\Site" />
       <recent name="E:\Pyton_code\Site\assets\gallery" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Pyton_code\Site" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -73,14 +78,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00138" summary="рабочая версия с галереей и отзывами курсивом">
-      <option name="closed" value="true" />
-      <created>1764661062757</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1764661062759</updated>
     </task>
     <task id="LOCAL-00139" summary="упрощенный стиль и иконка">
       <option name="closed" value="true" />
@@ -466,7 +463,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765670059420</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="меню проба 2">
+      <option name="closed" value="true" />
+      <created>1765670482475</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1765670482475</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

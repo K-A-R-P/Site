@@ -248,9 +248,83 @@
   </div>
 </footer>
 
+<!--============================================================
+ МОДАЛЬНОЕ ОКНО КОНТАКТОВ
+ =====================================================-->
+<div id="contactsModal">
+  <div class="contacts-modal-content">
+     <button class="modal-x" aria-label="Закрити"onclick="closeContactsModal()">&times;</button>
+
+    <h3>
+      <img src="/assets/icons/phone.png" alt="Телефон" style="height: 28px; margin-right: 8px; vertical-align: middle;">
+      Контакти
+    </h3>
+    <p class="contact-name">ФОП Стецуріна Ірина Олександрівна</p>
+    <p class="location">Україна, м. Київ</p>
+
+    <div class="contacts-socials">
+  <a href="https://ig.me/m/stetsurina.irina_coach" target="_blank">
+    <img src="/assets/icons/instagram-gray.png" class="gray" alt="Instagram">
+    <img src="/assets/icons/instagram.png" class="color" alt="Instagram">
+  </a>
+  <a href="https://www.facebook.com/IrenStetsurina" target="_blank">
+    <img src="/assets/icons/facebook-gray.png" class="gray" alt="Facebook">
+    <img src="/assets/icons/facebook.png" class="color" alt="Facebook">
+  </a>
+  <a href="https://t.me/Stec0407" target="_blank">
+    <img src="/assets/icons/telegram-gray.png" class="gray" alt="Telegram">
+    <img src="/assets/icons/telegram.png" class="color" alt="Telegram">
+  </a>
+</div>
+
+
+  </div>
+</div>
+
+<!--===============================================
+   МОДАЛКА ОПЛАТА ТА ПОВЕРНЕННЯ
+   =============================================== -->
+<div id="paymentModal">
+  <div class="payment-modal-content">
+      <button class="modal-x" aria-label="Закрити" onclick="closePaymentModal()">&times;</button>
+
+    <h3>
+      <img src="/assets/icons/wallet.png" alt="Гаманець">
+      <span>Оплата</span>
+    </h3>
+
+    <div class="payment-grid">
+      <div class="payment-icons">
+        <div class="icon-row">
+          <img src="/assets/icons/visa.png" alt="Visa">
+          <img src="/assets/icons/mc.png" alt="Mastercard">
+        </div>
+        <div class="icon-row">
+          <img src="/assets/icons/apple-pay.png" alt="Apple Pay">
+        </div>
+        <div class="icon-row">
+          <img src="/assets/icons/google-pay.png" alt="Google Pay">
+        </div>
+      </div>
+
+      <div class="payment-labels">
+        <div>Оплата карткою</div>
+        <div>Apple Pay</div>
+        <div>Google Pay</div>
+      </div>
+    </div>
+
+    <p class="payment-note">
+      Всі умови оплати зазначені на сторінці продукту<br><br>
+      Повернення- згідно із Законом «Про захист прав споживачів»
+    </p>
+
+
+  </div>
+</div>
 
   <!-- Підключення скрипта -->
-  <script src="/script.js"></script>
+  <script src="/script-safe.js"></script>
 
 
 
