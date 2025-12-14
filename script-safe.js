@@ -194,9 +194,6 @@ window.addEventListener("scroll", () => {
     topbar.classList.remove("scrolled");
   }
 });
-/* =========================================================
-   Part 2/3 — Modals + Forms + Masks + Payments (SAFE)
-========================================================= */
 
 /* =========================================================
    CONTACT MODAL — SAFE
@@ -437,11 +434,14 @@ on($('.payment-modal-content'), 'click', e => {
 });
 
 /* =========================================================
-   PHONE MASK (booking) — SAFE
+   PHONE MASK — SAFE (EXCEPT BOOKING)
 ========================================================= */
 (() => {
   const phoneInput = $('#phoneInput');
   if (!phoneInput) return;
+
+  // ❌ если телефон внутри booking — выходим
+  if (phoneInput.closest('#bookingModal')) return;
 
   function formatPhone(d) {
     if (d.length <= 2) return '+' + d;
@@ -455,7 +455,7 @@ on($('.payment-modal-content'), 'click', e => {
     return out;
   }
 
-  on(phoneInput, 'keydown', function(e) {
+  on(phoneInput, 'keydown', function (e) {
     if (e.key === 'Backspace') {
       const pos = this.selectionStart;
       const current = this.value;
@@ -472,7 +472,7 @@ on($('.payment-modal-content'), 'click', e => {
     }
   });
 
-  on(phoneInput, 'input', function() {
+  on(phoneInput, 'input', function () {
     let d = this.value.replace(/\D/g, '');
     if (d.startsWith('8') && d.length > 1) d = '3' + d;
     d = d.slice(0, 12);
@@ -488,9 +488,11 @@ on($('.payment-modal-content'), 'click', e => {
   });
 
   on(phoneInput, 'blur', () => {
-    if (phoneInput.value.replace(/\D/g, '').length <= 2) phoneInput.value = '';
+    if (phoneInput.value.replace(/\D/g, '').length <= 2)
+      phoneInput.value = '';
   });
 })();
+
 
 /* =========================================================
    SUCCESS MODAL + CONFETTI — SAFE
@@ -704,10 +706,14 @@ on($('#bookingForm'), 'submit', async function(e) {
 });
 
 /* =========================================================
-   GREEN VALIDATION (booking) — SAFE (одна версия, без дубля)
+   GREEN VALIDATION — SAFE (EXCEPT BOOKING)
 ========================================================= */
 (() => {
   const form = $('#bookingForm');
+
+  // ❌ если это booking — выходим
+  if (form && form.closest('#bookingModal')) return;
+
   if (!form) return;
 
   const inputs = $$('input[required]', form);
@@ -719,14 +725,18 @@ on($('#bookingForm'), 'submit', async function(e) {
       let valid = false;
 
       if (input.name === 'name') valid = val.length >= 2;
-      if (input.id === 'phoneInput') valid = input.value.replace(/\D/g, '').length === 12;
+      if (input.id === 'phoneInput')
+        valid = input.value.replace(/\D/g, '').length === 12;
+
       if (input.id === 'emailInput') {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         valid = pattern.test(val);
       }
 
       input.style.borderColor = valid ? '#4caf50' : '#ddd';
-      input.style.boxShadow = valid ? '0 0 12px rgba(76,175,80,0.3)' : 'none';
+      input.style.boxShadow = valid
+        ? '0 0 12px rgba(76,175,80,0.3)'
+        : 'none';
     };
 
     on(input, 'input', check);
@@ -734,9 +744,7 @@ on($('#bookingForm'), 'submit', async function(e) {
     check();
   });
 })();
-/* =========================================================
-   Part 3/3 — Premium blocks + Exit-intent + Diploma + FAQ fade (SAFE)
-========================================================= */
+
 
 /* ================== DIPLOMA MODAL (SAFE) ================== */
 (() => {
@@ -1402,18 +1410,22 @@ function openBookingModal(product, price) {
       return res.text();
     })
     .then(html => {
-      container.innerHTML = html;
-      container.dataset.loaded = "true";
+  container.innerHTML = html;
+  container.dataset.loaded = "true";
 
-      // 🔥 КРИТИЧНО: ручная инициализация
-      window.initBookingApp?.();
-    })
+  // 🔥 КРИТИЧНО: ждём следующий кадр
+  requestAnimationFrame(() => {
+    window.initBookingApp?.();
+  });
+})
+
     .catch(err => {
       console.error("Booking HTML load error:", err);
       container.innerHTML =
         "<p style='padding:20px;text-align:center'>Помилка завантаження календаря</p>";
     });
 }
+
 
 function closeBookingModal() {
   const modal = document.getElementById("bookingModal");
