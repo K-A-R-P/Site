@@ -1381,25 +1381,38 @@ function openBookingModal(product, price) {
     closePricePopup();
   }
 
-  // lazy-load booking.html
-  if (!container.dataset.loaded) {
-    fetch("/booking/booking.html")
-      .then(res => res.text())
-      .then(html => {
-        container.innerHTML = html;
-        container.dataset.loaded = "true";
-      })
-      .catch(err => {
-        console.error("Booking HTML load error:", err);
-      });
-  }
-
-  // сохраняем данные
+  // сохраняем данные продукта
   window.bookingProduct = product;
   window.bookingPrice = price;
 
+  // показываем модалку сразу (UX)
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
+
+  // если уже загружено — просто инициализируем
+  if (container.dataset.loaded === "true") {
+    window.initBookingApp?.();
+    return;
+  }
+
+  // первый запуск — грузим HTML
+  fetch("/booking/booking.html")
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load booking.html");
+      return res.text();
+    })
+    .then(html => {
+      container.innerHTML = html;
+      container.dataset.loaded = "true";
+
+      // 🔥 КРИТИЧНО: ручная инициализация
+      window.initBookingApp?.();
+    })
+    .catch(err => {
+      console.error("Booking HTML load error:", err);
+      container.innerHTML =
+        "<p style='padding:20px;text-align:center'>Помилка завантаження календаря</p>";
+    });
 }
 
 function closeBookingModal() {
@@ -1409,3 +1422,4 @@ function closeBookingModal() {
   modal.classList.remove("active");
   document.body.style.overflow = "";
 }
+
