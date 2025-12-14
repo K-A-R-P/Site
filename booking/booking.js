@@ -1,3 +1,10 @@
+if (window.__BOOKING_APP_LOADED__) {
+  console.warn("Booking app already loaded");
+  throw new Error("Booking app already loaded");
+}
+window.__BOOKING_APP_LOADED__ = true;
+
+
 // === MOCK availability (пока без API) ===
 // Важно: тут даты должны быть "в будущем", иначе они будут disabled.
 const MOCK_AVAILABILITY = {
