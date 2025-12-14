@@ -1,151 +1,102 @@
 'use strict';
 
 /* =====================================================
-   BOOKING APP — STABLE VERSION
-   Работает с lazy-loaded booking.html
+   BOOKING APP — SCOPED TO BOOKING MODAL (NO EXIT CONFLICT)
 ===================================================== */
 
-/* ---------- защита от повторной загрузки ---------- */
-if (!window.__BOOKING_APP_LOADED__) {
-  window.__BOOKING_APP_LOADED__ = true;
-}
-
-/* ---------- MOCK availability (пока без backend) ---------- */
 const MOCK_AVAILABILITY = {
   "2025-12-15": ["09:00", "11:00"],
   "2025-12-16": ["09:00", "11:00", "13:00"],
   "2025-12-18": ["11:00"]
 };
 
-/* ---------- состояние ---------- */
-const bookingState = {
+const state = {
   currentMonth: null,
   selectedDate: null,
   selectedTime: null
 };
 
-/* =====================================================
-   HELPERS
-===================================================== */
-function pad2(n) {
-  return String(n).padStart(2, '0');
+/* ---------- helpers ---------- */
+function pad2(n) { return String(n).padStart(2, '0'); }
+function startOfDay(d) { const x = new Date(d); x.setHours(0,0,0,0); return x; }
+function toLocalISO(d) { return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`; }
+
+function setStep(root, cls) {
+  root.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  root.querySelector(cls)?.classList.add('active');
 }
 
-function toLocalISO(date) {
-  return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`;
+function updateMeta(root) {
+  const txt =
+    state.selectedDate && state.selectedTime ? `Обрано: ${state.selectedDate} • ${state.selectedTime}` :
+    state.selectedDate ? `Обрано: ${state.selectedDate}` : '';
+
+  root.querySelectorAll('.selected-meta').forEach(el => el.textContent = txt);
 }
 
-function startOfDay(d) {
-  const x = new Date(d);
-  x.setHours(0, 0, 0, 0);
-  return x;
-}
-
-function setStep(cls) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  const el = document.querySelector(cls);
-  if (el) el.classList.add('active');
-}
-
-function updateMeta() {
-  const text =
-    bookingState.selectedDate && bookingState.selectedTime
-      ? `Обрано: ${bookingState.selectedDate} • ${bookingState.selectedTime}`
-      : bookingState.selectedDate
-      ? `Обрано: ${bookingState.selectedDate}`
-      : '';
-
-  document.querySelectorAll('.selected-meta').forEach(el => {
-    el.textContent = text;
-  });
-}
-
-/* =====================================================
-   CALENDAR
-===================================================== */
-function renderCalendar() {
-  const grid = document.querySelector('.calendar-grid');
-  const label = document.querySelector('.month-label');
+/* ---------- calendar ---------- */
+function renderCalendar(root) {
+  const grid  = root.querySelector('.calendar-grid');
+  const label = root.querySelector('.month-label');
   if (!grid || !label) return;
 
   grid.innerHTML = '';
 
   const today = startOfDay(new Date());
-  const y = bookingState.currentMonth.getFullYear();
-  const m = bookingState.currentMonth.getMonth();
+  const y = state.currentMonth.getFullYear();
+  const m = state.currentMonth.getMonth();
 
-  label.textContent = bookingState.currentMonth.toLocaleString('uk-UA', {
-    month: 'long',
-    year: 'numeric'
-  });
+  label.textContent = state.currentMonth.toLocaleString('uk-UA', { month: 'long', year: 'numeric' });
 
   const firstDay = new Date(y, m, 1);
   const offset = (firstDay.getDay() + 6) % 7;
 
   for (let i = 0; i < offset; i++) {
-    const spacer = document.createElement('div');
-    spacer.className = 'day-spacer';
-    grid.appendChild(spacer);
+    const sp = document.createElement('div');
+    sp.className = 'day-spacer';
+    grid.appendChild(sp);
   }
 
   const daysInMonth = new Date(y, m + 1, 0).getDate();
 
-  for (let d = 1; d <= daysInMonth; d++) {
-    const date = new Date(y, m, d);
-    const iso = toLocalISO(date);
+  for (let day = 1; day <= daysInMonth; day++) {
+    const d = new Date(y, m, day);
+    const iso = toLocalISO(d);
 
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'day';
-    btn.textContent = d;
+    btn.textContent = day;
 
     const hasSlots = (MOCK_AVAILABILITY[iso] || []).length > 0;
 
-    if (startOfDay(date) <= today) {
+    if (startOfDay(d) <= today || !hasSlots) {
+      btn.disabled = true;
       btn.classList.add('disabled');
-      btn.disabled = true;
-    } else if (!hasSlots) {
-      btn.classList.add('blocked');
-      btn.disabled = true;
     } else {
       btn.classList.add('available');
-      btn.addEventListener('click', () => selectDate(iso));
-    }
-
-    if (bookingState.selectedDate === iso) {
-      btn.classList.add('selected');
+      btn.addEventListener('click', () => {
+        state.selectedDate = iso;
+        state.selectedTime = null;
+        updateMeta(root);
+        setStep(root, '.step-time');
+        renderTimes(root);
+      });
     }
 
     grid.appendChild(btn);
   }
 }
 
-function changeMonth(delta) {
-  const d = bookingState.currentMonth;
-  bookingState.currentMonth = new Date(d.getFullYear(), d.getMonth() + delta, 1);
-  renderCalendar();
-}
-
-function selectDate(iso) {
-  bookingState.selectedDate = iso;
-  bookingState.selectedTime = null;
-  updateMeta();
-  setStep('.step-time');
-  renderTimes();
-}
-
-/* =====================================================
-   TIME SLOTS
-===================================================== */
-function renderTimes() {
-  const list = document.querySelector('.time-list');
+function renderTimes(root) {
+  const list = root.querySelector('.time-list');
   if (!list) return;
 
   list.innerHTML = '';
-  const times = MOCK_AVAILABILITY[bookingState.selectedDate] || [];
+  const times = MOCK_AVAILABILITY[state.selectedDate] || [];
 
   if (!times.length) {
-    list.innerHTML = '<div class="step-sub">На цю дату немає вільного часу</div>';
+    list.innerHTML = "<div class='step-sub'>На цю дату немає вільного часу</div>";
     return;
   }
 
@@ -156,135 +107,168 @@ function renderTimes() {
     btn.textContent = time;
 
     btn.addEventListener('click', () => {
-      bookingState.selectedTime = time;
-      updateMeta();
-      setStep('.step-form');
+      state.selectedTime = time;
+      updateMeta(root);
+      setStep(root, '.step-form');
     });
 
     list.appendChild(btn);
   });
 }
 
-/* =====================================================
-   PHONE MASK (BOOKING ONLY)
-===================================================== */
+/* ---------- phone mask (booking only) ---------- */
 function initPhoneMask(input) {
   if (!input) return;
 
+  function format(digits) {
+    // digits must be max 12 for UA: 380XXXXXXXXX
+    digits = digits.replace(/\D/g, '');
+    if (digits.startsWith('8') && digits.length > 1) digits = '3' + digits;
+    if (!digits.startsWith('38')) digits = '38' + digits.replace(/^0+/, '');
+    digits = digits.slice(0, 12);
+
+    // +38 (0XX) XXX XX XX style, but digits are 38 + 10
+    const body = digits.slice(2); // 10 digits
+    let out = '+38';
+    if (body.length > 0) out += ' (' + body.substring(0, 3);
+    if (body.length >= 3) out += ')';
+    if (body.length > 3) out += ' ' + body.substring(3, 6);
+    if (body.length > 6) out += ' ' + body.substring(6, 8);
+    if (body.length > 8) out += ' ' + body.substring(8, 10);
+    return out;
+  }
+
   input.addEventListener('focus', () => {
-    if (!input.value) input.value = '+380 ';
+    if (!input.value) {
+      input.value = '+38 ';
+      input.setSelectionRange(input.value.length, input.value.length);
+    }
   });
 
   input.addEventListener('input', () => {
-    let d = input.value.replace(/\D/g, '');
-    if (d.startsWith('380')) d = d.slice(3);
-    if (d.startsWith('0')) d = d.slice(1);
-    d = d.slice(0, 9);
+    const digits = input.value.replace(/\D/g, '');
+    input.value = format(digits);
+    input.setSelectionRange(input.value.length, input.value.length);
+  });
 
-    let out = '+380';
-    if (d.length) out += ' ' + d.slice(0, 2);
-    if (d.length > 2) out += ' ' + d.slice(2, 5);
-    if (d.length > 5) out += ' ' + d.slice(5, 7);
-    if (d.length > 7) out += ' ' + d.slice(7, 9);
-
-    input.value = out;
+  input.addEventListener('blur', () => {
+    if (input.value.replace(/\D/g, '').length <= 2) input.value = '';
   });
 }
 
-/* =====================================================
-   VALIDATION
-===================================================== */
-function validName(i) {
-  return /^[A-Za-zА-Яа-яІіЇїЄєҐґ'ʼ\- ]{2,}$/.test(i.value.trim());
-}
-function validEmail(i) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value.trim());
-}
-function validPhone(i) {
-  return i.value.replace(/\D/g, '').length === 12;
-}
-function mark(i, ok) {
-  i.classList.toggle('valid', ok);
-  i.classList.toggle('invalid', !ok);
+/* ---------- validation ---------- */
+function validName(v) { return (v || '').trim().length >= 2; }
+function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || '').trim()); }
+function validPhone(v) { return (v || '').replace(/\D/g, '').length === 12; }
+
+function mark(el, ok) {
+  el.classList.toggle('valid', !!ok);
+  el.classList.toggle('invalid', !ok);
 }
 
 /* =====================================================
-   INIT — вызывается из openBookingModal
+   INIT — called from openBookingModal (every open)
 ===================================================== */
 window.initBookingApp = function () {
-  if (window.__BOOKING_INITED__) return;
-  window.__BOOKING_INITED__ = true;
+  // scope strictly to booking modal DOM (so we never touch exit popup)
+  const modal = document.getElementById('bookingModal');
+  const root = modal ? modal : document;
+
+  const container = root.querySelector('#bookingContainer') || root;
+  const formOld = container.querySelector('#bookingForm');
+  if (!formOld) return;
+
+  // убираем старые обработчики без перезаписи всего DOM
+  const form = formOld.cloneNode(true);
+  formOld.replaceWith(form);
 
   const now = new Date();
-  bookingState.currentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  state.currentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  state.selectedDate = null;
+  state.selectedTime = null;
 
-  document.querySelector('.nav-btn.prev')?.addEventListener('click', () => changeMonth(-1));
-  document.querySelector('.nav-btn.next')?.addEventListener('click', () => changeMonth(1));
-
-  document.querySelector('.back-to-date')?.addEventListener('click', () => {
-    setStep('.step-date');
-    bookingState.selectedTime = null;
-    updateMeta();
-    renderCalendar();
+  // nav
+  container.querySelector('.nav-btn.prev')?.addEventListener('click', () => {
+    state.currentMonth = new Date(state.currentMonth.getFullYear(), state.currentMonth.getMonth() - 1, 1);
+    renderCalendar(container);
   });
 
-  document.querySelector('.back-to-time')?.addEventListener('click', () => {
-    setStep('.step-time');
-    updateMeta();
+  container.querySelector('.nav-btn.next')?.addEventListener('click', () => {
+    state.currentMonth = new Date(state.currentMonth.getFullYear(), state.currentMonth.getMonth() + 1, 1);
+    renderCalendar(container);
   });
 
-  const form = document.getElementById('bookingForm');
-  const status = document.querySelector('.form-status');
-  if (!form) return;
+  container.querySelector('.back-to-date')?.addEventListener('click', () => {
+    state.selectedTime = null;
+    updateMeta(container);
+    setStep(container, '.step-date');
+  });
 
-  requestAnimationFrame(() => {
-    const name = form.querySelector('[name="name"]');
-    const email = form.querySelector('[name="email"]');
-    const phone = document.getElementById('phoneInput');
+  container.querySelector('.back-to-time')?.addEventListener('click', () => {
+    updateMeta(container);
+    setStep(container, '.step-time');
+  });
 
-    initPhoneMask(phone);
+  // fields (ВАЖНО: только внутри bookingForm!)
+  const name  = form.querySelector('input[name="name"]');
+  const email = form.querySelector('input[name="email"]');
+  const phone = form.querySelector('input[name="phone"]') || form.querySelector('#phoneInput'); // на всякий
 
-    name.addEventListener('input', () => mark(name, validName(name)));
-    email.addEventListener('input', () => mark(email, validEmail(email)));
-    phone.addEventListener('input', () => mark(phone, validPhone(phone)));
+  const status = container.querySelector('.form-status');
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
+  if (!name || !email || !phone) return;
 
-      if (!bookingState.selectedDate || !bookingState.selectedTime) {
-        status.textContent = 'Оберіть дату та час';
-        return;
-      }
+  // mask + live validation
+  initPhoneMask(phone);
 
-      const ok1 = validName(name);
-      const ok2 = validEmail(email);
-      const ok3 = validPhone(phone);
+  const repaint = () => {
+    mark(name,  validName(name.value));
+    mark(email, validEmail(email.value));
+    mark(phone, validPhone(phone.value));
+  };
 
-      mark(name, ok1);
-      mark(email, ok2);
-      mark(phone, ok3);
+  name.addEventListener('input', repaint);
+  email.addEventListener('input', repaint);
+  phone.addEventListener('input', repaint);
 
-      if (!ok1 || !ok2 || !ok3) {
-        status.textContent = 'Заповніть форму коректно';
-        return;
-      }
+  repaint();
 
-      console.log({
-        product: window.bookingProduct,
-        price: window.bookingPrice,
-        date: bookingState.selectedDate,
-        time: bookingState.selectedTime,
-        name: name.value,
-        email: email.value,
-        phone: phone.value
-      });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      status.textContent = 'Заявку прийнято ✔';
-      form.reset();
-      [name, email, phone].forEach(i => i.classList.remove('valid', 'invalid'));
+    if (!state.selectedDate || !state.selectedTime) {
+      if (status) status.textContent = 'Оберіть дату та час';
+      return;
+    }
+
+    const ok1 = validName(name.value);
+    const ok2 = validEmail(email.value);
+    const ok3 = validPhone(phone.value);
+
+    mark(name, ok1);
+    mark(email, ok2);
+    mark(phone, ok3);
+
+    if (!ok1 || !ok2 || !ok3) {
+      if (status) status.textContent = 'Заповніть форму коректно';
+      return;
+    }
+
+    console.log({
+      product: window.bookingProduct,
+      price: window.bookingPrice,
+      date: state.selectedDate,
+      time: state.selectedTime,
+      name: name.value,
+      email: email.value,
+      phone: phone.value
     });
+
+    if (status) status.textContent = 'Заявку прийнято ✔';
+    form.reset();
+    [name, email, phone].forEach(el => el.classList.remove('valid', 'invalid'));
   });
 
-  updateMeta();
-  renderCalendar();
+  updateMeta(container);
+  renderCalendar(container);
 };

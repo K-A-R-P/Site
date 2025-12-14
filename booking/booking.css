@@ -1,293 +1,282 @@
-:root {
-  --yellow: #f7c843;
-  --black: #1a1a1a;
-  --bg: #f5f1ea;
-  --gray: #36454f;
-  --text-muted: #555;
-  --glass: rgba(255,255,255,0.72);
-  --shadow: 0 20px 60px rgba(0,0,0,0.18);
-}
+/* =====================================================
+   BOOKING MODAL — FINAL GLASS POLISH
+===================================================== */
 
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Manrope, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--black);
-  padding: 24px;
-}
+/* ================= OVERLAY ================= */
+#bookingModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
 
-#bookingApp {
-  max-width: 440px;
-  margin: 0 auto;
-}
-
-/* STEPS */
-.step { display: none; animation: fadeIn .35s ease; }
-.step.active { display: block; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.step-title {
-  font-size: 24px;
-  text-align: center;
-  margin: 0 0 16px;
-}
-
-.step-sub {
-  text-align: center;
-  font-size: 14px;
-  color: var(--text-muted);
-  margin: 0 0 18px;
-}
-
-.selected-meta {
-  text-align: center;
-  font-size: 14px;
-  color: var(--text-muted);
-  margin: 0 0 14px;
-}
-
-.back-btn {
-  background: none;
-  border: none;
-  color: var(--gray);
-  font-size: 14px;
-  cursor: pointer;
-  padding: 6px 0;
-  margin-bottom: 10px;
-}
-
-/* CALENDAR WRAPPER */
-.booking-calendar {
-  background: var(--glass);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 28px;
-  padding: 22px 20px 24px;
-  box-shadow: var(--shadow);
-}
-
-/* HEADER */
-.calendar-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
 }
 
-.month-label {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--black);
-  text-transform: lowercase;
+#bookingModal.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.nav-btn {
+/* ================= SHELL ================= */
+#bookingContainer {
+  width: 100%;
+  max-width: 520px;
+  height: 620px;
+  max-height: 90vh;
+
+  /* МОЛОЧНОЕ СТЕКЛО */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.94),
+      rgba(255,255,255,0.86)
+    );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.45);
+  background-clip: padding-box; /* 🔥 УБИРАЕТ ГРЯЗЬ */
+
+  box-shadow:
+    0 22px 60px rgba(0,0,0,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.65);
+
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= CLOSE ================= */
+#bookingModal .modal-x {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: rgba(0,0,0,0.06);
+
+  background: rgba(0,0,0,0.08);
+  color: #333;
   cursor: pointer;
-  font-size: 20px;
-  transition: transform .2s ease, background .25s ease;
-}
-.nav-btn:hover {
-  background: rgba(247,200,67,0.7);
-  transform: scale(1.05);
+  font-size: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background .25s ease, transform .25s ease;
 }
 
-/* WEEKDAYS */
-.calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  margin-bottom: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gray);
+#bookingModal .modal-x:hover {
+  background: rgba(0,0,0,0.14);
+  transform: scale(1.08);
+}
+
+/* ================= BODY ================= */
+#bookingContainer .step {
+  flex: 1;
+  padding: 32px 28px 28px;
+  overflow-y: auto;
+  display: none;
+}
+
+#bookingContainer .step.active {
+  display: block;
+}
+
+/* ================= TITLES ================= */
+.step-title {
   text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
-/* GRID */
+.step-sub,
+.selected-meta {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* ================= CALENDAR ================= */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.month-label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+
+.calendar-weekdays,
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  text-align: center;
 }
 
-/* пустая ячейка */
-.day-spacer {
-  height: 44px;
+.calendar-weekdays {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
 }
 
-/* DAY BASE */
+/* ===== DAYS ===== */
 .day {
-  height: 44px;
-  border-radius: 50%;
+  height: 42px;
+  border-radius: 12px;
   border: none;
   background: transparent;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  font-weight: 500;
+  color: #333;
 }
 
-/* AVAILABLE */
+/* доступные даты */
 .day.available {
-  background: rgba(247,200,67,0.18);
-  color: var(--black);
-}
-.day.available:hover {
-  background: var(--yellow);
-  transform: scale(1.08);
-  box-shadow: 0 8px 18px rgba(247,200,67,0.45);
-}
-
-/* SELECTED */
-.day.selected {
-  background: var(--yellow);
-  color: var(--black);
-  box-shadow: 0 10px 22px rgba(247,200,67,0.55);
-}
-
-/* DISABLED (today / past) */
-.day.disabled {
-  color: #bdbdbd;
-  cursor: not-allowed;
-  background: transparent;
-}
-
-/* BLOCKED (no free slots) */
-.day.blocked {
-  color: #aaa;
-  background: rgba(0,0,0,0.04);
-  cursor: not-allowed;
-}
-
-/* TIME LIST */
-.time-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.time-slot {
-  width: 100%;
-  padding: 14px;
-  border-radius: 14px;
-  font-size: 17px;
-  font-weight: 700;
-  border: 2px solid rgba(247,200,67,0.9);
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
-  transition: transform .2s ease, background .25s ease, box-shadow .25s ease;
+  border: 2px solid rgba(247,200,67,0.85);
 }
 
-.time-slot:hover {
-  background: var(--yellow);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(247,200,67,0.35);
+/* hover */
+.day.available:hover {
+  background: #f7c843;
+  color: #000;
 }
 
-.time-slot.selected {
-  background: var(--yellow);
-  box-shadow: 0 12px 26px rgba(247,200,67,0.5);
+/* disabled */
+.day.disabled {
+  opacity: .35;
+  border: none;
 }
 
-/* FORM */
-#bookingForm {
+/* ================= TIME ================= */
+.time-list {
   display: grid;
   gap: 12px;
 }
 
-#bookingForm input {
-  width: 100%;
-  padding: 14px 14px;
+.time-slot {
+  height: 48px;
   border-radius: 14px;
-  border: 2px solid #e2e2e2;
   background: #fff;
+  border: 2px solid rgba(247,200,67,0.6);
   font-size: 16px;
-  outline: none;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-
-#bookingForm input:focus {
-  border-color: var(--yellow);
-  box-shadow: 0 0 0 4px rgba(247,200,67,0.2);
-}
-
-.btn-submit {
-  padding: 16px 14px;
-  border-radius: 14px;
-  border: 2px solid rgba(0,0,0,0.15);
-  background: var(--yellow);
-  color: var(--black);
-  font-size: 17px;
-  font-weight: 800;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: background .25s ease, transform .2s ease, box-shadow .25s ease;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,.1);
 }
 
-.btn-submit:hover {
-  background: var(--black);
-  color: #fff;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+.time-slot:hover {
+  background: #f7c843;
 }
 
-.form-status {
-  margin-top: 12px;
-  min-height: 22px;
-  text-align: center;
-  font-weight: 700;
-  color: var(--gray);
+/* ================= FORM ================= */
+#bookingModal input {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  border: 2px solid rgba(247,200,67,0.5);
+  padding: 0 16px;
+  font-size: 16px;
+  background: #fff;
 }
 
-@media (max-width: 420px) {
-  body { padding: 16px; }
-  .booking-calendar { padding: 18px 16px 20px; border-radius: 24px; }
-}
-/* ===== FORM FIELDS ===== */
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+#bookingModal input:focus {
+  outline: none;
+  border-color: #f7c843;
 }
 
-.label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--gray);
-}
-
-.req {
-  color: #e53935;
-  margin-left: 2px;
-}
-
-/* INPUT STATES */
-
-#bookingForm input {
-  border: 2px solid #e2e2e2;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-
-#bookingForm input.valid {
+#bookingModal input.valid {
   border-color: #2ecc71;
-  box-shadow: 0 0 0 4px rgba(46,204,113,.18);
 }
 
-#bookingForm input.invalid {
-  border-color: #e53935;
-  box-shadow: 0 0 0 4px rgba(229,57,53,.18);
+#bookingModal input.invalid {
+  border-color: #e74c3c;
 }
+
+/* ================= BUTTON ================= */
+#bookingModal button[type="submit"] {
+  width: 100%;
+  height: 54px;
+  margin-top: 18px;
+
+  background: #f7c843;
+  border: none;
+  border-radius: 18px;
+
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================= BACK ================= */
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+/* =========================================
+   BOOKING — GLASS LIKE MAIN MODAL (PATCH)
+========================================= */
+
+/* overlay — как у формы */
+#bookingModal {
+  background: rgba(0,0,0,0.32);
+  backdrop-filter: blur(8px);
+}
+
+/* окно — БЕЗ blur, чтобы не было грязи */
+#bookingContainer {
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 20px 55px rgba(0,0,0,0.28);
+  border-radius: 28px;
+}
+
+/* ничего больше не трогаем */
+
+/* === BOOKING FORCE OVERRIDE === */
+
+#bookingModal {
+  background: rgba(0,0,0,0.32) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+#bookingContainer {
+  background: rgba(255,255,255,0.92) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 20px 55px rgba(0,0,0,0.28) !important;
+}
+

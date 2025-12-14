@@ -1398,10 +1398,13 @@ function openBookingModal(product, price) {
   document.body.style.overflow = "hidden";
 
   // если уже загружено — просто инициализируем
-  if (container.dataset.loaded === "true") {
+if (container.dataset.loaded === "true") {
+  requestAnimationFrame(() => {
     window.initBookingApp?.();
-    return;
-  }
+  });
+  return;
+}
+
 
   // первый запуск — грузим HTML
   fetch("/booking/booking.html")
