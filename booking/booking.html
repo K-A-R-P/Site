@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Booking</title>
+
+  <!-- ВАЖНО: пути. Если файлы в одной папке — так. -->
+  <link rel="stylesheet" href="./booking.css" />
+</head>
+
+<body>
+
+  <div id="bookingApp">
+
+    <!-- STEP 1: DATE -->
+    <section class="step step-date active">
+      <h2 class="step-title">Оберіть день</h2>
+
+      <div class="booking-calendar">
+        <div class="calendar-header">
+          <button class="nav-btn prev" type="button" aria-label="Попередній місяць">‹</button>
+          <div class="month-label"></div>
+          <button class="nav-btn next" type="button" aria-label="Наступний місяць">›</button>
+        </div>
+
+        <div class="calendar-weekdays">
+          <div>ПН</div><div>ВТ</div><div>СР</div>
+          <div>ЧТ</div><div>ПТ</div><div>СБ</div><div>НД</div>
+        </div>
+
+        <div class="calendar-grid"></div>
+      </div>
+    </section>
+
+    <!-- STEP 2: TIME -->
+    <section class="step step-time">
+      <button class="back-btn back-to-date" type="button">← Назад</button>
+
+      <h2 class="step-title">Оберіть час</h2>
+      <p class="step-sub">Тривалість: 45 хв</p>
+
+      <div class="selected-meta"></div>
+
+      <div class="time-list"></div>
+    </section>
+
+    <!-- STEP 3: FORM -->
+    <section class="step step-form">
+      <button class="back-btn back-to-time" type="button">← Назад</button>
+
+      <h2 class="step-title">Запис на консультацію</h2>
+
+      <div class="selected-meta"></div>
+
+      <form id="bookingForm" novalidate>
+
+  <label class="field">
+    <span class="label">
+      Ваше імʼя <span class="req">*</span>
+    </span>
+    <input type="text" name="name" required minlength="2" autocomplete="name">
+  </label>
+
+  <label class="field">
+    <span class="label">
+      Email <span class="req">*</span>
+    </span>
+    <input type="email" name="email" required autocomplete="email">
+  </label>
+
+  <label class="field">
+    <span class="label">
+      Телефон <span class="req">*</span>
+    </span>
+    <input type="tel" name="phone" id="phoneInput" required autocomplete="tel">
+  </label>
+
+  <button type="submit" class="btn-submit">
+    Записатися
+  </button>
+
+</form>
+
+
+      <div class="form-status" aria-live="polite"></div>
+    </section>
+
+  </div>
+
+  <script src="./booking.js" defer></script>
+</body>
+</html>

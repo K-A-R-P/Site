@@ -3116,4 +3116,35 @@ canvas.confetti-canvas {
   }
 }
 
+/* ===========================
+   BOOKING MODAL
+=========================== */
+
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.booking-modal.active {
+  display: flex;
+}
+
+.booking-modal-content {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: transparent; /* bookingApp сам рисует стекло */
+  position: relative;
+}
 

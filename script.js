@@ -1500,4 +1500,37 @@ window.addEventListener("scroll", () => {
     topbar.classList.remove("scrolled");
   }
 });
+//=====================BookingModal
 
+function openBookingModal(product, price) {
+  const modal = document.getElementById("bookingModal");
+  const container = document.getElementById("bookingContainer");
+
+  // закрываем pricePopup если открыт
+  if (typeof closePricePopup === "function") {
+    closePricePopup();
+  }
+
+  // подгружаем booking.html внутрь модалки (1 раз)
+  if (!container.dataset.loaded) {
+    fetch("/booking/booking.html")
+      .then(res => res.text())
+      .then(html => {
+        container.innerHTML = html;
+        container.dataset.loaded = "true";
+      });
+  }
+
+  // можно сохранить продукт/цену глобально
+  window.bookingProduct = product;
+  window.bookingPrice = price;
+
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeBookingModal() {
+  const modal = document.getElementById("bookingModal");
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+}

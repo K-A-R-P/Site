@@ -1363,3 +1363,49 @@ on(document, 'keydown', e => {
   });
 })();
 
+// ================================
+// BOOKING MODAL (GLOBAL)
+// ================================
+
+function openBookingModal(product, price) {
+  const modal = document.getElementById("bookingModal");
+  const container = document.getElementById("bookingContainer");
+
+  if (!modal || !container) {
+    console.error("bookingModal or bookingContainer not found");
+    return;
+  }
+
+  // закрываем pricePopup, если есть
+  if (typeof closePricePopup === "function") {
+    closePricePopup();
+  }
+
+  // lazy-load booking.html
+  if (!container.dataset.loaded) {
+    fetch("/booking/booking.html")
+      .then(res => res.text())
+      .then(html => {
+        container.innerHTML = html;
+        container.dataset.loaded = "true";
+      })
+      .catch(err => {
+        console.error("Booking HTML load error:", err);
+      });
+  }
+
+  // сохраняем данные
+  window.bookingProduct = product;
+  window.bookingPrice = price;
+
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeBookingModal() {
+  const modal = document.getElementById("bookingModal");
+  if (!modal) return;
+
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+}

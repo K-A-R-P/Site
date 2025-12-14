@@ -11,6 +11,9 @@
 <link rel="icon" type="image/png" href="favicon-32.png">
 <link rel="apple-touch-icon" href="favicon-180.png">
 <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="/booking/booking.css">
+<script src="/booking/booking.js" defer></script>
+
 
 
 </head>
@@ -311,8 +314,12 @@
 <div class="card-bottom">
       <div class="readmore">Читати далі →</div>
           <div class="buttons-row">
-            <a class="btn btn-main" onclick="openCalendly(event, 'https://calendly.com/4ernish8/30min')">Обрати дату</a>
-            <button class="price-btn" onclick="event.stopPropagation(); openPricePopup(event, 'Експрес-консультація', '250 ₴')">🛒 250 ₴</button>
+            
+            <button class="price-btn"
+ onclick="event.stopPropagation(); openBookingModal('Експрес-консультація', '250 ₴')">
+ 🛒 250 ₴
+</button>
+
           </div>
         </div>
       </div>
@@ -1196,6 +1203,21 @@
 <div id="diplomaModal">
   <img id="diplomaModalImg" src="" alt="">
 </div>
+
+<!-- ===========================
+     BOOKING MODAL
+=========================== -->
+<div id="bookingModal" class="booking-modal">
+  <div class="booking-modal-content">
+
+    <button class="modal-x" aria-label="Закрити" onclick="closeBookingModal()">&times;</button>
+
+    <!-- сюда встраивается наш bookingApp -->
+    <div id="bookingContainer"></div>
+
+  </div>
+</div>
+
 
 
 
