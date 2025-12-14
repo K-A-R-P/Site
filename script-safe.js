@@ -122,7 +122,43 @@ on(window, 'scroll', () => {
   $('.scroll-top')?.classList.toggle('visible', window.scrollY > 300);
 });
 
+/* =========================================================
+   FIX SCROLL RESTORE ON RELOAD (SAFE)
+========================================================= */
+(function fixScrollRestore() {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
 
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const topbar = $('.topbar');
+      if (!topbar) return;
+
+      const headerHeight = topbar.offsetHeight;
+      document.documentElement.style.scrollPaddingTop = (headerHeight + 20) + 'px';
+
+      if (window.scrollY > 0) {
+        const correctY = window.scrollY + headerHeight + 20;
+        window.scrollTo({ top: correctY, behavior: 'instant' });
+      }
+
+      setTimeout(() => {
+        const topbar2 = $('.topbar');
+        if (!topbar2) return;
+        const headerHeight2 = topbar2.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = (headerHeight2 + 20) + 'px';
+      }, 150);
+    }, 50);
+  });
+
+  window.addEventListener('resize', () => {
+    const topbar = $('.topbar');
+    if (!topbar) return;
+    const headerHeight = topbar.offsetHeight;
+    document.documentElement.style.scrollPaddingTop = (headerHeight + 20) + 'px';
+  });
+})();
 
 /* =========================================================
    HERO — появление при загрузке (SAFE) + scroll shrink (SAFE)
@@ -1327,30 +1363,3 @@ on(document, 'keydown', e => {
   });
 })();
 
-/* =========================================================
-   FIX HASH ANCHOR OFFSET AFTER PAGE LOAD
-   (для перехода с других страниц)
-========================================================= */
-
-window.addEventListener('load', () => {
-  if (!location.hash) return;
-
-  const target = document.querySelector(location.hash);
-  const topbar = document.querySelector('.topbar');
-
-  if (!target || !topbar) return;
-
-  // даём браузеру закончить авто-прыжок
-  setTimeout(() => {
-    const topbarHeight = topbar.offsetHeight;
-    const rect = target.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    const targetY = rect.top + scrollTop - topbarHeight - 20;
-
-    window.scrollTo({
-      top: targetY,
-      behavior: 'instant'
-    });
-  }, 60); // ключевой момент
-});
