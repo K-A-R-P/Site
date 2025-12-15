@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка календарь связь с серваком без почты но с успешной модалкой">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка календарь связь с brevo пока не активирован">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script-safe.js" beforeDir="false" afterPath="$PROJECT_DIR$/script-safe.js" afterDir="false" />
     </list>
@@ -77,14 +77,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00155" summary="Рабочая версия контакты и оплата прозрачные">
-      <option name="closed" value="true" />
-      <created>1765007730177</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1765007730177</updated>
     </task>
     <task id="LOCAL-00156" summary="Прозрачные succes,контакты и оплата">
       <option name="closed" value="true" />
@@ -470,7 +462,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765757106372</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="модалка календарь связь с brevo пока не активирован">
+      <option name="closed" value="true" />
+      <created>1765791204430</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1765791204432</updated>
+    </task>
+    <option name="localTasksCounter" value="205" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -485,7 +485,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Текст консалтинга" />
     <MESSAGE value="анимация фак" />
     <MESSAGE value="финальная рабочая версия" />
     <MESSAGE value="почта" />
@@ -510,6 +509,7 @@
     <MESSAGE value="модалка календарь с маской" />
     <MESSAGE value="модалка календарь связь с серваком" />
     <MESSAGE value="модалка календарь связь с серваком без почты но с успешной модалкой" />
-    <option name="LAST_COMMIT_MESSAGE" value="модалка календарь связь с серваком без почты но с успешной модалкой" />
+    <MESSAGE value="модалка календарь связь с brevo пока не активирован" />
+    <option name="LAST_COMMIT_MESSAGE" value="модалка календарь связь с brevo пока не активирован" />
   </component>
 </project>

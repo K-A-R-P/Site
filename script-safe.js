@@ -1384,27 +1384,39 @@ function openBookingModal(product, price) {
     return;
   }
 
+  // 🔑 НАХОДИМ КАРТОЧКУ, С КОТОРОЙ КЛИКНУЛИ
+  const card = event?.target?.closest(".card");
+
+  // 🔑 БЕРЁМ PAY LINK ИЗ data-АТРИБУТА
+  const payLink = card?.dataset?.payLink || "";
+
   // закрываем pricePopup, если есть
   if (typeof closePricePopup === "function") {
     closePricePopup();
   }
 
-  // сохраняем данные продукта
+  // сохраняем данные продукта (ГЛОБАЛЬНО)
   window.bookingProduct = product;
   window.bookingPrice = price;
+  window.bookingPayLink = payLink; // 🔥 ВОТ ЧЕГО НЕ ХВАТАЛО
+
+  console.log("[BOOKING]", {
+    product,
+    price,
+    payLink
+  });
 
   // показываем модалку сразу (UX)
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
 
   // если уже загружено — просто инициализируем
-if (container.dataset.loaded === "true") {
-  requestAnimationFrame(() => {
-    window.initBookingApp?.();
-  });
-  return;
-}
-
+  if (container.dataset.loaded === "true") {
+    requestAnimationFrame(() => {
+      window.initBookingApp?.();
+    });
+    return;
+  }
 
   // первый запуск — грузим HTML
   fetch("/booking/booking.html")
@@ -1413,15 +1425,14 @@ if (container.dataset.loaded === "true") {
       return res.text();
     })
     .then(html => {
-  container.innerHTML = html;
-  container.dataset.loaded = "true";
+      container.innerHTML = html;
+      container.dataset.loaded = "true";
 
-  // 🔥 КРИТИЧНО: ждём следующий кадр
-  requestAnimationFrame(() => {
-    window.initBookingApp?.();
-  });
-})
-
+      // 🔥 КРИТИЧНО: ждём следующий кадр
+      requestAnimationFrame(() => {
+        window.initBookingApp?.();
+      });
+    })
     .catch(err => {
       console.error("Booking HTML load error:", err);
       container.innerHTML =
@@ -1437,4 +1448,5 @@ function closeBookingModal() {
   modal.classList.remove("active");
   document.body.style.overflow = "";
 }
+
 
