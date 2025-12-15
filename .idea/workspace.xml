@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка календарь с маской">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка календарь связь с серваком">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/booking/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/booking/booking.js" afterDir="false" />
     </list>
@@ -77,14 +77,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00153" summary="Рабочая версия">
-      <option name="closed" value="true" />
-      <created>1764991908321</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1764991908321</updated>
     </task>
     <task id="LOCAL-00154" summary="Рабочая версия контакты и оплата прозрачные">
       <option name="closed" value="true" />
@@ -470,7 +462,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765723234523</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="модалка календарь связь с серваком">
+      <option name="closed" value="true" />
+      <created>1765745970556</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1765745970556</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -485,7 +485,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="фак" />
     <MESSAGE value="фак эффект" />
     <MESSAGE value="Текст консалтинга" />
     <MESSAGE value="анимация фак" />
@@ -510,6 +509,7 @@
     <MESSAGE value="модалка календарь проба маски телефона" />
     <MESSAGE value="модалка календарь с маскойпизда стилю" />
     <MESSAGE value="модалка календарь с маской" />
-    <option name="LAST_COMMIT_MESSAGE" value="модалка календарь с маской" />
+    <MESSAGE value="модалка календарь связь с серваком" />
+    <option name="LAST_COMMIT_MESSAGE" value="модалка календарь связь с серваком" />
   </component>
 </project>

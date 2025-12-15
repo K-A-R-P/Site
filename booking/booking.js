@@ -275,10 +275,17 @@ window.initBookingApp = async function () {
       }
 
       status.textContent = 'Заявку прийнято ✔';
-      form.reset();
-      repaint();
 
-      if (window.openSuccessModal) window.openSuccessModal();
+// 1️⃣ сначала ЗАКРЫВАЕМ booking modal
+document.getElementById('bookingModal')?.classList.remove('active');
+
+// 2️⃣ потом ОТКРЫВАЕМ success
+document.getElementById('successModal')?.classList.add('active');
+
+// 3️⃣ и только потом reset
+form.reset();
+repaint();
+
 
     } catch (err) {
       console.error(err);
