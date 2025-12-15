@@ -671,7 +671,7 @@ on($('#bookingForm'), 'submit', async function(e) {
   }
 
   try {
-    const response = await fetch("https://addonsaf.pythonanywhere.com/webhook", {
+    const response = await fetch("https://booking-backend-riod.onrender.com/webhook", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -1243,7 +1243,7 @@ on($("#exitForm"), "submit", async function(e) {
   status.style.color = "#f7c843";
 
   try {
-    const r = await fetch("https://addonsaf.pythonanywhere.com/webhook", {
+    const r = await fetch("https://booking-backend-riod.onrender.com/webhook", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
