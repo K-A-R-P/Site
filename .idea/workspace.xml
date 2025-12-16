@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="полные карточки">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="подпункты меню">
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,14 +77,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00161" summary="всплывачка и правка текста">
-      <option name="closed" value="true" />
-      <created>1765152460954</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1765152460954</updated>
     </task>
     <task id="LOCAL-00162" summary="всплывачка и правка текста смена фоток">
       <option name="closed" value="true" />
@@ -472,7 +462,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765903984333</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="подпункты меню">
+      <option name="closed" value="true" />
+      <created>1765910641194</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1765910641194</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -487,7 +485,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="почта, рабочая версия" />
     <MESSAGE value="херо модуль" />
     <MESSAGE value="смещение заголовка влево" />
     <MESSAGE value="ебля с заголовком" />
@@ -512,6 +509,7 @@
     <MESSAGE value="модалка календарь связь с brevo все работает" />
     <MESSAGE value="финтранс" />
     <MESSAGE value="полные карточки" />
-    <option name="LAST_COMMIT_MESSAGE" value="полные карточки" />
+    <MESSAGE value="подпункты меню" />
+    <option name="LAST_COMMIT_MESSAGE" value="подпункты меню" />
   </component>
 </project>
