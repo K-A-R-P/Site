@@ -35,6 +35,9 @@
     &quot;accountId&quot;: &quot;98b9cc75-3c22-4c57-8c1b-ce4cc2d086c5&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/index.html" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -78,22 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00163" summary="всплывачка и правка текста смена фоток">
-      <option name="closed" value="true" />
-      <created>1765154263986</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1765154263986</updated>
-    </task>
-    <task id="LOCAL-00164" summary="фак">
-      <option name="closed" value="true" />
-      <created>1765158908299</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1765158908299</updated>
     </task>
     <task id="LOCAL-00165" summary="фак эффект">
       <option name="closed" value="true" />
@@ -471,7 +458,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765910836840</updated>
     </task>
-    <option name="localTasksCounter" value="212" />
+    <task id="LOCAL-00212" summary="подпункты меню">
+      <option name="closed" value="true" />
+      <created>1765911016019</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1765911016019</updated>
+    </task>
+    <task id="LOCAL-00213" summary="подпункты меню">
+      <option name="closed" value="true" />
+      <created>1765911184448</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1765911184449</updated>
+    </task>
+    <option name="localTasksCounter" value="214" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
