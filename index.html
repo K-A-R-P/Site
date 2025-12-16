@@ -62,14 +62,26 @@
       <span></span>
     </div>
     <nav id="menu">
-        <a href="/" onclick="closeMenu()">Головна</a>
-      <a href="/#about" onclick="closeMenu()">Про мене</a>
-  <a href="/#products" onclick="closeMenu()">Продукти</a>
-  <a href="/#faq" onclick="closeMenu()">FAQ</a>
-        <a href="/finansova-transformaciya/">Фінансова трансформація</a>
+        <a href="/"><span>Головна</span></a>
+      <a href="/#about" onclick="closeMenu()"><span>Про мене</span> </a>
+  <a href="/#products" onclick="closeMenu()"><span>Продукти</span> </a>
+  <a href="/#faq" onclick="closeMenu()"><span>FAQ</span></a>
+        <!-- ВЫПАДАЮЩИЙ ПУНКТ -->
+  <div class="nav-dropdown">
+  <div class="nav-link"><span>Фінансова трансформація</span></div>
+  <div class="dropdown-menu">
+    <a href="/finansova-transformaciya/index.html">
+      <span>Фінансова трансформація</span>
+    </a>
+    <a href="/finansova-roztjazhka/index.html">
+      <span>Фінансова розтяжка</span>
+    </a>
+  </div>
+</div>
 
-  <a onclick="openPaymentModal(); closeMenu()">Оплата</a>
-  <a onclick="openContactsModal(); closeMenu()">Контакти</a>
+
+  <a onclick="openPaymentModal(); closeMenu()"><span>Оплата</span></a>
+  <a onclick="openContactsModal(); closeMenu()"><span>Контакти</span></a>
 </nav>
   </div>
 
