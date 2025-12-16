@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="подпункты меню,закомичена всплывашка">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="картинки финтранс">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finansova-transformaciya/ft.css" beforeDir="false" afterPath="$PROJECT_DIR$/finansova-transformaciya/ft.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finansova-transformaciya/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/finansova-transformaciya/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00167" summary="анимация фак">
-      <option name="closed" value="true" />
-      <created>1765189435830</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1765189435830</updated>
     </task>
     <task id="LOCAL-00168" summary="финальная рабочая версия">
       <option name="closed" value="true" />
@@ -475,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765912101613</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="картинки финтранс">
+      <option name="closed" value="true" />
+      <created>1765915813048</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1765915813048</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,7 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="смещение заголовка влево" />
     <MESSAGE value="ебля с заголовком" />
     <MESSAGE value="прописаны ссылки в кнопках на письма" />
     <MESSAGE value="изменена цена на индивидуальную, стиль топбара меняется при скроле,везде кнопка Х" />
@@ -515,6 +513,7 @@
     <MESSAGE value="полные карточки" />
     <MESSAGE value="подпункты меню" />
     <MESSAGE value="подпункты меню,закомичена всплывашка" />
-    <option name="LAST_COMMIT_MESSAGE" value="подпункты меню,закомичена всплывашка" />
+    <MESSAGE value="картинки финтранс" />
+    <option name="LAST_COMMIT_MESSAGE" value="картинки финтранс" />
   </component>
 </project>
