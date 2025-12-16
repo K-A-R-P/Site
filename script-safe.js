@@ -575,7 +575,11 @@ function openPricePopup(e, title, price) {
   if (!popup || !form || !status || !priceTitle || !priceLabel) return;
 
   // сохраняем карточку, из которой вызвали
-  window.bookingCard = e?.target?.closest?.('.card') || null;
+  window.bookingCard =
+  e?.target?.closest?.('.card') ||
+  e?.target?.closest?.('[data-send-email]') ||
+  null;
+
 
   priceTitle.textContent = title || '';
   priceLabel.textContent = 'Вартість: ' + (price || '');

@@ -1,0 +1,542 @@
+/* =========================================================
+   FINANSOVA TRANSFORMACIYA — CLEAN FINAL CSS
+========================================================= */
+
+:root {
+  --ft-gap: 80px;
+}
+
+/* =========================================================
+   GLOBAL SECTION RHYTHM
+========================================================= */
+
+.ft-start,
+.ft-wide,
+.ft-frame,
+.ft-results,
+.ft-highlight {
+  margin-top: var(--ft-gap);
+  margin-bottom: var(--ft-gap);
+}
+
+@media (max-width: 768px) {
+  .ft-start,
+  .ft-wide,
+  .ft-frame,
+  .ft-results,
+  .ft-highlight {
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+}
+
+/* =========================================================
+   FT START
+========================================================= */
+
+.ft-start {
+  max-width: 1200px;
+  margin: 110px auto 70px;
+  padding: 0 24px;
+}
+
+.ft-start__grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 56px;
+}
+
+.ft-start__media {
+  border: 2px solid rgba(0,0,0,0.18);
+  border-radius: 12px;
+  padding: 24px;
+  background: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ft-start__media img {
+  width: 100%;
+  display: block;
+}
+
+.ft-start__title {
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+
+.ft-start__lead {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.ft-start__sub {
+  font-size: 16.5px;
+  margin-bottom: 20px;
+}
+
+.ft-start__badge {
+  width: 560px;
+  max-width: 100%;
+  background: #8b1d1d;
+  color: #fff;
+  padding: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ft-start__btn {
+  width: 560px;
+  max-width: 100%;
+  min-height: 64px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   FT WIDE
+========================================================= */
+
+.ft-wide {
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+.ft-wide__box {
+  background: rgba(255,255,255,0.35);
+  border: 1.5px solid rgba(0,0,0,0.25);
+  border-radius: 18px;
+  padding: 36px 42px 44px;
+}
+
+.ft-wide__box p {
+  font-size: 17px;
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+
+.ft-wide__btn {
+  width: 560px;
+  max-width: 100%;
+  min-height: 64px;
+  margin: 32px auto 0;
+  display: block;
+}
+
+/* =========================================================
+   FT FRAME (PHOTO + TEXT)
+========================================================= */
+
+.ft-frame {
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+.ft-frame__grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 40px;
+}
+
+.ft-frame__media {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.ft-frame__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ft-frame__box {
+  background: rgba(255,255,255,0.35);
+  border: 1.5px solid rgba(0,0,0,0.25);
+  border-radius: 18px;
+  padding: 32px 36px 36px;
+}
+
+.ft-frame__box p {
+  font-size: 16.8px;
+  margin-bottom: 16px;
+}
+
+.ft-diamond-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 18px 0 22px;
+}
+
+.ft-diamond-list li {
+  padding-left: 22px;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.ft-diamond-list li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: #1e5bd7;
+  font-size: 11px;
+}
+
+/* =========================================================
+   FT RESULTS
+========================================================= */
+
+.ft-results {
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+.ft-results__box {
+  background: rgba(255,255,255,0.35);
+  border: 1.5px solid rgba(0,0,0,0.25);
+  border-radius: 18px;
+  padding: 36px 42px 44px;
+}
+
+.ft-results__box h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.ft-results__box p {
+  font-size: 16.8px;
+  margin-bottom: 14px;
+}
+
+.ft-results__btn {
+  width: 560px;
+  max-width: 100%;
+  min-height: 64px;
+  margin: 28px auto 0;
+  display: block;
+}
+
+/* =========================================================
+   HIGHLIGHT
+========================================================= */
+
+.ft-highlight {
+  max-width: 1200px;
+  padding: 140px 24px;
+  background: #8b1d1d;
+  color: #fff;
+  text-align: center;
+}
+
+.ft-highlight p {
+  font-size: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .ft-start__grid,
+  .ft-frame__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ft-start__btn,
+  .ft-wide__btn,
+  .ft-results__btn {
+    width: 100%;
+  }
+}
+/* FIX: center all FT sections (кроме ft-start, он и так центрируется) */
+.ft-wide,
+.ft-frame,
+.ft-results,
+.ft-highlight {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================================
+   SCOPE BLOCK — ОБЁРТКА С РАМКОЙ И ЦЕНТРОВКОЙ
+========================================================= */
+
+.ft-scope {
+  max-width: 1200px;
+  margin: var(--ft-gap) auto;   /* ← ЦЕНТРОВКА БЛОКА */
+  padding: 0 24px;
+}
+
+.ft-scope__box {
+  background: rgba(255,255,255,0.35);
+
+  /* ↓↓↓ ВОТ ЭТА СТРОКА ОТВЕЧАЕТ ЗА РАМКУ ↓↓↓ */
+  border: 1.5px solid rgba(0,0,0,0.25);
+
+  border-radius: 18px;
+  padding: 36px 42px 44px;
+}
+/* =========================================================
+   СПИСКИ
+========================================================= */
+
+.ft-list-impact,
+.ft-list-yes,
+.ft-list-no {
+  list-style: none;
+  padding-left: 0;
+  margin: 22px 0 28px;
+}
+
+.ft-list-impact li,
+.ft-list-yes li,
+.ft-list-no li {
+  position: relative;
+  padding-left: 38px;
+  margin-bottom: 14px;
+  font-size: 16.8px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   ЩО ЗМІНИТЬСЯ — МАРКЕР РОСТУ
+========================================================= */
+
+.ft-list-impact li::before {
+  content: "↗";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e8f4a;
+}
+
+/* =========================================================
+   ПРОГРАМА ДЛЯ ВАС — ГАЛОЧКИ
+========================================================= */
+
+.ft-list-yes li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e8f4a;
+}
+
+/* =========================================================
+   ПРОГРАМА НЕ ДЛЯ ВАС — КРЕСТИКИ
+========================================================= */
+
+.ft-list-no li::before {
+  content: "✕";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #c62828;
+}
+
+.ft-list-no li {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   КНОПКИ ПОД СПИСКАМИ
+========================================================= */
+
+.ft-list-impact + .price-btn,
+.ft-list-yes + .price-btn,
+.ft-list-no + .price-btn {
+  margin-top: 24px;
+}
+
+
+/* =========================================================
+   ЦЕНТРОВКА КНОПОК В БЛОКАХ
+========================================================= */
+.ft-btn-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* одинаковая ширина кнопок */
+.ft-btn-wide {
+  min-width: 360px;
+  max-width: 100%;
+}
+
+/* =========================================================
+   ПРО МЕНЕ
+========================================================= */
+
+.ft-about {
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 0 24px;
+}
+
+.ft-about__box {
+  background: #fbf7f2;
+  border: 1px solid #cfcac3;
+  border-radius: 18px;
+  padding: 36px;
+}
+
+.ft-about__grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.ft-about__photo {
+  background: #4a74b9;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+}
+
+.ft-about__photo img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.ft-about__content h3 {
+  margin-bottom: 18px;
+}
+
+.ft-about__content p {
+  margin-bottom: 14px;
+  line-height: 1.65;
+}
+
+/* mobile */
+@media (max-width: 900px) {
+  .ft-about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ft-about__photo {
+    min-height: 240px;
+  }
+}
+
+/* =========================================================
+   ЯК ПРОХОДИТЬ ПРОГРАМА
+========================================================= */
+
+.ft-process {
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 0 24px;
+}
+
+.ft-process__box {
+  background: #fbf7f2;
+  border: 1px solid #cfcac3;
+  border-radius: 18px;
+  padding: 36px;
+}
+
+.ft-process__box h3 {
+  margin-bottom: 20px;
+}
+
+.ft-process__list {
+  margin: 0 0 22px;
+  padding-left: 22px;
+}
+
+.ft-process__list li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.ft-process__duration {
+  margin-top: 18px;
+  font-size: 16px;
+}
+
+/* кнопка */
+.ft-process .ft-btn-center {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   FT SCROLL ANIMATION (ISOLATED)
+========================================================= */
+
+.ft-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .6s ease,
+    transform .6s cubic-bezier(.16,1,.3,1);
+}
+
+.ft-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   FINAL CTA SECTION
+========================================================= */
+
+.ft-final {
+  max-width: 1200px;
+  margin: 80px auto 120px;
+  padding: 0 24px;
+}
+
+.ft-final__box {
+  background: #fbf7f2;
+  border: 1px solid #cfcac3;
+  border-radius: 18px;
+  padding: 42px;
+  text-align: center;
+}
+
+.ft-final__lead {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.ft-final__title {
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.ft-final__accent {
+  margin: 22px 0 28px;
+  font-size: 18px;
+}
+
+.ft-final__note {
+  margin-top: 22px;
+  font-size: 14.5px;
+  opacity: 0.75;
+}
+
+/* кнопка по центру */
+.ft-final .ft-btn-center {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
