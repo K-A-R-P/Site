@@ -1453,4 +1453,3 @@ function closeBookingModal() {
   document.body.style.overflow = "";
 }
 
-
