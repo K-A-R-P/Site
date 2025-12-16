@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="модалка календарь связь с brevo все работает">
-      <change afterPath="$PROJECT_DIR$/finansova-transformaciya/ft-animate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finansova-transformaciya/ft.css" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="финтранс">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/hero.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/hero.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finansova-transformaciya/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/finansova-transformaciya/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script-safe.js" beforeDir="false" afterPath="$PROJECT_DIR$/script-safe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,14 +79,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00157" summary="прозрачная заявка">
-      <option name="closed" value="true" />
-      <created>1765041690603</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1765041690603</updated>
     </task>
     <task id="LOCAL-00158" summary="прозрачная карточка">
       <option name="closed" value="true" />
@@ -476,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765795179651</updated>
     </task>
-    <option name="localTasksCounter" value="206" />
+    <task id="LOCAL-00206" summary="финтранс">
+      <option name="closed" value="true" />
+      <created>1765878312502</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1765878312502</updated>
+    </task>
+    <option name="localTasksCounter" value="207" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -491,7 +487,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="финальная рабочая версия" />
     <MESSAGE value="почта" />
     <MESSAGE value="почта, рабочая версия" />
     <MESSAGE value="херо модуль" />
@@ -516,6 +511,7 @@
     <MESSAGE value="модалка календарь связь с серваком без почты но с успешной модалкой" />
     <MESSAGE value="модалка календарь связь с brevo пока не активирован" />
     <MESSAGE value="модалка календарь связь с brevo все работает" />
-    <option name="LAST_COMMIT_MESSAGE" value="модалка календарь связь с brevo все работает" />
+    <MESSAGE value="финтранс" />
+    <option name="LAST_COMMIT_MESSAGE" value="финтранс" />
   </component>
 </project>
