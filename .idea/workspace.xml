@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="херо заходит под топбар">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="финалка">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script-safe.js" beforeDir="false" afterPath="$PROJECT_DIR$/script-safe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00169" summary="почта">
-      <option name="closed" value="true" />
-      <created>1765261691861</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1765261691861</updated>
     </task>
     <task id="LOCAL-00170" summary="почта, рабочая версия">
       <option name="closed" value="true" />
@@ -476,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765952168169</updated>
     </task>
-    <option name="localTasksCounter" value="218" />
+    <task id="LOCAL-00218" summary="финалка">
+      <option name="closed" value="true" />
+      <created>1765980069224</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1765980069224</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -491,7 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="прописаны ссылки в кнопках на письма" />
     <MESSAGE value="изменена цена на индивидуальную, стиль топбара меняется при скроле,везде кнопка Х" />
     <MESSAGE value="корректные отправки письма" />
     <MESSAGE value="заголовки" />
@@ -516,6 +513,7 @@
     <MESSAGE value="подпункты меню,закомичена всплывашка" />
     <MESSAGE value="картинки финтранс" />
     <MESSAGE value="херо заходит под топбар" />
-    <option name="LAST_COMMIT_MESSAGE" value="херо заходит под топбар" />
+    <MESSAGE value="финалка" />
+    <option name="LAST_COMMIT_MESSAGE" value="финалка" />
   </component>
 </project>
