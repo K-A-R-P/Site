@@ -22,7 +22,7 @@
 </head>
 
 
-<!-- ===================== EXIT-INTENT POPUP =====================
+<!-- ===================== EXIT-INTENT POPUP ===================== -->
 <div id="exitPopup">
   <div class="exit-popup-content">
       <button class="modal-x" aria-label="Закрити">&times;</button>
@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<body>-->
+<body>
 <!-- =================================================================
                        topbar
  =================================================================== -->
@@ -62,24 +62,14 @@
       <span></span>
     </div>
     <nav id="menu">
-        <a href="/"><span>Головна</span></a>
-      <a href="/#about" onclick="closeMenu()"><span>Про мене</span> </a>
-  <a href="/#products" onclick="closeMenu()"><span>Продукти</span> </a>
-  <a href="/#faq" onclick="closeMenu()"><span>FAQ</span></a>
-        <!-- ВЫПАДАЮЩИЙ ПУНКТ -->
-  <div class="nav-dropdown">
-  <div class="nav-link"><span>Менторінг програми</span></div>
-  <div class="dropdown-menu">
-    <a href="/finansova-transformaciya/">
-      <span>Фінансова трансформація</span>
-    </a>
+        <a href="/" onclick="closeMenu()">Головна</a>
+      <a href="/#about" onclick="closeMenu()">Про мене</a>
+  <a href="/#products" onclick="closeMenu()">Продукти</a>
+  <a href="/#faq" onclick="closeMenu()">FAQ</a>
+        <a href="/finansova-transformaciya/">Фінансова трансформація</a>
 
-  </div>
-</div>
-
-
-  <a onclick="openPaymentModal(); closeMenu()"><span>Оплата</span></a>
-  <a onclick="openContactsModal(); closeMenu()"><span>Контакти</span></a>
+  <a onclick="openPaymentModal(); closeMenu()">Оплата</a>
+  <a onclick="openContactsModal(); closeMenu()">Контакти</a>
 </nav>
   </div>
 
@@ -446,7 +436,7 @@
           <li>Як будувати стратегію бізнесу?</li>
           <li>Як знайти час і структурувати хаос?</li>
           <li>І ще десятки запитів, де потрібно швидко «побачити картинку зверху».</li>
-        </ul>
+        </ul></p>
         <p><strong>Що ви отримуєте?</strong></p>
         <ul style="padding-left:20px;">
           <li>Чіткі відповіді саме на ваші питання</li>
@@ -915,7 +905,7 @@
 
           Систему бюджетного управління, яка покаже реальний стан справ - без прикрас і самообману.
               Ви нарешті побачите, де ваш бізнес заробляє, а де зливає гроші в нікуди.
-
+          </p>
           <p><strong>Цифри замість відчуттів </strong><br>
           Операційні та підсумкові бюджети, які дають жорсткі відповіді: скільки потрібно грошей, звідки їх взяти,
               що станеться через 3-6 місяців. Без води - тільки факти.
@@ -1195,7 +1185,7 @@
  =====================================================-->
 <div id="contactsModal">
   <div class="contacts-modal-content">
-     <button class="modal-x" aria-label="Закрити" onclick="closeContactsModal()">&times;</button>
+     <button class="modal-x" aria-label="Закрити"onclick="closeContactsModal()">&times;</button>
 
     <h3>
       <img src="assets/icons/phone.png" alt="Телефон" style="height: 28px; margin-right: 8px; vertical-align: middle;">
@@ -1265,7 +1255,7 @@
  ================================================= -->
 <div id="pricePopup">
   <div class="popup-content">
-      <button class="modal-x" aria-label="Закрити" onclick="closePricePopup()">&times;</button>
+      <button class="modal-x" aria-label="Закрити"onclick="closePricePopup()">&times;</button>
 
     <h3 id="priceTitle"></h3>
     <p id="priceLabel"></p>
@@ -1358,12 +1348,8 @@
   </div>
 </div>
 
-<!-- ОФЕРТА -->
-<div id="offerModal" class="offer-modal">
-  <div class="offer-modal-content">
-    <div id="offerContent"></div>
-  </div>
-</div>
+
+
 
   <!-- Підключення скрипта -->
   <script src="script-safe.js"></script>
