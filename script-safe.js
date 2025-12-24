@@ -699,15 +699,17 @@ on($('#bookingForm'), 'submit', async function(e) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        action: "new_booking",
-        product: title,
-        name,
-        phone,
-        email,
-        comment,
-        send_email,
-        email_html
-      })
+  action: "new_booking",
+  product: window.bookingProduct || '',
+  price: window.bookingPrice || '',
+  name,
+  phone,
+  email,
+  comment,
+  send_email,
+  email_html
+})
+
     });
 
     const data = await response.json();
