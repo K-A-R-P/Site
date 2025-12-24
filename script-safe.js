@@ -562,7 +562,7 @@ function resetFormHighlights() {
   });
 }
 
-function openPricePopup(e, title, price) {
+function openPricePopup(e) {
   e?.stopPropagation?.();
 
   const popup = $('#pricePopup');
@@ -574,15 +574,34 @@ function openPricePopup(e, title, price) {
 
   if (!popup || !form || !status || !priceTitle || !priceLabel) return;
 
-  // сохраняем карточку, из которой вызвали
-  window.bookingCard =
-  e?.target?.closest?.('.card') ||
-  e?.target?.closest?.('[data-send-email]') ||
-  null;
+  const btn = e?.target?.closest?.('.price-btn') || null;
+  const card = e?.target?.closest?.('.card') || null;
 
+  // 🔑 ПРОДУКТ
+  const product =
+    card?.dataset?.product ||
+    btn?.dataset?.product ||
+    '';
 
-  priceTitle.textContent = title || '';
-  priceLabel.textContent = 'Вартість: ' + (price || '');
+  // 🔑 ЦЕНА
+  const priceRaw =
+    card?.dataset?.price ??
+    btn?.dataset?.price ??
+    '';
+
+  const price = priceRaw?.trim() || 'індивідуальна';
+
+  // сохраняем глобально
+  window.bookingCard = card;
+  window.bookingProduct = product;
+  window.bookingPrice = price;
+
+  // UI
+  priceTitle.textContent = product;
+  priceLabel.textContent =
+    price === 'індивідуальна'
+      ? 'Вартість: індивідуальна'
+      : 'Вартість: ' + price;
 
   form.reset();
   if (phone) phone.value = '';
@@ -594,6 +613,7 @@ function openPricePopup(e, title, price) {
   popup.scrollTop = 0;
   document.body.style.overflow = 'hidden';
 }
+
 
 function closePricePopup() {
   const popup = $('#pricePopup');
@@ -1379,70 +1399,43 @@ on(document, 'keydown', e => {
 // BOOKING MODAL (GLOBAL)
 // ================================
 
-function openBookingModal(product, price) {
+function openBookingModal(e) {
+  e?.stopPropagation?.();
+
   const modal = document.getElementById("bookingModal");
   const container = document.getElementById("bookingContainer");
 
-  if (!modal || !container) {
-    console.error("bookingModal or bookingContainer not found");
-    return;
-  }
+  if (!modal || !container) return;
 
-  // 🔑 НАХОДИМ КАРТОЧКУ, С КОТОРОЙ КЛИКНУЛИ
-  const card = event?.target?.closest(".card");
+  const card = e?.target?.closest('.card') || null;
 
-  // 🔑 БЕРЁМ PAY LINK ИЗ data-АТРИБУТА
-  const payLink = card?.dataset?.payLink || "";
+  const product = card?.dataset?.product?.trim() || '';
+  const price = card?.dataset?.price?.trim() || 'індивідуальна';
+  const payLink = card?.dataset?.payLink || '';
 
-  // закрываем pricePopup, если есть
-  if (typeof closePricePopup === "function") {
-    closePricePopup();
-  }
-
-  // сохраняем данные продукта (ГЛОБАЛЬНО)
+  window.bookingCard = card;
   window.bookingProduct = product;
   window.bookingPrice = price;
-  window.bookingPayLink = payLink; // 🔥 ВОТ ЧЕГО НЕ ХВАТАЛО
+  window.bookingPayLink = payLink;
 
-  console.log("[BOOKING]", {
-    product,
-    price,
-    payLink
-  });
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 
-  // показываем модалку сразу (UX)
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
-
-  // если уже загружено — просто инициализируем
   if (container.dataset.loaded === "true") {
-    requestAnimationFrame(() => {
-      window.initBookingApp?.();
-    });
+    requestAnimationFrame(() => window.initBookingApp?.());
     return;
   }
 
-  // первый запуск — грузим HTML
   fetch("/booking/booking.html")
-    .then(res => {
-      if (!res.ok) throw new Error("Failed to load booking.html");
-      return res.text();
-    })
+    .then(r => r.text())
     .then(html => {
       container.innerHTML = html;
       container.dataset.loaded = "true";
-
-      // 🔥 КРИТИЧНО: ждём следующий кадр
-      requestAnimationFrame(() => {
-        window.initBookingApp?.();
-      });
-    })
-    .catch(err => {
-      console.error("Booking HTML load error:", err);
-      container.innerHTML =
-        "<p style='padding:20px;text-align:center'>Помилка завантаження календаря</p>";
+      requestAnimationFrame(() => window.initBookingApp?.());
     });
 }
+
+
 
 
 function closeBookingModal() {
@@ -1452,5 +1445,19 @@ function closeBookingModal() {
   modal.classList.remove("active");
   document.body.style.overflow = "";
 }
+
+// ================================
+// PRICE BUTTON AUTO-LABEL (ONLY CARDS)
+// ================================
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.card').forEach(card => {
+    const price = card.dataset.price?.trim();
+    const btn = card.querySelector('.price-btn');
+    if (!btn || !price) return;
+
+    // ⚠️ ТОЛЬКО для карточек каталога
+    btn.textContent = '🛒 ' + price;
+  });
+});
 
 

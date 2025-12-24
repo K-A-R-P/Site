@@ -2974,6 +2974,8 @@ canvas.confetti-canvas {
 
 
 
+
+
 /* ===================== HERO MOBILE FIX ===================== */
 @media (max-width: 768px) {
 
@@ -3187,3 +3189,35 @@ canvas.confetti-canvas {
   position: relative;
 }
 
+
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;                 /* ⬅ якорь от низа hero */
+  left: 40px;
+
+  /* ====== РЕГУЛЯТОРЫ ====== */
+  height: 80%;               /* ⬅ ОСНОВНОЙ РЕГУЛЯТОР ВЫСОТЫ */
+  aspect-ratio: 1 / 1;       /* ⬅ РЕГУЛЯТОР ПРОПОРЦИЙ */
+  /* ======================= */
+
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+  .hero-overlay {
+    width: 340px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-overlay {
+    display: none;
+  }
+}
