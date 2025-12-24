@@ -669,19 +669,20 @@ on($('#bookingForm'), 'submit', async function(e) {
     phone = "+38" + phone.replace(/\D/g, '');
   }
 
+  // 🔑 КАРТОЧКА-ИСТОЧНИК
   const card = window.bookingCard || null;
-  let send_email = false;
-  let email_template = "";
-  let pay_link = "";
-  let price = "";
 
-  if (card) {
-    send_email = card.dataset.sendEmail === "true";
-    email_template = card.dataset.emailTemplate || "";
-    pay_link = card.dataset.payLink || "";
-    price = card.dataset.price || "";
-  }
+  // 🔥 ЕДИНЫЙ ИСТОЧНИК ЦЕНЫ (НАДЁЖНО)
+  const price =
+    card?.dataset?.price?.trim() ||
+    window.bookingPrice ||
+    'індивідуальна';
 
+  const send_email = card?.dataset?.sendEmail === "true";
+  const email_template = card?.dataset?.emailTemplate || "";
+  const pay_link = card?.dataset?.payLink || "";
+
+  // EMAIL HTML
   let email_html = "";
   if (send_email && email_template) {
     const tpl = $(`#email-template-${email_template}`);
@@ -695,22 +696,24 @@ on($('#bookingForm'), 'submit', async function(e) {
   }
 
   try {
-    const response = await fetch("https://booking-backend-riod.onrender.com/webhook", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-  action: "new_booking",
-  product: window.bookingProduct || '',
-  price: window.bookingPrice || '',
-  name,
-  phone,
-  email,
-  comment,
-  send_email,
-  email_html
-})
-
-    });
+    const response = await fetch(
+      "https://booking-backend-riod.onrender.com/webhook",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "new_booking",
+          product: window.bookingProduct || title || '',
+          price: price,            // 🔥 ГАРАНТИРОВАННО НЕ ПУСТО
+          name,
+          phone,
+          email,
+          comment,
+          send_email,
+          email_html
+        })
+      }
+    );
 
     const data = await response.json();
 
@@ -720,7 +723,9 @@ on($('#bookingForm'), 'submit', async function(e) {
       showSuccessModal();
 
       if (pay_link && card && card.dataset.redirect === "true") {
-        setTimeout(() => { window.location.href = pay_link; }, 700);
+        setTimeout(() => {
+          window.location.href = pay_link;
+        }, 700);
       }
     } else {
       status.innerHTML = '<span style="color:red;">Помилка. Спробуйте ще раз.</span>';
@@ -730,6 +735,7 @@ on($('#bookingForm'), 'submit', async function(e) {
     status.innerHTML = '<span style="color:red;">Помилка з’єднання. Спробуйте ще раз.</span>';
   }
 });
+
 
 /* =========================================================
    GREEN VALIDATION — SAFE (EXCEPT BOOKING)
