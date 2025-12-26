@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="унификация цены и названия-берутся из одного места">
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="чтоб цена шла в базу">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script-safe.js" beforeDir="false" afterPath="$PROJECT_DIR$/script-safe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/hero.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/hero.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,19 +47,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Pyton_code/Site&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/Pyton_code/Site/assets/images",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Pyton_code\Site\assets\images" />
       <recent name="E:\Pyton_code\Site\finansova-transformaciya" />
       <recent name="E:\Pyton_code\Site" />
       <recent name="E:\Pyton_code\Site\assets\gallery" />
@@ -81,14 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00178" summary="прописаны ссылки в кнопках на письма">
-      <option name="closed" value="true" />
-      <created>1765577638067</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1765577638067</updated>
     </task>
     <task id="LOCAL-00179" summary="изменена цена на индивидуальную, стиль топбара меняется при скроле,везде кнопка Х">
       <option name="closed" value="true" />
@@ -474,7 +468,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766592876100</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="чтоб цена шла в базу">
+      <option name="closed" value="true" />
+      <created>1766594193914</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1766594193914</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -489,7 +491,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="правки" />
     <MESSAGE value="Кпи пости все" />
     <MESSAGE value="меню проба" />
     <MESSAGE value="меню проба 2" />
@@ -514,6 +515,7 @@
     <MESSAGE value="кнопка на консультацию" />
     <MESSAGE value="фак,3 новые программы,отзывы" />
     <MESSAGE value="унификация цены и названия-берутся из одного места" />
-    <option name="LAST_COMMIT_MESSAGE" value="унификация цены и названия-берутся из одного места" />
+    <MESSAGE value="чтоб цена шла в базу" />
+    <option name="LAST_COMMIT_MESSAGE" value="чтоб цена шла в базу" />
   </component>
 </project>
