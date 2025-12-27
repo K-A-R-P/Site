@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="чтоб цена шла в базу">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="ебаный цвет">
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00180" summary="корректные отправки письма">
-      <option name="closed" value="true" />
-      <created>1765598754011</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1765598754011</updated>
     </task>
     <task id="LOCAL-00181" summary="заголовки">
       <option name="closed" value="true" />
@@ -476,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766745236664</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="ебаный цвет">
+      <option name="closed" value="true" />
+      <created>1766840184008</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1766840184008</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -491,7 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Кпи пости все" />
     <MESSAGE value="меню проба" />
     <MESSAGE value="меню проба 2" />
     <MESSAGE value="финансовая растяжка" />
@@ -516,6 +513,7 @@
     <MESSAGE value="фак,3 новые программы,отзывы" />
     <MESSAGE value="унификация цены и названия-берутся из одного места" />
     <MESSAGE value="чтоб цена шла в базу" />
-    <option name="LAST_COMMIT_MESSAGE" value="чтоб цена шла в базу" />
+    <MESSAGE value="ебаный цвет" />
+    <option name="LAST_COMMIT_MESSAGE" value="ебаный цвет" />
   </component>
 </project>

@@ -3224,7 +3224,7 @@ canvas.confetti-canvas {
 
 /* HERO — сдвиг текста вправо */
 .hero-text {
-  padding-left: 40px;
+  padding-left: 140px;
 }
 
 /* на мобилке меньше, чтобы не вылазило */
