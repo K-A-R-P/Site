@@ -224,17 +224,38 @@
 
 .ft-highlight {
   max-width: 1200px;
-  padding: 140px 24px;
+  margin: 80px auto;
+  padding: 0 24px; /* только боковые, как у всех */
+}
+
+.ft-highlight__box {
   background: #8b1d1d;
   color: #fff;
   text-align: center;
+
+  padding: 50px 24px;
+  border-radius: 18px;
 }
 
-.ft-highlight p {
-  font-size: 28px;
-  max-width: 900px;
+.ft-highlight__box p {
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.35;
+  font-weight: 500;
+  max-width: 980px;
   margin: 0 auto;
 }
+@media (max-width: 768px) {
+  .ft-highlight {
+    margin: 48px auto;
+    padding: 0 16px;
+  }
+
+  .ft-highlight__box {
+    padding: 48px 16px;
+  }
+}
+
+
 
 /* =========================================================
    RESPONSIVE
@@ -598,4 +619,40 @@
     min-height: 58px;
     font-size: 16px;
   }
+}
+
+/* =========================================================
+   FT PROCESS — ГРАДИЕНТНЫЕ КРУЖКИ
+========================================================= */
+
+.ft-process__list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ft-process__list li {
+  position: relative;
+  padding-left: 34px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+/* сам кружок */
+.ft-process__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    #b73752,
+    #750525
+  );
+
+  box-shadow: 0 0 0 2px rgba(117, 5, 37, 0.18);
 }
