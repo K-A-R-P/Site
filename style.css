@@ -3221,3 +3221,26 @@ canvas.confetti-canvas {
     display: none;
   }
 }
+
+/* HERO — сдвиг текста вправо */
+.hero-text {
+  padding-left: 40px;
+}
+
+/* на мобилке меньше, чтобы не вылазило */
+@media (max-width: 768px) {
+  .hero-text {
+    padding-left: 16px;
+  }
+}
+/* HERO — акцентный заголовок */
+.hero-line-1 .shifted {
+  color: #750525;
+}
+/* PRODUCTS — красим ТОЛЬКО h2 внутри продуктовых секций */
+#products .products-header:not(.products-subtitle),
+#upravlenie .products-header:not(.products-subtitle),
+#finkon .products-header:not(.products-subtitle),
+#mentoring .products-header:not(.products-subtitle) {
+  color: #750525;
+}

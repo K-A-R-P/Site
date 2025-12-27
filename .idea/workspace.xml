@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="чтоб цена шла в базу">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/hero.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/hero.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/Pyton_code/Site/assets/images",
+    "last_opened_file_path": "E:/Pyton_code/Site",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
   }
 }]]></component>
@@ -83,14 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00179" summary="изменена цена на индивидуальную, стиль топбара меняется при скроле,везде кнопка Х">
-      <option name="closed" value="true" />
-      <created>1765597349419</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1765597349419</updated>
     </task>
     <task id="LOCAL-00180" summary="корректные отправки письма">
       <option name="closed" value="true" />
@@ -476,7 +468,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766594193914</updated>
     </task>
-    <option name="localTasksCounter" value="228" />
+    <task id="LOCAL-00228" summary="чтоб цена шла в базу">
+      <option name="closed" value="true" />
+      <created>1766745236664</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1766745236664</updated>
+    </task>
+    <option name="localTasksCounter" value="229" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
