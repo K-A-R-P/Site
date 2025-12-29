@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ed35d53-5337-44f8-ae5e-7fbe7065e8f7" name="Changes" comment="ебаный цвет">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/diagnostika.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/diagnostika.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/ft2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/ft2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/mentoring.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/mentoring.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finansova-transformaciya/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/finansova-transformaciya/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,17 +49,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/Pyton_code/Site",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Pyton_code/Site&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Pyton_code\Site\assets\images" />
@@ -81,22 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763934477366</updated>
-    </task>
-    <task id="LOCAL-00183" summary="правки">
-      <option name="closed" value="true" />
-      <created>1765635391239</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1765635391239</updated>
-    </task>
-    <task id="LOCAL-00184" summary="Кпи пости все">
-      <option name="closed" value="true" />
-      <created>1765642941567</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1765642941568</updated>
     </task>
     <task id="LOCAL-00185" summary="меню проба">
       <option name="closed" value="true" />
@@ -474,7 +462,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766843839877</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <task id="LOCAL-00232" summary="ебаный цвет">
+      <option name="closed" value="true" />
+      <created>1766843901048</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1766843901048</updated>
+    </task>
+    <task id="LOCAL-00233" summary="ебаный цвет">
+      <option name="closed" value="true" />
+      <created>1766844372645</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1766844372645</updated>
+    </task>
+    <option name="localTasksCounter" value="234" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
