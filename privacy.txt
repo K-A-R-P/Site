@@ -1,0 +1,46 @@
+<div class="offer-title">ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ</div>
+<div class="offer-subtitle-center">персональних даних</div>
+
+<span class="ooffer-paragraph-nonumber">
+ФІЗИЧНА ОСОБА-ПІДПРИЄМЕЦЬ Стецуріна Ірина Олександрівна поважає право користувачів на конфіденційність та захист персональних даних відповідно до чинного законодавства України.
+</span>
+
+<div class="offer-subtitle">1. ЗАГАЛЬНІ ПОЛОЖЕННЯ</div>
+
+<div class="offer-section">
+  <div class="offer-item">
+    <span class="offer-number">1.1.</span>
+    <span class="offer-paragraph">
+      Ця Політика визначає порядок збору, зберігання, використання та захисту персональних даних користувачів сайту.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">1.2.</span>
+    <span class="offer-paragraph">
+      Використовуючи сайт, користувач підтверджує згоду з умовами цієї Політики конфіденційності.
+    </span>
+  </div>
+</div>
+
+<div class="offer-subtitle">2. ПЕРСОНАЛЬНІ ДАНІ</div>
+
+<div class="offer-section">
+  <div class="offer-item">
+    <span class="offer-number">2.1.</span>
+    <span class="offer-paragraph">
+      До персональних даних належать: ім’я, номер телефону, електронна адреса та інша інформація, яку користувач добровільно надає через форми сайту.
+    </span>
+  </div>
+</div>
+
+<div class="offer-subtitle">3. ЗАХИСТ ІНФОРМАЦІЇ</div>
+
+<div class="offer-section">
+  <div class="offer-item">
+    <span class="offer-number">3.1.</span>
+    <span class="offer-paragraph">
+      Виконавець зобов’язується не передавати персональні дані третім особам без згоди користувача, окрім випадків, передбачених законом.
+    </span>
+  </div>
+</div>

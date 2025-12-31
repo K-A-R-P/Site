@@ -3257,3 +3257,37 @@ h2.clients-title {
 }
 
 
+/* ================== FOOTER ================== */
+footer {
+  background: #fdfbf7;
+  padding: 40px 0 0; /* снизу 0 — футер заканчивается кнопкой */
+}
+
+
+/* ================== PRIVACY BUTTON ================== */
+.footer-privacy-stick {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  background: #fdfbf7; /* строго фон футера */
+  margin-top: 20px;    /* ← ВОТ ТУТ расстояние от строки ФОП */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* кнопка — стиль оферты, но в обычном потоке */
+.footer-privacy-stick .offer-button {
+  position: static;
+  transform: none;
+
+  /* тень мягкая, как у оферты */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* зеркальное скругление */
+.offer-button.privacy-button {
+  border-radius: 14px 14px 0 0;
+}
+
+

@@ -1473,3 +1473,31 @@ window.addEventListener('DOMContentLoaded', () => {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();
+
+
+/* =========================================================
+   PRIVACY MODAL — SAFE
+========================================================= */
+function openPrivacyModal() {
+  const modal = $('#offerModal');
+  const content = $('#offerContent');
+  if (!modal || !content) return;
+
+  fetch('/privacy.txt?t=' + Date.now())
+    .then(r => r.ok ? r.text() : Promise.reject())
+    .then(text => {
+      content.innerHTML = text;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // ✅ ВАЖНО: активируем универсальное закрытие
+      activateOfferClickToClose();
+    })
+    .catch(() => {
+      content.innerHTML = `<h1>Політика конфіденційності</h1>`;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      activateOfferClickToClose();
+    });
+}
