@@ -330,12 +330,16 @@ function openWayForPay(button) {
   window.location.href = finalUrl;
 }
 
+
+function resetOfferScroll() {
+  const box = document.querySelector('#offerModal .offer-modal-content');
+  if (box) box.scrollTop = 0;
+}
+
 /* =========================================================
    OFFER MODAL — SAFE
 ========================================================= */
-/* =========================================================
-   OFFER MODAL — SAFE (FIXED)
-========================================================= */
+
 function openOfferModal() {
   const modal = $('#offerModal');
   const content = $('#offerContent');
@@ -348,6 +352,7 @@ function openOfferModal() {
   if (content.dataset.type === 'offer') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    resetOfferScroll();
     activateOfferClickToClose();
     return;
   }
@@ -1492,12 +1497,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 /* =========================================================
-   PRIVACY MODAL — SAFE
+   PRIVACY MODAL — SAFE (FIXED)
 ========================================================= */
 function openPrivacyModal() {
   const modal = $('#offerModal');
   const content = $('#offerContent');
   if (!modal || !content) return;
+
+  // 🔥 ВСЕГДА сбрасываем скролл ПЕРЕД открытием
+  resetOfferScroll();
 
   if (content.dataset.type !== 'privacy') {
     fetch('/privacy.txt?t=' + Date.now())
@@ -1508,12 +1516,17 @@ function openPrivacyModal() {
 
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        resetOfferScroll(); // 🔥 повторно после подмены контента
         activateOfferClickToClose();
       });
   } else {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    resetOfferScroll(); // 🔥 на всякий
     activateOfferClickToClose();
   }
 }
+
 

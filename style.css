@@ -3271,7 +3271,7 @@ footer {
   justify-content: center;
 
   background: #fdfbf7; /* строго фон футера */
-  margin-top: 20px;    /* ← ВОТ ТУТ расстояние от строки ФОП */
+  margin-top: 30px;    /* ← ВОТ ТУТ расстояние от строки ФОП */
   padding-top: 0;
   padding-bottom: 0;
 }
