@@ -333,6 +333,9 @@ function openWayForPay(button) {
 /* =========================================================
    OFFER MODAL — SAFE
 ========================================================= */
+/* =========================================================
+   OFFER MODAL — SAFE (FIXED)
+========================================================= */
 function openOfferModal() {
   const modal = $('#offerModal');
   const content = $('#offerContent');
@@ -341,24 +344,29 @@ function openOfferModal() {
 
   if (offerBtn) offerBtn.classList.add('active');
 
-  if (content.innerHTML.trim() !== '') {
+  // 👉 если уже загружена именно ОФЕРТА — просто открываем
+  if (content.dataset.type === 'offer') {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     activateOfferClickToClose();
     return;
   }
 
-  // важное: на внутренних страницах путь должен быть абсолютный
+  // 👉 иначе ВСЕГДА грузим оферту
   fetch('/offer.txt?t=' + Date.now())
     .then(r => r.ok ? r.text() : Promise.reject())
     .then(text => {
       content.innerHTML = text;
+      content.dataset.type = 'offer';
+
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
       activateOfferClickToClose();
     })
     .catch(() => {
       content.innerHTML = `<h1>Публічна оферта</h1><p>Це резервний текст...</p>`;
+      content.dataset.type = 'offer';
+
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
       activateOfferClickToClose();
@@ -370,7 +378,13 @@ function activateOfferClickToClose() {
   if (!modal) return;
 
   modal.onclick = function(e) {
-    if (!e.target.closest('a') && !e.target.closest('button')) closeOfferModal();
+    if (!e.target.closest('a') && !e.target.closest('button')) {
+      closeOfferModal();
+    }
+  };
+
+  document.onkeydown = function(e) {
+    if (e.key === 'Escape') closeOfferModal();
   };
 }
 
@@ -382,6 +396,7 @@ function closeOfferModal() {
   modal.classList.remove('active');
   document.body.style.overflow = '';
   modal.onclick = null;
+  document.onkeydown = null;
 
   if (offerBtn) offerBtn.classList.remove('active');
 }
@@ -401,6 +416,7 @@ function closeOfferModal() {
 
   $$('.offer-scroll').forEach(el => offerObserver.observe(el));
 })();
+
 
 /* =========================================================
    PAYMENT MODAL — SAFE
@@ -1483,21 +1499,21 @@ function openPrivacyModal() {
   const content = $('#offerContent');
   if (!modal || !content) return;
 
-  fetch('/privacy.txt?t=' + Date.now())
-    .then(r => r.ok ? r.text() : Promise.reject())
-    .then(text => {
-      content.innerHTML = text;
+  if (content.dataset.type !== 'privacy') {
+    fetch('/privacy.txt?t=' + Date.now())
+      .then(r => r.ok ? r.text() : Promise.reject())
+      .then(text => {
+        content.innerHTML = text;
+        content.dataset.type = 'privacy';
 
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-
-      // ✅ ВАЖНО: активируем универсальное закрытие
-      activateOfferClickToClose();
-    })
-    .catch(() => {
-      content.innerHTML = `<h1>Політика конфіденційності</h1>`;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      activateOfferClickToClose();
-    });
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        activateOfferClickToClose();
+      });
+  } else {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    activateOfferClickToClose();
+  }
 }
+
