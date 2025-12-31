@@ -1,46 +1,389 @@
 <div class="offer-title">ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ</div>
-<div class="offer-subtitle-center">персональних даних</div>
 
 <span class="ooffer-paragraph-nonumber">
-ФІЗИЧНА ОСОБА-ПІДПРИЄМЕЦЬ Стецуріна Ірина Олександрівна поважає право користувачів на конфіденційність та захист персональних даних відповідно до чинного законодавства України.
+Справжня Політика конфіденційності персональних даних (далі – Політика конфіденційності) діє відносно всієї інформації, яка розташована на сайті – https://i-s-business-consulting.pp.ua/, та яку може отримати про Користувача під час використання сайту.
 </span>
 
-<div class="offer-subtitle">1. ЗАГАЛЬНІ ПОЛОЖЕННЯ</div>
+<span class="ooffer-paragraph-nonumber">
+Користувач не повинен впливати і втручатися в роботу даного сайту або отримувати доступ до інформації, опублікованої на даному сайті, не через стандартний інтерфейс.
+</span>
+
+<span class="ooffer-paragraph-nonumber">
+Користувач повинен використовувати даний сайт виключно відповідно до норм чинного законодавства України. Якщо адміністрація сайту виявить порушення даної Політики конфіденційності або запідозрить Користувача в цьому, вона може призупинити або повністю закрити йому доступ до сайту.
+</span>
+
+<div class="offer-subtitle">1. ВИЗНАЧЕННЯ ТЕРМІНІВ</div>
 
 <div class="offer-section">
+
   <div class="offer-item">
     <span class="offer-number">1.1.</span>
     <span class="offer-paragraph">
-      Ця Політика визначає порядок збору, зберігання, використання та захисту персональних даних користувачів сайту.
+      У цій Політиці конфіденційності використовуються такі терміни:
     </span>
   </div>
 
   <div class="offer-item">
-    <span class="offer-number">1.2.</span>
+    <span class="offer-number">1.1.1.</span>
     <span class="offer-paragraph">
-      Використовуючи сайт, користувач підтверджує згоду з умовами цієї Політики конфіденційності.
+      Адміністрація сайту https://i-s-business-consulting.pp.ua/ (далі – Адміністрація сайту) – уповноважені представники з управління сайтом, що діють від імені компанії, які здійснюють обробку персональних даних, а також визначають цілі обробки персональних даних, склад персональних даних, що підлягають обробці, дії або операції, що здійснюються з персональними даними.
     </span>
   </div>
+
+  <div class="offer-item">
+    <span class="offer-number">1.1.2.</span>
+    <span class="offer-paragraph">
+      «Персональні дані» – відомості чи сукупність відомостей про фізичну особу, яка ідентифікована або може бути конкретно ідентифікована.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">1.1.3.</span>
+    <span class="offer-paragraph">
+      «Обробка персональних даних» – будь-яка дія або сукупність дій, здійснених повністю або частково в інформаційній (автоматизованій) системі та/або в картотеках персональних даних, які пов’язані зі збиранням, реєстрацією, накопиченням, зберіганням, адаптуванням, зміною, поновленням, використанням і поширенням (розповсюдженням, реалізацією, передачею), знеособленням, знищенням відомостей про фізичну особу.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">1.1.4.</span>
+    <span class="offer-paragraph">
+      «Конфіденційність персональних даних» – обов’язкова для дотримання Адміністратором або іншим уповноваженим представником вимога не допускати їх поширення без згоди суб’єкта персональних даних або наявності іншої законної підстави.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">1.1.5.</span>
+    <span class="offer-paragraph">
+      «Користувач сайту https://i-s-business-consulting.pp.ua/» – особа, яка має доступ до Сайту, за допомогою мережі Інтернет.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">1.1.6.</span>
+    <span class="offer-paragraph">
+      «Cookies» – невеликий фрагмент даних, відправлений веб-сервером, що зберігається на комп’ютері користувача, та який веб-клієнт або веб-браузер кожен раз пересилає веб-серверу в HTTP-запиті при спробі відкрити сторінку відповідного сайту.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">1.1.7.</span>
+    <span class="offer-paragraph">
+      «IP-адреса» – унікальна мережева адреса вузла в комп’ютерній мережі, побудованої за протоколом IP.
+    </span>
+  </div>
+
 </div>
 
-<div class="offer-subtitle">2. ПЕРСОНАЛЬНІ ДАНІ</div>
+<div class="offer-subtitle">2. ЗАГАЛЬНІ ПОЛОЖЕННЯ</div>
 
 <div class="offer-section">
+
   <div class="offer-item">
     <span class="offer-number">2.1.</span>
     <span class="offer-paragraph">
-      До персональних даних належать: ім’я, номер телефону, електронна адреса та інша інформація, яку користувач добровільно надає через форми сайту.
+      Використання Користувачем сайту https://i-s-business-consulting.pp.ua/ означає згоду з цією Політикою конфіденційності та умовами обробки персональних даних Користувача.
     </span>
   </div>
+
+  <div class="offer-item">
+    <span class="offer-number">2.2.</span>
+    <span class="offer-paragraph">
+      У разі незгоди з умовами Політики конфіденційності Користувач повинен припинити використання сайту Компанії.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">2.3.</span>
+    <span class="offer-paragraph">
+      Справжня Політика конфіденційності застосовується лише до сайту https://i-s-business-consulting.pp.ua/
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">2.4.</span>
+    <span class="offer-paragraph">
+      Адміністрація сайту https://i-s-business-consulting.pp.ua/ зобов’язується виключити зловживання особистою інформацією користувачів.
+    </span>
+  </div>
+
 </div>
 
-<div class="offer-subtitle">3. ЗАХИСТ ІНФОРМАЦІЇ</div>
+<div class="offer-subtitle">3. ПРЕДМЕТ ПОЛІТИКИ КОНФІДЕНЦІЙНОСТІ</div>
 
 <div class="offer-section">
+
   <div class="offer-item">
     <span class="offer-number">3.1.</span>
     <span class="offer-paragraph">
-      Виконавець зобов’язується не передавати персональні дані третім особам без згоди користувача, окрім випадків, передбачених законом.
+      Справжня Політика конфіденційності встановлює зобов’язання Адміністрації сайту Компанії щодо нерозголошення та забезпечення режиму захисту конфіденційності персональних даних, які Користувач повинен за вимогою надати Адміністрації сайту при реєстрації на сайті Компанії.
     </span>
   </div>
+
+  <div class="offer-item">
+    <span class="offer-number">3.2.</span>
+    <span class="offer-paragraph">
+      Персональні дані, дозволені до обробки в рамках цієї Політики конфіденційності, надаються Користувачем шляхом заповнення форми зворотного зв’язку та/або після реєстрації на сайті Компанії.
+    </span>
+  </div>
+
+</div>
+
+<div class="offer-subtitle">4. ЦІЛІ ЗБОРУ ПЕРСОНАЛЬНОЇ ІНФОРМАЦІЇ КОРИСТУВАЧА</div>
+
+<div class="offer-section">
+
+  <div class="offer-item">
+    <span class="offer-number">4.1.</span>
+    <span class="offer-paragraph">
+      Персональні дані Користувача Адміністрація сайту https://i-s-business-consulting.pp.ua/ може використовувати в цілях:
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">4.1.1.</span>
+    <span class="offer-paragraph">
+      Надання Користувачеві доступу до персоналізованих ресурсів сайту.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">4.1.2.</span>
+    <span class="offer-paragraph">
+      Установлення з Користувачем зворотного зв’язку, включаючи направлення повідомлень, запитів, що стосуються використання сайту https://i-s-business-consulting.pp.ua/, надання послуг, обробка запитів і заявок від Користувача.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">4.1.3.</span>
+    <span class="offer-paragraph">
+      Надання Користувачеві ефективної технічної підтримки при виникненні проблем пов’язаних з використанням сайту https://i-s-business-consulting.pp.ua/
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">4.1.4.</span>
+    <span class="offer-paragraph">
+      Надання Користувачеві з його згоди, спеціальних пропозицій, інформації про послуги, розсилки новин та інших відомостей від імені https://i-s-business-consulting.pp.ua/ або від імені партнерів https://i-s-business-consulting.pp.ua/
+    </span>
+  </div>
+
+</div>
+
+<div class="offer-subtitle">5. СПОСОБИ І ТЕРМІНИ ОБРОБКИ ПЕРСОНАЛЬНОЇ ІНФОРМАЦІЇ</div>
+
+<div class="offer-section">
+
+  <div class="offer-item">
+    <span class="offer-number">5.1.</span>
+    <span class="offer-paragraph">
+      Обробка персональних даних Користувача здійснюється без обмеження терміну, будь-яким законним способом, в тому числі і в інформаційних системах персональних даних з використанням засобів автоматизації або без використання таких засобів.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">5.1.1.</span>
+    <span class="offer-paragraph">
+      Персональні дані Користувача можуть бути передані уповноваженим органам державної влади України тільки на підставах та в порядку, встановленим законодавством України.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">5.2.</span>
+    <span class="offer-paragraph">
+      При втраті або розголошенні персональних даних Адміністрація сайту інформує Користувача про втрату персональних даних.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">5.3.</span>
+    <span class="offer-paragraph">
+      Адміністрація сайту вживає необхідних організаційних і технічних заходів для захисту персональної інформації Користувача від неправомірного або випадкового доступу, знищення, перекручення, блокування, копіювання, поширення, а також від інших неправомірних дій третіх осіб.
+    </span>
+  </div>
+
+</div>
+
+<div class="offer-subtitle">6. ЗОБОВ’ЯЗАННЯ СТОРІН</div>
+
+<div class="offer-section">
+
+  <div class="offer-item">
+    <span class="offer-number">6.1.</span>
+    <span class="offer-paragraph">
+      Користувач зобов’язаний:
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">6.1.1.</span>
+    <span class="offer-paragraph">
+      Надати інформацію про персональні дані, необхідну для користування сайтом https://i-s-business-consulting.pp.ua/
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">6.1.2.</span>
+    <span class="offer-paragraph">
+      Оновити, доповнити надану інформацію про персональні дані в разі зміни даної інформації.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">6.2.</span>
+    <span class="offer-paragraph">
+      Адміністрація сайту зобов’язана:
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">6.2.1.</span>
+    <span class="offer-paragraph">
+      Використовувати отриману інформацію виключно для цілей, зазначених у п. 4 цієї Політики конфіденційності.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">6.2.2.</span>
+    <span class="offer-paragraph">
+      Забезпечити зберігання конфіденційної інформації в таємниці, не розголошувати без попередньої письмової згоди Користувача, а також не здійснювати продаж, обмін, опублікування, або розголошення іншими можливими способами переданих персональних даних Користувача.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">6.2.3.</span>
+    <span class="offer-paragraph">
+      Вживати заходів обережності для захисту конфіденційності персональних даних Користувача згідно з порядком, який зазвичай використовується для захисту такого роду інформації в існуючому діловому обороті.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">6.2.4.</span>
+    <span class="offer-paragraph">
+      Здійснити блокування персональних даних, що відносяться до відповідного Користувача, з моменту звернення або запиту Користувача або його законного представника або уповноваженого органу з захисту прав суб’єктів персональних даних на період перевірки, в разі виявлення недостовірних персональних даних або неправомірних дій.
+    </span>
+  </div>
+
+</div>
+
+<div class="offer-subtitle">7. ВІДПОВІДАЛЬНІСТЬ СТОРІН</div>
+
+<div class="offer-section">
+
+  <div class="offer-item">
+    <span class="offer-number">7.1.</span>
+    <span class="offer-paragraph">
+      Адміністрація сайту, яка не виконала свої зобов’язання, несе відповідальність за збитки, понесені Користувачем у зв’язку з неправомірним використанням персональних даних, відповідно до законодавства України, за винятком випадків, передбачених пп. 5.2., 5.3. і 7.2. цієї Політики Конфіденційності.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">7.2.</span>
+    <span class="offer-paragraph">
+      У разі втрати або розголошення Конфіденційної інформації Адміністрація сайту не несе відповідальність, якщо дана конфіденційна інформація:
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">7.2.1.</span>
+    <span class="offer-paragraph">
+      Стала публічним надбанням до її втрати або розголошення.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">7.2.2.</span>
+    <span class="offer-paragraph">
+      Була отримана від третьої сторони до моменту її отримання Адміністрацією сайту.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">7.2.3.</span>
+    <span class="offer-paragraph">
+      Була розголошена за згодою Користувача.
+    </span>
+  </div>
+
+</div>
+
+<div class="offer-subtitle">8. ВИРІШЕННЯ СПОРІВ</div>
+
+<div class="offer-section">
+
+  <div class="offer-item">
+    <span class="offer-number">8.1.</span>
+    <span class="offer-paragraph">
+      До звернення в суд з позовом у спорах, що виникають із відносин між Користувачем сайту https://i-s-business-consulting.pp.ua/ і Адміністрацією сайту, обов’язковим є пред’явлення претензії (письмової пропозиції про добровільне врегулювання спору).
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">8.2.</span>
+    <span class="offer-paragraph">
+      Одержувач претензії протягом 30 календарних днів з дня отримання претензії письмово повідомляє заявника претензії про результати розгляду претензії.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">8.3.</span>
+    <span class="offer-paragraph">
+      При не досягненні згоди суперечка буде передана на розгляд до судового органу відповідно до чинного законодавства України.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">8.4.</span>
+    <span class="offer-paragraph">
+      До цієї Політики конфіденційності та відносин між Користувачем і Адміністрацією сайту застосовується чинне законодавство України.
+    </span>
+  </div>
+
+</div>
+
+<div class="offer-subtitle">9. ДОДАТКОВІ УМОВИ</div>
+
+<div class="offer-section">
+
+  <div class="offer-item">
+    <span class="offer-number">9.1.</span>
+    <span class="offer-paragraph">
+      Адміністрація сайту має право вносити зміни в справжню Політику конфіденційності без згоди Користувача.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">9.2.</span>
+    <span class="offer-paragraph">
+      Нова Політика конфіденційності вступає в силу з моменту її розміщення на сайті https://i-s-business-consulting.pp.ua/, якщо інше не передбачено новою редакцією Політики конфіденційності.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">9.3.</span>
+    <span class="offer-paragraph">
+      Всі права на сайт https://i-s-business-consulting.pp.ua/ і його зміст належать ФОП Стецуріна Ірина Олександрівна. Даний сайт в цілому, і окремі його елементи охороняються Законом України «Про авторське право і суміжні права», Міжнародними правовими актами та іншими актами чинного законодавства України.
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">9.4.</span>
+    <span class="offer-paragraph">
+      Користувачі сайту не мають поширювати, змінювати, передавати, використовувати будь-яку інформацію з сайту https://i-s-business-consulting.pp.ua/ для будь-якої публічної або комерційної мети без письмового дозволу ФОП Стецуріна Ірина Олександрівна. Відвідувачі повинні дотримуватися всіх авторських прав на завантажені та/або скопійовані матеріали. Скопійована інформація повинна містити активне гіперпосилання на сайт https://i-s-business-consulting.pp.ua/
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">9.5.</span>
+    <span class="offer-paragraph">
+      При роботі з сайтом Компанії Користувачу не надаються права на інтелектуальну власність на сайт, його утримання або на використання будь-яких елементів брендингу або логотипів сайту https://i-s-business-consulting.pp.ua/
+    </span>
+  </div>
+
+  <div class="offer-item">
+    <span class="offer-number">9.6.</span>
+    <span class="offer-paragraph">
+      Якщо Ви відвідали цей сайт, Ви автоматично погоджуєтеся з цією Політикою конфіденційності. Якщо Ви не згодні з даною Політикою конфіденційності, Ви повинні покинути цей сайт.
+    </span>
+  </div>
+
 </div>
