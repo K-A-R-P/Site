@@ -3,6 +3,7 @@
   --black: #1a1a1a;
   --bg: #f5f1ea;
   --gray: #36454f;
+  --burgundy: #8b1d1d; /* твой фирменный бордовый */
   --text-main: #2b2b2b;
   --text-dark: #222;
   --text-muted: #444;
@@ -3244,3 +3245,15 @@ canvas.confetti-canvas {
 #mentoring .products-header:not(.products-subtitle) {
   color: #750525;
 }
+/* =====================
+   BORDO — SECTION H2 ONLY
+===================== */
+
+h2.products-header,
+h2.testimonials-title,
+h2.gallery-title,
+h2.clients-title {
+  color: var(--burgundy);
+}
+
+
