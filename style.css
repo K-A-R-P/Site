@@ -3293,6 +3293,7 @@ footer {
 
 /* =========================================================
    LIST — ГРАДИЕНТНЫЕ КРУЖКИ (CARD + MODAL)
+   ОБЫЧНЫЕ UL — КАК РАНЬШЕ
 ========================================================= */
 
 .card-text-content ul,
@@ -3306,7 +3307,7 @@ footer {
 .modal-content ul li {
   position: relative;
   padding-left: 34px;
-  margin-bottom: 12px;
+  margin-bottom: 2px;
   line-height: 1.6;
 }
 
@@ -3330,3 +3331,55 @@ footer {
   box-shadow: 0 0 0 2px rgba(117, 5, 37, 0.18);
 }
 
+.ol-custom {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ol-custom li {
+  position: relative;
+  padding-left: 42px;
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+
+.ol-custom .num {
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    #b73752,
+    #750525
+  );
+
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 0 0 2px rgba(117, 5, 37, 0.18);
+}
+
+/* ===== ВОЗВРАЩАЕМ ЦИФРЫ В КРУЖКАХ ===== */
+
+.ol-custom {
+  counter-reset: step;
+}
+
+.ol-custom > li {
+  counter-increment: step;
+}
+
+.ol-custom .num::before {
+  content: counter(step);
+}
