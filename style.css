@@ -3291,3 +3291,42 @@ footer {
 }
 
 
+/* =========================================================
+   LIST — ГРАДИЕНТНЫЕ КРУЖКИ (CARD + MODAL)
+========================================================= */
+
+.card-text-content ul,
+.modal-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0;
+}
+
+.card-text-content ul li,
+.modal-content ul li {
+  position: relative;
+  padding-left: 34px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.card-text-content ul li::before,
+.modal-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    #b73752,
+    #750525
+  );
+
+  box-shadow: 0 0 0 2px rgba(117, 5, 37, 0.18);
+}
+
