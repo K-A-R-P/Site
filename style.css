@@ -2968,7 +2968,7 @@ canvas.confetti-canvas {
   /* ===== DESKTOP HERO SECOND LINE SIZE ===== */
 @media (min-width: 1024px) {
   .hero-line-2 {
-    font-size: 34px !important; /* ← ПОДБИРАЙ РАЗМЕР */
+    font-size: 34px !important;
     line-height: 1.12 !important;
   }
 }
@@ -2981,41 +2981,53 @@ canvas.confetti-canvas {
 @media (max-width: 768px) {
 
   #hero {
-    padding-top: 28px;
-    min-height: 300px;
-    height: auto;
+    min-height: 380px;      /* ← фиксированная высота */
+    height: 380px;
+    margin-top: -72px;      /* ← фон под топбар */
+    padding: 0;
   }
 
   .hero-wrapper {
-    padding: 0 14px;
+    padding: 0;
+    height: 100%;
+  }
+
+  .hero-text {
+    position: absolute;     /* ← КАК НА ДЕСКТОПЕ */
+    bottom: 30px;           /* ← текст внизу фона */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 0;         /* ← убрали лишний */
   }
 
   .hero-text h1,
   .hero-line {
-    font-size: 22px !important;
-    line-height: 1.12 !important;
+    font-size: 19px !important;
+    line-height: 1.3 !important;
     margin: 0;
     font-weight: 700;
   }
 
-  .hero-line-1 { margin-bottom: 4px; }
-  .hero-line-2 { margin-bottom: 4px; }
+  .hero-line-1 { margin-bottom: 5px; }
+  .hero-line-2 { margin-bottom: 5px; }
 
   .hero-sub {
-    font-size: 16px !important;
-    line-height: 1.25 !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
     margin-top: 10px;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .hero-cover {
-    height: 180px;
+    height: 100%;           /* ← фон на всю высоту */
     object-position: center top;
   }
-}
 
+  .hero-overlay {
+    display: none;          /* ← убрали картинку */
+  }
+}
 /* =========================
    MODAL CLOSE — X (CLEAN PREMIUM)
 ========================= */
