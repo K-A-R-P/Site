@@ -2,6 +2,7 @@
 
 /* =====================================================
    BOOKING APP — SAFE, BASED ON WORKING VERSION
+   FIX: double navigation on month buttons
 ===================================================== */
 
 /* ===== BACKEND ===== */
@@ -175,7 +176,10 @@ function mark(el, ok) {
 
 /* =====================================================
    INIT — CALLED FROM MODAL OPEN
+   FIX: prevent duplicate event listeners
 ===================================================== */
+let _isInitialized = false;
+
 window.initBookingApp = async function () {
   const root = document.getElementById('bookingApp');
   if (!root) return;
@@ -192,107 +196,131 @@ window.initBookingApp = async function () {
   state.selectedDate = null;
   state.selectedTime = null;
 
-  // nav
-  root.querySelector('.nav-btn.prev')?.addEventListener('click', () => {
-    state.currentMonth.setMonth(state.currentMonth.getMonth() - 1);
-    renderCalendar(root);
-  });
+  // --- ИНИЦИАЛИЗАЦИЯ ТОЛЬКО ОДИН РАЗ ---
+  if (!_isInitialized) {
+    // nav buttons
+    const prevBtn = root.querySelector('.nav-btn.prev');
+    const nextBtn = root.querySelector('.nav-btn.next');
+    const backDateBtn = root.querySelector('.back-to-date');
+    const backTimeBtn = root.querySelector('.back-to-time');
 
-  root.querySelector('.nav-btn.next')?.addEventListener('click', () => {
-    state.currentMonth.setMonth(state.currentMonth.getMonth() + 1);
-    renderCalendar(root);
-  });
-
-  root.querySelector('.back-to-date')?.addEventListener('click', () => {
-    setStep(root, '.step-date');
-  });
-
-  root.querySelector('.back-to-time')?.addEventListener('click', () => {
-    setStep(root, '.step-time');
-  });
-
-  const form = formOld.cloneNode(true);
-  formOld.replaceWith(form);
-
-  const name  = form.querySelector('input[name="name"]');
-  const email = form.querySelector('input[name="email"]');
-  const phone = form.querySelector('input[name="phone"]') || form.querySelector('#phoneInput');
-  const status = root.querySelector('.form-status');
-
-  initPhoneMask(phone);
-
-  const repaint = () => {
-    mark(name, validName(name.value));
-    mark(email, validEmail(email.value));
-    mark(phone, validPhone(phone.value));
-  };
-
-  name.addEventListener('input', repaint);
-  email.addEventListener('input', repaint);
-  phone.addEventListener('input', repaint);
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    if (!state.selectedDate || !state.selectedTime) {
-      if (status) status.textContent = 'Оберіть дату та час';
-      return;
-    }
-
-    if (!validName(name.value) || !validEmail(email.value) || !validPhone(phone.value)) {
-      if (status) status.textContent = 'Заповніть форму коректно';
-      repaint();
-      return;
-    }
-
-    if (status) status.textContent = 'Надсилаємо заявку…';
-
-    try {
-      const res = await fetch(`${BOOKING_API}/api/book`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          date: state.selectedDate,
-          time: state.selectedTime,
-          name: name.value.trim(),
-          email: email.value.trim(),
-          phone: phone.value.trim(),
-          product: window.bookingProduct || '',
-          price: window.bookingPrice || '',
-          pay_link: window.bookingPayLink || '',
-          comment: ''
-        })
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        state.currentMonth.setMonth(state.currentMonth.getMonth() - 1);
+        renderCalendar(root);
       });
-
-      if (res.status === 409) {
-        status.textContent = 'Цей час вже зайнятий 🙏';
-        return;
-      }
-
-      if (!res.ok) {
-        status.textContent = 'Помилка сервера';
-        return;
-      }
-
-      status.textContent = 'Заявку прийнято ✔';
-
-// 1️⃣ сначала ЗАКРЫВАЕМ booking modal
-document.getElementById('bookingModal')?.classList.remove('active');
-
-// 2️⃣ потом ОТКРЫВАЕМ success
-document.getElementById('successModal')?.classList.add('active');
-
-// 3️⃣ и только потом reset
-form.reset();
-repaint();
-
-
-    } catch (err) {
-      console.error(err);
-      status.textContent = 'Сервер недоступний';
     }
-  });
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        state.currentMonth.setMonth(state.currentMonth.getMonth() + 1);
+        renderCalendar(root);
+      });
+    }
+    if (backDateBtn) {
+      backDateBtn.addEventListener('click', () => {
+        setStep(root, '.step-date');
+      });
+    }
+    if (backTimeBtn) {
+      backTimeBtn.addEventListener('click', () => {
+        setStep(root, '.step-time');
+      });
+    }
 
+    // clone form to avoid leftover listeners
+    const form = formOld.cloneNode(true);
+    formOld.replaceWith(form);
+
+    const name  = form.querySelector('input[name="name"]');
+    const email = form.querySelector('input[name="email"]');
+    const phone = form.querySelector('input[name="phone"]') || form.querySelector('#phoneInput');
+    const status = root.querySelector('.form-status');
+
+    initPhoneMask(phone);
+
+    const repaint = () => {
+      mark(name, validName(name.value));
+      mark(email, validEmail(email.value));
+      mark(phone, validPhone(phone.value));
+    };
+
+    name.addEventListener('input', repaint);
+    email.addEventListener('input', repaint);
+    phone.addEventListener('input', repaint);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!state.selectedDate || !state.selectedTime) {
+        if (status) status.textContent = 'Оберіть дату та час';
+        return;
+      }
+
+      if (!validName(name.value) || !validEmail(email.value) || !validPhone(phone.value)) {
+        if (status) status.textContent = 'Заповніть форму коректно';
+        repaint();
+        return;
+      }
+
+      if (status) status.textContent = 'Надсилаємо заявку…';
+
+      try {
+        const res = await fetch(`${BOOKING_API}/api/book`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            date: state.selectedDate,
+            time: state.selectedTime,
+            name: name.value.trim(),
+            email: email.value.trim(),
+            phone: phone.value.trim(),
+            product: window.bookingProduct || '',
+            price: window.bookingPrice || '',
+            pay_link: window.bookingPayLink || '',
+            comment: ''
+          })
+        });
+
+        if (res.status === 409) {
+          status.textContent = 'Цей час вже зайнятий 🙏';
+          return;
+        }
+
+        if (!res.ok) {
+          status.textContent = 'Помилка сервера';
+          return;
+        }
+
+        status.textContent = 'Заявку прийнято ✔';
+
+        // 1️⃣ закрываем booking modal
+        document.getElementById('bookingModal')?.classList.remove('active');
+        // 2️⃣ открываем success modal
+        document.getElementById('successModal')?.classList.add('active');
+        // 3️⃣ сбрасываем форму
+        form.reset();
+        repaint();
+
+      } catch (err) {
+        console.error(err);
+        status.textContent = 'Сервер недоступний';
+      }
+    });
+
+    _isInitialized = true;
+  } else {
+    // при повторном открытии только обновляем мета и перерисовываем
+    // важно: слушатели уже есть, не добавляем новые
+    // но нужно пересоздать форму? нет, она уже существует
+    // однако в ней могут быть старые значения, сбрасываем их вручную
+    const form = root.querySelector('#bookingForm');
+    if (form) form.reset();
+    // также очищаем статус
+    const status = root.querySelector('.form-status');
+    if (status) status.textContent = '';
+  }
+
+  // всегда обновляем отображение
   updateMeta(root);
   setStep(root, '.step-date');
   renderCalendar(root);
